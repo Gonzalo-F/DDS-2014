@@ -12,4 +12,8 @@ class CondicionEdad implements Condicion {
 	override cumple(Jugador jugador, Partido partido) {
 		return ((jugador.edad > edadMinima) && (jugador.edad < edadMinima))
 	}
+	
+	def funcionQueNoSirve(Jugador jugador){
+		jugador.getEdad
+	}
 }
