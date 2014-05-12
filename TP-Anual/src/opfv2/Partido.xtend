@@ -26,5 +26,9 @@ class Partido {
 		solidarios.forEach[unaInsc|listaJugadores.add(unaInsc.jugador)]
 		condicionales.forEach[unaInsc|listaJugadores.add(unaInsc.jugador)]
 		return listaJugadores
+		/* para arreglar este tema, por ejemplo, seria mejor guardar 
+		* todas las inscripciones en una sola lista? 
+		* Sigo sin verle demasiado sentido a guardar cada Tipo en su propia lista
+		*/
 	}
 }
