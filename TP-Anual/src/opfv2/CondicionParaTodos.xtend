@@ -7,8 +7,8 @@ class CondicionParaTodos implements Condicion {
 		this.condicion = c
 	}
 
-	override cumple(Jugador jugador, Partido partido) {
-		partido.getListaJugadores.all [unJug | condicion.cumple (unJug, partido)]
+	override boolean cumple(Jugador jugador, Partido partido) {
+		partido.getListaJugadores.exists[unJugador | !(cumple(unJugador,partido))]
 	}
 	
 }
