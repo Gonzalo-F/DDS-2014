@@ -21,7 +21,7 @@ class Partido {
 	}
 
 	def getListaJugadores() {
-		var HashSet<Jugador> listaJugadores = newHashSet()
+		val HashSet<Jugador> listaJugadores = newHashSet()
 		estandares.forEach[unaInsc|listaJugadores.add(unaInsc.jugador)]
 		solidarios.forEach[unaInsc|listaJugadores.add(unaInsc.jugador)]
 		condicionales.forEach[unaInsc|listaJugadores.add(unaInsc.jugador)]
