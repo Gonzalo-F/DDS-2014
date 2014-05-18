@@ -1,6 +1,6 @@
 package tests
 
-import static org.junit.Assert.*
+
 import org.junit.Test
 import opfv2.Partido
 import opfv2.Jugador
@@ -9,6 +9,7 @@ import opfv2.InscripEstandar
 import opfv2.InscripSolidario
 import opfv2.InscripCondicional
 import opfv2.CondicionLugar
+import static org.junit.Assert.*
 
 
 class TestInscripcion {
@@ -20,8 +21,10 @@ class TestInscripcion {
 	def testInscribirEstandar() {
 		var Inscripcion inscri = new Inscripcion(jugador, partido)
 		inscri.tipo = new InscripEstandar()
+		
 		inscri.inscribir(jugador, partido)
-		assertTrue(partido.estandares.contains(jugador))
+		
+		assertTrue(partido.estandares.contains(inscri))
 
 	}
 
@@ -30,7 +33,7 @@ class TestInscripcion {
 		var Inscripcion inscri = new Inscripcion(jugador, partido)
 		inscri.tipo = new InscripSolidario()
 		inscri.inscribir(jugador, partido)
-		assertTrue(partido.solidarios.contains(jugador))
+		assertTrue(partido.solidarios.contains(inscri))
 	}
 
 	@Test
@@ -38,7 +41,7 @@ class TestInscripcion {
 		var Inscripcion inscri = new Inscripcion(jugador, partido)
 		inscri.tipo = new InscripCondicional(new CondicionLugar("Tinglado"))
 		inscri.inscribir(jugador, partido)
-		assertTrue(partido.condicionales.contains(jugador))
+		assertTrue(partido.condicionales.contains(inscri))
 	}
 
 }
