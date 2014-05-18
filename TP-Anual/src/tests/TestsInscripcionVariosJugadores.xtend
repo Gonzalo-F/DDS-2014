@@ -31,7 +31,8 @@ class TestsInscripcionVariosJugadores {
 		try {
 			inscri.inscribir(jugador11,partido)
 		} catch (InscripcionRechazadaException e) {
-			fail()
+			return
 		}
+		fail()
 	}
 }
