@@ -1,6 +1,6 @@
 package opfv2
 
-class DiezConfirmadosObserver implements Observador {
+class DiezConfirmadosObserver implements InscripcionObserver {
 	
 	Integer confirmados
 	Notificador notificador

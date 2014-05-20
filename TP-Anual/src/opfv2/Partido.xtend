@@ -11,7 +11,7 @@ class Partido {
 	@Property ArrayList<Inscripcion> estandares
 	@Property ArrayList<Inscripcion> solidarios
 	@Property ArrayList<Inscripcion> condicionales
-	@Property List<Observador> observadores
+	@Property List<InscripcionObserver> observadores
 
 	new(int fecha, int hora, String lugar) {
 		this.hora = hora
