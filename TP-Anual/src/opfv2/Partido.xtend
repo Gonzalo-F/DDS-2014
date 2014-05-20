@@ -2,6 +2,7 @@ package opfv2
 
 import java.util.ArrayList
 import java.util.HashSet
+import java.util.List
 
 class Partido {
 	@Property String lugar
@@ -10,6 +11,7 @@ class Partido {
 	@Property ArrayList<Inscripcion> estandares
 	@Property ArrayList<Inscripcion> solidarios
 	@Property ArrayList<Inscripcion> condicionales
+	@Property List<Observador> observadores
 
 	new(int fecha, int hora, String lugar) {
 		this.hora = hora

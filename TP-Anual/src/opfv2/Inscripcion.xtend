@@ -17,5 +17,9 @@ class Inscripcion {
 	def getJugador() {
 		jugador
 	}
+
+def getPartido() {
+		partido
+	}
 	
 	}
