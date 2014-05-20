@@ -10,7 +10,7 @@ class Inscripcion {
 		this.jugador = unJugador
 		this.partido = unPartido
 	}
-	def void inscribir (Jugador unJugador, Partido unPartido){
+	def void inscribir (Jugador unJugador, Partido unPartido){ //nos falta el parametro tipo segun el diagrama de clases
 		tipo.inscribirA(unJugador, unPartido, this )
 	}
 	

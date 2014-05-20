@@ -13,7 +13,5 @@ class CondicionEdad implements Condicion {
 		return ((jugador.edad > edadMinima) && (jugador.edad < edadMinima))
 	}
 	
-	def funcionQueNoSirve(Jugador jugador){
-		jugador.getEdad
-	}
+	
 }
