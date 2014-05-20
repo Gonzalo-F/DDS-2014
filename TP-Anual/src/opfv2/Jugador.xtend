@@ -20,7 +20,7 @@ class Jugador {
 		nombre
 	}
 	
-	def notificarAmigo(Partido unPartido){
+	def notificarAmigos(Partido unPartido){
 	amigos.forEach[a|a recibirNotificacion(this,unPartido)] //si ya se de este error pero no se como solucionarlo
 	}
 	def recibirNotificacion(Jugador unJugador,Partido unPartido){
