@@ -1,15 +1,17 @@
 package opfv2
 
-
-
 import java.util.ArrayList
 import java.util.List
+
 
 class Jugador {
 	@Property
 	int edad
 	String nombre
+	BajaPenalizada bajaPenalizada
+	BajaReemplazada bajaReemplazada
 	List<Jugador> amigos = new ArrayList
+	@Property List<String> penalizaciones = new ArrayList
 	
 	new (int edad, String nombre){
 		this.edad = edad
@@ -19,6 +21,17 @@ class Jugador {
 	def getNombre() 
 	{
 		nombre
+	}
+	
+	def darseDeBaja(Partido partido, Jugador reemplazante){
+		if (reemplazante == null)
+			{
+			this.bajaPenalizada.darDeBaja(partido, this, reemplazante)
+			}
+		else
+			{
+			this.bajaReemplazada.darDeBaja(partido, this, reemplazante)
+			}
 	}
 	
 	/*
