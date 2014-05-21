@@ -14,6 +14,7 @@ class Jugador {
 	new (int edad, String nombre){
 		this.edad = edad
 		this.nombre = nombre
+		this.penalizaciones = new ArrayList
 	}
 	
 	def getNombre() 

@@ -20,8 +20,7 @@ class BajaSimple implements BajaInscripcion{
 			else if ( (unPartido.condicionales.filter[inscripcion|inscripcion.getPartido() == unPartido && inscripcion.getJugador() == unJugador]).size == 1)
 					{
 					val insc = (unPartido.condicionales.filter[inscripcion|inscripcion.getPartido() == unPartido && inscripcion.getJugador() == unJugador]).get(0)
-					unPartido.condicionales.remove(insc)
-					unPartido.observadores.forEach[observer|observer.seDioDeBaja(insc)]
+					unPartido.condicionales.remove(insc)					
 					}
 				else
 					{

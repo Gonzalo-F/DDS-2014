@@ -5,12 +5,8 @@ import opfv2.Partido
 import opfv2.Jugador
 import opfv2.Inscripcion
 import opfv2.InscripEstandar
-import opfv2.InscripSolidario
-import opfv2.InscripCondicional
-import opfv2.CondicionLugar
 import static org.junit.Assert.*
-import opfv2.DiezConfirmadosObserver
-import opfv2.StubNotificador
+
 
 class TestDarDeBajaInscripcion {
 
@@ -19,15 +15,29 @@ class TestDarDeBajaInscripcion {
 	var Jugador reemplazante = new Jugador(20, "Cacho")
 
 	@Test
-	def test() {
+	def testReemplazarJugador() {
 		var Inscripcion inscri = new Inscripcion(jugador, partido)
-		inscri.tipo = new InscripEstandar()
-		partido.observadores.add(new DiezConfirmadosObserver(new StubNotificador)) 
+		inscri.tipo = new InscripEstandar()		
 		
 		inscri.inscribir(jugador, partido)
 		jugador.darseDeBaja(partido, reemplazante)
 		
 		assertFalse(partido.estandares.contains(inscri))
+		assertTrue( (partido.estandares.filter[inscripcion|inscripcion.getPartido() == partido && inscripcion.getJugador() == jugador]).size == 1 )
+	}
+	
+	@Test
+	def testPenalizar() {
+		var Inscripcion inscri = new Inscripcion(jugador, partido)
+		inscri.tipo = new InscripEstandar()
+		
+		var int cantPenalizaciones = jugador.penalizaciones.size + 1
+		
+		inscri.inscribir(jugador, partido)
+		jugador.darseDeBaja(partido, null)
+		
+		assertFalse(partido.estandares.contains(inscri))
+		assertTrue(jugador.penalizaciones.size == cantPenalizaciones)
 
 	}
 	
