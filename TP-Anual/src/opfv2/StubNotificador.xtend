@@ -6,6 +6,7 @@ import java.util.ArrayList
 class StubNotificador implements Notificador {
 	
 	List<Partido> partidosNotificados
+	List<Jugador> amigosDelJugadorANotificar
 	
 	new(){
 		this.partidosNotificados = new ArrayList<Partido>
@@ -22,5 +23,10 @@ class StubNotificador implements Notificador {
 	def getPartidosNotificados() {
 		partidosNotificados
 	}
+	
+	override notificarAmigosNuevaInscripcion(Jugador unJugador){
+ 		this.amigosDelJugadorANotificar.addAll(unJugador.amigos) 	 
+ 	 
+ }
 	
 }

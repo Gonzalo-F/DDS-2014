@@ -8,7 +8,7 @@ class Jugador {
 	@Property
 	int edad
 	String nombre
-	List<Jugador> amigos = new ArrayList
+	@Property ArrayList<Jugador> amigos
 	@Property List<String> penalizaciones = new ArrayList
 	
 	new (int edad, String nombre){
