@@ -6,7 +6,11 @@ class StubNotificador implements Notificador {
 	
 	List<Partido> partidosNotificados
 	
-	override notificarAdmin(Partido unPartido){
+	override notificarAdminHay10(Partido unPartido){
 		partidosNotificados.add(unPartido)
+	}
+	
+	override notificarAdminYaNoHay10(Partido unPartido){
+		partidosNotificados.remove(unPartido)
 	}
 }
