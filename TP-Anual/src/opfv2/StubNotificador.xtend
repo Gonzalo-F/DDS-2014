@@ -18,4 +18,9 @@ class StubNotificador implements Notificador {
 	override notificarAdminYaNoHay10(Partido unPartido){
 		partidosNotificados.remove(unPartido)
 	}
+	
+	def getPartidosNotificados() {
+		partidosNotificados
+	}
+	
 }
