@@ -24,13 +24,13 @@ class Jugador {
 	}
 	
 	def darseDeBaja(Partido partido, Jugador reemplazante){
-		if (reemplazante == null)
+		if (reemplazante != null)
 			{
-			this.bajaPenalizada.darDeBaja(partido, this, reemplazante)
+			this.bajaReemplazada.darDeBaja(partido, this, reemplazante)
 			}
 		else
 			{
-			this.bajaReemplazada.darDeBaja(partido, this, reemplazante)
+			this.bajaPenalizada.darDeBaja(partido, this, reemplazante)
 			}
 	}
 	
