@@ -2,6 +2,7 @@ package opfv2
 
 import java.util.ArrayList
 import java.util.List
+import bajaObserver.BajaInscripcionObserver
 
 
 class Jugador {
@@ -10,16 +11,24 @@ class Jugador {
 	String nombre
 	@Property ArrayList<Jugador> amigos
 	@Property List<String> penalizaciones = new ArrayList
+	@Property List<BajaInscripcionObserver> observadores
 	
 	new (int edad, String nombre){
 		this.edad = edad
 		this.nombre = nombre
 		this.penalizaciones = new ArrayList
+		this.observadores = new ArrayList
 	}
 	
 	def getNombre() 
 	{
 		nombre
+	}
+	
+	def darseDeBajaObserver(Partido partido, Jugador reemplazante){
+		var bajaSimple = new BajaSimple
+		bajaSimple.darDeBaja(partido, this, reemplazante)
+		this.observadores.forEach[observer|observer.seQuiereDarDeBaja(this, partido, reemplazante)]		
 	}
 	
 	def darseDeBaja(Partido partido, Jugador reemplazante){
