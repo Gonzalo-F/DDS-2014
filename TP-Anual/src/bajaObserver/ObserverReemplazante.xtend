@@ -9,10 +9,11 @@ class ObserverReemplazante implements BajaInscripcionObserver{
 	override seQuiereDarDeBaja(Jugador unJugador, Partido unPartido, Jugador unReemplazo){
 		if (unReemplazo != null)
 			{
-			var Inscripcion inscri = new Inscripcion(unJugador, unPartido)
+			var Inscripcion inscri = new Inscripcion(unReemplazo, unPartido)
 			inscri.tipo = new InscripEstandar()
 		
-			inscri.inscribir(unJugador, unPartido)
+			inscri.inscribir(unReemplazo, unPartido)
+			
 			}		
 	}
 }
