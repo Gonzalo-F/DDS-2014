@@ -8,8 +8,6 @@ class Jugador {
 	@Property
 	int edad
 	String nombre
-	BajaPenalizada bajaPenalizada
-	BajaReemplazada bajaReemplazada
 	List<Jugador> amigos = new ArrayList
 	@Property List<String> penalizaciones = new ArrayList
 	
@@ -26,11 +24,13 @@ class Jugador {
 	def darseDeBaja(Partido partido, Jugador reemplazante){
 		if (reemplazante != null)
 			{
-			this.bajaReemplazada.darDeBaja(partido, this, reemplazante)
+			var bajaReemplazada = new BajaReemplazada(new BajaSimple)
+			bajaReemplazada.darDeBaja(partido, this, reemplazante)
 			}
 		else
 			{
-			this.bajaPenalizada.darDeBaja(partido, this, reemplazante)
+			var bajaPenalizada = new BajaPenalizada(new BajaSimple)
+			bajaPenalizada.darDeBaja(partido, this, reemplazante)
 			}
 	}
 	

@@ -9,6 +9,8 @@ import opfv2.InscripSolidario
 import opfv2.InscripCondicional
 import opfv2.CondicionLugar
 import static org.junit.Assert.*
+import opfv2.DiezConfirmadosObserver
+import opfv2.StubNotificador
 
 class TestDarDeBajaInscripcion {
 
@@ -20,6 +22,7 @@ class TestDarDeBajaInscripcion {
 	def test() {
 		var Inscripcion inscri = new Inscripcion(jugador, partido)
 		inscri.tipo = new InscripEstandar()
+		partido.observadores.add(new DiezConfirmadosObserver(new StubNotificador)) 
 		
 		inscri.inscribir(jugador, partido)
 		jugador.darseDeBaja(partido, reemplazante)

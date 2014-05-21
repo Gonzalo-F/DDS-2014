@@ -20,6 +20,7 @@ class Partido {
 		this.estandares = new ArrayList()
 		this.solidarios = new ArrayList()
 		this.condicionales = new ArrayList()
+		this.observadores = new ArrayList()
 	}
 
 	def getListaJugadores() {
