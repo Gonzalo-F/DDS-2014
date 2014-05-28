@@ -1,9 +1,11 @@
 package opfv2
 
+import bajaDecorator.BajaPenalizada
+import bajaDecorator.BajaReemplazada
+import bajaDecorator.BajaSimple
+import bajaObserver.BajaInscripcionObserver
 import java.util.ArrayList
 import java.util.List
-import bajaObserver.BajaInscripcionObserver
-
 
 class Jugador {
 	@Property

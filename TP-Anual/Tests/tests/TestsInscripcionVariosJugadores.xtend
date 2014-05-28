@@ -1,13 +1,14 @@
 package tests
 
 import excepciones.InscripcionRechazadaException
+import opfv2.Inscripcion
 import opfv2.Jugador
 import opfv2.Partido
-import opfv2.Inscripcion
 import org.junit.Before
 import org.junit.Test
+import tipoInscripcion.InscripEstandar
+
 import static org.junit.Assert.*
-import opfv2.InscripEstandar
 
 class TestsInscripcionVariosJugadores {
 

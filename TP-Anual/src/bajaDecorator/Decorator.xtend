@@ -1,4 +1,4 @@
-package opfv2
+package bajaDecorator
 
 abstract class Decorator implements BajaInscripcion{
 	@Property BajaInscripcion decorado

@@ -1,4 +1,4 @@
-package opfv2
+package condiciones
 
 class CondicionEdad implements Condicion {
 	@Property int edadMinima
@@ -9,8 +9,8 @@ class CondicionEdad implements Condicion {
 		this.edadMaxima = maxima
 	}
 
-	override cumple(Jugador jugador, Partido partido) {
-		return ((jugador.edad > edadMinima) && (jugador.edad < edadMinima))
+	override cumple(opfv2.Jugador jugador, opfv2.Partido partido) {
+		return ((jugador.getEdad > getEdadMinima) && (jugador.getEdad < getEdadMinima))
 	}
 	
 	

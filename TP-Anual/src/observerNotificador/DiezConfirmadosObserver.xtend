@@ -1,4 +1,6 @@
-package opfv2
+package observerNotificador
+
+import opfv2.Inscripcion
 
 class DiezConfirmadosObserver implements InscripcionObserver {
 	

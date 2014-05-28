@@ -1,10 +1,11 @@
 package tests
 
-import org.junit.Test
-import opfv2.Partido
-import opfv2.Jugador
 import opfv2.Inscripcion
-import opfv2.InscripEstandar
+import opfv2.Jugador
+import opfv2.Partido
+import org.junit.Test
+import tipoInscripcion.InscripEstandar
+
 import static org.junit.Assert.*
 
 class TestDarDeBajaInscripcionObserver {

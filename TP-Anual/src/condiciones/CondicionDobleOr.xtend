@@ -1,4 +1,4 @@
-package opfv2
+package condiciones
 
 class CondicionDobleOr implements Condicion {
 	@Property Condicion condicion1
@@ -9,7 +9,7 @@ class CondicionDobleOr implements Condicion {
 		this.condicion2 = c2
 	}
 
-	override cumple(Jugador jugador, Partido partido) {
-		return ((condicion1.cumple(jugador, partido)) || (condicion2.cumple(jugador, partido)))
+	override cumple(opfv2.Jugador jugador, opfv2.Partido partido) {
+		return ((getCondicion1.cumple(jugador, partido)) || (getCondicion2.cumple(jugador, partido)))
 	}
 }

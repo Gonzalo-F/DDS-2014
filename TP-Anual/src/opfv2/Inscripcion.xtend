@@ -1,5 +1,7 @@
 package opfv2
 
+import tipoInscripcion.TipoInscripcion
+
 class Inscripcion {
 	@Property
 	TipoInscripcion tipo

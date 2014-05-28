@@ -1,6 +1,10 @@
-package opfv2
+package tipoInscripcion
 
+import condiciones.Condicion
 import excepciones.InscripcionRechazadaException
+import opfv2.Inscripcion
+import opfv2.Jugador
+import opfv2.Partido
 
 class InscripCondicional implements TipoInscripcion {
 

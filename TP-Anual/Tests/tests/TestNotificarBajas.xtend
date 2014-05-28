@@ -1,13 +1,14 @@
 package tests
 
-import opfv2.Partido
-import org.junit.Before
+import observerNotificador.DiezConfirmadosObserver
+import observerNotificador.StubNotificador
 import opfv2.Inscripcion
 import opfv2.Jugador
-import opfv2.InscripEstandar
-import opfv2.StubNotificador
-import opfv2.DiezConfirmadosObserver
+import opfv2.Partido
+import org.junit.Before
 import org.junit.Test
+import tipoInscripcion.InscripEstandar
+
 import static org.junit.Assert.*
 
 class TestNotificarBajas {
