@@ -7,6 +7,7 @@ import bajaObserver.BajaInscripcionObserver
 import java.util.ArrayList
 import java.util.List
 import calificacion.Calificacion
+import excepciones.NoSePuedeCalificarExcepcion
 
 class Jugador {
 	@Property
@@ -51,8 +52,8 @@ class Jugador {
 			}
 			
 			def calificar(Partido partido, Jugador jugador, int puntaje, String comentario){
-				if(!jugador.jugoEn(partido)){trow new NoSePuedeCalificarException ("No se puede califcar a un jugador que no jugo en ese partido",jugador,this)} 
-				if(!this.jugoEn(partido)) {trow new NoSePuedeCalificarException ("No podes calificar jugadores de un partido que no jugaste",jugador,this)}//estaria mal juntarlas, si no?
+				if(!jugador.jugoEn(partido)){throw new NoSePuedeCalificarExcepcion ("No se puede califcar a un jugador que no jugo en ese partido",jugador,partido)} 
+				if(!this.jugoEn(partido)) {throw new NoSePuedeCalificarExcepcion ("No podes calificar jugadores de un partido que no jugaste",this,partido)}//estaria mal juntarlas, si no?
 			     val calificacion = new Calificacion(puntaje,comentario,jugador,this)
 				jugador.listaDeCalificaciones.add(calificacion)		
 							
