@@ -13,6 +13,7 @@ class Partido {
 	@Property ArrayList<Inscripcion> solidarios
 	@Property ArrayList<Inscripcion> condicionales
 	@Property List<InscripcionObserver> observadores
+	@Property ArrayList<Jugador> quienesJugaron
 
 	new(int fecha, int hora, String lugar) {
 		this.hora = hora
@@ -22,8 +23,14 @@ class Partido {
 		this.solidarios = new ArrayList()
 		this.condicionales = new ArrayList()
 		this.observadores = new ArrayList()
+		this.quienesJugaron = new ArrayList()
 	}
 
+
+	def getListaQuienesJugaron(){
+		return this.quienesJugaron
+	}
+	
 	def getListaJugadores() {
 		val HashSet<Jugador> listaJugadores = newHashSet()
 		estandares.forEach[unaInsc|listaJugadores.add(unaInsc.jugador)]
@@ -32,6 +39,15 @@ class Partido {
 		return listaJugadores
 		/* para arreglar este tema, por ejemplo, seria mejor guardar 
 		* todas las inscripciones en una sola lista? 
+	
+	def getQuienesJugaron() {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
+	def getQuienesJugaron() {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
+	
 		* Sigo sin verle demasiado sentido a guardar cada Tipo en su propia lista
 		*/
 	}

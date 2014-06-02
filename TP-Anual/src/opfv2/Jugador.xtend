@@ -6,6 +6,7 @@ import bajaDecorator.BajaSimple
 import bajaObserver.BajaInscripcionObserver
 import java.util.ArrayList
 import java.util.List
+import CALIFICACION.Calificacion
 
 class Jugador {
 	@Property
@@ -14,12 +15,14 @@ class Jugador {
 	@Property ArrayList<Jugador> amigos
 	@Property List<String> penalizaciones = new ArrayList
 	@Property List<BajaInscripcionObserver> observadores
+	@Property ArrayList<Calificacion> listaDeCalificaciones
 	
 	new (int edad, String nombre){
 		this.edad = edad
 		this.nombre = nombre
 		this.penalizaciones = new ArrayList
 		this.observadores = new ArrayList
+		this.listaDeCalificaciones= new ArrayList
 	}
 	
 	def getNombre() 
@@ -44,7 +47,23 @@ class Jugador {
 			var bajaPenalizada = new BajaPenalizada(new BajaSimple)
 			bajaPenalizada.darDeBaja(partido, this, reemplazante)
 			}
+			
+			}
+			
+			def calificar(Partido partido, Jugador jugador, int puntaje, String comentario){
+				if(!jugador.jugoEn(partido)){} //tiramos la excepcion
+				if(!this.jugoEn(partido)) {}//tiramos excepcion
+			     val calificacion = new Calificacion(puntaje,comentario,jugador,this)
+				jugador.listaDeCalificaciones.add(calificacion)		
+							
+				
+			}
+	
+		
+			def jugoEn(Partido partido){
+				partido.quienesJugaron.contains(this)
 	}
+	
 	
 	/*
 	 * CODIGO ALTERNATIVO D:
