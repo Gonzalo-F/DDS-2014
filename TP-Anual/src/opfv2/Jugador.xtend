@@ -6,7 +6,7 @@ import bajaDecorator.BajaSimple
 import bajaObserver.BajaInscripcionObserver
 import java.util.ArrayList
 import java.util.List
-import CALIFICACION.Calificacion
+import calificacion.Calificacion
 
 class Jugador {
 	@Property
@@ -51,8 +51,8 @@ class Jugador {
 			}
 			
 			def calificar(Partido partido, Jugador jugador, int puntaje, String comentario){
-				if(!jugador.jugoEn(partido)){} //tiramos la excepcion
-				if(!this.jugoEn(partido)) {}//tiramos excepcion
+				if(!jugador.jugoEn(partido)){trow new NoSePuedeCalificarException ("No se puede califcar a un jugador que no jugo en ese partido",jugador,this)} 
+				if(!this.jugoEn(partido)) {trow new NoSePuedeCalificarException ("No podes calificar jugadores de un partido que no jugaste",jugador,this)}//estaria mal juntarlas, si no?
 			     val calificacion = new Calificacion(puntaje,comentario,jugador,this)
 				jugador.listaDeCalificaciones.add(calificacion)		
 							
