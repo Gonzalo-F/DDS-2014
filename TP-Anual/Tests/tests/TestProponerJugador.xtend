@@ -19,7 +19,6 @@ class TestProponerJugador {
 		assertEquals(1,admin.jugadoresPorConfirmar.size)
 	}
 	
-	
 	@Test
 	def testProponeJugadorYEsAceptado(){
 		assertEquals(0,admin.jugadoresAprobados.size)
@@ -28,5 +27,15 @@ class TestProponerJugador {
 		admin.aceptar(sugerido)
 						
 		assertEquals(1,admin.jugadoresAprobados.size)
+	}
+	
+	@Test
+	def testProponeJugadorYEsRechazado(){
+		assertEquals(0,admin.jugadoresRechazados.size)
+		
+		var sugerido = jugadorProponedor.proponerJugadorA(admin,"Pepito",46)
+		admin.rechazar(sugerido,"Es un pecho frio")
+						
+		assertEquals(1,admin.jugadoresRechazados.size)
 	}
 }
