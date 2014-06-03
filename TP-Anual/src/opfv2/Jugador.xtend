@@ -8,6 +8,7 @@ import java.util.ArrayList
 import java.util.List
 import calificacion.Calificacion
 import excepciones.NoSePuedeCalificarExcepcion
+import ordenesDeCreacion.JugadorSugerido
 
 class Jugador {
 	@Property
@@ -77,7 +78,7 @@ class Jugador {
 				partido.quienesJugaron.contains(this)
 			}
 	def proponerJugadorA(Administrador admin,String nombre,int edad){
-		sugerido = newJugadorSugerido(nombre,edad) 
+		var JugadorSugerido sugerido = newJugadorSugerido(nombre,edad) 
 		admin.agregarPendiente(sugerido)
 		
 	}

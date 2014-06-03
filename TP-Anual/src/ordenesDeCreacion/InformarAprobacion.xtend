@@ -1,5 +1,8 @@
 package ordenesDeCreacion
 
-class InformarAprobacion {
+class InformarAprobacion extends Orden{	
 	
+	override execute () {
+		this.receptor.enviarInformeAprobado()
+	}
 }

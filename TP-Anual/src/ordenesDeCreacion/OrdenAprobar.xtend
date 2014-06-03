@@ -1,5 +1,8 @@
 package ordenesDeCreacion
 
-class OrdenAprobar {
+class OrdenAprobar extends Orden{	
 	
+	override execute () {
+		this.receptor.clonateAprobado()
+	}
 }
