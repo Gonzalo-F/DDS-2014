@@ -67,8 +67,12 @@ class Jugador {
 		
 			def jugoEn(Partido partido){
 				partido.quienesJugaron.contains(this)
+			}
+	def proponerJugadorA(Administrador admin,String nombre,int edad){
+		sugerido = newJugadorSugerido(nombre,edad) 
+		admin.agregarPendiente(sugerido)
+		
 	}
-	
 	
 	/*
 	 * CODIGO ALTERNATIVO D:
