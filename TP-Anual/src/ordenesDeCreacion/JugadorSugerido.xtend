@@ -29,10 +29,12 @@ class JugadorSugerido {
 	
 	def enviarInformeRechazo() {
 		
+	
+		
 	}
 	
 	def clonateAprobado() {
-		
+	var Jugador jugador= new Jugador(edad,nombre)
 	}
 	
 	def clonateRechazado(String string, Administrador administrador) {
