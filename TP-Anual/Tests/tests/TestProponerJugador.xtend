@@ -11,12 +11,11 @@ class TestProponerJugador {
 	var jugadorProponedor = new Jugador(20,"Lucas")
 	
 	@Test
-	def testProponeJugadorYEsAceptado(){
-		assertEquals(0,admin.jugadoresAprobados.size)
-		val unSugerido = jugadorProponedor.proponerJugadorA(admin,"Pepito",46)
-		admin.aceptar(unSugerido)
+	def testProponeJugadorYRegistraLaPeticion(){
+		assertEquals(0,admin.jugadoresPorConfirmar.size)
 		
-		assertEquals(1,admin.jugadoresAprobados.size)
-		
+		jugadorProponedor.proponerJugadorA(admin,"Pepito",46)
+				
+		assertEquals(1,admin.jugadoresPorConfirmar.size)
 	}
 }

@@ -8,7 +8,7 @@ import ordenesDeCreacion.Factory
 import ordenesDeCreacion.Rechazo
 
 class Administrador {
-	List<JugadorSugerido> jugadoresPorConfirmar
+	@Property List<JugadorSugerido> jugadoresPorConfirmar
 	@Property List<Rechazo> jugadoresRechazados
 	Factory factory
 	@Property List<Jugador> jugadoresAprobados
