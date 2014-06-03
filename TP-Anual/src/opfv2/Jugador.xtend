@@ -80,6 +80,7 @@ class Jugador {
 	def proponerJugadorA(Administrador admin,String nombre,int edad){
 		var JugadorSugerido sugerido = new JugadorSugerido(edad,nombre,this) 
 		admin.agregarPendiente(sugerido)
+		sugerido
 		
 	}
 	

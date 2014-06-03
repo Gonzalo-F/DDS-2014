@@ -11,7 +11,7 @@ class Administrador {
 	List<JugadorSugerido> jugadoresPorConfirmar
 	@Property List<Rechazo> jugadoresRechazados
 	Factory factory
-	List<Jugador> jugadoresAprobados
+	@Property List<Jugador> jugadoresAprobados
 	
 	def aceptar(JugadorSugerido unSugerido){
 		val ordenes = new ArrayList<Orden>
