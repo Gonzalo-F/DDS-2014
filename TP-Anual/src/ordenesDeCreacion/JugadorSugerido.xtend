@@ -34,7 +34,7 @@ class JugadorSugerido {
 	}
 	
 	def clonateAprobado() {
-		var Jugador jugador = new Jugador(edad,nombre)
+		var Jugador jugador = new Jugador(this.edad,this.nombre)
 		jugador
 	}
 	
