@@ -2,16 +2,19 @@ package ordenesDeCreacion
 
 import java.util.List
 import opfv2.Administrador
+import opfv2.Jugador
 
 class JugadorSugerido {
 	@Property
 	int edad
 	String nombre
+	Jugador proponedor
 
 	
-	new (int edad, String nombre){
+	new (int edad, String nombre, Jugador proponedor){
 		this.edad = edad
 		this.nombre = nombre
+		this.proponedor = proponedor
 		
 	}
 	
