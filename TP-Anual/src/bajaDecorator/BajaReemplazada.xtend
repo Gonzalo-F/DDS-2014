@@ -13,9 +13,9 @@ class BajaReemplazada extends Decorator{
 	
 	override darDeBaja(Partido unPartido, Jugador unJugador, Jugador unReemplazo){
 		getDecorado.darDeBaja(unPartido, unJugador, unReemplazo)
-		var Inscripcion inscri = new Inscripcion(unReemplazo, unPartido)
-		inscri.tipo = new InscripEstandar()
+		var Inscripcion inscripcionReemplazo = new Inscripcion(unReemplazo, unPartido)
+		inscripcionReemplazo.tipo = new InscripEstandar()
 		
-		inscri.inscribir(unReemplazo, unPartido)
+		inscripcionReemplazo.inscribir(unReemplazo, unPartido)
 	}
 }

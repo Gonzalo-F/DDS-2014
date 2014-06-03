@@ -23,7 +23,7 @@ class TestDarDeBajaInscripcion {
 		jugador.darseDeBaja(partido, reemplazante)
 		
 		assertFalse(partido.estandares.contains(inscri))
-		assertTrue( (partido.estandares.filter[inscripcion|inscripcion.getPartido() == partido && inscripcion.getJugador() == jugador]).size == 1 )
+		assertTrue( (partido.getEstandares.filter[inscripcion|inscripcion.getPartido() == partido && inscripcion.getJugador() == reemplazante]).size == 1)
 	}
 	
 	@Test
