@@ -20,11 +20,10 @@ class TestCalificarALosJugadores {
 		partido.quienesJugaron.add(calificador)
 		partido.quienesJugaron.add(jugador)
 		partido.quienesJugaron.add(calificado)
-		val calificacion = new Calificacion(10,"Messi un poroto",calificado,calificador)
-		calificador.calificar(partido,calificado,10,"Messi un poroto")
+		
+		val calificacion = calificador.calificar(partido,calificado,10,"Messi un poroto")
 		
 		Assert.assertTrue(calificado.listaDeCalificaciones.contains(calificacion))
-		
 		
 		
 	}

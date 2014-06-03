@@ -56,7 +56,10 @@ class Jugador {
 				if(!calificado.jugoEn(partido)){throw new NoSePuedeCalificarExcepcion ("No se puede califcar a un jugador que no jugo en ese partido",calificado,partido)} 
 				if(!this.jugoEn(partido)) {throw new NoSePuedeCalificarExcepcion ("No podes calificar jugadores de un partido que no jugaste",this,partido)}//estaria mal juntarlas, si no?
 			     
-				calificado.listaDeCalificaciones.add(calificacion)		
+				calificado.listaDeCalificaciones.add(calificacion)
+				
+				/*esto es para probar el test... que devuelva el objeto calificacion*/
+				calificacion
 							
 				
 			}
