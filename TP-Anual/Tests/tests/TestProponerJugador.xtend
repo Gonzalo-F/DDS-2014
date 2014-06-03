@@ -18,4 +18,13 @@ class TestProponerJugador {
 				
 		assertEquals(1,admin.jugadoresPorConfirmar.size)
 	}
+	
+	
+	@Test
+	def proponeJugadorYEsAceptado(){
+		 val jugadorPropuesto=jugadorProponedor.proponerJugadorA(admin,"Emi",20)
+		admin.aceptar(jugadorPropuesto)
+		val condicion= admin.jugadoresAprobados.contains(jugadorPropuesto)
+		assertTrue(condicion)
+	}
 }
