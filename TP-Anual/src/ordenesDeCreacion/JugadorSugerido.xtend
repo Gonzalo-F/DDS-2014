@@ -9,6 +9,7 @@ class JugadorSugerido {
 	int edad
 	String nombre
 	Jugador proponedor
+	Administrador admin
 
 	
 	new (int edad, String nombre, Jugador proponedor){
@@ -35,7 +36,7 @@ class JugadorSugerido {
 	
 	def clonateAprobado() {
 		var Jugador jugador = new Jugador(this.edad,this.nombre)
-		jugador
+		admin.agregaA(jugador)
 		
 		//que hacemos con este jugador??? queda flotando, no quiere el garbage el pobre :(
 	}
