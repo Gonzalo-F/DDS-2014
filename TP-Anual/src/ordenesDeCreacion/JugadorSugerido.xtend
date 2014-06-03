@@ -34,12 +34,13 @@ class JugadorSugerido {
 	}
 	
 	def clonateAprobado() {
-	var Jugador jugador= new Jugador(edad,nombre)
-	jugador
+		var Jugador jugador = new Jugador(edad,nombre)
+		jugador
 	}
 	
-	def clonateRechazado(String string, Administrador administrador) {
-		
+	def clonateRechazado(String motivo, Administrador admin) {
+		var Rechazo persona = new Rechazo(this.nombre, this.edad, motivo,admin)
+		persona.agregarListaAdmin()
 	}
 	
 	
