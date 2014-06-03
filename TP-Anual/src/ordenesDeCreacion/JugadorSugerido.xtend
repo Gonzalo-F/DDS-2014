@@ -1,0 +1,5 @@
+package ordenesDeCreacion
+
+class JugadorSugerido {
+	
+}
