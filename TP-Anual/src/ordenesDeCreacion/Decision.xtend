@@ -1,5 +1,7 @@
 package ordenesDeCreacion
 
-class Decision {
+abstract class Decision {
+	@Property JugadorSugerido jugador
 	
+	def void execute (JugadorSugerido unJugador)
 }
