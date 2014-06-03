@@ -12,6 +12,17 @@ class Administrador {
 	@Property List<Rechazo> jugadoresRechazados
 	Factory factory
 	@Property List<Jugador> jugadoresAprobados
+	@Property String nombre
+	@Property String mail
+	
+	new(String nombre,String mail){
+		this.nombre=nombre
+		this.mail=mail
+		this.jugadoresPorConfirmar= new ArrayList
+		this.jugadoresRechazados= new ArrayList
+		this.jugadoresAprobados= new ArrayList
+		
+	}
 	
 	def aceptar(JugadorSugerido unSugerido){
 		val ordenes = new ArrayList<Orden>

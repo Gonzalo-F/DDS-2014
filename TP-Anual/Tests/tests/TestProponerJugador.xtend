@@ -7,7 +7,7 @@ import org.junit.Test
 
 class TestProponerJugador {
 	
-	var admin = new Administrador
+	var admin = new Administrador("Natalia","lamejoradmin@blabla.com")
 	var jugadorProponedor = new Jugador(20,"Lucas")
 	
 	@Test
