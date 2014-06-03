@@ -70,7 +70,7 @@ class Jugador {
 				partido.quienesJugaron.contains(this)
 			}
 	def proponerJugadorA(Administrador admin,String nombre,int edad){
-		var JugadorSugerido sugerido = new JugadorSugerido(edad,nombre,this) 
+		var JugadorSugerido sugerido = new JugadorSugerido(edad,nombre,this,admin) 
 		admin.agregarPendiente(sugerido)
 		sugerido
 		

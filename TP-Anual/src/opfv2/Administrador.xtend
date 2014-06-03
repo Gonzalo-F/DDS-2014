@@ -21,6 +21,7 @@ class Administrador {
 		this.jugadoresPorConfirmar= new ArrayList
 		this.jugadoresRechazados= new ArrayList
 		this.jugadoresAprobados= new ArrayList
+		this.factory = new Factory
 		
 	}
 	

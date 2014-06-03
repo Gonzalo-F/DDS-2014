@@ -12,10 +12,11 @@ class JugadorSugerido {
 	Administrador admin
 
 	
-	new (int edad, String nombre, Jugador proponedor){
+	new (int edad, String nombre, Jugador proponedor, Administrador admin){
 		this.edad = edad
 		this.nombre = nombre
 		this.proponedor = proponedor
+		this.admin=admin
 		
 	}
 	
