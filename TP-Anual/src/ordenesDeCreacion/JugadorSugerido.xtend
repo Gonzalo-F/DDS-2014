@@ -36,6 +36,8 @@ class JugadorSugerido {
 	def clonateAprobado() {
 		var Jugador jugador = new Jugador(this.edad,this.nombre)
 		jugador
+		
+		//que hacemos con este jugador??? queda flotando, no quiere el garbage el pobre :(
 	}
 	
 	def clonateRechazado(String motivo, Administrador admin) {
