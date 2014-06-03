@@ -16,7 +16,7 @@ class Jugador {
 	@Property ArrayList<Jugador> amigos
 	@Property List<String> penalizaciones = new ArrayList
 	@Property List<BajaInscripcionObserver> observadores
-	@Property ArrayList<Calificacion> listaDeCalificaciones
+	@Property List<Calificacion> listaDeCalificaciones
 	
 	new (int edad, String nombre){
 		this.edad = edad
@@ -51,11 +51,12 @@ class Jugador {
 			
 			}
 			
-			def calificar(Partido partido, Jugador jugador, int puntaje, String comentario){
-				if(!jugador.jugoEn(partido)){throw new NoSePuedeCalificarExcepcion ("No se puede califcar a un jugador que no jugo en ese partido",jugador,partido)} 
+			def calificar(Partido partido, Jugador calificado, int puntaje, String comentario){
+				 val calificacion = new Calificacion(puntaje,comentario,calificado,this)
+				if(!calificado.jugoEn(partido)){throw new NoSePuedeCalificarExcepcion ("No se puede califcar a un jugador que no jugo en ese partido",calificado,partido)} 
 				if(!this.jugoEn(partido)) {throw new NoSePuedeCalificarExcepcion ("No podes calificar jugadores de un partido que no jugaste",this,partido)}//estaria mal juntarlas, si no?
-			     val calificacion = new Calificacion(puntaje,comentario,jugador,this)
-				jugador.listaDeCalificaciones.add(calificacion)		
+			     
+				calificado.listaDeCalificaciones.add(calificacion)		
 							
 				
 			}
