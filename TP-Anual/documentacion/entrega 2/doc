@@ -1,0 +1,25 @@
+1. VER DIAGRAMA DE CLASES.
+Agregamos un atributo ‘amigos’ a la clase Jugador, para poder notificarlos al momento de inscribir un jugador.
+Agregamos a Partido, una lista de observadores, ya que necesitamos que los mismos sean específicos de cada partido. Cada vez que hay una inscripción confirmada, el observador se encarga de verificar una condición, para dar notificaciones a quien corresponda en cada caso. El mensaje seInscribio() se envía a los observers desde InscripEstandar o InscripSolidario, ya que en el mensaje inscribir() de los mismos se está confirmando la inscripción de los jugadores.
+Como el jugador puede darse de baja de diferentes formas, decidimos implementar un Decorator para elegir la alternativa correcta de Baja (con/sin reemplazo, con/sin penalización), en donde el Sujeto es la Baja Simple, que lleva a avisar al Observer sobre la baja de un Jugador.
+Las penalizaciones las guardamos en una lista específica de cada jugador
+
+2. Dar de baja un jugador con reemplazo.
+	Dar de baja un jugador sin reemplazo y penalizarlo.
+	Notificar al admin cuando haya 10 jugadores confirmados.
+	Notificar al admin cuando deje de haber 10 jugadores confirmados.
+
+3. El stub (StubNotificador), en este caso, facilitó el envío de notificaciones, tanto al administrador como a los amigos del jugador, ya que nos permite simular el envío de las notificaciones sin tener implementado un método que realmente lo haga (en la clase Notificador). La complejidad que realmente implica el envío de notificaciones, que posiblemente esté fuera de los límites del sistema, significó reemplazar la verdadera implementación por una más sencilla, pero que aún así permitiera evaluar el correcto funcionamiento del “entorno” del mismo a través de los tests.
+En este caso en particular, no implementamos un EnviadorDeMails exactamente, sino un simple Notificador; esto se debe a que no tenemos la certeza de “de qué manera” avisar al admin o amigos (si avisarles por mail, o por algún otro tipo de medio). Además, no tenemos registrado el mail de Jugadores, ni datos concretos del administrador.
+Si quisiéramos implementar un StubEnviadorDeMails, deberíamos brindarle al mismo, los campos que el EnviadorDeMails que requeriría.
+Por ejemplo:
+De: inscri.jugador.
+Para: inscri.admin/jugador.amigos.
+Asunto: “Sobre Partido (X)” / ”Sobre inscripción de amigo (X)”
+Mensaje: “Ya hay 10 confirmados en el partido (X).” / “Ya no hay 10 confirmados en el partido (X)” / “Tu amigo (X) se inscribió en el partido (Y).”
+
+
+
+El decorator se utilizó para modelar las infracciones que puede recibir el jugador pensando en que no se sabe qué infracción. Además, un jugador puede recibir más de una, otro motivo para inclinarse por este patrón.
+Sin embargo, se pierde identidad de los objetos existentes ya que, en este caso,  Jugador envía el mensaje darseDeBaja() a un objeto BajaInscripcion que no sabe exactamente de qué tipo es. Cuando el mensaje llega, el decorator decide a quien decorar en cada caso, para aplicar penalizaciones / inscribir reemplazos, hasta llegar a un objeto BajaSimple, que es el que finaliza el decorator. Jugador nunca supo que su mensaje iba a llegar a Baja Simple, solo envió el mensaje al “envoltorio”.
+
