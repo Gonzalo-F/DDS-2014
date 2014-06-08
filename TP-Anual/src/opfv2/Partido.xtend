@@ -40,13 +40,9 @@ class Partido {
 		/* para arreglar este tema, por ejemplo, seria mejor guardar 
 		* todas las inscripciones en una sola lista? 
 	
-	def getQuienesJugaron() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
 	
-	def getQuienesJugaron() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
-	}
+	
+	
 	
 		* Sigo sin verle demasiado sentido a guardar cada Tipo en su propia lista
 		*/

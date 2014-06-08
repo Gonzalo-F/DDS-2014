@@ -8,6 +8,8 @@ import java.util.List
 import calificacion.Calificacion
 import excepciones.NoSePuedeCalificarExcepcion
 import ordenesDeCreacion.JugadorSugerido
+import BajaObserver.Penalizacion
+import BajaObserver.BajaObserver
 
 class Jugador {
 	@Property
@@ -16,6 +18,8 @@ class Jugador {
 	@Property ArrayList<Jugador> amigos
 	@Property List<String> penalizaciones = new ArrayList	
 	@Property List<Calificacion> listaDeCalificaciones
+	@Property List<Penalizacion> penalizacionesCometidas =new ArrayList
+	@Property List<BajaObserver> obs
 	
 	new (int edad, String nombre){
 		this.edad = edad
@@ -66,7 +70,7 @@ class Jugador {
 	}
 	
 		
-			def jugoEn(Partido partido){
+	def jugoEn(Partido partido){
 				partido.quienesJugaron.contains(this)
 			}
 	def proponerJugadorA(Administrador admin,String nombre,int edad){
@@ -74,6 +78,21 @@ class Jugador {
 		admin.agregarPendiente(sugerido)
 		sugerido
 		
+	}
+	
+	def agregatePenalizacion(Penalizacion penalizacion){
+		this.penalizacionesCometidas.add(penalizacion)
+	}
+	
+	def darmeDeBajaEn(Partido partido, Jugador reemplazante){
+		
+		//TODO: darlo de baja!
+		
+		obs.forEach[o|o.seDioDeBaja(partido,reemplazante,this)]
+	}
+	
+	def agregarObserver(BajaObserver observer){
+		this.obs.add(observer)
 	}
 	
 	/*
