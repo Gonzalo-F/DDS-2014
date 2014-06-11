@@ -49,7 +49,7 @@ class Jugador {
 			}
 			
 	def calificar(main.Partido partido, main.Jugador calificado, int puntaje, String comentario){
-		val calificacion = new Calificacion(puntaje,comentario,calificado,this)
+		val calificacion = new Calificacion(puntaje,comentario,calificado,this,partido)
 		
 		if(!calificado.jugoEn(partido))
 			{

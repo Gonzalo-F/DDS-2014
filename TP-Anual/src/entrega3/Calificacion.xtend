@@ -1,6 +1,7 @@
 package entrega3
 
 import main.Jugador
+import main.Partido
 
 class Calificacion {
 	
@@ -9,12 +10,15 @@ class Calificacion {
 	@Property String comentario
 	@Property Jugador calificado
 	@Property Jugador calificador
+	@Property Partido partido
 	
-	new (int puntaje, String comentario,Jugador calificado,Jugador calificador){
+	
+	new (int puntaje, String comentario,Jugador calificado,Jugador calificador, Partido partido){
 		this.puntaje= puntaje
 		this.comentario=comentario
 		this.calificado=calificado
 		this.calificador=calificador
+		this.partido= partido
 		
 	}
 	
