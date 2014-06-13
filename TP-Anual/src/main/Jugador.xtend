@@ -16,6 +16,7 @@ class Jugador {
 	int edad
 	String nombre
 	@Property ArrayList<main.Jugador> amigos
+	@Property int handicap
 	@Property List<String> penalizaciones = new ArrayList	
 	@Property List<Calificacion> listaDeCalificaciones
 	@Property List<Penalizacion> penalizacionesCometidas =new ArrayList
