@@ -1,12 +1,12 @@
 package entrega1.tipoInscripcion
 
-import entrega1.condiciones.Condicion
 import entrega1.InscripcionRechazadaException
+import entrega1.condiciones.Condicion
 import main.Inscripcion
 import main.Jugador
 import main.Partido
 
-class InscripcionCondicional implements TipoInscripcion {
+class InscripcionCondicional extends TipoInscripcion {
 
 	@Property Condicion condicion
 	
@@ -18,7 +18,7 @@ class InscripcionCondicional implements TipoInscripcion {
 	override inscribirA(Jugador jugador, Partido partido, Inscripcion unaInsc) {
 		
 		
-		if (partido.estandares.size < 10) {
+		if (noTiene10estandares(partido)) {
 			if (condicion.cumple(jugador, partido)) {
 				partido.condicionales.add(unaInsc)
 			} else {
@@ -29,4 +29,6 @@ class InscripcionCondicional implements TipoInscripcion {
 		}
 
 	}
+	
+	
 }
