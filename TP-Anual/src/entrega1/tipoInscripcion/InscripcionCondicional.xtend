@@ -16,9 +16,11 @@ class InscripcionCondicional implements TipoInscripcion {
 	
 
 	override inscribirA(Jugador jugador, Partido partido, Inscripcion unaInsc) {
-		if (partido.estandares.size < 10) {
+		
+		var estandares = partido.inscriptos.filter[insc|insc.tipo instanceof InscripcionEstandar]
+		if (estandares.size < 10) {
 			if (condicion.cumple(jugador, partido)) {
-				partido.condicionales.add(unaInsc)
+				partido.inscriptos.add(unaInsc)
 			} else {
 				throw new InscripcionRechazadaException("El partido no cumple las condiciones del jugador")
 			}
