@@ -1,12 +1,13 @@
 package entrega2
 
+import entrega1.tipoInscripcion.InscripcionEstandar
+import entrega1.tipoInscripcion.TipoInscripcion
 import main.Inscripcion
 import main.Jugador
 import main.Partido
 import org.junit.Test
 
 import static org.junit.Assert.*
-import entrega1.tipoInscripcion.InscripcionEstandar
 
 class TestDarDeBajaInscripcion {
 
@@ -16,29 +17,36 @@ class TestDarDeBajaInscripcion {
 
 	@Test
 	def testReemplazarJugador() {
-		var Inscripcion inscri = new Inscripcion(jugador, partido)
-		inscri.tipo = new InscripcionEstandar()		
-		
-		inscri.inscribir(jugador, partido)
+		var inscri= inscripcion(jugador,partido, new InscripcionEstandar())
 		jugador.darseDeBaja(partido, reemplazante)
 		
-		assertFalse(partido.getEstandares.contains(inscri))
-		assertTrue( (partido.getEstandares.filter[inscripcion|inscripcion.getPartido() == partido && inscripcion.getJugador() == reemplazante]).size == 1)
+		assertFalse(estaInscriptoComoEstandar(inscri))
+		assertTrue( (partido.getEstandares.filter[inscripcion|inscripcion.getJugador() == reemplazante]).size == 1)
 	}
 	
 	@Test
 	def testPenalizar() {
-		var Inscripcion inscri = new Inscripcion(jugador, partido)
-		inscri.tipo = new InscripcionEstandar()
 		
+		var inscri= inscripcion(jugador,partido, new InscripcionEstandar())
 		var int cantPenalizaciones = jugador.getPenalizaciones.size + 1
-		
-		inscri.inscribir(jugador, partido)
 		jugador.darseDeBaja(partido, null)
 		
-		assertFalse(partido.getEstandares.contains(inscri))
+		assertFalse(estaInscriptoComoEstandar(inscri))
 		assertTrue(jugador.getPenalizaciones.size == cantPenalizaciones)
 
 	}
 	
+	
+	
+	//metodos auxiliares
+
+	def inscripcion(Jugador jugador, Partido partido, TipoInscripcion tipo) {
+		var Inscripcion inscri = new Inscripcion(jugador, partido)
+		inscri.tipo= tipo
+		inscri.inscribir(jugador, partido)
+		inscri
+	}
+	def estaInscriptoComoEstandar(Inscripcion inscri) {
+		partido.getEstandares.contains(inscri)
+	}
 }
