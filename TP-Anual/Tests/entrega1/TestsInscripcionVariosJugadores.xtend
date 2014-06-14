@@ -9,6 +9,7 @@ import org.junit.Test
 
 import static org.junit.Assert.*
 import entrega1.tipoInscripcion.InscripcionEstandar
+import entrega1.tipoInscripcion.TipoInscripcion
 
 class TestsInscripcionVariosJugadores {
 
@@ -18,22 +19,28 @@ class TestsInscripcionVariosJugadores {
 	def inicio() {
 		for (i : 1 .. 10) {
 			var Jugador jugador = new Jugador(i, "Player" + i)
-			var Inscripcion inscri = new Inscripcion (jugador, partido)
-			inscri.tipo = new InscripcionEstandar()
-			inscri.inscribir(jugador,partido)
+			var inscri= inscripcion(jugador, partido, new InscripcionEstandar )
+			inscri.inscribir(jugador, partido)
 		}
 	}
 
 	@Test
 	def testInscribirJugadorMasde10enEstandarRechaza() {
 		var Jugador jugador11 = new Jugador(15, "Player11")
-		var Inscripcion inscri = new Inscripcion (jugador11, partido)
-			inscri.tipo = new InscripcionEstandar()
+		var inscri= inscripcion(jugador11, partido, new InscripcionEstandar )
 		try {
 			inscri.inscribir(jugador11,partido)
 		} catch (InscripcionRechazadaException e) {
 			return
 		}
 		fail()
+	}
+	
+	//metodos auxiliares
+	
+	def inscripcion(Jugador jugador, Partido partido, TipoInscripcion tipo) {
+		var Inscripcion inscri = new Inscripcion(jugador, partido)
+		inscri.tipo= tipo
+		inscri
 	}
 }
