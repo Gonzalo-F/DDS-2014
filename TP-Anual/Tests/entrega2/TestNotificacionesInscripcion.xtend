@@ -23,7 +23,7 @@ class TestNotificacionesInscripcion {
 		partido.observadores.add(new DiezConfirmadosObserver(stubNotificador)) 
 		for (i : 1 .. 9) {
 			var Jugador jugador = new Jugador(i, "Player" + i)
-			inscripcion(jugador, partido, new InscripcionEstandar)
+			inscripcion(jugador, partido, new InscripcionEstandar())
 		}
 	}
 
@@ -31,7 +31,7 @@ class TestNotificacionesInscripcion {
 	def testInscribirJugador10YNotificar() {
 		var Jugador jugador10 = new Jugador(15, "Player10")
 		assertEquals(0,stubNotificador.getPartidosNotificados().size)
-		var inscri= inscripcion(jugador10, partido, new InscripcionEstandar)
+		var inscri= inscripcion(jugador10, partido, new InscripcionEstandar())
 		assertEquals(1,stubNotificador.getPartidosNotificados().size)	
 		
 		
