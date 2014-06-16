@@ -7,13 +7,14 @@ class Inscripcion {
 	@Property Partido partido
 	@Property Jugador jugador
 	
-	new (Jugador unJugador, Partido unPartido){
+	new (Jugador unJugador, Partido unPartido, TipoInscripcion tipo){
 		this.jugador = unJugador
 		this.partido = unPartido
+		tipo.inscribirA(unJugador, unPartido, this)
 	}
-	def void inscribir (Jugador unJugador, Partido unPartido){ //nos falta el parametro tipo segun el diagrama de clases
-		tipo.inscribirA(unJugador, unPartido, this )
+		
+	def prioridad(){
+		tipo.prioridad
 	}
-	
 	
 	}

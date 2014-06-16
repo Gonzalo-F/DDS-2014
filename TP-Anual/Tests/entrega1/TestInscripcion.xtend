@@ -10,7 +10,6 @@ import main.Partido
 import org.junit.Test
 
 import static org.junit.Assert.*
-import entrega1.tipoInscripcion.TipoInscripcion
 
 class TestInscripcion {
 
@@ -19,32 +18,30 @@ class TestInscripcion {
 
 	@Test
 	def testInscribirEstandar() {
-		var inscri = inscripcion(jugador,partido, new InscripcionEstandar())
-		
-		assertTrue(partido.estandares.contains(inscri))
-
+		var insc = new Inscripcion(jugador,partido, new InscripcionEstandar())
+		assertTrue(partido.inscripciones.contains(insc))
 	}
 	
-
 	@Test
 	def testInscribirSolidario() {
-		var inscri= inscripcion(jugador,partido,new InscripcionSolidario())
-		assertTrue(partido.solidarios.contains(inscri))
+		var insc= new Inscripcion(jugador,partido,new InscripcionSolidario())
+		assertTrue(partido.inscripciones.contains(insc))
 	}
 
 	@Test
 	def testInscribirCondicionalPorLugar() {
-		var inscri= inscripcion(jugador,partido,new InscripcionCondicional(new CondicionLugar("Tinglado")))
-		
-		assertTrue(partido.condicionales.contains(inscri))
+		var insc= new Inscripcion(jugador,partido,new InscripcionCondicional(new CondicionLugar("Tinglado")))
+		assertTrue(partido.inscripciones.contains(insc))
 	}
 
-//metodos auxiliares
-
-	def inscripcion(Jugador jugador, Partido partido, TipoInscripcion tipo) {
-		var Inscripcion inscri = new Inscripcion(jugador, partido)
-		inscri.tipo= tipo
-		inscri.inscribir(jugador, partido)
-		inscri
+	@Test
+	def testInscripcionRechazadaPorNoCumplir(){
+		var lugar = new CondicionLugar("La Copita")
+		try{
+			new Inscripcion(jugador,partido, new InscripcionCondicional(lugar))
+		} catch (InscripcionRechazadaException e) {
+			return
+		}
+	fail()
 	}
 }
