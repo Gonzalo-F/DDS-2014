@@ -3,10 +3,9 @@ package main
 import entrega1.tipoInscripcion.TipoInscripcion
 
 class Inscripcion {
-	@Property
-	TipoInscripcion tipo
-	Partido partido
-	Jugador jugador
+	@Property TipoInscripcion tipo
+	@Property Partido partido
+	@Property Jugador jugador
 	
 	new (Jugador unJugador, Partido unPartido){
 		this.jugador = unJugador
@@ -16,12 +15,5 @@ class Inscripcion {
 		tipo.inscribirA(unJugador, unPartido, this )
 	}
 	
-	def getJugador() {
-		jugador
-	}
-
-def getPartido() {
-		partido
-	}
 	
 	}

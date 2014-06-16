@@ -1,6 +1,7 @@
 package entrega1
 
-import entrega1.InscripcionRechazadaException
+import entrega1.tipoInscripcion.InscripcionEstandar
+import entrega1.tipoInscripcion.TipoInscripcion
 import main.Inscripcion
 import main.Jugador
 import main.Partido
@@ -8,12 +9,10 @@ import org.junit.Before
 import org.junit.Test
 
 import static org.junit.Assert.*
-import entrega1.tipoInscripcion.InscripcionEstandar
-import entrega1.tipoInscripcion.TipoInscripcion
 
 class TestsInscripcionVariosJugadores {
 
-	var Partido partido = new Partido(2040, 20140413, "El tinglado")
+	var Partido partido = new Partido(20140413, 2040, "El tinglado")
 
 	@Before
 	def inicio() {

@@ -1,9 +1,9 @@
 package main
 
+import entrega2.observerNotificador.InscripcionObserver
 import java.util.ArrayList
 import java.util.HashSet
 import java.util.List
-import entrega2.observerNotificador.InscripcionObserver
 
 class Partido {
 	@Property String lugar
@@ -33,9 +33,9 @@ class Partido {
 	
 	def getListaJugadores() {
 		val HashSet<Jugador> listaJugadores = newHashSet()
-		getEstandares.forEach[unaInsc|listaJugadores.add(unaInsc.getJugador)]
-		getSolidarios.forEach[unaInsc|listaJugadores.add(unaInsc.getJugador)]
-		getCondicionales.forEach[unaInsc|listaJugadores.add(unaInsc.getJugador)]
+		getEstandares.forEach[unaInsc|listaJugadores.add(unaInsc.jugador)]
+		getSolidarios.forEach[unaInsc|listaJugadores.add(unaInsc.jugador)]
+		getCondicionales.forEach[unaInsc|listaJugadores.add(unaInsc.jugador)]
 		return listaJugadores
 		/* para arreglar este tema, por ejemplo, seria mejor guardar 
 		* todas las inscripciones en una sola lista? 
