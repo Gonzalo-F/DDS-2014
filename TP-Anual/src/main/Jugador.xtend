@@ -1,9 +1,7 @@
 package main
 
-import entrega2.bajaDecorator.BajaPenalizada
-import entrega2.bajaDecorator.BajaReemplazada
-import entrega2.bajaDecorator.BajaSimple
-import entrega2.bajaObserver.BajaObserver
+
+
 import entrega2.bajaObserver.Penalizacion
 import entrega3.Administrador
 import entrega3.Calificacion
@@ -17,29 +15,16 @@ class Jugador {
 	@Property String nombre
 	@Property ArrayList<Jugador> amigos
 	@Property int handicap
-	@Property List<String> penalizaciones = new ArrayList ()
 	@Property List<Calificacion> listaDeCalificaciones = new ArrayList()
 	@Property List<Penalizacion> penalizacionesCometidas = new ArrayList ()
-	@Property List<BajaObserver> obs
+	
 	
 	new (int edad, String nombre){
 		this.edad = edad
 		this.nombre = nombre
 	}
 	
-	def darseDeBaja(Partido partido, Jugador reemplazante){
-		if (reemplazante != null)
-			{
-			var bajaReemplazada = new BajaReemplazada(new BajaSimple ( ) )
-			bajaReemplazada.darDeBaja(partido, this, reemplazante)
-			}
-		else
-			{
-			var bajaPenalizada = new BajaPenalizada(new BajaSimple ( ) )
-			bajaPenalizada.darDeBaja(partido, this, reemplazante)
-			}
-			
-			}
+	
 			
 	def calificar(Partido partido, Jugador calificado, int puntaje, String comentario){
 		val calificacion = new Calificacion(puntaje,comentario,calificado,this,partido)
@@ -52,11 +37,11 @@ class Jugador {
 		if(!this.jugoEn(partido))
 			{
 				throw new NoSePuedeCalificarExcepcion ("No podes calificar jugadores de un partido que no jugaste",this,partido)
-			}//estaria mal juntarlas, si no?
+			}
 			     
 		calificado.getListaDeCalificaciones.add(calificacion)
 				
-		/*esto es para probar el test... que devuelva el objeto calificacion*/
+		
 		calificacion
 							
 				
@@ -77,16 +62,8 @@ class Jugador {
 		this.getPenalizacionesCometidas.add(penalizacion)
 	}
 	
-	def darmeDeBajaEn(Partido partido, Jugador reemplazante){
-		
-		//TODO: darlo de baja!
-		
-		getObs.forEach[o|o.seDioDeBaja(partido,reemplazante,this)]
-	}
 	
-	def agregarObserver(BajaObserver observer){
-		this.getObs.add(observer)
-	}
+	
 	
 	/*
 	 * CODIGO ALTERNATIVO D:
