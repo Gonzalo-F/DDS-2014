@@ -3,39 +3,31 @@ package main
 import entrega2.bajaDecorator.BajaPenalizada
 import entrega2.bajaDecorator.BajaReemplazada
 import entrega2.bajaDecorator.BajaSimple
-import java.util.ArrayList
-import java.util.List
+import entrega2.bajaObserver.BajaObserver
+import entrega2.bajaObserver.Penalizacion
+import entrega3.Administrador
 import entrega3.Calificacion
 import entrega3.NoSePuedeCalificarExcepcion
 import entrega3.ordenesDeCreacion.JugadorSugerido
-import entrega2.bajaObserver.Penalizacion
-import entrega2.bajaObserver.BajaObserver
+import java.util.ArrayList
+import java.util.List
 
 class Jugador {
-	@Property
-	int edad
-	String nombre
-	@Property ArrayList<main.Jugador> amigos
+	@Property int edad
+	@Property String nombre
+	@Property ArrayList<Jugador> amigos
 	@Property int handicap
-	@Property List<String> penalizaciones = new ArrayList	
-	@Property List<Calificacion> listaDeCalificaciones
-	@Property List<Penalizacion> penalizacionesCometidas =new ArrayList
+	@Property List<String> penalizaciones = new ArrayList ()
+	@Property List<Calificacion> listaDeCalificaciones = new ArrayList()
+	@Property List<Penalizacion> penalizacionesCometidas = new ArrayList ()
 	@Property List<BajaObserver> obs
 	
 	new (int edad, String nombre){
 		this.edad = edad
 		this.nombre = nombre
-		this.penalizaciones = new ArrayList		
-		this.listaDeCalificaciones= new ArrayList
 	}
 	
-	def getNombre() 
-	{
-		nombre
-	}
-		
-	
-	def darseDeBaja(main.Partido partido, main.Jugador reemplazante){
+	def darseDeBaja(Partido partido, Jugador reemplazante){
 		if (reemplazante != null)
 			{
 			var bajaReemplazada = new BajaReemplazada(new BajaSimple ( ) )
@@ -49,7 +41,7 @@ class Jugador {
 			
 			}
 			
-	def calificar(main.Partido partido, main.Jugador calificado, int puntaje, String comentario){
+	def calificar(Partido partido, Jugador calificado, int puntaje, String comentario){
 		val calificacion = new Calificacion(puntaje,comentario,calificado,this,partido)
 		
 		if(!calificado.jugoEn(partido))
@@ -69,12 +61,12 @@ class Jugador {
 							
 				
 	}
-	
 		
-	def jugoEn(main.Partido partido){
+	def jugoEn(Partido partido){
 				partido.getQuienesJugaron.contains(this)
 			}
-	def proponerJugadorA(entrega3.Administrador admin,String nombre,int edad){
+	
+	def proponerJugadorA(Administrador admin,String nombre,int edad){
 		var JugadorSugerido sugerido = new JugadorSugerido(edad,nombre,this,admin) 
 		admin.agregarPendiente(sugerido)
 		sugerido
@@ -85,7 +77,7 @@ class Jugador {
 		this.getPenalizacionesCometidas.add(penalizacion)
 	}
 	
-	def darmeDeBajaEn(main.Partido partido, main.Jugador reemplazante){
+	def darmeDeBajaEn(Partido partido, Jugador reemplazante){
 		
 		//TODO: darlo de baja!
 		
