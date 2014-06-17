@@ -46,14 +46,18 @@ class Partido {
 	def darDeBajaSinReemplazante(Jugador jugador){
 		this.eliminarInscripcion(jugador)
 		this.penalizaA(jugador)
+		
 		}
+		
+	
 		
 	def penalizaA(Jugador jugador){
 		jugador.agregatePenalizacion(new Penalizacion(new Date(),"no dejaste reemplazante",this))
 	}
 	
 	def eliminarInscripcion(Jugador jugador){
-		var inscrip= this.inscripciones.findFirst[i|i.jugador == jugador]
+		val inscrip= this.inscripciones.findFirst[i|i.jugador == jugador]
+		this.observadores.forEach[obs|obs.seDioDeBaja(inscrip)]
 		this.inscripciones.remove(inscrip)
 	}
 	
