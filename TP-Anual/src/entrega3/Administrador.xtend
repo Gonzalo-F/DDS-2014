@@ -55,9 +55,6 @@ class Administrador {
 		unJugador.handicap = valor
 	}
 
-	def generarEquiposTentativos (Partido unPartido){
-		this.ordenarLista (unPartido, criterio)
-		this.dividirJugadores(Partido, criterio2)
-	}
+	
 	
 }
