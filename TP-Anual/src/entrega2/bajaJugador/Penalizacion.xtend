@@ -1,4 +1,4 @@
-package entrega2.bajaObserver
+package entrega2.bajaJugador
 
 import java.util.Date
 import main.Partido

@@ -2,7 +2,7 @@ package main
 
 
 
-import entrega2.bajaObserver.Penalizacion
+
 import entrega3.Administrador
 import entrega3.Calificacion
 import entrega3.NoSePuedeCalificarExcepcion
@@ -10,6 +10,7 @@ import entrega3.ordenesDeCreacion.JugadorSugerido
 import java.util.ArrayList
 import java.util.List
 import entrega1.tipoInscripcion.TipoInscripcion
+import entrega2.bajaJugador.Penalizacion
 
 class Jugador {
 	@Property int edad
