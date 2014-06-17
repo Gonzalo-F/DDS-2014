@@ -62,8 +62,18 @@ class Jugador {
 		partido.darDeBajaSinReemplazante(this)
 	}
 	
-	def  BigDecimal promedio(int i) {
+	def  promedio(int n) {
+		var suma = 0 
+		
+		for (i:1..n){
+
+     suma = suma +(this.dameCalificacion(i).puntaje)}
+     
+     return (suma/n)
 		}
+		
+	def	dameCalificacion(int n){
+this.listaDeCalificaciones.get(n)}
 	
 	
 }
