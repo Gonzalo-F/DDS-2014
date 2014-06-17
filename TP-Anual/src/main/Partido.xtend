@@ -64,5 +64,10 @@ class Partido {
 		this.inscripciones.remove(inscrip)
 	}
 	
+	def inscribiA(Inscripcion inscripcion) {
+		inscripciones.add(inscripcion)
+		observadores.forEach[observer|observer.seInscribio(inscripcion)]
+	}
+	
 	}
 

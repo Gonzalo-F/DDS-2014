@@ -1,5 +1,6 @@
 package entrega1.tipoInscripcion
 
+import entrega1.InscripcionRechazadaException
 import main.Inscripcion
 import main.Jugador
 import main.Partido
@@ -11,4 +12,8 @@ abstract class TipoInscripcion {
 		
 	}
 	
+	def void confirmarInscripcion(Inscripcion unaInscripcion, Partido partido){
+		if (!partido.permiteInscripciones) {throw new InscripcionRechazadaException ("Ya hay 10 inscriptos estandar en la lista")}
+		partido.inscribiA(unaInscripcion)
+	}
 }

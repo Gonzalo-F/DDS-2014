@@ -16,16 +16,7 @@ class InscripcionCondicional extends TipoInscripcion {
 	}
 
 	override inscribirA(Jugador jugador, Partido partido, Inscripcion unaInsc) {
-		if (partido.permiteInscripciones) {
-			if (condicion.cumple(jugador, partido)) {
-				partido.inscripciones.add(unaInsc)
-			} else {
-				throw new InscripcionRechazadaException("El partido no cumple las condiciones del jugador")
-			}
-		} else {
-			throw new InscripcionRechazadaException("Ya hay 10 inscriptos estandar en la lista")
-		}
-
+		if (!condicion.cumple(jugador, partido)){throw new InscripcionRechazadaException("El partido no cumple las condiciones del jugador")}
+		confirmarInscripcion(unaInsc,partido)	
 	}
-
-}
+}	
