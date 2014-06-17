@@ -1,10 +1,15 @@
 package entrega4.ordenamientoLista
 
 import java.util.ArrayList
+import java.util.Comparator
 import main.Jugador
 
-class HandicapCriterio extends entrega4.OrdenLista {
+class HandicapCriterio implements Comparator<Jugador> {
 
+	override compare(Jugador ji, Jugador jj){
+		return ji.handicap.compareTo(jj.handicap)
+	}
+	
 	def doOrdenar (ArrayList<Jugador> jugadores){
 		for (i: 1.. 9){
 			for (j: 2..10){
@@ -18,4 +23,5 @@ class HandicapCriterio extends entrega4.OrdenLista {
 			
 		}
 	}
+
 }
