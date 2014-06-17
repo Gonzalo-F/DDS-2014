@@ -56,11 +56,10 @@ class TestDarDeBajaInscripcion {
 	@Test
 	def testPenalizar() {
 		var insc = new Inscripcion(jugador, partido, new InscripcionEstandar())
-		var int cantPenalizaciones = jugador.penalizacionesCometidas.size + 1
 		jugador.darseDeBaja(partido)
 
 		assertFalse(partido.inscripciones.contains(insc))
-		assertTrue(jugador.penalizacionesCometidas.size == cantPenalizaciones)
+		assertEquals(1,jugador.penalizacionesCometidas.size)
 
 	}
 
