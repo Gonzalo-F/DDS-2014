@@ -1,19 +1,18 @@
 package main
 
 import entrega1.tipoInscripcion.TipoInscripcion
-
+import entrega2.NoInscriptoException
+import entrega2.bajaJugador.Penalizacion
 import entrega2.observerNotificador.InscripcionObserver
 import java.util.ArrayList
 import java.util.Date
 import java.util.List
-import entrega2.NoInscriptoException
-
-import entrega2.bajaJugador.Penalizacion
 
 class Partido {
 	@Property String lugar
 	@Property int hora
 	@Property int fecha
+	/* Fecha y hora deberían ser Date */
 	@Property ArrayList<Inscripcion> inscripciones
 	@Property List<InscripcionObserver> observadores
 	@Property ArrayList<Jugador> quienesJugaron

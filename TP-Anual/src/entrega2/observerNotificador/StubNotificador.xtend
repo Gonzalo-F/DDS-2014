@@ -1,32 +1,33 @@
 package entrega2.observerNotificador
 
-import java.util.List
 import java.util.ArrayList
+import java.util.List
+import main.Jugador
+import main.Partido
 
 class StubNotificador implements Notificador {
 	
-	List<main.Partido> partidosNotificados
-	List<main.Jugador> amigosDelJugadorANotificar
+	List<Partido> partidosNotificados
+	List<Jugador> amigosDelJugadorANotificar
 	
 	new(){
-		this.partidosNotificados = new ArrayList<main.Partido>
+		this.partidosNotificados = new ArrayList<Partido>
 	}
 	
-	override notificarAdminHay10(main.Partido unPartido){
+	override notificarAdminHay10(Partido unPartido){
 		partidosNotificados.add(unPartido)
 	}
 	
-	override notificarAdminYaNoHay10(main.Partido unPartido){
+	override notificarAdminYaNoHay10(Partido unPartido){
 		partidosNotificados.remove(unPartido)
 	}
 	
-	def getPartidosNotificados() {
-		partidosNotificados
-	}
-	
-	override notificarAmigosNuevaInscripcion(main.Jugador unJugador){
- 		this.amigosDelJugadorANotificar.addAll(unJugador.getAmigos) 	 
+	override notificarAmigosNuevaInscripcion(Jugador unJugador){
+ 		this.amigosDelJugadorANotificar.addAll(unJugador.amigos) 	 
  	 
  }
 	
+	def getPartidosNotificados(){
+		partidosNotificados
+	}
 }

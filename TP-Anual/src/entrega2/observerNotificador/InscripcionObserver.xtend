@@ -1,6 +1,8 @@
 package entrega2.observerNotificador
 
+import main.Inscripcion
+
 interface InscripcionObserver {
-		def void seInscribio(main.Inscripcion unInscripto)
-		def void seDioDeBaja(main.Inscripcion unInscripto)
+		def void seInscribio(Inscripcion unInscripto)
+		def void seDioDeBaja(Inscripcion unInscripto)
 	}

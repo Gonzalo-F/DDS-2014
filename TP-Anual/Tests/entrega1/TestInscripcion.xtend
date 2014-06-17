@@ -23,7 +23,6 @@ class TestInscripcion {
 		estaConfirmado(inscripto,partido)
 	}
 		
-		
 	@Test
 	def testInscribirSolidario(){
 		val inscripto = inscribirJugadorNuevo(15,"Pirulito",inscripcionSolidario())
@@ -45,8 +44,7 @@ class TestInscripcion {
 		}
 	fail()
 	}
-	
-	
+		
 	def inscribirJugadorNuevo(int edad,String nombre,TipoInscripcion tipo) {
 		new Inscripcion(nuevoJugador(edad,nombre),partido, tipo)
 	}

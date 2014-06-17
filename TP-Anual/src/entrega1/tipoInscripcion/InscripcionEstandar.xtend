@@ -1,6 +1,5 @@
 package entrega1.tipoInscripcion
 
-import entrega1.InscripcionRechazadaException
 import main.Inscripcion
 import main.Jugador
 import main.Partido

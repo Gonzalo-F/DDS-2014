@@ -1,5 +1,8 @@
 package entrega1.condiciones
 
+import main.Jugador
+import main.Partido
+
 class CondicionParaTodos implements Condicion {
 	@Property Condicion condicion
 	
@@ -7,7 +10,7 @@ class CondicionParaTodos implements Condicion {
 		this.condicion = c
 	}
 
-	override boolean cumple(main.Jugador jugador, main.Partido partido) {
+	override boolean cumple(Jugador jugador, Partido partido) {
 		partido.getListaJugadores.exists[unJugador | !(cumple(unJugador,partido))]
 	}
 	

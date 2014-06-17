@@ -1,8 +1,5 @@
 package main
 
-
-
-
 import entrega3.Administrador
 import entrega3.Calificacion
 import entrega3.NoSePuedeCalificarExcepcion
@@ -25,9 +22,7 @@ class Jugador {
 		this.edad = edad
 		this.nombre = nombre
 	}
-	
-	
-			
+				
 	def calificar(Partido partido, Jugador calificado, int puntaje, String comentario){
 		val calificacion = new Calificacion(puntaje,comentario,calificado,this,partido)
 		

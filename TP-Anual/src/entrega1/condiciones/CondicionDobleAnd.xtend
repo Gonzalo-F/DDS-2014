@@ -1,5 +1,8 @@
 package entrega1.condiciones
 
+import main.Jugador
+import main.Partido
+
 class CondicionDobleAnd implements Condicion {
 	@Property Condicion condicion1
 	@Property Condicion condicion2
@@ -9,7 +12,7 @@ class CondicionDobleAnd implements Condicion {
 		this.condicion2 = c2
 	}
 
-	override cumple(main.Jugador jugador, main.Partido partido) {
+	override cumple(Jugador jugador, Partido partido) {
 		return ((getCondicion1.cumple(jugador, partido)) && (getCondicion2.cumple(jugador, partido)))
 	}
 }
