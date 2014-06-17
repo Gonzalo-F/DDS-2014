@@ -6,6 +6,7 @@ import entrega2.observerNotificador.InscripcionObserver
 import java.util.ArrayList
 import java.util.Date
 import java.util.List
+import entrega2.NoInscriptoException
 
 class Partido {
 	@Property String lugar
@@ -54,6 +55,9 @@ class Partido {
 	
 	def eliminarInscripcion(Jugador jugador){
 		val inscrip= this.inscripciones.findFirst[i|i.jugador == jugador]
+		if (!(this.inscripciones.contains(inscrip))){
+			throw new NoInscriptoException("no estas inscripto en el" + this)
+		}
 		this.observadores.forEach[obs|obs.seDioDeBaja(inscrip)]
 		this.inscripciones.remove(inscrip)
 	}
