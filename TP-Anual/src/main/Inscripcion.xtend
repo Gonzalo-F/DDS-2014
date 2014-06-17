@@ -10,6 +10,7 @@ class Inscripcion {
 	new (Jugador unJugador, Partido unPartido, TipoInscripcion tipo){
 		this.jugador = unJugador
 		this.partido = unPartido
+		this.tipo = tipo
 		tipo.inscribirA(unJugador, unPartido, this)
 	}
 		
