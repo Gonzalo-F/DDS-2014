@@ -1,20 +1,20 @@
 package main
 
+import entrega1.tipoInscripcion.TipoInscripcion
+import entrega2.bajaJugador.Penalizacion
 import entrega3.Administrador
 import entrega3.Calificacion
 import entrega3.NoSePuedeCalificarExcepcion
 import entrega3.ordenesDeCreacion.JugadorSugerido
 import java.util.ArrayList
 import java.util.List
-import entrega1.tipoInscripcion.TipoInscripcion
-import entrega2.bajaJugador.Penalizacion
 
 class Jugador {
 	@Property int edad
 	@Property String nombre
 	@Property ArrayList<Jugador> amigos
 	@Property int handicap
-	@Property List<Calificacion> listaDeCalificaciones = new ArrayList()
+	@Property ArrayList<Calificacion> listaDeCalificaciones = new ArrayList()
 	@Property List<Penalizacion> penalizacionesCometidas = new ArrayList ()
 	
 	
