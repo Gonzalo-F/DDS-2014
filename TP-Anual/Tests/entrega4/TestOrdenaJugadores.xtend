@@ -23,10 +23,10 @@ class TestOrdenaJugadores {
 		new Inscripcion(jugador10, partido, new InscripcionEstandar)
 		admin.ponerHandicap(jugador10, 8)
 	}
-	
 	@Test
 	def testOrdenaJugadoresPorHandicap() {
-		admin.generarEquiposTentativos(partido)
+		partido.generarEquiposTentativos(critOrd,critDiv)
 		////
 	}
+	
 }
