@@ -27,7 +27,7 @@ class TestDarDeBajaInscripcion {
 
 
 	@Test
-	def testDarseDeBajaYNoEstaInscripto(){
+	def testDarseDeBajaYNoEstaInscriptoSinReemplazante(){
 		
 		try{jugador.darseDeBaja(partido)
 			
@@ -36,6 +36,18 @@ class TestDarDeBajaInscripcion {
 		}
 	 fail()
 	
+	}
+	
+	@Test
+	def testDarseDeBajaYNoEstaInscriptoConReemplazante(){
+		try{jugador.darseDeBaja(partido,reemplazante,new InscripcionEstandar)
+			
+		} catch (NoInscriptoException e){
+			return
+		}
+	 fail()
+	
+		
 	}
 		
 		
