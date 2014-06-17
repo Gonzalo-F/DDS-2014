@@ -62,6 +62,8 @@ class Partido {
 		inscripciones.add(inscripcion)
 		observadores.forEach[observer|observer.seInscribio(inscripcion)]
 	}
-	
+	def generaraEquiposTentativos(){
+		
+	}
 	}
 

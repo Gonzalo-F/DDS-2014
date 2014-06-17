@@ -65,7 +65,7 @@ class Jugador {
 	def  promedio(int n) {
 		var suma = 0 
 		
-		for (i:1..n){
+		for (i:0..(n-1)){
 
      suma = suma +(this.dameCalificacion(i).puntaje)}
      
