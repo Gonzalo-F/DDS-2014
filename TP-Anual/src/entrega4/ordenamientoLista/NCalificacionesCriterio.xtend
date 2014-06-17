@@ -7,7 +7,7 @@ class NCalificacionesCriterio implements Comparator<Jugador> {
 	@Property int n
 	
 	override compare(Jugador jugador1, Jugador jugador2){
-		return jugador1.promedioCalificaciones.compareTo(jugador2.promedioCalificaciones)
-	}
+ 	return jugador1.promedio(n).compareTo(jugador2.promedio(n))
+}
 	
 }

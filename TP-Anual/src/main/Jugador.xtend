@@ -8,6 +8,7 @@ import entrega3.NoSePuedeCalificarExcepcion
 import entrega3.ordenesDeCreacion.JugadorSugerido
 import java.util.ArrayList
 import java.util.List
+import java.math.BigDecimal
 
 class Jugador {
 	@Property int edad
@@ -64,6 +65,9 @@ class Jugador {
 	def darseDeBaja(Partido partido){
 		partido.darDeBajaSinReemplazante(this)
 	}
+	
+	def  BigDecimal promedio(int i) {
+		}
 	
 	
 }
