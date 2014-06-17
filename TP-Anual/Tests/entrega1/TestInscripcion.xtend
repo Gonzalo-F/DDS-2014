@@ -4,6 +4,7 @@ import entrega1.condiciones.CondicionLugar
 import entrega1.tipoInscripcion.InscripcionCondicional
 import entrega1.tipoInscripcion.InscripcionEstandar
 import entrega1.tipoInscripcion.InscripcionSolidario
+import entrega1.tipoInscripcion.TipoInscripcion
 import main.Inscripcion
 import main.Jugador
 import main.Partido
@@ -14,34 +15,60 @@ import static org.junit.Assert.*
 class TestInscripcion {
 
 	var Partido partido = new Partido(2040, 20140413, 'Tinglado')
-	var Jugador jugador = new Jugador(15, "Pirulito")
+	
 
 	@Test
-	def testInscribirEstandar() {
-		var insc = new Inscripcion(jugador,partido, new InscripcionEstandar())
-		assertTrue(partido.inscripciones.contains(insc))
+	def testInscribirEstandar(){
+		val inscripto = inscribirJugadorNuevo(15,"Pirulito",inscripcionEstandar)
+		estaConfirmado(inscripto,partido)
 	}
-	
+		
+		
 	@Test
-	def testInscribirSolidario() {
-		var insc= new Inscripcion(jugador,partido,new InscripcionSolidario())
-		assertTrue(partido.inscripciones.contains(insc))
+	def testInscribirSolidario(){
+		val inscripto = inscribirJugadorNuevo(15,"Pirulito",inscripcionSolidario())
+		estaConfirmado(inscripto,partido)
 	}
 
 	@Test
 	def testInscribirCondicionalPorLugar() {
-		var insc= new Inscripcion(jugador,partido,new InscripcionCondicional(new CondicionLugar("Tinglado")))
-		assertTrue(partido.inscripciones.contains(insc))
+		val inscripto = inscribirJugadorNuevo(15,"Pirulito",inscripcionCondicionLugar("Tinglado"))
+		estaConfirmado(inscripto,partido)
 	}
 
 	@Test
 	def testInscripcionRechazadaPorNoCumplir(){
-		var lugar = new CondicionLugar("La Copita")
 		try{
-			new Inscripcion(jugador,partido, new InscripcionCondicional(lugar))
+			inscribirJugadorNuevo(15,"Pirulito",inscripcionCondicionLugar("La Copita"))
 		} catch (InscripcionRechazadaException e) {
 			return
 		}
 	fail()
 	}
+	
+	
+	def inscribirJugadorNuevo(int edad,String nombre,TipoInscripcion tipo) {
+		new Inscripcion(nuevoJugador(edad,nombre),partido, tipo)
+	}
+	
+	def nuevoJugador(int edad, String nombre) {
+		new Jugador(edad,nombre)
+	}
+	
+	def inscripcionEstandar() {
+		new InscripcionEstandar()
+	}
+	
+	def inscripcionSolidario(){
+		new InscripcionSolidario()
+	}
+	
+	def inscripcionCondicionLugar(String lugar){
+		new InscripcionCondicional(new CondicionLugar(lugar))
+	}
+	
+	def estaConfirmado(Inscripcion inscripto, Partido partido) {
+		assertTrue(partido.inscripciones.contains(inscripto))
+	}
+	
 }
