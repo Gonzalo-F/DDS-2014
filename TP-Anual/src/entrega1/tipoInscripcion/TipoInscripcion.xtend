@@ -10,7 +10,5 @@ abstract class TipoInscripcion {
 	def void inscribirA(Jugador jugador, Partido partido, Inscripcion inscripcion){
 		
 	}
-	def noTiene10estandares(Partido partido) {
-		
-	}
+	
 }
