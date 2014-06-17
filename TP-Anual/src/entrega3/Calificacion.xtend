@@ -19,6 +19,7 @@ class Calificacion {
 		this.calificado=calificado
 		this.calificador=calificador
 		this.partido= partido
+		calificado.listaDeCalificaciones.add(1, this)
 		
 	}
 	

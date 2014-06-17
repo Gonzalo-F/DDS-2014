@@ -6,9 +6,9 @@ import entrega3.Administrador
 import entrega3.Calificacion
 import entrega3.NoSePuedeCalificarExcepcion
 import entrega3.ordenesDeCreacion.JugadorSugerido
+import java.math.BigDecimal
 import java.util.ArrayList
 import java.util.List
-import java.math.BigDecimal
 
 class Jugador {
 	@Property int edad
@@ -17,6 +17,7 @@ class Jugador {
 	@Property int handicap
 	@Property ArrayList<Calificacion> listaDeCalificaciones = new ArrayList()
 	@Property List<Penalizacion> penalizacionesCometidas = new ArrayList ()
+	@Property Partido ultimoPartidoJugado
 	
 	
 	new (int edad, String nombre){
@@ -24,9 +25,7 @@ class Jugador {
 		this.nombre = nombre
 	}
 				
-	def calificar(Partido partido, Jugador calificado, int puntaje, String comentario){
-		val calificacion = new Calificacion(puntaje,comentario,calificado,this,partido)
-		
+	def calificar(Partido partido, Jugador calificado, int puntaje, String comentario){	
 		if(!calificado.jugoEn(partido))
 			{
 				throw new NoSePuedeCalificarExcepcion ("No se puede califcar a un jugador que no jugo en ese partido",calificado,partido)
@@ -36,10 +35,7 @@ class Jugador {
 			{
 				throw new NoSePuedeCalificarExcepcion ("No podes calificar jugadores de un partido que no jugaste",this,partido)
 			}
-			     
-		calificado.getListaDeCalificaciones.add(calificacion)
-		calificacion
-							
+		new Calificacion(puntaje,comentario,calificado,this,partido)	     				
 				
 	}
 		
