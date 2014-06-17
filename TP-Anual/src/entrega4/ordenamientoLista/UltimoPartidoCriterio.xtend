@@ -1,4 +1,4 @@
-package entrega4
+package entrega4.ordenamientoLista
 
 class UltimoPartidoCriterio {
 	
