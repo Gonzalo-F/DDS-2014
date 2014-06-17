@@ -9,6 +9,7 @@ import entrega3.NoSePuedeCalificarExcepcion
 import entrega3.ordenesDeCreacion.JugadorSugerido
 import java.util.ArrayList
 import java.util.List
+import entrega1.tipoInscripcion.TipoInscripcion
 
 class Jugador {
 	@Property int edad
@@ -60,6 +61,14 @@ class Jugador {
 	
 	def agregatePenalizacion(Penalizacion penalizacion){
 		this.getPenalizacionesCometidas.add(penalizacion)
+	}
+	
+	def darseDeBaja(Partido partido, Jugador reemplazante, TipoInscripcion tipo){
+		partido.darDeBajaConReemplazante(this, reemplazante,tipo)
+	}
+	
+	def darseDeBaja(Partido partido){
+		partido.darDeBajaSinReemplazante(this)
 	}
 	
 	

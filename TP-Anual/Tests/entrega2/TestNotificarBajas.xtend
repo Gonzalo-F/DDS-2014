@@ -31,7 +31,7 @@ class TestNotificarBajas {
 	def notificarCuandoHayMenosDe10() {
 		new Inscripcion(jugador, partido, new InscripcionEstandar())
 		assertEquals(1, stubNotificador.getPartidosNotificados().size)
-		jugador.darseDeBaja(partido, null)
+		jugador.darseDeBaja(partido)
 		assertEquals(0, stubNotificador.getPartidosNotificados().size)
 
 	}

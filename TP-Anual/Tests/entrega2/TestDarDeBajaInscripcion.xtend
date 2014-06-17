@@ -17,7 +17,7 @@ class TestDarDeBajaInscripcion {
 	@Test
 	def testReemplazarJugador() {
 		var inscri= new Inscripcion(jugador,partido, new InscripcionEstandar())
-		jugador.darseDeBaja(partido, reemplazante)
+		jugador.darseDeBaja(partido, reemplazante, new InscripcionEstandar)
 		
 		assertFalse(partido.inscripciones.contains(inscri))
 		assertTrue((partido.inscripciones.filter[inscripcion|inscripcion.jugador == reemplazante]).size == 1)
@@ -26,11 +26,11 @@ class TestDarDeBajaInscripcion {
 	@Test
 	def testPenalizar() {
 		var inscri= new Inscripcion(jugador,partido, new InscripcionEstandar())
-		var int cantPenalizaciones = jugador.getPenalizaciones.size + 1
-		jugador.darseDeBaja(partido, null)
+		var int cantPenalizaciones = jugador.penalizacionesCometidas.size + 1
+		jugador.darseDeBaja(partido)
 		
 		assertFalse(partido.inscripciones.contains(inscri))
-		assertTrue(jugador.getPenalizaciones.size == cantPenalizaciones)
+		assertTrue(jugador.penalizacionesCometidas.size == cantPenalizaciones)
 
 	}
 
