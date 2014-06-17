@@ -41,8 +41,6 @@ class Jugador {
 			}
 			     
 		calificado.getListaDeCalificaciones.add(calificacion)
-				
-		
 		calificacion
 							
 				

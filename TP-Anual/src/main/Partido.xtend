@@ -1,12 +1,12 @@
 package main
 
-import entrega2.observerNotificador.InscripcionObserver
-import java.util.ArrayList
-import java.util.List
 import entrega1.tipoInscripcion.TipoInscripcion
 import entrega2.NoHayMasLugarParaInscribirse
-import java.util.Date
 import entrega2.bajaObserver.Penalizacion
+import entrega2.observerNotificador.InscripcionObserver
+import java.util.ArrayList
+import java.util.Date
+import java.util.List
 
 class Partido {
 	@Property String lugar
@@ -40,7 +40,7 @@ class Partido {
 
 	def darDeBajaConReemplazante(Jugador jugador, Jugador reemplazante, TipoInscripcion tipoInscripcion){
 		this.eliminarInscripcion(jugador)
-		this.inscribirJugador(reemplazante,tipoInscripcion)
+		new Inscripcion(reemplazante, this, tipoInscripcion)
 	}
 	
 	def darDeBajaSinReemplazante(Jugador jugador){
