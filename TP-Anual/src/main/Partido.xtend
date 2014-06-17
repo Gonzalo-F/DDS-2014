@@ -25,11 +25,6 @@ class Partido {
 		this.observadores = new ArrayList()
 		this.quienesJugaron = new ArrayList()
 	}
-
-
-	def getListaQuienesJugaron(){
-		return this.getQuienesJugaron
-	}
 	
 	def getListaJugadores() {
 		inscripciones.map(inscripcion | inscripcion.jugador)
