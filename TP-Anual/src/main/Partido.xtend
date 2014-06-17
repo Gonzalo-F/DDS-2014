@@ -1,7 +1,6 @@
 package main
 
 import entrega1.tipoInscripcion.TipoInscripcion
-import entrega2.NoHayMasLugarParaInscribirse
 import entrega2.bajaObserver.Penalizacion
 import entrega2.observerNotificador.InscripcionObserver
 import java.util.ArrayList
@@ -49,8 +48,6 @@ class Partido {
 		
 		}
 		
-	
-		
 	def penalizaA(Jugador jugador){
 		jugador.agregatePenalizacion(new Penalizacion(new Date(),"no dejaste reemplazante",this))
 	}
@@ -61,12 +58,5 @@ class Partido {
 		this.inscripciones.remove(inscrip)
 	}
 	
-	def inscribirJugador(Jugador reemplazante, TipoInscripcion tipo){
-		var Inscripcion inscrip = new Inscripcion (reemplazante,this,tipo)
-		if(!this.permiteInscripciones){
-			throw new NoHayMasLugarParaInscribirse("no tiene mas cupo este partido")}
-			inscripciones.add(inscrip)
-		}
-		
 	}
 
