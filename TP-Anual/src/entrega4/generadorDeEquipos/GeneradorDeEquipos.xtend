@@ -1,5 +1,7 @@
-package entrega4.ordenamientoLista
+package entrega4.generadorDeEquipos
 
+import entrega4.divisionLista.Division
+import entrega4.ordenamientoLista.OrdenLista
 import java.util.ArrayList
 import main.Jugador
 

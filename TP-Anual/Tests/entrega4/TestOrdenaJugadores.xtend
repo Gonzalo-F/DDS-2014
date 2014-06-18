@@ -2,7 +2,7 @@ package entrega4
 
 import entrega1.tipoInscripcion.InscripcionEstandar
 import entrega3.Administrador
-import entrega4.ordenamientoLista.DivisionPares
+import entrega4.divisionLista.DivisionPares
 import entrega4.ordenamientoLista.HandicapCriterio
 import main.Inscripcion
 import main.Jugador

@@ -1,4 +1,4 @@
-package entrega4.ordenamientoLista
+package entrega4.divisionLista
 
 interface Division {
 	def void dividirEquipos()

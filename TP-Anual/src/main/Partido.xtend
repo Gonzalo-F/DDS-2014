@@ -4,8 +4,8 @@ import entrega1.tipoInscripcion.TipoInscripcion
 import entrega2.NoInscriptoException
 import entrega2.bajaJugador.Penalizacion
 import entrega2.observerNotificador.InscripcionObserver
-import entrega4.ordenamientoLista.Division
-import entrega4.ordenamientoLista.GeneradorDeEquipos
+import entrega4.divisionLista.Division
+import entrega4.generadorDeEquipos.GeneradorDeEquipos
 import entrega4.ordenamientoLista.OrdenLista
 import java.util.ArrayList
 import java.util.Date
