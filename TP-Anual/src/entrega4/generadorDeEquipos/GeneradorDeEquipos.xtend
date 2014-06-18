@@ -6,20 +6,20 @@ import java.util.ArrayList
 import main.Jugador
 
 class GeneradorDeEquipos {
-	ArrayList<Jugador> confirmados
+	ArrayList<Jugador> jugadores
 	ArrayList<Jugador> equipo1
 	ArrayList<Jugador> equipo2
 	OrdenLista orden
 	Division division
 	
 	def inicializar(ArrayList<Jugador> confirmados,OrdenLista orden,Division division){
-		this.confirmados = confirmados
+		this.jugadores = confirmados
 		this.orden = orden
 		this.division = division
 	}
 	
 	def generarEquiposTentativos(){
-	confirmados.sort(orden)
+	jugadores.sort(orden)
 	division.dividirEquipos()
 	}
 	
