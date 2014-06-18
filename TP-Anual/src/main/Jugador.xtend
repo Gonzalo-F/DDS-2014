@@ -71,6 +71,7 @@ class Jugador {
 
 	def promedioUltimoPartido() {
 		var ArrayList<Calificacion> c = new ArrayList()
+
 		/*Filter "manual" */
 		for (i : 1 .. listaDeCalificaciones.size) {
 			var calificacion = listaDeCalificaciones.get(i)

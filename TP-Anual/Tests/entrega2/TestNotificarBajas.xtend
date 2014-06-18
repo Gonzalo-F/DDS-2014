@@ -2,7 +2,6 @@ package entrega2
 
 import entrega1.tipoInscripcion.InscripcionEstandar
 import entrega2.observerNotificador.DiezConfirmadosObserver
-import entrega2.observerNotificador.StubNotificador
 import main.Inscripcion
 import main.Jugador
 import main.Partido

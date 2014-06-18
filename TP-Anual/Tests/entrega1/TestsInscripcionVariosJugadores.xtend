@@ -24,8 +24,7 @@ class TestsInscripcionVariosJugadores {
 	def testInscribirJugadorMasde10enEstandarRechaza() {
 		try {
 			inscribirJugadorNuevoEstandar(15, "Player11")
-			
-			
+
 		} catch (InscripcionRechazadaException e) {
 			return
 		}
@@ -37,7 +36,7 @@ class TestsInscripcionVariosJugadores {
 	======================================================*/
 	def inscribirJugadorNuevoEstandar(Integer edad, String nombre) {
 		new Inscripcion(nuevoJugador(edad, nombre), partido, new InscripcionEstandar())
-		}
+	}
 
 	def nuevoJugador(Integer edad, String nombre) {
 		new Jugador(edad, nombre)

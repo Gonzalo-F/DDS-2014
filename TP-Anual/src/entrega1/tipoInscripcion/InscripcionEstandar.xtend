@@ -6,14 +6,10 @@ import main.Partido
 
 class InscripcionEstandar extends TipoInscripcion {
 
-@Property int prioridad = 0
+	@Property int prioridad = 0
 
-	override inscribirA (Jugador jugador, Partido partido, Inscripcion unaInsc) {
-		confirmarInscripcion(unaInsc,partido)	
+	override inscribirA(Jugador jugador, Partido partido, Inscripcion unaInsc) {
+		confirmarInscripcion(unaInsc, partido)
 	}
-	
-	
-	
-	
-	
+
 }
