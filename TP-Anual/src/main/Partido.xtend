@@ -15,6 +15,7 @@ class Partido {
 	@Property String lugar
 	@Property int hora
 	@Property int fecha
+
 	/* Fecha y hora deberían ser Date */
 	@Property ArrayList<Inscripcion> inscripciones
 	@Property List<InscripcionObserver> observadores
@@ -29,52 +30,54 @@ class Partido {
 		this.observadores = new ArrayList()
 		this.quienesJugaron = new ArrayList()
 	}
-	
-	def getListaJugadores() {
-		inscripciones.map(inscripcion | inscripcion.jugador)
-	}
-	
-	def permiteInscripciones() {
-		(inscripciones.filter[inscripcion | inscripcion.prioridad == 0].size) < 10
-		}
 
-	def darDeBajaConReemplazante(Jugador jugador, Jugador reemplazante, TipoInscripcion tipoInscripcion){
+	def getListaJugadores() {
+		inscripciones.map(inscripcion|inscripcion.jugador)
+	}
+
+	def permiteInscripciones() {
+		(inscripciones.filter[inscripcion|inscripcion.prioridad == 0].size) < 10
+	}
+
+	def darDeBajaConReemplazante(Jugador jugador, Jugador reemplazante, TipoInscripcion tipoInscripcion) {
 		this.eliminarInscripcion(jugador)
 		new Inscripcion(reemplazante, this, tipoInscripcion)
 	}
-	
-	def darDeBajaSinReemplazante(Jugador jugador){
+
+	def darDeBajaSinReemplazante(Jugador jugador) {
 		this.eliminarInscripcion(jugador)
 		this.penalizaA(jugador)
-		
-		}
-		
-	def penalizaA(Jugador jugador){
-		jugador.agregatePenalizacion(new Penalizacion (new Date(),"no dejaste reemplazante",this))
+
 	}
-	
-	def eliminarInscripcion(Jugador jugador){
-		val inscrip= this.inscripciones.findFirst[i|i.jugador == jugador]
-		if (!(this.inscripciones.contains(inscrip))){
+
+	def penalizaA(Jugador jugador) {
+		jugador.agregatePenalizacion(new Penalizacion(new Date(), "no dejaste reemplazante", this))
+	}
+
+	def eliminarInscripcion(Jugador jugador) {
+		val inscrip = this.inscripciones.findFirst[i|i.jugador == jugador]
+		if (!(this.inscripciones.contains(inscrip))) {
 			throw new NoInscriptoException("no estas inscripto en el" + this)
 		}
 		this.observadores.forEach[obs|obs.seDioDeBaja(inscrip)]
 		this.inscripciones.remove(inscrip)
 	}
-	
+
 	def inscribiA(Inscripcion inscripcion) {
 		inscripciones.add(inscripcion)
 		observadores.forEach[observer|observer.seInscribio(inscripcion)]
 	}
-	
-	def confirmados(){
-	/*hay que transformarlo en un arrayList y sacar los 10 primeros */
-		getListaJugadores
+
+	def confirmados() {
+		var ArrayList<Jugador> c = new ArrayList()
+		for (i : 1 .. 10) {
+			c.add(getListaJugadores.get(i))
+		}
+		return c
 	}
-	
-	def generarEquiposTentativos(OrdenLista orden,Division division){
-			generador.inicializar(this.confirmados,orden,division)
-			generador.generarEquiposTentativos()
+
+	def generarEquiposTentativos(OrdenLista orden, Division division) {
+		generador.inicializar(confirmados, orden, division)
+		generador.generarEquiposTentativos()
 	}
 }
-
