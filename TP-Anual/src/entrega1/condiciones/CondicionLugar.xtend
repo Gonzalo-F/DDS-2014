@@ -10,6 +10,6 @@ class CondicionLugar implements Condicion {
 		this.lugar = unLugar
 	}
 	override cumple(Jugador jugador, Partido partido) {
-		return (partido.getLugar == this.getLugar)
+		return (partido.lugar == this.lugar)
 	}
 }

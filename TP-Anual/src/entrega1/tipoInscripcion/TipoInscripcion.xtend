@@ -14,6 +14,6 @@ abstract class TipoInscripcion {
 	
 	def void confirmarInscripcion(Inscripcion unaInscripcion, Partido partido){
 		if (!partido.permiteInscripciones) {throw new InscripcionRechazadaException ("Ya hay 10 inscriptos estandar en la lista")}
-		partido.inscribiA(unaInscripcion)
+		partido.inscribirA(unaInscripcion)
 	}
 }

@@ -16,30 +16,31 @@ class TestsInscripcionVariosJugadores {
 	@Before
 	def inicio() {
 		for (i : 1 .. 10) {
-			inscribirJugadorNuevoEstandar(i,"Player"+i)
+			inscribirJugadorNuevoEstandar(i, "Player" + i)
 		}
 	}
-	
+
 	@Test
 	def testInscribirJugadorMasde10enEstandarRechaza() {
 		try {
 			inscribirJugadorNuevoEstandar(15, "Player11")
+			
+			
 		} catch (InscripcionRechazadaException e) {
 			return
 		}
 		fail()
 	}
-	
+
 	/*======================================================
 	 
 	======================================================*/
-	
-	def inscribirJugadorNuevoEstandar(Integer edad,String nombre) {
-		new Inscripcion(nuevoJugador(edad,nombre), partido, new InscripcionEstandar())
+	def inscribirJugadorNuevoEstandar(Integer edad, String nombre) {
+		new Inscripcion(nuevoJugador(edad, nombre), partido, new InscripcionEstandar())
+		}
+
+	def nuevoJugador(Integer edad, String nombre) {
+		new Jugador(edad, nombre)
 	}
-	
-	def nuevoJugador(Integer edad,String nombre) {
-		new Jugador(edad,nombre)
-	}
-		
+
 }

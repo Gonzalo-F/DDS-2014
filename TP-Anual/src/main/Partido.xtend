@@ -10,6 +10,7 @@ import entrega4.ordenamientoLista.OrdenLista
 import java.util.ArrayList
 import java.util.Date
 import java.util.List
+import entrega1.tipoInscripcion.InscripcionEstandar
 
 class Partido {
 	@Property String lugar
@@ -44,13 +45,13 @@ class Partido {
 		new Inscripcion(reemplazante, this, tipoInscripcion)
 	}
 
-	def darDeBajaSinReemplazante(Jugador jugador) {
+	def void darDeBajaSinReemplazante(Jugador jugador) {
 		this.eliminarInscripcion(jugador)
-		this.penalizaA(jugador)
+		this.penalizarA(jugador)
 
 	}
 
-	def penalizaA(Jugador jugador) {
+	def penalizarA(Jugador jugador) {
 		jugador.agregatePenalizacion(new Penalizacion(new Date(), "no dejaste reemplazante", this))
 	}
 
@@ -59,25 +60,28 @@ class Partido {
 		if (!(this.inscripciones.contains(inscrip))) {
 			throw new NoInscriptoException("no estas inscripto en el" + this)
 		}
-		this.observadores.forEach[obs|obs.seDioDeBaja(inscrip)]
 		this.inscripciones.remove(inscrip)
+		this.notificarObservers[seDioDeBaja(inscrip)]
 	}
 
-	def inscribiA(Inscripcion inscripcion) {
+	def inscribirA(Inscripcion inscripcion) {
 		inscripciones.add(inscripcion)
-		observadores.forEach[observer|observer.seInscribio(inscripcion)]
+		notificarObservers[seInscribio(inscripcion)]
 	}
-
+	
 	def confirmados() {
-		var ArrayList<Jugador> c = new ArrayList()
-		for (i : 1 .. 10) {
-			c.add(getListaJugadores.get(i))
-		}
-		return c
+		listaJugadores.subList(0, 10)
 	}
 
 	def generarEquiposTentativos(OrdenLista orden, Division division) {
-		generador.inicializar(confirmados, orden, division)
-		generador.generarEquiposTentativos()
+		generador.generarEquiposTentativos(confirmados, orden, division)
 	}
+
+	def notificarObservers((InscripcionObserver)=>void notificacion) {
+		observadores.forEach(notificacion)
+	}
+	
+	def inscribir(Jugador jugador, TipoInscripcion tipo) {
+		new Inscripcion(jugador, this, tipo) => [ inscribir ]
+	}	
 }

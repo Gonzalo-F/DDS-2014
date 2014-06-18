@@ -15,58 +15,63 @@ import static org.junit.Assert.*
 class TestInscripcion {
 
 	var Partido partido = new Partido(2040, 20140413, 'Tinglado')
-	
 
 	@Test
-	def testInscribirEstandar(){
-		val inscripto = inscribirJugadorNuevo(15,"Pirulito",inscripcionEstandar)
-		estaConfirmado(inscripto,partido)
-	}
+	def testInscribirEstandar() {
+		val inscripto = inscribirJugadorNuevo(15, "Pirulito", inscripcionEstandar)
 		
+		assertEstaConfirmado(inscripto, partido)
+	}
+
 	@Test
-	def testInscribirSolidario(){
-		val inscripto = inscribirJugadorNuevo(15,"Pirulito",inscripcionSolidario())
-		estaConfirmado(inscripto,partido)
+	def testInscribirSolidario() {
+		val inscripto = inscribirJugadorNuevo(15, "Pirulito", inscripcionSolidario)
+		
+		assertEstaConfirmado(inscripto, partido)
 	}
 
 	@Test
 	def testInscribirCondicionalPorLugar() {
-		val inscripto = inscribirJugadorNuevo(15,"Pirulito",inscripcionCondicionLugar("Tinglado"))
-		estaConfirmado(inscripto,partido)
+		val inscripto = inscribirJugadorNuevo(15, "Pirulito", inscripcionCondicionLugar("Tinglado"))
+		
+		assertEstaConfirmado(inscripto, partido)
 	}
 
 	@Test
-	def testInscripcionRechazadaPorNoCumplir(){
-		try{
-			inscribirJugadorNuevo(15,"Pirulito",inscripcionCondicionLugar("La Copita"))
+	def testInscripcionRechazadaPorNoCumplir() {
+		inscribirJugadorNuevo(15, "Pirulito", inscripcionCondicionLugar("La Copita"))
+		try {
+			
+			
+			
 		} catch (InscripcionRechazadaException e) {
 			return
 		}
-	fail()
+		fail()
 	}
-		
-	def inscribirJugadorNuevo(int edad,String nombre,TipoInscripcion tipo) {
-		new Inscripcion(nuevoJugador(edad,nombre),partido, tipo)
+
+	def inscribirJugadorNuevo(int edad, String nombre, TipoInscripcion tipo) {
+		new Inscripcion(nuevoJugador(edad, nombre), partido, tipo)
 	}
-	
+
 	def nuevoJugador(int edad, String nombre) {
-		new Jugador(edad,nombre)
+		new Jugador(edad, nombre)
 	}
-	
+
 	def inscripcionEstandar() {
 		new InscripcionEstandar()
 	}
-	
-	def inscripcionSolidario(){
+
+	def inscripcionSolidario() {
 		new InscripcionSolidario()
 	}
-	
-	def inscripcionCondicionLugar(String lugar){
+
+	def inscripcionCondicionLugar(String lugar) {
 		new InscripcionCondicional(new CondicionLugar(lugar))
 	}
-	
-	def estaConfirmado(Inscripcion inscripto, Partido partido) {
+
+	def assertEstaConfirmado(Inscripcion inscripto, Partido partido) {
 		assertTrue(partido.inscripciones.contains(inscripto))
 	}
-	
+
 }

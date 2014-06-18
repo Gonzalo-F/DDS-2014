@@ -6,16 +6,18 @@ class Inscripcion {
 	@Property TipoInscripcion tipo
 	@Property Partido partido
 	@Property Jugador jugador
-	
-	new (Jugador unJugador, Partido unPartido, TipoInscripcion tipo){
+
+	new(Jugador unJugador, Partido unPartido, TipoInscripcion tipo) {
 		this.jugador = unJugador
 		this.partido = unPartido
 		this.tipo = tipo
-		tipo.inscribirA(unJugador, unPartido, this)
 	}
-		
-	def prioridad(){
+
+	def prioridad() {
 		tipo.prioridad
 	}
-	
+
+	def inscribir() {
+		tipo.inscribirA(jugador, partido, this)
 	}
+}
