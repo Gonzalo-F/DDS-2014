@@ -2,13 +2,15 @@ package entrega4
 
 import entrega1.tipoInscripcion.InscripcionEstandar
 import entrega3.Administrador
+import entrega4.ordenamientoLista.DivisionPares
+import entrega4.ordenamientoLista.HandicapCriterio
 import main.Inscripcion
 import main.Jugador
 import main.Partido
 import org.junit.Before
 import org.junit.Test
 
-class TestOrdenaJugadores {
+class TestGenerarEquiposTentativos {
 	var admin = new Administrador ("emii", "emii@abc.com")
 	var partido = new Partido (20141213,2040,"Tinglado")
 	
@@ -25,8 +27,8 @@ class TestOrdenaJugadores {
 	}
 	@Test
 	def testOrdenaJugadoresPorHandicap() {
-		partido.generarEquiposTentativos(critOrd,critDiv)
-		////
+		partido.generarEquiposTentativos(new HandicapCriterio() ,new DivisionPares)
+		
 	}
 	
 }

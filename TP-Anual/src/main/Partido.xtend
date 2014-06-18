@@ -4,6 +4,9 @@ import entrega1.tipoInscripcion.TipoInscripcion
 import entrega2.NoInscriptoException
 import entrega2.bajaJugador.Penalizacion
 import entrega2.observerNotificador.InscripcionObserver
+import entrega4.ordenamientoLista.Division
+import entrega4.ordenamientoLista.GeneradorDeEquipos
+import entrega4.ordenamientoLista.OrdenLista
 import java.util.ArrayList
 import java.util.Date
 import java.util.List
@@ -16,6 +19,7 @@ class Partido {
 	@Property ArrayList<Inscripcion> inscripciones
 	@Property List<InscripcionObserver> observadores
 	@Property ArrayList<Jugador> quienesJugaron
+	@Property GeneradorDeEquipos generador
 
 	new(int fecha, int hora, String lugar) {
 		this.hora = hora
@@ -62,8 +66,15 @@ class Partido {
 		inscripciones.add(inscripcion)
 		observadores.forEach[observer|observer.seInscribio(inscripcion)]
 	}
-	def generaraEquiposTentativos(){
-		
+	
+	def confirmados(){
+	/*hay que transformarlo en un arrayList y sacar los 10 primeros */
+		getListaJugadores
 	}
+	
+	def generarEquiposTentativos(OrdenLista orden,Division division){
+			generador.inicializar(this.confirmados,orden,division)
+			generador.generarEquiposTentativos()
 	}
+}
 
