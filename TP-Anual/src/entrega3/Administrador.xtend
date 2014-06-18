@@ -7,7 +7,6 @@ import entrega3.ordenesDeCreacion.Rechazo
 import java.util.ArrayList
 import java.util.List
 import main.Jugador
-import main.Partido
 
 class Administrador {
 	@Property List<JugadorSugerido> jugadoresPorConfirmar

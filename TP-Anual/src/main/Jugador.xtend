@@ -6,7 +6,6 @@ import entrega3.Administrador
 import entrega3.Calificacion
 import entrega3.NoSePuedeCalificarExcepcion
 import entrega3.ordenesDeCreacion.JugadorSugerido
-import java.math.BigDecimal
 import java.util.ArrayList
 import java.util.List
 
@@ -16,64 +15,70 @@ class Jugador {
 	@Property ArrayList<Jugador> amigos
 	@Property int handicap
 	@Property ArrayList<Calificacion> listaDeCalificaciones = new ArrayList()
-	@Property List<Penalizacion> penalizacionesCometidas = new ArrayList ()
+	@Property List<Penalizacion> penalizacionesCometidas = new ArrayList()
 	@Property Partido ultimoPartidoJugado
-	
-	
-	new (int edad, String nombre){
+
+	new(int edad, String nombre) {
 		this.edad = edad
 		this.nombre = nombre
 	}
-				
-	def calificar(Partido partido, Jugador calificado, int puntaje, String comentario){	
-		if(!calificado.jugoEn(partido))
-			{
-				throw new NoSePuedeCalificarExcepcion ("No se puede califcar a un jugador que no jugo en ese partido",calificado,partido)
-			} 
-			
-		if(!this.jugoEn(partido))
-			{
-				throw new NoSePuedeCalificarExcepcion ("No podes calificar jugadores de un partido que no jugaste",this,partido)
-			}
-		new Calificacion(puntaje,comentario,calificado,this,partido)	     				
-				
+
+	def calificar(Partido partido, Jugador calificado, int puntaje, String comentario) {
+		if (!calificado.jugoEn(partido)) {
+			throw new NoSePuedeCalificarExcepcion("No se puede califcar a un jugador que no jugo en ese partido",
+				calificado, partido)
+		}
+
+		if (!this.jugoEn(partido)) {
+			throw new NoSePuedeCalificarExcepcion("No podes calificar jugadores de un partido que no jugaste", this,
+				partido)
+		}
+		new Calificacion(puntaje, comentario, calificado, this, partido)
+
 	}
-		
-	def jugoEn(Partido partido){
-				partido.getQuienesJugaron.contains(this)
-			}
-	
-	def proponerJugadorA(Administrador admin,String nombre,int edad){
-		var JugadorSugerido sugerido = new JugadorSugerido(edad,nombre,this,admin) 
+
+	def jugoEn(Partido partido) {
+		partido.getQuienesJugaron.contains(this)
+	}
+
+	def proponerJugadorA(Administrador admin, String nombre, int edad) {
+		var JugadorSugerido sugerido = new JugadorSugerido(edad, nombre, this, admin)
 		admin.agregarPendiente(sugerido)
 		sugerido
-		
+
 	}
-	
-	def agregatePenalizacion(Penalizacion penalizacion){
+
+	def agregatePenalizacion(Penalizacion penalizacion) {
 		this.getPenalizacionesCometidas.add(penalizacion)
 	}
-	
-	def darseDeBaja(Partido partido, Jugador reemplazante, TipoInscripcion tipo){
-		partido.darDeBajaConReemplazante(this, reemplazante,tipo)
+
+	def darseDeBaja(Partido partido, Jugador reemplazante, TipoInscripcion tipo) {
+		partido.darDeBajaConReemplazante(this, reemplazante, tipo)
 	}
-	
-	def darseDeBaja(Partido partido){
+
+	def darseDeBaja(Partido partido) {
 		partido.darDeBajaSinReemplazante(this)
 	}
-	
-	def  promedio(int n) {
-		var suma = 0 
-		
-		for (i:0..(n-1)){
 
-     suma = suma +(this.dameCalificacion(i).puntaje)}
-     
-     return (suma/n)
+	def promedioCalificaciones(ArrayList<Calificacion> lista, int n) {
+		var suma = 0
+		for (i : 0 .. (n - 1)) {
+			var calificacion = lista.get(i)
+			suma = suma + (calificacion.puntaje)
 		}
-		
-	def	dameCalificacion(int n){
-this.listaDeCalificaciones.get(n)}
-	
-	
+		return (suma / n)
+	}
+
+	def promedioUltimoPartido() {
+		var ArrayList<Calificacion> c = new ArrayList()
+		/*Filter "manual" */
+		for (i : 1 .. listaDeCalificaciones.size) {
+			var calificacion = listaDeCalificaciones.get(i)
+			if (calificacion.partido == ultimoPartidoJugado) {
+				c.add(calificacion)
+			}
+		}
+		return this.promedioCalificaciones(c, c.size)
+
+	}
 }
