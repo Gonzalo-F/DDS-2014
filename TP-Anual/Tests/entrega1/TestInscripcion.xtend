@@ -34,8 +34,7 @@ class TestInscripcion {
 
 	@Test
 	def testInscribirCondicionalPorLugar() {
-		val inscripto= inscribirAJugador(new InscripcionCondicional(new CondicionLugar("Tinglado")))
-		
+		val inscripto = inscribirAJugador(new InscripcionCondicional(new CondicionLugar("Tinglado")))
 
 		assertEstaConfirmado(inscripto)
 	}
@@ -44,7 +43,7 @@ class TestInscripcion {
 	def testInscripcionRechazadaPorNoCumplirCondicion() {
 		try {
 			inscribirAJugador(new InscripcionCondicional(new CondicionLugar("La Copita")))
-			
+
 		} catch (InscripcionRechazadaException e) {
 			return
 		}
@@ -57,9 +56,7 @@ class TestInscripcion {
 		assertTrue(partido.inscripciones.contains(inscripto))
 	}
 
-	def inscribirCondicional(Condicion c) {
-		partido.inscribir(jugador, new InscripcionCondicional(c))
-	}
+	
 
 	def inscribirAJugador(TipoInscripcion tipo) {
 		partido.inscribir(jugador, tipo)
