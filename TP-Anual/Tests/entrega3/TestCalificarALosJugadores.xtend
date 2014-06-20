@@ -26,7 +26,7 @@ class TestCalificarALosJugadores {
 	}
 	
 	@Test
-	def calificarAJugadorQueNoJugoConElCalificador(){
+	def calificarAJugadorQueNoJugo(){
 		
 		partido.quienesJugaron.add(calificador)
 		try{

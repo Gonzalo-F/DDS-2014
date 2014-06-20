@@ -4,8 +4,6 @@ import main.Jugador
 import main.Partido
 
 class Calificacion {
-	
-	
 	@Property int puntaje
 	@Property String comentario
 	@Property Jugador calificado
@@ -19,7 +17,7 @@ class Calificacion {
 		this.calificado=calificado
 		this.calificador=calificador
 		this.partido= partido
-		calificado.listaDeCalificaciones.add(1, this)
+		calificado.listaDeCalificaciones.add(0, this)
 		
 	}
 	

@@ -50,7 +50,7 @@ class Partido {
 	}
 
 	def penalizarA(Jugador jugador) {
-		jugador.agregatePenalizacion(new Penalizacion(new Date(), "no dejaste reemplazante", this))
+		jugador.agregarPenalizacion(new Penalizacion(new Date(), "no dejaste reemplazante", this))
 	}
 
 	def eliminarInscripcion(Jugador jugador) {

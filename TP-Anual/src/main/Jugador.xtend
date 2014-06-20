@@ -25,13 +25,11 @@ class Jugador {
 
 	def calificar(Partido partido, Jugador calificado, int puntaje, String comentario) {
 		if (!calificado.jugoEn(partido)) {
-			throw new NoSePuedeCalificarExcepcion("No se puede califcar a un jugador que no jugo en ese partido",
-				calificado, partido)
+			throw new NoSePuedeCalificarExcepcion("No se puede califcar a un jugador que no jugo en ese partido", calificado, partido)
 		}
 
 		if (!this.jugoEn(partido)) {
-			throw new NoSePuedeCalificarExcepcion("No podes calificar jugadores de un partido que no jugaste", this,
-				partido)
+			throw new NoSePuedeCalificarExcepcion("No podes calificar jugadores de un partido que no jugaste", this, partido)
 		}
 		new Calificacion(puntaje, comentario, calificado, this, partido)
 
@@ -48,7 +46,7 @@ class Jugador {
 
 	}
 
-	def agregatePenalizacion(Penalizacion penalizacion) {
+	def agregarPenalizacion(Penalizacion penalizacion) {
 		penalizacionesCometidas.add(penalizacion)
 	}
 
