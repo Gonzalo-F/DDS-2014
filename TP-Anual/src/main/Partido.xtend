@@ -20,6 +20,7 @@ class Partido {
 	@Property List<InscripcionObserver> observadores
 	@Property ArrayList<Jugador> quienesJugaron
 	@Property GeneradorDeEquipos generador
+	@Property OrdenLista orden
 
 	new(int fecha, int hora, String lugar) {
 		this.hora = hora
@@ -72,7 +73,9 @@ class Partido {
 	}
 
 	def generarEquiposTentativos(OrdenLista orden, Division division) {
-		generador.generarEquiposTentativos(confirmados, orden, division)
+		this.confirmados.sort(orden)
+		division.dividirEquipos()
+		///generador.generarEquiposTentativos(confirmados, orden, division)
 	}
 
 	def notificarObservers((InscripcionObserver)=>void notificacion) {
