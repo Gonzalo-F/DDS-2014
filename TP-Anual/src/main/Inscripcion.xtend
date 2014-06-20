@@ -20,4 +20,9 @@ class Inscripcion {
 	def inscribir() {
 		tipo.inscribirA(jugador, partido, this)
 	}
+	
+	def boolean ocupaLugarFijo() {
+		tipo.ocupaLugarFijo
+	}
+	
 }

@@ -16,4 +16,6 @@ abstract class TipoInscripcion {
 		if (!partido.permiteInscripciones) {throw new InscripcionRechazadaException ("Ya hay 10 inscriptos estandar en la lista")}
 		partido.inscribirA(unaInscripcion)
 	}
-}
+
+
+	}

@@ -11,5 +11,8 @@ class InscripcionEstandar extends TipoInscripcion {
 	override inscribirA(Jugador jugador, Partido partido, Inscripcion unaInsc) {
 		confirmarInscripcion(unaInsc, partido)
 	}
-
+	
+	def ocupaLugarFijo(){
+		return true
+	}
 }

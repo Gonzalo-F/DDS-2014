@@ -10,7 +10,6 @@ import entrega4.ordenamientoLista.OrdenLista
 import java.util.ArrayList
 import java.util.Date
 import java.util.List
-import entrega1.tipoInscripcion.InscripcionEstandar
 
 class Partido {
 	@Property String lugar
@@ -37,7 +36,7 @@ class Partido {
 	}
 
 	def permiteInscripciones() {
-		(inscripciones.filter[inscripcion|inscripcion.prioridad == 0].size) < 10
+		(inscripciones.filter[inscripcion|inscripcion.ocupaLugarFijo].size) < 10
 	}
 
 	def darDeBajaConReemplazante(Jugador jugador, Jugador reemplazante, TipoInscripcion tipoInscripcion) {

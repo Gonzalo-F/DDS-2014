@@ -19,4 +19,8 @@ class InscripcionCondicional extends TipoInscripcion {
 		if (!condicion.cumple(jugador, partido)){throw new InscripcionRechazadaException("El partido no cumple las condiciones del jugador")}
 		confirmarInscripcion(unaInsc,partido)	
 	}
+	
+	def ocupaLugarFijo(){
+		false
+	}
 }	
