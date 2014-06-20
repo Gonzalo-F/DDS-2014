@@ -27,7 +27,7 @@ class TestGenerarEquiposTentativos {
 	}
 	@Test
 	def testOrdenaJugadoresPorHandicap() {
-		partido.generarEquiposTentativos(new OrdenarPorHandicap(), new DivisionPares)
+		partido.generarEquiposTentativos(new OrdenarPorHandicap, new DivisionPares)
 		
 	}
 	

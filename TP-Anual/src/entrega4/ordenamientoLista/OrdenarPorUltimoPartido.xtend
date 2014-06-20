@@ -4,7 +4,8 @@ import main.Jugador
 
 class OrdenarPorUltimoPartido extends OrdenLista {
 	
-	override compare(Jugador jugador1, Jugador jugador2){
-		return jugador1.promedioUltimoPartido.compareTo(jugador2.promedioUltimoPartido)
+	override evaluar(Jugador jugador) { 
+		jugador.promedioUltimoPartido
 	}
+	
 }

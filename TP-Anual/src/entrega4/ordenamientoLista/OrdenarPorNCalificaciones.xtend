@@ -9,8 +9,8 @@ class OrdenarPorNCalificaciones extends OrdenLista {
 		this.n = n
 	}
 	
-	override compare(Jugador jugador1, Jugador jugador2){
- 	return jugador1.promedioCalificaciones(jugador1.listaDeCalificaciones,n).compareTo(jugador2.promedioCalificaciones(jugador2.listaDeCalificaciones,n))
-}
+	override evaluar(Jugador jugador) { 
+		jugador.promedioCalificaciones(jugador.listaDeCalificaciones,n)
+	}
 	
 }
