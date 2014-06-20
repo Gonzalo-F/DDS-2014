@@ -1,6 +1,7 @@
 package entrega1
 
 import entrega1.condiciones.Condicion
+import entrega1.condiciones.CondicionLugar
 import entrega1.tipoInscripcion.InscripcionCondicional
 import entrega1.tipoInscripcion.InscripcionEstandar
 import entrega1.tipoInscripcion.InscripcionSolidario
@@ -16,7 +17,7 @@ class TestsInscripcionVariosJugadores {
 	var Partido partido = new Partido(20140413, 2040, "El tinglado")
 
 	@Test
-	def testInscribirQuintoEstandarEnPosicion0(){
+	def testInscribirEstandarHabiendoEstandares(){
 		crearInscripcionesEstandar(4)
 		var insc = crearInscripcionEstandar(14,"Luisito")
 		assertPosicion(insc,0)
@@ -24,15 +25,33 @@ class TestsInscripcionVariosJugadores {
 	}
 	
 	@Test
-	def testInscribirSolidarioHabiendo4Estandares(){
+	def testInscribirSolidarioHabiendoEstandares(){
 		crearInscripcionesEstandar(4)
 		var insc = crearInscripcionSolidario(14, "Luisito")
-		assertEquals(partido.inscripciones.indexOf(insc),4)
+		assertPosicion(insc,4)
 	}
 	
 	@Test
-	def testInscribirEstandarCon4Solidarios(){
-		
+	def testInscribirEstandarHabiendoSolidarios(){
+		crearInscripcionesSolidario(4)
+		var insc = crearInscripcionEstandar(14, "Luisito")
+		assertPosicion(insc,0)
+	}
+	
+	@Test
+	def testInscribirCondicionalHabiendoEstandaresYSolidarios(){
+		crearInscripcionesEstandar(5)
+		crearInscripcionesSolidario(2)
+		var insc = crearInscripcionCondicional(14,"Luisito", new CondicionLugar("El tinglado"))
+		assertPosicion(insc,7)
+	}
+	
+	@Test
+	def testInscribirSolidarioHabiendoEstandaresYCondicionales(){
+		crearInscripcionesEstandar(7)
+		crearInscripcionCondicional(14,"Player8",new CondicionLugar("El tinglado"))
+		var insc = crearInscripcionSolidario(9,"Mukenio")
+		assertPosicion(insc,7)
 	}
 	
 	@Test
@@ -46,10 +65,6 @@ class TestsInscripcionVariosJugadores {
 		fail()
 	}
 	
-	
-	/* inscribir jugador condicional o solidario y verificar orden */
-
-
 
 	/*======================================================
 	METODOS AUXILIARES 
