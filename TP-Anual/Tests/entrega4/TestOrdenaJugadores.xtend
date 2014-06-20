@@ -3,7 +3,7 @@ package entrega4
 import entrega1.tipoInscripcion.InscripcionEstandar
 import entrega3.Administrador
 import entrega4.divisionLista.DivisionPares
-import entrega4.ordenamientoLista.HandicapCriterio
+import entrega4.ordenamientoLista.OrdenarPorHandicap
 import main.Inscripcion
 import main.Jugador
 import main.Partido
@@ -27,7 +27,7 @@ class TestGenerarEquiposTentativos {
 	}
 	@Test
 	def testOrdenaJugadoresPorHandicap() {
-		partido.generarEquiposTentativos(new HandicapCriterio() ,new DivisionPares)
+		partido.generarEquiposTentativos(new OrdenarPorHandicap(), new DivisionPares)
 		
 	}
 	

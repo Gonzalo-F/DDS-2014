@@ -2,7 +2,7 @@ package entrega4.ordenamientoLista
 
 import main.Jugador
 
-class NCalificacionesCriterio extends OrdenLista {
+class OrdenarPorNCalificaciones extends OrdenLista {
 	@Property int n
 	
 	new(int n){

@@ -2,7 +2,7 @@ package entrega4.ordenamientoLista
 
 import main.Jugador
 
-class HandicapCriterio extends OrdenLista {
+class OrdenarPorHandicap extends OrdenLista {
 	
 	override evaluar(Jugador jugador) { 
 		jugador.handicap
