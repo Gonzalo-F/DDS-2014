@@ -11,6 +11,7 @@ import main.Partido
 import org.junit.Test
 
 import static org.junit.Assert.*
+import entrega1.tipoInscripcion.TipoInscripcion
 
 class TestInscripcion {
 
@@ -19,45 +20,49 @@ class TestInscripcion {
 
 	@Test
 	def testInscribirEstandar() {
-		val inscripto = partido.inscribir(jugador, new InscripcionEstandar)
-		
+		val inscripto = inscribirAJugador(new InscripcionEstandar)
+
 		assertEstaConfirmado(inscripto)
 	}
 
 	@Test
 	def testInscribirSolidario() {
-		val inscripto = partido.inscribir(jugador, new InscripcionSolidario)
-		
+		val inscripto = inscribirAJugador(new InscripcionSolidario)
+
 		assertEstaConfirmado(inscripto)
 	}
 
 	@Test
 	def testInscribirCondicionalPorLugar() {
-		var condicion = new CondicionLugar ("El tinglado")
-		val inscripto = inscribirCondicional(condicion)
+		val inscripto= inscribirAJugador(new InscripcionCondicional(new CondicionLugar("Tinglado")))
 		
+
 		assertEstaConfirmado(inscripto)
 	}
-	
+
 	@Test
 	def testInscripcionRechazadaPorNoCumplirCondicion() {
 		try {
-			partido.inscribir(jugador, new InscripcionCondicional(new CondicionLugar("La Copita")))	
-			} catch (InscripcionRechazadaException e) {
+			inscribirAJugador(new InscripcionCondicional(new CondicionLugar("La Copita")))
+			
+		} catch (InscripcionRechazadaException e) {
 			return
 		}
 		fail()
 	}
 
-/////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////
-
+	/////////////////////////////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////////////////////////
 	def assertEstaConfirmado(Inscripcion inscripto) {
 		assertTrue(partido.inscripciones.contains(inscripto))
 	}
-	
+
 	def inscribirCondicional(Condicion c) {
 		partido.inscribir(jugador, new InscripcionCondicional(c))
 	}
-	
+
+	def inscribirAJugador(TipoInscripcion tipo) {
+		partido.inscribir(jugador, tipo)
+	}
+
 }
