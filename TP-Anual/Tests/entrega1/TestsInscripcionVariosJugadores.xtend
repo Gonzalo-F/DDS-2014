@@ -65,7 +65,6 @@ class TestsInscripcionVariosJugadores {
 		fail()
 	}
 	
-
 	/*======================================================
 	METODOS AUXILIARES 
 	======================================================*/

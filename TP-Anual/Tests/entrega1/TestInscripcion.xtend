@@ -1,5 +1,6 @@
 package entrega1
 
+import entrega1.condiciones.Condicion
 import entrega1.condiciones.CondicionLugar
 import entrega1.tipoInscripcion.InscripcionCondicional
 import entrega1.tipoInscripcion.InscripcionEstandar
@@ -20,23 +21,24 @@ class TestInscripcion {
 	def testInscribirEstandar() {
 		val inscripto = partido.inscribir(jugador, new InscripcionEstandar)
 		
-		assertEstaConfirmado(inscripto, partido)
+		assertEstaConfirmado(inscripto)
 	}
 
 	@Test
 	def testInscribirSolidario() {
 		val inscripto = partido.inscribir(jugador, new InscripcionSolidario)
 		
-		assertEstaConfirmado(inscripto, partido)
+		assertEstaConfirmado(inscripto)
 	}
 
 	@Test
 	def testInscribirCondicionalPorLugar() {
-		val inscripto = partido.inscribir(jugador, new InscripcionCondicional(new CondicionLugar("Tinglado")))
+		var condicion = new CondicionLugar ("El tinglado")
+		val inscripto = inscribirCondicional(condicion)
 		
-		assertEstaConfirmado(inscripto, partido)
+		assertEstaConfirmado(inscripto)
 	}
-
+	
 	@Test
 	def testInscripcionRechazadaPorNoCumplirCondicion() {
 		try {
@@ -50,8 +52,12 @@ class TestInscripcion {
 /////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-	def assertEstaConfirmado(Inscripcion inscripto, Partido partido) {
+	def assertEstaConfirmado(Inscripcion inscripto) {
 		assertTrue(partido.inscripciones.contains(inscripto))
 	}
-
+	
+	def inscribirCondicional(Condicion c) {
+		partido.inscribir(jugador, new InscripcionCondicional(c))
+	}
+	
 }
