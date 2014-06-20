@@ -9,7 +9,7 @@ class InscripcionSolidario extends TipoInscripcion {
 @Property int prioridad = 1
 
 	override inscribirA (Jugador jugador, Partido partido, Inscripcion unaInsc) {
-		confirmarInscripcion(unaInsc,partido)		
+		confirmarInscripcion(partido.inscripcionesEstandar.size,unaInsc,partido)		
 	}
 	
 	override ocupaLugarFijo(){

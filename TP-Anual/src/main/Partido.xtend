@@ -62,8 +62,8 @@ class Partido {
 		this.notificarObservers[seDioDeBaja(inscrip)]
 	}
 
-	def inscribirA(Inscripcion inscripcion) {
-		inscripciones.add(inscripcion)
+	def inscribirA(Inscripcion inscripcion, int posicion) {
+		inscripciones.add(posicion, inscripcion)
 		notificarObservers[seInscribio(inscripcion)]
 	}
 	
@@ -81,5 +81,10 @@ class Partido {
 	
 	def inscribir(Jugador jugador, TipoInscripcion tipo) {
 		new Inscripcion(jugador, this, tipo) => [ inscribir ]
-	}	
+	}
+	
+	def inscripcionesEstandar() {
+		inscripciones.filter[inscripcion | inscripcion.tipo.prioridad == 0]
+	}
+	
 }
