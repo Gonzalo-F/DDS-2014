@@ -12,7 +12,7 @@ class InscripcionSolidario extends TipoInscripcion {
 		confirmarInscripcion(unaInsc,partido)		
 	}
 	
-	def ocupaLugarFijo(){
+	override ocupaLugarFijo(){
 		false
 	}
 }

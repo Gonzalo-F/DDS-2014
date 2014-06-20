@@ -20,7 +20,7 @@ class InscripcionCondicional extends TipoInscripcion {
 		confirmarInscripcion(unaInsc,partido)	
 	}
 	
-	def ocupaLugarFijo(){
+	override ocupaLugarFijo(){
 		false
 	}
 }	
