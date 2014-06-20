@@ -15,7 +15,6 @@ class Partido {
 	@Property String lugar
 	@Property int hora
 	@Property int fecha
-
 	/* Fecha y hora deberían ser Date */
 	@Property ArrayList<Inscripcion> inscripciones
 	@Property List<InscripcionObserver> observadores
@@ -41,7 +40,7 @@ class Partido {
 
 	def darDeBajaConReemplazante(Jugador jugador, Jugador reemplazante, TipoInscripcion tipoInscripcion) {
 		this.eliminarInscripcion(jugador)
-		new Inscripcion(reemplazante, this, tipoInscripcion)
+		this.inscribir(reemplazante, tipoInscripcion)
 	}
 
 	def void darDeBajaSinReemplazante(Jugador jugador) {

@@ -49,7 +49,7 @@ class Jugador {
 	}
 
 	def agregatePenalizacion(Penalizacion penalizacion) {
-		this.getPenalizacionesCometidas.add(penalizacion)
+		penalizacionesCometidas.add(penalizacion)
 	}
 
 	def darseDeBaja(Partido partido, Jugador reemplazante, TipoInscripcion tipo) {

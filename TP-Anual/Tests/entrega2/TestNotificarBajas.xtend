@@ -2,7 +2,6 @@ package entrega2
 
 import entrega1.tipoInscripcion.InscripcionEstandar
 import entrega2.observerNotificador.DiezConfirmadosObserver
-import main.Inscripcion
 import main.Jugador
 import main.Partido
 import org.junit.Before
@@ -21,17 +20,17 @@ class TestNotificarBajas {
 		partido.observadores.add(new DiezConfirmadosObserver(stubNotificador))
 		for (i : 1 .. 9) {
 			var Jugador jugador = new Jugador(i, "Player" + i)
-			new Inscripcion(jugador, partido, new InscripcionEstandar())
+			partido.inscribir(jugador, new InscripcionEstandar)
 
 		}
 	}
 
 	@Test
 	def notificarCuandoHayMenosDe10() {
-		new Inscripcion(jugador, partido, new InscripcionEstandar())
-		assertEquals(1, stubNotificador.getPartidosNotificados().size)
+		partido.inscribir(jugador, new InscripcionEstandar)
+		assertEquals(1, stubNotificador.partidosNotificados.size)
 		jugador.darseDeBaja(partido)
-		assertEquals(0, stubNotificador.getPartidosNotificados().size)
+		assertEquals(0, stubNotificador.partidosNotificados.size)
 
 	}
 }

@@ -7,8 +7,8 @@ import main.Partido
 
 class StubNotificador implements entrega2.observerNotificador.Notificador {
 
-	List<Partido> partidosNotificados
-	List<Jugador> amigosDelJugadorANotificar
+	@Property List<Partido> partidosNotificados
+	@Property List<Jugador> amigosDelJugadorANotificar
 
 	new() {
 		this.partidosNotificados = new ArrayList<Partido>
@@ -25,9 +25,5 @@ class StubNotificador implements entrega2.observerNotificador.Notificador {
 	override notificarAmigosNuevaInscripcion(Jugador unJugador) {
 		this.amigosDelJugadorANotificar.addAll(unJugador.getAmigos)
 
-	}
-
-	def getPartidosNotificados() {
-		partidosNotificados
 	}
 }
