@@ -1,6 +1,6 @@
 package entrega1
 
-import entrega1.condiciones.Condicion
+
 import entrega1.condiciones.CondicionLugar
 import entrega1.tipoInscripcion.InscripcionCondicional
 import entrega1.tipoInscripcion.InscripcionEstandar
@@ -11,89 +11,80 @@ import main.Partido
 import org.junit.Test
 
 import static org.junit.Assert.*
+import entrega1.tipoInscripcion.TipoInscripcion
 
 class TestsInscripcionVariosJugadores {
 
 	var Partido partido = new Partido(20140413, 2040, "El tinglado")
+	var TipoInscripcion estandar = new InscripcionEstandar
+	var TipoInscripcion solidario = new InscripcionSolidario
+	var TipoInscripcion condicional = new InscripcionCondicional(new CondicionLugar("El tinglado"))
 
 	@Test
-	def testInscribirEstandarHabiendoEstandares(){
-		crearInscripcionesEstandar(4)
-		var insc = crearInscripcionEstandar(14,"Luisito")
-		assertPosicion(insc,0)
-		
+	def testInscribirEstandarHabiendoEstandares() {
+		crearInscripciones(4, estandar)
+		var insc = crearInscripcion(14, "Luisito", estandar)
+		assertPosicion(insc, 0)
+
 	}
-	
+
 	@Test
-	def testInscribirSolidarioHabiendoEstandares(){
-		crearInscripcionesEstandar(4)
-		var insc = crearInscripcionSolidario(14, "Luisito")
-		assertPosicion(insc,4)
+	def testInscribirSolidarioHabiendoEstandares() {
+		crearInscripciones(4, estandar)
+		var insc = crearInscripcion(14, "Luisito", solidario)
+		assertPosicion(insc, 4)
 	}
-	
+
 	@Test
-	def testInscribirEstandarHabiendoSolidarios(){
-		crearInscripcionesSolidario(4)
-		var insc = crearInscripcionEstandar(14, "Luisito")
-		assertPosicion(insc,0)
+	def testInscribirEstandarHabiendoSolidarios() {
+		crearInscripciones(4, solidario)
+		var insc = crearInscripcion(14, "Luisito", estandar)
+		assertPosicion(insc, 0)
 	}
-	
+
 	@Test
-	def testInscribirCondicionalHabiendoEstandaresYSolidarios(){
-		crearInscripcionesEstandar(5)
-		crearInscripcionesSolidario(2)
-		var insc = crearInscripcionCondicional(14,"Luisito", new CondicionLugar("El tinglado"))
-		assertPosicion(insc,7)
+	def testInscribirCondicionalHabiendoEstandaresYSolidarios() {
+		crearInscripciones(5, estandar)
+		crearInscripciones(2, solidario)
+		var insc = crearInscripcion(14, "Luisito", condicional)
+		assertPosicion(insc, 7)
 	}
-	
+
 	@Test
-	def testInscribirSolidarioHabiendoEstandaresYCondicionales(){
-		crearInscripcionesEstandar(7)
-		crearInscripcionCondicional(14,"Player8",new CondicionLugar("El tinglado"))
-		var insc = crearInscripcionSolidario(9,"Mukenio")
-		assertPosicion(insc,7)
+	def testInscribirSolidarioHabiendoEstandaresYCondicionales() {
+		crearInscripciones(7, estandar)
+		crearInscripcion(14, "Player8", condicional)
+		var insc = crearInscripcion(9, "Mukenio", solidario)
+		assertPosicion(insc, 7)
 	}
-	
+
 	@Test
 	def testRechazaInscripcionPorHaberMasde10Estandar() {
-		crearInscripcionesEstandar(10)
+		crearInscripciones(10, estandar)
 		try {
-			crearInscripcionEstandar(15, "Player11")
+			crearInscripcion(15, "Player11", estandar)
 		} catch (InscripcionRechazadaException e) {
 			return
 		}
 		fail()
 	}
-	
+
 	/*======================================================
 	METODOS AUXILIARES 
 	======================================================*/
-	
-	def crearInscripcionEstandar(int edad, String nombre) {
-		var Jugador jugador = new Jugador (edad, nombre)
-		partido.inscribir(jugador, new InscripcionEstandar)
+	def crearInscripcion(int edad, String nombre, TipoInscripcion tipo) {
+		var Jugador jugador = new Jugador(edad, nombre)
+		partido.inscribir(jugador, tipo)
 	}
-	def crearInscripcionesEstandar(int n) {
+
+	def crearInscripciones(int n, TipoInscripcion tipo) {
 		for (i : 1 .. n) {
-			crearInscripcionEstandar(i,"Player"+i)
+			crearInscripcion(i, "Player" + i, tipo)
 		}
 	}
-	def crearInscripcionSolidario(int edad, String nombre){
-		var Jugador jugador = new Jugador (edad, nombre)
-		partido.inscribir(jugador, new InscripcionSolidario)
+
+	def assertPosicion(Inscripcion insc, int n) {
+		assertEquals(partido.inscripciones.indexOf(insc), n)
 	}
-	def crearInscripcionesSolidario(int n){
-		for (i : 1 .. n) {
-			crearInscripcionSolidario(i,"Player"+i)
-		}
-	}
-	def crearInscripcionCondicional(int edad, String nombre, Condicion c){
-		var Jugador jugador = new Jugador (edad, nombre)
-		partido.inscribir(jugador, new InscripcionCondicional(c))
-	}
-	
-	def assertPosicion(Inscripcion insc, int n){
-		assertEquals(partido.inscripciones.indexOf(insc),n)
-	}
-	
+
 }
