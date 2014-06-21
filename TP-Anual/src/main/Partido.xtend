@@ -5,7 +5,6 @@ import entrega2.NoInscriptoException
 import entrega2.bajaJugador.Penalizacion
 import entrega2.observerNotificador.InscripcionObserver
 import entrega4.divisionLista.Division
-import entrega4.generadorDeEquipos.GeneradorDeEquipos
 import entrega4.ordenamientoLista.OrdenLista
 import java.util.ArrayList
 import java.util.Date
@@ -19,8 +18,9 @@ class Partido {
 	@Property ArrayList<Inscripcion> inscripciones
 	@Property List<InscripcionObserver> observadores
 	@Property ArrayList<Jugador> quienesJugaron
-	@Property GeneradorDeEquipos generador
 	@Property OrdenLista orden
+	@Property List<Jugador> equipoA
+	@Property List<Jugador> equipoB
 
 	new(int fecha, int hora, String lugar) {
 		this.hora = hora
@@ -50,7 +50,7 @@ class Partido {
 
 	}
 
-	def penalizarA(Jugador jugador) {
+	def penalizarA(Jugador jugador){
 		jugador.agregarPenalizacion(new Penalizacion(new Date(), "no dejaste reemplazante", this))
 	}
 
@@ -74,8 +74,7 @@ class Partido {
 
 	def generarEquiposTentativos(OrdenLista orden, Division division) {
 		this.confirmados.sort(orden)
-		division.dividirEquipos()
-		///generador.generarEquiposTentativos(confirmados, orden, division)
+		division.dividirEquipos(this)
 	}
 
 	def notificarObservers((InscripcionObserver)=>void notificacion) {
