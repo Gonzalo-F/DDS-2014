@@ -36,7 +36,7 @@ class Jugador {
 	}
 
 	def jugoEn(Partido partido) {
-		partido.getQuienesJugaron.contains(this)
+		partido.confirmados.contains(this)
 	}
 
 	def proponerJugadorA(Administrador admin, String nombre, int edad) {

@@ -17,7 +17,6 @@ class Partido {
 	/* Fecha y hora deberían ser Date */
 	@Property ArrayList<Inscripcion> inscripciones
 	@Property List<InscripcionObserver> observadores
-	@Property ArrayList<Jugador> quienesJugaron
 	@Property OrdenLista orden
 	@Property List<Jugador> equipoA
 	@Property List<Jugador> equipoB
@@ -28,7 +27,6 @@ class Partido {
 		this.lugar = lugar
 		this.inscripciones = new ArrayList()
 		this.observadores = new ArrayList()
-		this.quienesJugaron = new ArrayList()
 	}
 
 	def getListaJugadores() {
@@ -69,7 +67,11 @@ class Partido {
 	}
 	
 	def confirmados() {
-		listaJugadores.subList(0, 10)
+		var int n = 9
+		if (inscripciones.size<10) {
+			n = inscripciones.size
+		}
+		listaJugadores.subList(0, n)
 	}
 
 	def generarEquiposTentativos(OrdenLista orden, Division division) {

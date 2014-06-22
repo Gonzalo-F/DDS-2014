@@ -1,11 +1,10 @@
 package entrega3
 
+import entrega1.tipoInscripcion.InscripcionEstandar
 import main.Jugador
 import main.Partido
-import org.junit.Test
-
 import org.junit.Assert
-import entrega3.NoSePuedeCalificarExcepcion
+import org.junit.Test
 
 class TestCalificarALosJugadores {
 
@@ -14,9 +13,9 @@ class TestCalificarALosJugadores {
 	var Jugador calificado = new Jugador(30, "Nicolas")
 	
 	@Test
-	def calificarAJugadorQueJugoConElCalificador(){
-		partido.quienesJugaron.add(calificador)
-		partido.quienesJugaron.add(calificado)
+	def calificarAJugador(){
+		partido.inscribir(calificador, new InscripcionEstandar)
+		partido.inscribir(calificado, new InscripcionEstandar)
 		
 		val calificacion = calificador.calificar(partido,calificado,10,"Messi un poroto")
 		
@@ -28,7 +27,7 @@ class TestCalificarALosJugadores {
 	@Test
 	def calificarAJugadorQueNoJugo(){
 		
-		partido.quienesJugaron.add(calificador)
+		partido.inscribir(calificador, new InscripcionEstandar)
 		try{
 	    	calificador.calificar(partido,calificado,10,"Messi un poroto")
 	    } catch (NoSePuedeCalificarExcepcion e){
@@ -37,9 +36,8 @@ class TestCalificarALosJugadores {
 	}
 	
 	@Test
-	
 	def calificarAJugadorSinHaberJugadoEsePartido(){
-		partido.quienesJugaron.add(calificado)
+		partido.inscribir(calificado, new InscripcionEstandar)
 		try{
 	    	calificador.calificar(partido,calificado,10,"Messi un poroto")}
 	    catch (NoSePuedeCalificarExcepcion e){
