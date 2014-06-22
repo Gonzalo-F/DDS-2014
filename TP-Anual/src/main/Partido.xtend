@@ -67,9 +67,9 @@ class Partido {
 	}
 	
 	def confirmados() {
-		var int n = 9
+		var int n = 10
 		if (inscripciones.size<10) {
-			n = inscripciones.size
+			n = inscripciones.size+1
 		}
 		listaJugadores.subList(0, n)
 	}
