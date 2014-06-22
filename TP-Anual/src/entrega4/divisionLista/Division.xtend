@@ -9,7 +9,7 @@ class Division {
 	@Property List<Integer> equipo1
 	@Property List<Integer> equipo2
 	
-public static val divisionPorPartes = new Division(#[1,3,5,7,9],#[2,4,6,8,10])
+public static val divisionPorPares = new Division(#[1,3,5,7,9],#[2,4,6,8,10])
 public static val divisionB = new Division(#[1,4,5,8,9],#[2,3,6,7,10])
 	
 	new(List<Integer> equipo1, List<Integer> equipo2){
