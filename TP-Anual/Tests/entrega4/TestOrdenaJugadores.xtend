@@ -40,6 +40,7 @@ class TestGenerarEquiposTentativos {
 	def testDividirEquipos(){
 		var Jugador jugador9 = dameJugadorConHandicap(9)
 		var Jugador jugador10 = dameJugadorConHandicap(3)
+		
 		Division.divisionPorPares.dividirEquipos(partido)
 		assertTrue(partido.equipoA.contains(jugador9))
 		assertTrue(partido.equipoB.contains(jugador10))

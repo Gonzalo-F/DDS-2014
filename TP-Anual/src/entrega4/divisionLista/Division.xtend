@@ -9,7 +9,7 @@ class Division {
 	@Property List<Integer> equipo1
 	@Property List<Integer> equipo2
 	
-public static Division divisionPorPares = new Division(#[1,3,5,7,9],#[2,4,6,8,10])
+public static Division divisionPorPares = new Division(#[1,3,5,7,9],#[0,2,4,6,8])
 public static Division divisionB = new Division(#[1,4,5,8,9],#[2,3,6,7,10])
 	
 	new(List<Integer> equipo1, List<Integer> equipo2){
@@ -20,8 +20,9 @@ public static Division divisionB = new Division(#[1,4,5,8,9],#[2,3,6,7,10])
 		var List<Jugador> equipoA = new ArrayList()
 		var List<Jugador> equipoB = new ArrayList()
 		for (i:0..4){
-			var int a = equipo1.get(i)-1
-			var int b = equipo2.get(i)-1
+			var int a = equipo1.get(i)
+			var int b= equipo2.get(i)
+			
 			equipoA.add = partido.confirmados.get(a)
 			equipoB.add = partido.confirmados.get(b)
 		}
