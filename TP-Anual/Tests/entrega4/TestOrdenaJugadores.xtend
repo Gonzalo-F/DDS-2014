@@ -37,13 +37,26 @@ class TestGenerarEquiposTentativos {
 	}
 
 	@Test
-	def testDividirEquipos(){
-		var Jugador jugador9 = dameJugadorConHandicap(9)
-		var Jugador jugador10 = dameJugadorConHandicap(3)
+	def testDividirEquiposPorPares(){
+		var Jugador jugador8 = dameJugadorConHandicap(9)
+		var Jugador jugador9 = dameJugadorConHandicap(3)
 		
 		Division.divisionPorPares.dividirEquipos(partido)
+		assertTrue(partido.equipoA.contains(jugador8))
+		assertTrue(partido.equipoB.contains(jugador9))
+	}
+	
+	@Test
+	def testDividirEquiposPorDivisionB(){
+		var Jugador jugador8 = dameJugadorConHandicap(9)
+		var Jugador jugador9 = dameJugadorConHandicap(3)
+		
+		Division.divisionB.dividirEquipos(partido)
 		assertTrue(partido.equipoA.contains(jugador9))
-		assertTrue(partido.equipoB.contains(jugador10))
+		assertTrue(partido.equipoB.contains(jugador8))
+		
+		//por la logica de cuando se incriben estandar  que se meten "por adelante" en el array
+		
 	}
 /****************************************************
  * METODOS AUXILIARES

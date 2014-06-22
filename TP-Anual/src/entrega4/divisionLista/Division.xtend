@@ -10,7 +10,8 @@ class Division {
 	@Property List<Integer> equipo2
 	
 public static Division divisionPorPares = new Division(#[1,3,5,7,9],#[0,2,4,6,8])
-public static Division divisionB = new Division(#[1,4,5,8,9],#[2,3,6,7,10])
+public static Division divisionB = new Division(#[0,3,4,7,8],#[1,3,5,6,9])
+ // el array list comienza en 0 por eso los pongo asi, la posicion pedida 1 en el array es la 0
 	
 	new(List<Integer> equipo1, List<Integer> equipo2){
 		this.equipo1 = equipo1
