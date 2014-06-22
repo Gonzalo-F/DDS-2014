@@ -75,8 +75,12 @@ class Partido {
 	}
 
 	def generarEquiposTentativos(OrdenLista orden, Division division) {
-		this.confirmados.sort(orden)
+		ordenarConfirmados(orden)
 		division.dividirEquipos(this)
+	}
+	
+	def ordenarConfirmados(OrdenLista orden) {
+		this.confirmados.sort(orden)
 	}
 
 	def notificarObservers((InscripcionObserver)=>void notificacion) {
