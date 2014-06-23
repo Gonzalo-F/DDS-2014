@@ -47,6 +47,15 @@ class TestGenerarEquiposTentativos {
 		estaEnEquipo(partido.equipoA,jugador10)
 		estaEnEquipo(partido.equipoB,jugador9)
 	}
+	
+	@Test
+	def testGenerarEquiposPorHandicapConCriterioB(){
+		var Jugador jugador1 = dameJugadorConHandicap(7)
+		var Jugador jugador2 = dameJugadorConHandicap(3)
+		partido.generarEquiposSC(new HandicapSC(),Division.divisionB)
+		estaEnEquipo(partido.equipoA,jugador2)
+		estaEnEquipo(partido.equipoA,jugador1)
+	}
 
 	@Test
 	def testDividirEquiposPorDivisionB() {
