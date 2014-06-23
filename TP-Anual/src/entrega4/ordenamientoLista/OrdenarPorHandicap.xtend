@@ -1,13 +1,13 @@
 package entrega4.ordenamientoLista
 
-import main.Jugador
-
 class OrdenarPorHandicap extends OrdenLista {
 	
-	
-	override evaluar(Jugador jugador) { 
-		jugador.handicap
+	new(){
+	return new OrdenSC[handicap]
 	}
+	/*override evaluar(Jugador jugador) { 
+		jugador.handicap
+	}*/
 }
 			
 		
