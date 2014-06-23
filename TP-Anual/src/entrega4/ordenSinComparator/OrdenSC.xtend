@@ -10,7 +10,7 @@ abstract class OrdenSC {
 	//public OrdenSC porNCalificaciones n = new OrdenSC[jugador | jugador.promedioCalificaciones(jugador.listaDeCalificaciones,n)]
 	//public static OrdenSC porUltimoPartido = new OrdenSC[promedioUltimoPartido]
 	
-	var (Jugador)=>int criterio
+	public var (Jugador)=>int criterio
 	
 	//new((Jugador)=>int unCriterio){
 	//	this.criterio = unCriterio
@@ -20,5 +20,7 @@ abstract class OrdenSC {
 		return partido.confirmados.sortBy(criterio)
 	}
 	
-	def (Jugador)=>int aplicarCriterio()
+	def (Jugador)=>int aplicarCriterio(){
+		
+	}
 }

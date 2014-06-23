@@ -2,10 +2,9 @@ package entrega4.ordenSinComparator
 
 import main.Partido
 
-class HandicapSC extends OrdenSC {
+class PromUltPartidoSC extends OrdenSC{
 	
 	override ordenarLista(Partido partido){
-		criterio = [handicap]
+		criterio = [promedioUltimoPartido]
 		super.ordenarLista(partido)
-	}
-}
+	}}
