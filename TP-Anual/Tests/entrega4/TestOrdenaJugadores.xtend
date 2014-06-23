@@ -3,7 +3,7 @@ package entrega4
 import entrega1.tipoInscripcion.InscripcionEstandar
 import entrega3.Administrador
 import entrega4.divisionLista.Division
-
+import java.util.List
 import main.Jugador
 import main.Partido
 import org.junit.Before
@@ -30,34 +30,32 @@ class TestGenerarEquiposTentativos {
 	def testOrdenaJugadoresPorHandicap() {
 		var Jugador jugador1 = dameJugadorConHandicap(7)
 		var Jugador jugador2 = dameJugadorConHandicap(3)
-		var ordenados = partido.confirmados.sortBy[handicap]
-		assertEquals(ordenados.indexOf(jugador2), 0)
-		assertEquals(ordenados.indexOf(jugador1), 4)
+		var ordenados = partido.confirmados.sortBy[-handicap]
+		assertEquals(ordenados.indexOf(jugador2), 9)
+		assertEquals(ordenados.indexOf(jugador1), 5)
 		//utilizando sortBy no es necesario crear clases que implementen Comparator
 
 	}
-
-	
+		
 	@Test
 	def testDividirEquiposPorPares() {
-		var Jugador jugador8 = dameJugadorConHandicap(9)
-		var Jugador jugador9 = dameJugadorConHandicap(3)
+		var Jugador jugador9 = dameJugadorConHandicap(9)
+		var Jugador jugador10 = dameJugadorConHandicap(3)
 
 		Division.divisionPorPares.dividirEquipos(partido)
-		assertTrue(partido.equipoA.contains(jugador8))
-		assertTrue(partido.equipoB.contains(jugador9))
+		estaEnEquipo(partido.equipoA,jugador10)
+		estaEnEquipo(partido.equipoB,jugador9)
 	}
 
 	@Test
 	def testDividirEquiposPorDivisionB() {
-		var Jugador jugador8 = dameJugadorConHandicap(9)
-		var Jugador jugador9 = dameJugadorConHandicap(3)
+		var Jugador jugador9 = dameJugadorConHandicap(9)
+		var Jugador jugador10 = dameJugadorConHandicap(3)
 
 		Division.divisionB.dividirEquipos(partido)
-		assertTrue(partido.equipoA.contains(jugador9))
-		assertTrue(partido.equipoB.contains(jugador8))
-
-	//por la logica de cuando se incriben estandar  que se meten "por adelante" en el array
+		estaEnEquipo(partido.equipoA,jugador10)
+		estaEnEquipo(partido.equipoB,jugador9)
+	//por la logica de cuando se incriben estandar que se meten "por adelante" en el array.
 	}
 
 	/****************************************************
@@ -76,4 +74,11 @@ class TestGenerarEquiposTentativos {
 		return j
 	}
 
+	def assertPosicion(Jugador jugador, int p) {
+		assertEquals(partido.confirmados.indexOf(jugador), p)
+	}
+
+	def estaEnEquipo (List<Jugador> equipo,Jugador jugador){
+		assertTrue(equipo.contains(jugador))
+	}
 }

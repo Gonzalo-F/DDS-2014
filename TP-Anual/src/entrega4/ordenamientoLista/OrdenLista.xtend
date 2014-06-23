@@ -10,16 +10,5 @@ abstract class OrdenLista implements Comparator<Jugador> {
 	}
 	
 	def int evaluar (Jugador jugador)
-
-/*
- * 	public static val porHandicap = new OrdenLista[handicap]
-	
-	var (Jugador)=>int evaluacion 
-	
-	new((Jugador)=>int evaluacion) {
-		this.evaluacion = evaluacion
-	}
-
- */	
-	 	
+ 	
 }
