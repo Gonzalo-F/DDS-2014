@@ -3,6 +3,7 @@ package entrega4
 import entrega1.tipoInscripcion.InscripcionEstandar
 import entrega3.Administrador
 import entrega4.divisionLista.Division
+import entrega4.ordenSinComparator.HandicapSC
 import java.util.List
 import main.Jugador
 import main.Partido
@@ -42,7 +43,7 @@ class TestGenerarEquiposTentativos {
 		var Jugador jugador9 = dameJugadorConHandicap(9)
 		var Jugador jugador10 = dameJugadorConHandicap(3)
 
-		Division.divisionPorPares.dividirEquipos(partido)
+		Division.divisionPorPares.dividirEquipos(partido.confirmados, partido)
 		estaEnEquipo(partido.equipoA,jugador10)
 		estaEnEquipo(partido.equipoB,jugador9)
 	}
@@ -52,12 +53,20 @@ class TestGenerarEquiposTentativos {
 		var Jugador jugador9 = dameJugadorConHandicap(9)
 		var Jugador jugador10 = dameJugadorConHandicap(3)
 
-		Division.divisionB.dividirEquipos(partido)
+		Division.divisionB.dividirEquipos(partido.confirmados, partido)
 		estaEnEquipo(partido.equipoA,jugador10)
 		estaEnEquipo(partido.equipoB,jugador9)
 	//por la logica de cuando se incriben estandar que se meten "por adelante" en el array.
 	}
 
+	@Test
+	def testGenerarEquiposPorHandicapDeAPares(){
+		var Jugador jugador1 = dameJugadorConHandicap(7)
+		var Jugador jugador2 = dameJugadorConHandicap(3)
+		partido.generarEquiposSC(new HandicapSC(),Division.divisionPorPares)
+		estaEnEquipo(partido.equipoA,jugador2)
+		estaEnEquipo(partido.equipoA,jugador1)
+	}
 	/****************************************************
  * METODOS AUXILIARES
  *****************************************************/

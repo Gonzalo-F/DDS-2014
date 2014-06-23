@@ -17,15 +17,15 @@ public static Division divisionB = new Division(#[1,4,5,8,9],#[2,3,6,7,10])
 		this.equipo1 = equipo1
 		this.equipo2 = equipo2
 	}
-	def void dividirEquipos(Partido partido){
+	def void dividirEquipos(List<Jugador> lista, Partido partido){
 		var List<Jugador> equipoA = new ArrayList()
 		var List<Jugador> equipoB = new ArrayList()
 		for (i:0..4){
 			var int a = (equipo1.get(i))-1
 			var int b = (equipo2.get(i))-1
 			
-			equipoA.add = partido.confirmados.get(a)
-			equipoB.add = partido.confirmados.get(b)
+			equipoA.add = lista.get(a)
+			equipoB.add = lista.get(b)
 		}
 		partido.equipoA = equipoA
 		partido.equipoB = equipoB

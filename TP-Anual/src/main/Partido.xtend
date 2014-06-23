@@ -5,7 +5,7 @@ import entrega2.NoInscriptoException
 import entrega2.bajaJugador.Penalizacion
 import entrega2.observerNotificador.InscripcionObserver
 import entrega4.divisionLista.Division
-import entrega4.ordenamientoLista.OrdenLista
+import entrega4.ordenSinComparator.OrdenSC
 import java.util.ArrayList
 import java.util.Date
 import java.util.List
@@ -17,7 +17,7 @@ class Partido {
 	/* Fecha y hora deberían ser Date */
 	@Property ArrayList<Inscripcion> inscripciones
 	@Property List<InscripcionObserver> observadores
-	@Property OrdenLista orden
+	//@Property OrdenLista orden
 	@Property List<Jugador> equipoA
 	@Property List<Jugador> equipoB
 
@@ -74,15 +74,21 @@ class Partido {
 		listaJugadores.subList(0, n)
 	}
 
-	def generarEquiposTentativos(OrdenLista orden, Division division) {
+	/*def generarEquiposTentativos(OrdenLista orden, Division division) {
 		ordenarConfirmados(orden)
 		division.dividirEquipos(this)
 	}
 	
+	
 	def ordenarConfirmados(OrdenLista orden) {
 		this.confirmados.sort(orden)
-	}
+	}*/
 
+	def generarEquiposSC(OrdenSC orden, Division division){
+		var List<Jugador> ordenados = orden.ordenarLista(this)
+		division.dividirEquipos(ordenados, this)
+	}
+	
 	def notificarObservers((InscripcionObserver)=>void notificacion) {
 		observadores.forEach(notificacion)
 	}
