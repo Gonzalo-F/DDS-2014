@@ -14,9 +14,11 @@ class Partido {
 	@Property String lugar
 	@Property int hora
 	@Property int fecha
+
 	/* Fecha y hora deberían ser Date */
 	@Property ArrayList<Inscripcion> inscripciones
 	@Property List<InscripcionObserver> observadores
+
 	//@Property OrdenLista orden
 	@Property List<Jugador> equipoA
 	@Property List<Jugador> equipoB
@@ -48,7 +50,7 @@ class Partido {
 
 	}
 
-	def penalizarA(Jugador jugador){
+	def penalizarA(Jugador jugador) {
 		jugador.agregarPenalizacion(new Penalizacion(new Date(), "no dejaste reemplazante", this))
 	}
 
@@ -65,40 +67,30 @@ class Partido {
 		inscripciones.add(posicion, inscripcion)
 		notificarObservers[seInscribio(inscripcion)]
 	}
-	
+
 	def confirmados() {
 		var int n = 10
-		if (inscripciones.size<10) {
-			n = inscripciones.size+1
+		if (inscripciones.size < 10) {
+			n = inscripciones.size + 1
 		}
 		listaJugadores.subList(0, n)
 	}
 
-	/*def generarEquiposTentativos(OrdenLista orden, Division division) {
-		ordenarConfirmados(orden)
-		division.dividirEquipos(this)
-	}
-	
-	
-	def ordenarConfirmados(OrdenLista orden) {
-		this.confirmados.sort(orden)
-	}*/
-
-	def generarEquiposSC(OrdenSC orden, Division division){
+	def generarEquiposTentativos(OrdenSC orden, Division division) {
 		var List<Jugador> ordenados = orden.ordenarLista(this)
 		division.dividirEquipos(ordenados, this)
 	}
-	
+
 	def notificarObservers((InscripcionObserver)=>void notificacion) {
 		observadores.forEach(notificacion)
 	}
-	
+
 	def inscribir(Jugador jugador, TipoInscripcion tipo) {
-		new Inscripcion(jugador, this, tipo) => [ inscribir ]
+		new Inscripcion(jugador, this, tipo) => [inscribir]
 	}
-	
+
 	def inscripcionesEstandar() {
-		inscripciones.filter[inscripcion | inscripcion.tipo.prioridad == 0]
+		inscripciones.filter[inscripcion|inscripcion.tipo.prioridad == 0]
 	}
-	
+
 }
