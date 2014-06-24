@@ -12,10 +12,13 @@ import org.junit.Test
 
 import static org.junit.Assert.*
 import entrega4.ordenSinComparator.OrdenSC
+import entrega4.ordenSinComparator.PromNCalifSC
 
 class TestGenerarEquiposTentativos {
 	var admin = new Administrador("emii", "emii@abc.com")
 	var partido = new Partido(20141213, 2040, "Tinglado")
+	var jugadorC1 = new Jugador(20, "Calificador1")
+	var jugadorC2 = new Jugador(20, "Calificador2")
 
 	@Before
 	def inicio() {
@@ -80,9 +83,35 @@ class TestGenerarEquiposTentativos {
 		estaEnEquipo(partido.equipoA, jugador1)
 	}
 
+	@Test
+	def testEquiposPorCalificacionDeAPares() {
+		crearYcalificarJugadores()
+		equipoTentativo(new PromNCalifSC(1), Division.divisionPorPares)
+	}
+
 	/****************************************************
  * METODOS AUXILIARES
  *****************************************************/
+	def crearYcalificarJugadores() {
+		partido.inscribir(jugadorC1, new InscripcionEstandar)
+		partido.inscribir(jugadorC2, new InscripcionEstandar)
+		jugadorC2.calificar(partido, jugadorC1, 10, "sos excelente flaco")
+		jugadorC1.calificar(partido, jugadorC2, 2, "das pena")
+
+		for (i : 1 .. 8) {
+			jugadorConCalificacion(7)
+
+		}
+
+	}
+
+	def jugadorConCalificacion(int calificacion) {
+		var j = new Jugador(1, "Player X")
+		partido.inscribir(j, new InscripcionEstandar)
+		jugadorC1.calificar(partido, j, calificacion, "Tuve ganas de calificarte asi")
+
+	}
+
 	def equipoTentativo(OrdenSC orden, Division division) {
 		partido.generarEquiposTentativos(orden, division)
 	}
