@@ -7,7 +7,7 @@ class ModoEstandar extends CriterioInscripcion {
 	
 	
 	override dejaLugarAotro() {
-		true
+		false
 	}
 	
 }
