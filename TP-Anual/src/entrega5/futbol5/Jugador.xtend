@@ -34,11 +34,12 @@ class Jugador {
 	def boolean dejaLugarAOtro() {
 		this.criterioInscripcion.dejaLugarAotro()
 		}
-	}
+	
 
 	override toString() {
 		//"Jugador (" + calificacion + ") - modo " + criterioInscripcion.toString()
 		getNombre
-	}	
+		
+}
 }
 
