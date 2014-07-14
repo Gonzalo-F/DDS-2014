@@ -1,25 +1,29 @@
 package entrega5.futbol5.ordenamiento
 
-
+import entrega5.futbol5.Partido
 import java.util.ArrayList
 import java.util.List
 
-class OrdenamientoMix extends CriterioOrdenamiento {
-
-	List<CriterioOrdenamiento> criterios
-
+class OrdenamientoMix implements CriterioOrdenamiento {
+	
+	List<CriterioOrdenamiento> criterios 
+	
 	new() {
 		criterios = new ArrayList<CriterioOrdenamiento>
 	}
-
+	
+	override ordenar(Partido partido) {
+		partido.inscriptos.sortBy(calcularValor()).clone.reverse
+	}
+	
 	def addCriterio(CriterioOrdenamiento criterio) {
 		criterios.add(criterio)
 	}
-
+	
 	override calcularValor() {
-		[ jugador |
-			criterios.fold(0d, [acum, criterio|acum + criterio.calcularValor().apply(jugador)]) / criterios.size
+		[ jugador | 
+			criterios.fold(0d, [ acum, criterio | acum + criterio.calcularValor().apply(jugador) ]) / criterios.size
 		]
 	}
-
+	
 }
