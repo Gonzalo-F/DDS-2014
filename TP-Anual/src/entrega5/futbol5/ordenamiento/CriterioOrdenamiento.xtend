@@ -2,13 +2,15 @@ package entrega5.futbol5.ordenamiento
 
 
 
-import java.util.List
+
 import entrega5.futbol5.Jugador
 import entrega5.futbol5.Partido
 
-interface CriterioOrdenamiento {
+abstract class CriterioOrdenamiento {
 	
-	def List<Jugador> ordenar(Partido partido)
+	def ordenar(Partido partido) {
+		partido.inscriptos.sortBy(calcularValor()).clone.reverse
+	}
 
 	def (Jugador) => Double calcularValor()
 		 
