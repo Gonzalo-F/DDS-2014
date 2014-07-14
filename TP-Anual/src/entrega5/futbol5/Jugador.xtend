@@ -32,10 +32,7 @@ class Jugador {
 	}
 	
 	def boolean dejaLugarAOtro() {
-		if (criterioInscripcion.class.equals(typeof(ModoSolidario))) {
-			return true
-		} else {
-			return false
+		this.criterioInscripcion.dejaLugarAotro()
 		}
 	}
 
