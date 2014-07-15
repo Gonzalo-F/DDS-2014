@@ -9,21 +9,14 @@ import entrega5.futbol5.inscripcion.ModoEstandar
 class Jugador {
 
 	@Property String nombre	
-	@Property Double calificacion
+	@Property Double handicap
 	@Property List<Double> puntajes
 	CriterioInscripcion criterioInscripcion
 	
-	new() {
-		this.puntajes = new ArrayList<Double>
-		this.calificacion = null
-		this.criterioInscripcion = new ModoEstandar
-		this.nombre = ""
-	}
 	
-	new(String nombre, double calificacion, List<Double> puntajes) {
-		this.calificacion = calificacion
-		this.puntajes = puntajes	
-		this.criterioInscripcion = new ModoEstandar
+	
+	new(String nombre,CriterioInscripcion criterioInscripcion) {
+		this.criterioInscripcion = criterioInscripcion
 		this.nombre = nombre
 	}
 	
@@ -35,7 +28,9 @@ class Jugador {
 		this.criterioInscripcion.dejaLugarAotro()
 		}
 	
-
+def ponerHandicap(Double handicap){
+	this.handicap= handicap
+}
 	override toString() {
 		//"Jugador (" + calificacion + ") - modo " + criterioInscripcion.toString()
 		getNombre
