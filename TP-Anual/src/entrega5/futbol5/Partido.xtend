@@ -23,24 +23,21 @@ class Partido {
 	}
 
 	def generarEquipos() {
-		if (this.validarInscripcion == -1) {
-			throw new BusinessException("Hubo un error")
-		}
+		validarInscripcion
 		this.distribuirEquipos(this.ordenarEquipos)
 		estado = "G"
 	}
 
 	def validarInscripcion() {
 		if (getInscriptos.size < 10) {
-			return -1
+			throw new BusinessException("No hay suficientes inscriptos")
 		}
 		if (estado.equalsIgnoreCase("A")) {
-			return -1
+			throw new BusinessException("El partido está abierto")
 		}
 		if (estado.equalsIgnoreCase("G")) {
-			return -1
+			throw new BusinessException("Hubo un error") //no identifico por que la tira... que es la G
 		}
-		return 0
 	}
 
 	def distribuirEquipos(List<Jugador> jugadores) {
