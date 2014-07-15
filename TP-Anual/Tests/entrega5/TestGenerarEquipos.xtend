@@ -34,7 +34,6 @@ class TestGenerarEquipos {
 	def void init() {
 		partidoPocosJugadores = new Partido()
 		(1 .. 7).forEach[inscribir(partidoPocosJugadores, new Jugador("nati", new ModoEstandar))]
-		partidoOk = new Partido
 		partido1 = new Partido
 		sytek = new Jugador("sytek", 6d, newArrayList(5d, 8d), new ModoEstandar())
 		chicho = new Jugador("chicho", 7d, newArrayList(6d, 8d, 6d), new ModoEstandar())
@@ -50,16 +49,6 @@ class TestGenerarEquipos {
 
 		ferme = new Jugador("ferme", 8d, newArrayList(9d, 10d, 7d), new ModoSolidario())
 
-		inscribir(partidoOk, sytek)
-		inscribir(partidoOk, chicho)
-		inscribir(partidoOk, pato)
-		inscribir(partidoOk, lechu)
-		inscribir(partidoOk, rodri)
-		inscribir(partidoOk, mike)
-		inscribir(partidoOk, dodi)
-		inscribir(partidoOk, eric)
-		inscribir(partidoOk, leo)
-		inscribir(partidoOk, ferme)
 		inscribir(partido1, sytek)
 		inscribir(partido1, chicho)
 		inscribir(partido1, pato)
