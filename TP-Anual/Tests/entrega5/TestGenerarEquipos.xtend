@@ -33,20 +33,22 @@ class TestGenerarEquipos {
 	@Before
 	def void init() {
 		partidoPocosJugadores = new Partido()
-		(1 .. 7).forEach[inscribir(partidoPocosJugadores, new Jugador("lala", new ModoEstandar()))]
+		(1 .. 7).forEach[inscribir(partidoPocosJugadores, new Jugador("nati", new ModoEstandar))]
 		partidoOk = new Partido
 		partido1 = new Partido
-		sytek = new Jugador("sytek", new ModoEstandar())
-		chicho = new Jugador("chicho", new ModoEstandar())
-		pato = new Jugador("pato", new ModoEstandar())
-		lechu = new Jugador("lechu", new ModoEstandar())
-		rodri = new Jugador("rodri", new ModoEstandar())
-		mike = new Jugador("mike", new ModoEstandar())
-		dodi = new Jugador("dodi", new ModoEstandar())
-		roly = new Jugador("roly", new ModoEstandar())
-		eric = new Jugador("eric", new ModoSolidario())
-		leo = new Jugador("leo", new ModoSolidario())
-		ferme = new Jugador("ferme", new ModoSolidario())
+		sytek = new Jugador("sytek", 6d, newArrayList(5d, 8d), new ModoEstandar())
+		chicho = new Jugador("chicho", 7d, newArrayList(6d, 8d, 6d), new ModoEstandar())
+		pato = new Jugador("pato", 8d, newArrayList(9d, 8d), new ModoEstandar())
+		lechu = new Jugador("lechu", 7d, newArrayList(7d, 9d), new ModoEstandar())
+		rodri = new Jugador("rodri", 6d, newArrayList(5d, 8d), new ModoEstandar())
+		mike = new Jugador("mike", 5d, newArrayList(4d, 10d, 6d, 8d), new ModoEstandar())
+		dodi = new Jugador("dodi", 7d, newArrayList(6d, 7d), new ModoEstandar())
+		roly = new Jugador("roly", 8d, newArrayList(6d, 6d, 9d), new ModoEstandar())
+		eric = new Jugador("eric", 6d, newArrayList(9d, 4d, 3d, 10d), new ModoSolidario())
+
+		leo = new Jugador("leo", 5d, newArrayList(6d, 6d, 6d), new ModoSolidario())
+
+		ferme = new Jugador("ferme", 8d, newArrayList(9d, 10d, 7d), new ModoSolidario())
 
 		inscribir(partidoOk, sytek)
 		inscribir(partidoOk, chicho)
@@ -78,7 +80,7 @@ class TestGenerarEquipos {
 
 	@Test(expected=typeof(BusinessException))
 	def void partidoSinIniciarNoPuedeGenerarEquipos() {
-		(1 .. 4).forEach[inscribir(partidoPocosJugadores, new Jugador("lala", new ModoEstandar()))]
+		(1 .. 4).forEach[inscribir(partidoPocosJugadores, new Jugador("nati", new ModoEstandar()))]
 		partidoPocosJugadores.generarEquipos
 	}
 
@@ -96,7 +98,7 @@ class TestGenerarEquipos {
 		println("ordenamiento por handicap")
 		println(
 			partido1.ordenarEquipos.map [ jugador |
-				println("Jugador: " + jugador + " - calificacion: " + jugador.handicap)
+				println("Jugador: " + jugador + " - calificacion: " + jugador.calificacion)
 			])
 		Assert.assertArrayEquals(newArrayList(ferme, roly, pato, dodi, lechu, chicho, rodri, sytek, leo, mike),
 			partido1.ordenarEquipos)
