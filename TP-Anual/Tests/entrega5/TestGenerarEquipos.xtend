@@ -1,14 +1,16 @@
 package entrega5
 
+import entrega5.futbol5.Equipo
+import entrega5.futbol5.Jugador
+import entrega5.futbol5.Partido
 import entrega5.futbol5.excepciones.BusinessException
 import entrega5.futbol5.ordenamiento.OrdenamientoCalificacionUltimos2Partidos
 import entrega5.futbol5.ordenamiento.OrdenamientoMix
 import entrega5.futbol5.ordenamiento.OrdenamientoPorHandicap
+import java.util.ArrayList
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import entrega5.futbol5.Partido
-import entrega5.futbol5.Jugador
 
 class TestGenerarEquipos {
 
@@ -162,5 +164,8 @@ class TestGenerarEquipos {
 	def void inscribir(Partido partido, Jugador jugador) {
 		partido.inscribir(jugador)
 	}
-
+	def assertJugadoresDelEquipo(ArrayList<Jugador> lista, Equipo equipo){
+		Assert.assertArrayEquals(lista, equipo.jugadores)
+	}
+	
 }
