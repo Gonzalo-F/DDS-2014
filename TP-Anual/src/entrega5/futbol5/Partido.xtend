@@ -13,12 +13,13 @@ class Partido {
 	@Property List<Jugador> equipo2
 	String estado
 	@Property CriterioOrdenamiento criterioOrdenamiento
-	@Property int distribucionEquipos // 5 es par/impar, 16 = 1,4,5,8,9 vs. 2,3,6,7,10
+	@Property int distribucionEquipos 	// 5 es par/impar, 16 = 1,4,5,8,9 vs. 2,3,6,7,1
+	//seria: DistribuidorDeEquipos distribucionEquipos 
 
 	new() {
 		inscriptos = new ArrayList<Jugador>
 		estado = "A"
-		distribucionEquipos = 5 // par/impar
+		distribucionEquipos = 5 // par/impar (new DistribuidorParidad/DistribuidorEspecial)
 		criterioOrdenamiento = new OrdenamientoPorHandicap
 	}
 
@@ -41,6 +42,17 @@ class Partido {
 	}
 
 	def distribuirEquipos(List<Jugador> jugadores) {
+	
+	//=============FALTA IMPLEMENTAR DISTRIBUIDOR=================//
+	/*Hay que decidir que mensajes entenderia el "distribuidor"...
+	 *seria:
+	 * equipo1 = distribucionEquipos.equipo1(jugadores)
+	 * equipo2 = distribucionEquipos.equipo2(jugadores)
+	 * o
+	 * distribucionEquipos.distribuir(jugadores,equipo1,equipo2)
+	 * o algo similar */
+	//============================================================// 
+	 
 		//equipo1 = new Equipo
 		//equipo2 = new Equipo
 		if (getDistribucionEquipos == 5) {
