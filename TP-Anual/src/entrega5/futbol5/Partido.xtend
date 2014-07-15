@@ -59,7 +59,7 @@ class Partido {
 	}
 
 	def List<Jugador> ordenarEquipos() {
-		getCriterioOrdenamiento.ordenar(this)
+		getCriterioOrdenamiento.ordenar(inscriptos)
 	}
 
 	def void inscribir(Jugador jugador) {
