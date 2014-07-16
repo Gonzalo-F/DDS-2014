@@ -6,7 +6,6 @@ import entrega5.futbol5.distribucion.DistribuidorEspecial
 import entrega5.futbol5.distribucion.DistribuidorParidad
 import entrega5.futbol5.excepciones.PartidoAbiertoNoPermiteValidarInscripcion
 import entrega5.futbol5.excepciones.PartidoConEquiposGeneradosNoPuedeValidar
-import entrega5.futbol5.excepciones.PartidoSinInscriptosNoPermiteValidarInscripcion
 import entrega5.futbol5.inscripcion.ModoEstandar
 import entrega5.futbol5.inscripcion.ModoSolidario
 import entrega5.futbol5.ordenamiento.OrdenamientoCalificacionUltimos2Partidos
@@ -16,6 +15,7 @@ import java.util.ArrayList
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+import entrega5.futbol5.excepciones.PartidoSin10InscriptosNoPermiteValidarInscripcion
 
 class TestGenerarEquipos {
 
@@ -37,9 +37,9 @@ class TestGenerarEquipos {
 	def void init() {
 		partidoPocosJugadores = nuevoPartidoTipico()
 		(1 .. 7).forEach[inscribir(partidoPocosJugadores, new Jugador("nati", new ModoEstandar))]
-		
+
 		partido1 = nuevoPartidoTipico()
-		
+
 		sytek = new Jugador("sytek", 6d, newArrayList(5d, 8d), new ModoEstandar())
 		chicho = new Jugador("chicho", 7d, newArrayList(6d, 8d, 6d), new ModoEstandar())
 		pato = new Jugador("pato", 8d, newArrayList(9d, 8d), new ModoEstandar())
@@ -56,29 +56,25 @@ class TestGenerarEquipos {
 		inscribirJugadores(partido1, newArrayList(sytek, chicho, pato, lechu, rodri, mike, dodi, roly, eric, leo, ferme))
 
 	}
-	
 
-	
 	@Test
 	def pocosInscriptosNoGeneranEquipos() {
 		try {
 			partidoPocosJugadores.generarEquipos
-		}
-		catch (PartidoSinInscriptosNoPermiteValidarInscripcion e) {
+		} catch (PartidoSin10InscriptosNoPermiteValidarInscripcion e) {
 			return
 		}
 		Assert.fail()
 	}
-	 
-	 	
+
 	@Test
 	def partidoSinIniciarNoPuedeGenerarEquipos() {
+
 		//Inscribir 3 jugadores más para completar 10 inscriptos
 		inscribirJugadores(partidoPocosJugadores, newArrayList(sytek, chicho, pato))
 		try {
 			partidoPocosJugadores.generarEquipos
-		}
-		catch (PartidoAbiertoNoPermiteValidarInscripcion e) {
+		} catch (PartidoAbiertoNoPermiteValidarInscripcion e) {
 			return
 		}
 		Assert.fail()
@@ -169,7 +165,7 @@ class TestGenerarEquipos {
 	 * METODOS AUXILIARES DE LOS TESTS
 	 ****************************************************************************/
 	def inscribirJugadores(Partido partido, ArrayList<Jugador> jugadores) {
-		jugadores.forEach[jugador|inscribir(partido,jugador)]
+		jugadores.forEach[jugador|inscribir(partido, jugador)]
 	}
 
 	def void inscribir(Partido partido, Jugador jugador) {
@@ -181,6 +177,6 @@ class TestGenerarEquipos {
 	}
 
 	def nuevoPartidoTipico() {
-		new Partido(new DistribuidorParidad,new OrdenamientoPorHandicap)
+		new Partido(new DistribuidorParidad, new OrdenamientoPorHandicap)
 	}
 }

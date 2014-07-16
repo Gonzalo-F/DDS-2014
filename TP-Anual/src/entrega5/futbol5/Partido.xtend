@@ -6,10 +6,10 @@ import entrega5.futbol5.estadosPart.Cerrado
 import entrega5.futbol5.estadosPart.EquiposGenerados
 import entrega5.futbol5.estadosPart.Estado
 import entrega5.futbol5.excepciones.BusinessException
-import entrega5.futbol5.excepciones.PartidoSinInscriptosNoPermiteValidarInscripcion
 import entrega5.futbol5.ordenamiento.CriterioOrdenamiento
 import java.util.ArrayList
 import java.util.List
+import entrega5.futbol5.excepciones.PartidoSin10InscriptosNoPermiteValidarInscripcion
 
 class Partido {
 
@@ -20,10 +20,10 @@ class Partido {
 	@Property CriterioOrdenamiento criterioOrdenamiento
 	@Property DistribuidorDeEquipos distribucionEquipos
 
-	new(DistribuidorDeEquipos distribuidor,CriterioOrdenamiento orden ) {
+	new(DistribuidorDeEquipos distribuidor, CriterioOrdenamiento orden) {
 		inscriptos = new ArrayList<Jugador>
-		this.estado= new Abierto()
-		this.distribucionEquipos = distribuidor 
+		this.estado = new Abierto()
+		this.distribucionEquipos = distribuidor
 		this.criterioOrdenamiento = orden
 	}
 
@@ -34,13 +34,16 @@ class Partido {
 	}
 
 	def validarInscripcion() {
-		if (getInscriptos.size < 10){throw new PartidoSinInscriptosNoPermiteValidarInscripcion()}
+		if (getInscriptos.size < 10) {
+			throw new PartidoSin10InscriptosNoPermiteValidarInscripcion()
+		}
 		this.estado.validar()
 	}
 
 	def distribuirEquipos(List<Jugador> jugadores) {
-	equipo1 = distribucionEquipos.equipo1(jugadores)
-	equipo2 = distribucionEquipos.equipo2(jugadores)
+		equipo1 = distribucionEquipos.equipo1(jugadores)
+		equipo2 = distribucionEquipos.equipo2(jugadores)
+
 	//=============FALTA IMPLEMENTAR DISTRIBUIDOR=================//
 	/*Hay que decidir que mensajes entenderia el "distribuidor"...
 	 *seria:
@@ -50,10 +53,9 @@ class Partido {
 	 * distribucionEquipos.distribuir(jugadores,equipo1,equipo2)
 	 * o algo similar */
 	//============================================================// 
-	 
-		//equipo1 = new Equipo
-		//equipo2 = new Equipo
-		/*if (getDistribucionEquipos == 5) {
+	//equipo1 = new Equipo
+	//equipo2 = new Equipo
+	/*if (getDistribucionEquipos == 5) {
 			equipo1 = newArrayList(jugadores.get(0), jugadores.get(2), jugadores.get(4), jugadores.get(6),
 				jugadores.get(8))
 			equipo2 = newArrayList(jugadores.get(1), jugadores.get(3), jugadores.get(5), jugadores.get(7),
@@ -90,9 +92,6 @@ class Partido {
 	}
 
 	def Jugador jugadorQueCedeLugar() {
-		if (!hayAlgunJugadorQueCedaLugar()) {
-			return null
-		}
 		return getInscriptos.filter[jugador|jugador.criterioInscripcion.dejaLugarAotro].get(0)
 	}
 
