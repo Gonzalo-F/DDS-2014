@@ -88,12 +88,14 @@ class Partido {
 	}
 
 	def boolean hayAlgunJugadorQueCedaLugar() {
-		getInscriptos.exists[jugador|jugador.criterioInscripcion.dejaLugarAotro]
+		getInscriptos.exists[jugador|jugador.tuModoDeInscripcionDejaLugar]
 	}
 
 	def Jugador jugadorQueCedeLugar() {
-		return getInscriptos.filter[jugador|jugador.criterioInscripcion.dejaLugarAotro].get(0)
+		return getInscriptos.filter[jugador|jugador.tuModoDeInscripcionDejaLugar].get(0)
 	}
+	
+	
 
 	def void cerrar() {
 		estado = new Cerrado()

@@ -25,6 +25,10 @@ class Jugador {
 		this.nombre = nombre
 	}
 	
+	def tuModoDeInscripcionDejaLugar(){
+		this.criterioInscripcion.dejaLugarAotro
+	}
+	
 	override toString() {
 
 		//"Jugador (" + calificacion + ") - modo " + criterioInscripcion.toString()
