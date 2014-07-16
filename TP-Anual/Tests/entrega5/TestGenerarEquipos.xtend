@@ -6,6 +6,7 @@ import entrega5.futbol5.distribucion.DistribuidorEspecial
 import entrega5.futbol5.distribucion.DistribuidorParidad
 import entrega5.futbol5.excepciones.PartidoAbiertoNoPermiteValidarInscripcion
 import entrega5.futbol5.excepciones.PartidoConEquiposGeneradosNoPuedeValidar
+import entrega5.futbol5.excepciones.PartidoSin10InscriptosNoPermiteValidarInscripcion
 import entrega5.futbol5.inscripcion.ModoEstandar
 import entrega5.futbol5.inscripcion.ModoSolidario
 import entrega5.futbol5.ordenamiento.OrdenamientoCalificacionUltimos2Partidos
@@ -15,7 +16,6 @@ import java.util.ArrayList
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import entrega5.futbol5.excepciones.PartidoSin10InscriptosNoPermiteValidarInscripcion
 
 class TestGenerarEquipos {
 
@@ -133,8 +133,7 @@ class TestGenerarEquipos {
 
 	@Test
 	def void distribuirEquiposParEImpar() {
-		partido1.cerrar
-		partido1.generarEquipos
+		cerrarPartido1()
 		Assert.assertArrayEquals(newArrayList(ferme, pato, lechu, rodri, leo), partido1.equipo1)
 		Assert.assertArrayEquals(newArrayList(roly, dodi, chicho, sytek, mike), partido1.equipo2)
 	}
@@ -142,17 +141,15 @@ class TestGenerarEquipos {
 	@Test
 	def void distribuirEquipos14589() {
 		partido1.distribucionEquipos = new DistribuidorEspecial // ordenamiento
-		partido1.cerrar
-		partido1.generarEquipos
+		cerrarPartido1()
 		Assert.assertArrayEquals(newArrayList(ferme, dodi, lechu, sytek, leo), partido1.equipo1)
 		Assert.assertArrayEquals(newArrayList(roly, pato, chicho, rodri, mike), partido1.equipo2)
 	}
-
+	
 	@Test
 	def void generarEquiposCuandoSeCierra() {
 		partido1.distribucionEquipos = new DistribuidorEspecial // ordenamiento
-		partido1.cerrar
-		partido1.generarEquipos
+		cerrarPartido1()
 		try {
 			partido1.generarEquipos
 		} catch (PartidoConEquiposGeneradosNoPuedeValidar e) {
@@ -181,8 +178,12 @@ class TestGenerarEquipos {
 	}
 	
 	def contenesAJugador(Partido partido,Jugador jugador){
-		partido.inscriptos.contains(jugador)
-		
-		
+		partido.inscriptos.contains(jugador)	
 	}
+	
+	def cerrarPartido1() {
+		partido1.cerrar
+		partido1.generarEquipos
+	}
+	
 }
