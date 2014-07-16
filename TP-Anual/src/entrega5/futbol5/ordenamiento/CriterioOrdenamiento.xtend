@@ -5,7 +5,7 @@ import java.util.List
 
 abstract class CriterioOrdenamiento {
 	
-	def ordenar(List inscriptos) {
+	def ordenar(List <Jugador> inscriptos) {
 		inscriptos.sortBy(calcularValor()).clone.reverse
 	}
 
