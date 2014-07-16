@@ -84,9 +84,9 @@ class TestGenerarEquipos {
 	@Test
 	def void inscripcionJugadorNuevoDesplazaAPrimerSolidario() {
 		inscribir(partido1, roly)
-		Assert.assertTrue(partido1.inscriptos.contains(roly))
-		Assert.assertFalse(partido1.inscriptos.contains(eric))
-		Assert.assertTrue(partido1.inscriptos.contains(ferme))
+		Assert.assertTrue(contenesAJugador(partido1,roly))
+		Assert.assertFalse(contenesAJugador(partido1,eric))
+		Assert.assertTrue(contenesAJugador(partido1,ferme))
 	}
 
 	@Test
@@ -178,5 +178,11 @@ class TestGenerarEquipos {
 
 	def nuevoPartidoTipico() {
 		new Partido(new DistribuidorParidad, new OrdenamientoPorHandicap)
+	}
+	
+	def contenesAJugador(Partido partido,Jugador jugador){
+		partido.inscriptos.contains(jugador)
+		
+		
 	}
 }

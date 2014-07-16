@@ -76,15 +76,20 @@ class Partido {
 
 	def void inscribir(Jugador jugador) {
 		if (getInscriptos.size < 10) {
-			this.getInscriptos.add(jugador)
+			this.agregarJugador(jugador)
 		} else {
 			if (this.hayAlgunJugadorQueCedaLugar()) {
 				this.getInscriptos.remove(this.jugadorQueCedeLugar())
-				this.getInscriptos.add(jugador)
+				this.agregarJugador(jugador)
 			} else {
 				throw new BusinessException("No hay más lugar")
 			}
 		}
+	}
+
+	def agregarJugador(Jugador jugador) {
+		this.getInscriptos.add(jugador)
+
 	}
 
 	def boolean hayAlgunJugadorQueCedaLugar() {
@@ -94,8 +99,6 @@ class Partido {
 	def Jugador jugadorQueCedeLugar() {
 		return getInscriptos.filter[jugador|jugador.tuModoDeInscripcionDejaLugar].get(0)
 	}
-	
-	
 
 	def void cerrar() {
 		estado = new Cerrado()
