@@ -156,7 +156,7 @@ class TestGenerarEquipos {
 	 * METODOS AUXILIARES DE LOS TESTS
 	 ****************************************************************************/
 	def inscribirJugadores(Partido partido, ArrayList<Jugador> jugadores) {
-		jugadores.forEach[jugador|partido.inscribir(jugador)]
+		jugadores.forEach[jugador|inscribir(partido,jugador)]
 	}
 
 	def void inscribir(Partido partido, Jugador jugador) {
