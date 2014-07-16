@@ -3,6 +3,7 @@ package entrega5
 import entrega5.futbol5.Jugador
 import entrega5.futbol5.Partido
 import entrega5.futbol5.distribucion.DistribuidorEspecial
+import entrega5.futbol5.distribucion.DistribuidorParidad
 import entrega5.futbol5.excepciones.PartidoAbiertoNoPermiteValidarInscripcion
 import entrega5.futbol5.excepciones.PartidoConEquiposGeneradosNoPuedeValidar
 import entrega5.futbol5.inscripcion.ModoEstandar
@@ -33,9 +34,11 @@ class TestGenerarEquipos {
 
 	@Before
 	def void init() {
-		partidoPocosJugadores = new Partido()
+		partidoPocosJugadores = nuevoPartidoTipico()
 		(1 .. 7).forEach[inscribir(partidoPocosJugadores, new Jugador("nati", new ModoEstandar))]
-		partido1 = new Partido
+		
+		partido1 = nuevoPartidoTipico()
+		
 		sytek = new Jugador("sytek", 6d, newArrayList(5d, 8d), new ModoEstandar())
 		chicho = new Jugador("chicho", 7d, newArrayList(6d, 8d, 6d), new ModoEstandar())
 		pato = new Jugador("pato", 8d, newArrayList(9d, 8d), new ModoEstandar())
@@ -44,15 +47,15 @@ class TestGenerarEquipos {
 		mike = new Jugador("mike", 5d, newArrayList(4d, 10d, 6d, 8d), new ModoEstandar())
 		dodi = new Jugador("dodi", 7d, newArrayList(6d, 7d), new ModoEstandar())
 		roly = new Jugador("roly", 8d, newArrayList(6d, 6d, 9d), new ModoEstandar())
+
 		eric = new Jugador("eric", 6d, newArrayList(9d, 4d, 3d, 10d), new ModoSolidario())
-
 		leo = new Jugador("leo", 5d, newArrayList(6d, 6d, 6d), new ModoSolidario())
-
 		ferme = new Jugador("ferme", 8d, newArrayList(9d, 10d, 7d), new ModoSolidario())
 
 		inscribirJugadores(partido1, newArrayList(sytek, chicho, pato, lechu, rodri, mike, dodi, roly, eric, leo, ferme))
 
 	}
+	
 
 	/* @Test(expected=typeof(BusinessException))
 	def void pocosInscriptosNoGeneranEquipos() {
@@ -167,4 +170,7 @@ class TestGenerarEquipos {
 		Assert.assertArrayEquals(lista, equipo)
 	}
 
+	def nuevoPartidoTipico() {
+		new Partido(new DistribuidorParidad,new OrdenamientoPorHandicap)
+	}
 }

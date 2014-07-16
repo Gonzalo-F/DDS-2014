@@ -1,14 +1,12 @@
 package entrega5.futbol5
 
 import entrega5.futbol5.distribucion.DistribuidorDeEquipos
-import entrega5.futbol5.distribucion.DistribuidorParidad
 import entrega5.futbol5.estadosPart.Abierto
 import entrega5.futbol5.estadosPart.Cerrado
 import entrega5.futbol5.estadosPart.EquiposGenerados
 import entrega5.futbol5.estadosPart.Estado
 import entrega5.futbol5.excepciones.BusinessException
 import entrega5.futbol5.ordenamiento.CriterioOrdenamiento
-import entrega5.futbol5.ordenamiento.OrdenamientoPorHandicap
 import java.util.ArrayList
 import java.util.List
 
@@ -23,12 +21,12 @@ class Partido {
 	 	// 5 es par/impar, 16 = 1,4,5,8,9 vs. 2,3,6,7,1
 	//seria: DistribuidorDeEquipos distribucionEquipos 
 
-	new() {
+	new(DistribuidorDeEquipos distribuidor,CriterioOrdenamiento orden ) {
 		inscriptos = new ArrayList<Jugador>
 		this.estado= new Abierto()
-		distribucionEquipos = new DistribuidorParidad 
+		this.distribucionEquipos = distribuidor 
 		// par/impar (new DistribuidorParidad/DistribuidorEspecial)
-		criterioOrdenamiento = new OrdenamientoPorHandicap
+		this.criterioOrdenamiento = orden
 	}
 
 	def generarEquipos() {
