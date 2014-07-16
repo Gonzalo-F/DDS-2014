@@ -2,7 +2,11 @@ package entrega5
 
 import entrega5.futbol5.Jugador
 import entrega5.futbol5.Partido
-
+import entrega5.futbol5.distribucion.DistribuidorEspecial
+import entrega5.futbol5.excepciones.PartidoAbiertoNoPermiteValidarInscripcion
+import entrega5.futbol5.excepciones.PartidoConEquiposGeneradosNoPuedeValidar
+import entrega5.futbol5.inscripcion.ModoEstandar
+import entrega5.futbol5.inscripcion.ModoSolidario
 import entrega5.futbol5.ordenamiento.OrdenamientoCalificacionUltimos2Partidos
 import entrega5.futbol5.ordenamiento.OrdenamientoMix
 import entrega5.futbol5.ordenamiento.OrdenamientoPorHandicap
@@ -10,10 +14,6 @@ import java.util.ArrayList
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import entrega5.futbol5.inscripcion.ModoEstandar
-import entrega5.futbol5.inscripcion.ModoSolidario
-import entrega5.futbol5.excepciones.PartidoConEquiposGeneradosNoPuedeValidar
-import entrega5.futbol5.excepciones.PartidoAbiertoNoPermiteValidarInscripcion
 
 class TestGenerarEquipos {
 
@@ -132,7 +132,7 @@ class TestGenerarEquipos {
 
 	@Test
 	def void distribuirEquipos14589() {
-		partido1.distribucionEquipos = 16 // ordenamiento
+		partido1.distribucionEquipos = new DistribuidorEspecial // ordenamiento
 		partido1.cerrar
 		partido1.generarEquipos
 		Assert.assertArrayEquals(newArrayList(ferme, dodi, lechu, sytek, leo), partido1.equipo1)
@@ -141,7 +141,7 @@ class TestGenerarEquipos {
 
 	@Test
 	def void generarEquiposCuandoSeCierra() {
-		partido1.distribucionEquipos = 16 // ordenamiento
+		partido1.distribucionEquipos = new DistribuidorEspecial // ordenamiento
 		partido1.cerrar
 		partido1.generarEquipos
 		try {

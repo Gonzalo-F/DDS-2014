@@ -1,14 +1,16 @@
 package entrega5.futbol5
 
+import entrega5.futbol5.distribucion.DistribuidorDeEquipos
+import entrega5.futbol5.distribucion.DistribuidorParidad
+import entrega5.futbol5.estadosPart.Abierto
+import entrega5.futbol5.estadosPart.Cerrado
+import entrega5.futbol5.estadosPart.EquiposGenerados
+import entrega5.futbol5.estadosPart.Estado
 import entrega5.futbol5.excepciones.BusinessException
 import entrega5.futbol5.ordenamiento.CriterioOrdenamiento
 import entrega5.futbol5.ordenamiento.OrdenamientoPorHandicap
 import java.util.ArrayList
 import java.util.List
-import entrega5.futbol5.estadosPart.Estado
-import entrega5.futbol5.estadosPart.Abierto
-import entrega5.futbol5.estadosPart.EquiposGenerados
-import entrega5.futbol5.estadosPart.Cerrado
 
 class Partido {
 
@@ -17,13 +19,15 @@ class Partido {
 	@Property List<Jugador> equipo2
 	@Property Estado estado
 	@Property CriterioOrdenamiento criterioOrdenamiento
-	@Property int distribucionEquipos 	// 5 es par/impar, 16 = 1,4,5,8,9 vs. 2,3,6,7,1
+	@Property DistribuidorDeEquipos distribucionEquipos
+	 	// 5 es par/impar, 16 = 1,4,5,8,9 vs. 2,3,6,7,1
 	//seria: DistribuidorDeEquipos distribucionEquipos 
 
 	new() {
 		inscriptos = new ArrayList<Jugador>
 		this.estado= new Abierto()
-		distribucionEquipos = 5 // par/impar (new DistribuidorParidad/DistribuidorEspecial)
+		distribucionEquipos = new DistribuidorParidad 
+		// par/impar (new DistribuidorParidad/DistribuidorEspecial)
 		criterioOrdenamiento = new OrdenamientoPorHandicap
 	}
 
@@ -39,7 +43,8 @@ class Partido {
 	}
 
 	def distribuirEquipos(List<Jugador> jugadores) {
-	
+	equipo1 = distribucionEquipos.equipo1(jugadores)
+	equipo2 = distribucionEquipos.equipo2(jugadores)
 	//=============FALTA IMPLEMENTAR DISTRIBUIDOR=================//
 	/*Hay que decidir que mensajes entenderia el "distribuidor"...
 	 *seria:
@@ -52,7 +57,7 @@ class Partido {
 	 
 		//equipo1 = new Equipo
 		//equipo2 = new Equipo
-		if (getDistribucionEquipos == 5) {
+		/*if (getDistribucionEquipos == 5) {
 			equipo1 = newArrayList(jugadores.get(0), jugadores.get(2), jugadores.get(4), jugadores.get(6),
 				jugadores.get(8))
 			equipo2 = newArrayList(jugadores.get(1), jugadores.get(3), jugadores.get(5), jugadores.get(7),
@@ -64,7 +69,7 @@ class Partido {
 				jugadores.get(8))
 			equipo2 = newArrayList(jugadores.get(1), jugadores.get(2), jugadores.get(5), jugadores.get(6),
 				jugadores.get(9))
-		}
+		}*/
 	}
 
 	def List<Jugador> ordenarEquipos() {
