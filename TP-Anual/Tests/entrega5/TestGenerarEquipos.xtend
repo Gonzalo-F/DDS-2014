@@ -6,6 +6,7 @@ import entrega5.futbol5.distribucion.DistribuidorEspecial
 import entrega5.futbol5.distribucion.DistribuidorParidad
 import entrega5.futbol5.excepciones.PartidoAbiertoNoPermiteValidarInscripcion
 import entrega5.futbol5.excepciones.PartidoConEquiposGeneradosNoPuedeValidar
+import entrega5.futbol5.excepciones.PartidoSinInscriptosNoPermiteValidarInscripcion
 import entrega5.futbol5.inscripcion.ModoEstandar
 import entrega5.futbol5.inscripcion.ModoSolidario
 import entrega5.futbol5.ordenamiento.OrdenamientoCalificacionUltimos2Partidos
@@ -57,18 +58,27 @@ class TestGenerarEquipos {
 	}
 	
 
-	/* @Test(expected=typeof(BusinessException))
-	def void pocosInscriptosNoGeneranEquipos() {
-		partidoPocosJugadores.generarEquipos
-	}
-	* 
-	* 
-	* ESTO NO TESTEA LO MISMO QUE EL DE ABAJO?????*/
+	
 	@Test
-	def partidoSinIniciarNoPuedeGenerarEquipos() {
+	def pocosInscriptosNoGeneranEquipos() {
 		try {
 			partidoPocosJugadores.generarEquipos
-		} catch (PartidoAbiertoNoPermiteValidarInscripcion e) {
+		}
+		catch (PartidoSinInscriptosNoPermiteValidarInscripcion e) {
+			return
+		}
+		Assert.fail()
+	}
+	 
+	 	
+	@Test
+	def partidoSinIniciarNoPuedeGenerarEquipos() {
+		//Inscribir 3 jugadores más para completar 10 inscriptos
+		inscribirJugadores(partidoPocosJugadores, newArrayList(sytek, chicho, pato))
+		try {
+			partidoPocosJugadores.generarEquipos
+		}
+		catch (PartidoAbiertoNoPermiteValidarInscripcion e) {
 			return
 		}
 		Assert.fail()

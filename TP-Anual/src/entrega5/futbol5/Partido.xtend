@@ -6,6 +6,7 @@ import entrega5.futbol5.estadosPart.Cerrado
 import entrega5.futbol5.estadosPart.EquiposGenerados
 import entrega5.futbol5.estadosPart.Estado
 import entrega5.futbol5.excepciones.BusinessException
+import entrega5.futbol5.excepciones.PartidoSinInscriptosNoPermiteValidarInscripcion
 import entrega5.futbol5.ordenamiento.CriterioOrdenamiento
 import java.util.ArrayList
 import java.util.List
@@ -18,14 +19,11 @@ class Partido {
 	@Property Estado estado
 	@Property CriterioOrdenamiento criterioOrdenamiento
 	@Property DistribuidorDeEquipos distribucionEquipos
-	 	// 5 es par/impar, 16 = 1,4,5,8,9 vs. 2,3,6,7,1
-	//seria: DistribuidorDeEquipos distribucionEquipos 
 
 	new(DistribuidorDeEquipos distribuidor,CriterioOrdenamiento orden ) {
 		inscriptos = new ArrayList<Jugador>
 		this.estado= new Abierto()
 		this.distribucionEquipos = distribuidor 
-		// par/impar (new DistribuidorParidad/DistribuidorEspecial)
 		this.criterioOrdenamiento = orden
 	}
 
@@ -36,7 +34,7 @@ class Partido {
 	}
 
 	def validarInscripcion() {
-		
+		if (getInscriptos.size < 10){throw new PartidoSinInscriptosNoPermiteValidarInscripcion()}
 		this.estado.validar()
 	}
 
