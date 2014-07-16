@@ -93,30 +93,22 @@ class TestGenerarEquipos {
 	def void generarEquiposPorHandicap() {
 		println("******************************************")
 		println("ordenamiento por handicap")
-		println(
-			partido1.ordenarEquipos.map [ jugador |
-				println("Jugador: " + jugador + " - calificacion: " + jugador.calificacion)
-			])
+		println(listadoOrdenadoPorHandicap(partido1))
 		Assert.assertArrayEquals(newArrayList(ferme, roly, pato, dodi, lechu, chicho, rodri, sytek, leo, mike),
 			partido1.ordenarEquipos)
 	}
+	
 
 	@Test
 	def void generarEquiposPorCalificacionUltimos2Partidos() {
 		partido1.criterioOrdenamiento = new OrdenamientoCalificacionUltimos2Partidos
 		println("******************************************")
 		println("ordenamiento por ultimas 2 calificaciones")
-		println(
-			partido1.ordenarEquipos.map [ jugador |
-				val misPuntajes = jugador.puntajes.clone.reverse.take(2).toList
-				val promedio = misPuntajes.fold(0d, [acum, puntaje|acum + puntaje]) / misPuntajes.size
-				println(
-					"Jugador: " + jugador + " puntajes: " + jugador.puntajes + " ult.puntajes: " + misPuntajes +
-						" promedio: " + promedio)
-			])
+		println(listadoOrdenadoPorUltimas2Calificaciones(partido1))
 		Assert.assertArrayEquals(newArrayList(ferme, pato, lechu, roly, mike, chicho, dodi, rodri, sytek, leo),
 			partido1.ordenarEquipos)
 	}
+	
 
 	@Test
 	def void generarEquiposPorMixDeCriterios() {
@@ -186,4 +178,18 @@ class TestGenerarEquipos {
 		partido1.generarEquipos
 	}
 	
+	def listadoOrdenadoPorHandicap(Partido unPartido) {
+		unPartido.ordenarEquipos.map [ jugador |
+			println("Jugador: " + jugador + " - calificacion: " + jugador.calificacion)
+		]
+	}
+	def listadoOrdenadoPorUltimas2Calificaciones(Partido unPartido) {
+		unPartido.ordenarEquipos.map [ jugador |
+			val misPuntajes = jugador.puntajes.clone.reverse.take(2).toList
+			val promedio = misPuntajes.fold(0d, [acum, puntaje|acum + puntaje]) / misPuntajes.size
+			println(
+				"Jugador: " + jugador + " puntajes: " + jugador.puntajes + " ult.puntajes: " + misPuntajes +
+					" promedio: " + promedio)
+		]
+	}
 }
