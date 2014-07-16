@@ -2,7 +2,7 @@ package entrega5
 
 import entrega5.futbol5.Jugador
 import entrega5.futbol5.Partido
-import entrega5.futbol5.excepciones.BusinessException
+
 import entrega5.futbol5.ordenamiento.OrdenamientoCalificacionUltimos2Partidos
 import entrega5.futbol5.ordenamiento.OrdenamientoMix
 import entrega5.futbol5.ordenamiento.OrdenamientoPorHandicap
@@ -12,11 +12,12 @@ import org.junit.Before
 import org.junit.Test
 import entrega5.futbol5.inscripcion.ModoEstandar
 import entrega5.futbol5.inscripcion.ModoSolidario
+import entrega5.futbol5.excepciones.PartidoConEquiposGeneradosNoPuedeValidar
+import entrega5.futbol5.excepciones.PartidoAbiertoNoPermiteValidarInscripcion
 
 class TestGenerarEquipos {
 
 	Partido partidoPocosJugadores
-	Partido partidoOk
 	Partido partido1
 	Jugador sytek
 	Jugador chicho
@@ -60,26 +61,25 @@ class TestGenerarEquipos {
 		inscribir(partido1, eric)
 		inscribir(partido1, leo)
 		inscribir(partido1, ferme)
-		
-		
-		
+
 	}
 
-	@Test(expected=typeof(BusinessException))
+	/* @Test(expected=typeof(BusinessException))
 	def void pocosInscriptosNoGeneranEquipos() {
 		partidoPocosJugadores.generarEquipos
 	}
-
+	* 
+	* 
+	* ESTO NO TESTEA LO MISMO QUE EL DE ABAJO?????*/
 	@Test
 	def partidoSinIniciarNoPuedeGenerarEquipos() {
-			try {
-		partidoPocosJugadores.generarEquipos
-		}
-		catch (BusinessException e){
+		try {
+			partidoPocosJugadores.generarEquipos
+		} catch (PartidoAbiertoNoPermiteValidarInscripcion e) {
 			return
 		}
 		Assert.fail()
-		
+
 	}
 
 	@Test
@@ -154,10 +154,12 @@ class TestGenerarEquipos {
 		partido1.distribucionEquipos = 16 // ordenamiento
 		partido1.cerrar
 		partido1.generarEquipos
-		try{
-		partido1.generarEquipos}
-		catch(BusinessException e){
-			return}
+		try {
+			partido1.generarEquipos
+		} catch (PartidoConEquiposGeneradosNoPuedeValidar e) {
+
+			return
+		}
 	}
 
 	/** *************************************************************************

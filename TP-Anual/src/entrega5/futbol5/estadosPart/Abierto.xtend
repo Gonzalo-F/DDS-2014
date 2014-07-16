@@ -1,11 +1,12 @@
 package entrega5.futbol5.estadosPart
 
-import entrega5.futbol5.excepciones.BusinessException
+import entrega5.futbol5.excepciones.PartidoAbiertoNoPermiteValidarInscripcion
 
 class Abierto extends Estado {
-	
-	override validar(){
-		throw new BusinessException("El partido está abierto")
+
+	override validar() {
+
+		throw new PartidoAbiertoNoPermiteValidarInscripcion()
+
 	}
-	
 }

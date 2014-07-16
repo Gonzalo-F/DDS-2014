@@ -34,9 +34,7 @@ class Partido {
 	}
 
 	def validarInscripcion() {
-		if (getInscriptos.size < 10) {
-			throw new BusinessException("No hay suficientes inscriptos")
-		}
+		
 		this.estado.validar()
 	}
 
