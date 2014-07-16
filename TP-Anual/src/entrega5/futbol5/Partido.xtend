@@ -88,14 +88,14 @@ class Partido {
 	}
 
 	def boolean hayAlgunJugadorQueCedaLugar() {
-		getInscriptos.exists[jugador|jugador.dejaLugarAOtro]
+		getInscriptos.exists[jugador|jugador.criterioInscripcion.dejaLugarAotro]
 	}
 
 	def Jugador jugadorQueCedeLugar() {
 		if (!hayAlgunJugadorQueCedaLugar()) {
 			return null
 		}
-		return getInscriptos.filter[jugador|jugador.dejaLugarAOtro].get(0)
+		return getInscriptos.filter[jugador|jugador.criterioInscripcion.dejaLugarAotro].get(0)
 	}
 
 	def void cerrar() {
