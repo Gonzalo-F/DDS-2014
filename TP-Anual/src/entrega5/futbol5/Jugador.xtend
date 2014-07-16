@@ -5,7 +5,6 @@ import entrega5.futbol5.inscripcion.CriterioInscripcion
 import java.util.ArrayList
 import java.util.List
 
-
 class Jugador {
 
 	@Property String nombre
@@ -24,15 +23,12 @@ class Jugador {
 		this.criterioInscripcion = criterioInscripcion
 		this.nombre = nombre
 	}
-	
-	def tuModoDeInscripcionDejaLugar(){
+
+	def tuModoDeInscripcionDejaLugar() {
 		this.criterioInscripcion.dejaLugarAotro
 	}
-	
+
 	override toString() {
-
-		//"Jugador (" + calificacion + ") - modo " + criterioInscripcion.toString()
 		getNombre
-
 	}
 }
