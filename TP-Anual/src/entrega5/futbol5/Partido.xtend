@@ -5,20 +5,24 @@ import entrega5.futbol5.ordenamiento.CriterioOrdenamiento
 import entrega5.futbol5.ordenamiento.OrdenamientoPorHandicap
 import java.util.ArrayList
 import java.util.List
+import entrega5.futbol5.estadosPart.Estado
+import entrega5.futbol5.estadosPart.Abierto
+import entrega5.futbol5.estadosPart.EquiposGenerados
+import entrega5.futbol5.estadosPart.Cerrado
 
 class Partido {
 
 	@Property List<Jugador> inscriptos
 	@Property List<Jugador> equipo1
 	@Property List<Jugador> equipo2
-	String estado
+	@Property Estado estado
 	@Property CriterioOrdenamiento criterioOrdenamiento
 	@Property int distribucionEquipos 	// 5 es par/impar, 16 = 1,4,5,8,9 vs. 2,3,6,7,1
 	//seria: DistribuidorDeEquipos distribucionEquipos 
 
 	new() {
 		inscriptos = new ArrayList<Jugador>
-		estado = "A"
+		this.estado= new Abierto()
 		distribucionEquipos = 5 // par/impar (new DistribuidorParidad/DistribuidorEspecial)
 		criterioOrdenamiento = new OrdenamientoPorHandicap
 	}
@@ -26,19 +30,14 @@ class Partido {
 	def generarEquipos() {
 		validarInscripcion
 		this.distribuirEquipos(this.ordenarEquipos)
-		estado = "G"
+		estado = new EquiposGenerados()
 	}
 
 	def validarInscripcion() {
 		if (getInscriptos.size < 10) {
 			throw new BusinessException("No hay suficientes inscriptos")
 		}
-		if (estado.equalsIgnoreCase("A")) {
-			throw new BusinessException("El partido está abierto")
-		}
-		if (estado.equalsIgnoreCase("G")) {
-			throw new BusinessException("Hubo un error") //no identifico por que la tira... que es la G
-		}
+		this.estado.validar()
 	}
 
 	def distribuirEquipos(List<Jugador> jugadores) {
@@ -99,6 +98,6 @@ class Partido {
 	}
 
 	def void cerrar() {
-		estado = "C"
+		estado = new Cerrado()
 	}
 }
