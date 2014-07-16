@@ -50,17 +50,7 @@ class TestGenerarEquipos {
 
 		ferme = new Jugador("ferme", 8d, newArrayList(9d, 10d, 7d), new ModoSolidario())
 
-		inscribir(partido1, sytek)
-		inscribir(partido1, chicho)
-		inscribir(partido1, pato)
-		inscribir(partido1, lechu)
-		inscribir(partido1, rodri)
-		inscribir(partido1, mike)
-		inscribir(partido1, dodi)
-		inscribir(partido1, roly)
-		inscribir(partido1, eric)
-		inscribir(partido1, leo)
-		inscribir(partido1, ferme)
+		inscribirJugadores(partido1, newArrayList(sytek, chicho, pato, lechu, rodri, mike, dodi, roly, eric, leo, ferme))
 
 	}
 
@@ -165,6 +155,10 @@ class TestGenerarEquipos {
 	/** *************************************************************************
 	 * METODOS AUXILIARES DE LOS TESTS
 	 ****************************************************************************/
+	def inscribirJugadores(Partido partido, ArrayList<Jugador> jugadores) {
+		jugadores.forEach[jugador|partido.inscribir(jugador)]
+	}
+
 	def void inscribir(Partido partido, Jugador jugador) {
 		partido.inscribir(jugador)
 	}
