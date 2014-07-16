@@ -149,12 +149,15 @@ class TestGenerarEquipos {
 		Assert.assertArrayEquals(newArrayList(roly, pato, chicho, rodri, mike), partido1.equipo2)
 	}
 
-	@Test(expected=typeof(BusinessException))
+	@Test
 	def void generarEquiposCuandoSeCierra() {
 		partido1.distribucionEquipos = 16 // ordenamiento
 		partido1.cerrar
 		partido1.generarEquipos
-		partido1.generarEquipos
+		try{
+		partido1.generarEquipos}
+		catch(BusinessException e){
+			return}
 	}
 
 	/** *************************************************************************
