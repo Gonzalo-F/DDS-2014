@@ -1,6 +1,5 @@
 /bin
 /xtend-gen
 /target
-
-*.classpath
-*.project
+.classpath
+.project
