@@ -1,4 +1,4 @@
-package entrega3
+package main.xtend.excepciones.entrega3
 
 import main.Jugador
 import main.Partido

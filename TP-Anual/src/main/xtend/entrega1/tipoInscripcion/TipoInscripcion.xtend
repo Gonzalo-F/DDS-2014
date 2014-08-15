@@ -1,4 +1,4 @@
-package entrega1.tipoInscripcion
+package main.xtend.entrega1.tipoInscripcion
 
 import entrega1.InscripcionRechazadaException
 import main.Inscripcion

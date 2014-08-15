@@ -1,4 +1,4 @@
-package entrega3
+package main.xtend.entrega3
 
 import main.Jugador
 import main.Partido
@@ -17,7 +17,7 @@ class Calificacion {
 		this.calificado=calificado
 		this.calificador=calificador
 		this.partido= partido
-		calificado.listaDeCalificaciones.add(0, this)
+		calificado.getListaDeCalificaciones.add(0, this)
 
 	}
 	

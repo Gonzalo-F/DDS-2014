@@ -1,10 +1,10 @@
-package entrega1
+package test.entrega1
 
+import entrega1.InscripcionRechazadaException
 import entrega1.condiciones.CondicionLugar
 import entrega1.tipoInscripcion.InscripcionCondicional
 import entrega1.tipoInscripcion.InscripcionEstandar
 import entrega1.tipoInscripcion.InscripcionSolidario
-import entrega1.tipoInscripcion.TipoInscripcion
 import main.Inscripcion
 import main.Jugador
 import main.Partido
@@ -52,7 +52,7 @@ class TestInscripcion {
 	/////////////////////////////////////////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////////////////////
 	def assertEstaConfirmado(Inscripcion inscripto) {
-		assertTrue(partido.inscripciones.contains(inscripto))
+		assertTrue(partido.getInscripciones.contains(inscripto))
 	}
 
 	

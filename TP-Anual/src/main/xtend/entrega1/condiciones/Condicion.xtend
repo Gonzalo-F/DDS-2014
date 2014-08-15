@@ -1,4 +1,4 @@
-package entrega1.condiciones
+package main.xtend.entrega1.condiciones
 
 import main.Jugador
 import main.Partido

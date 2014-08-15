@@ -1,9 +1,9 @@
-package entrega3
+package test.entrega3
 
-import entrega3.Administrador
 import main.Jugador
-import static org.junit.Assert.*
 import org.junit.Test
+
+import static org.junit.Assert.*
 
 class TestProponerJugador {
 	

@@ -1,6 +1,7 @@
-package entrega3
+package test.entrega3
 
 import entrega1.tipoInscripcion.InscripcionEstandar
+import entrega3.NoSePuedeCalificarExcepcion
 import main.Jugador
 import main.Partido
 import org.junit.Assert
@@ -19,7 +20,7 @@ class TestCalificarALosJugadores {
 		
 		val calificacion = calificador.calificar(partido,calificado,10,"Messi un poroto")
 		
-		Assert.assertTrue(calificado.listaDeCalificaciones.contains(calificacion))
+		Assert.assertTrue(calificado.getListaDeCalificaciones.contains(calificacion))
 		
 		
 	}

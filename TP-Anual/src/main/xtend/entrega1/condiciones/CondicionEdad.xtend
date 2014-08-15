@@ -1,4 +1,8 @@
-package entrega1.condiciones
+package main.xtend.entrega1.condiciones
+
+import entrega1.condiciones.Condicion
+import main.Jugador
+import main.Partido
 
 class CondicionEdad implements Condicion {
 	@Property int edadMinima
@@ -9,7 +13,7 @@ class CondicionEdad implements Condicion {
 		this.edadMaxima = maxima
 	}
 
-	override cumple(main.Jugador jugador, main.Partido partido) {
+	override cumple(Jugador jugador, Partido partido) {
 		return ((jugador.getEdad > getEdadMinima) && (jugador.getEdad < getEdadMinima))
 	}
 	

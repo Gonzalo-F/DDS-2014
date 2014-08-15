@@ -1,4 +1,4 @@
-package entrega3.ordenesDeCreacion
+package main.xtend.entrega3.ordenesDeCreacion
 
 abstract class Orden {
 	@Property JugadorSugerido receptor

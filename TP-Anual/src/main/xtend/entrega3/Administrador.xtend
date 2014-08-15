@@ -1,4 +1,4 @@
-package entrega3
+package main.xtend.entrega3
 
 import entrega3.ordenesDeCreacion.Factory
 import entrega3.ordenesDeCreacion.JugadorSugerido

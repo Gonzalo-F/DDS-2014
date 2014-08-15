@@ -1,4 +1,8 @@
-package entrega1.condiciones
+package main.xtend.entrega1.condiciones
+
+import entrega1.condiciones.Condicion
+import main.Jugador
+import main.Partido
 
 class CondicionDobleOr implements Condicion {
 	@Property Condicion condicion1
@@ -9,7 +13,7 @@ class CondicionDobleOr implements Condicion {
 		this.condicion2 = c2
 	}
 
-	override cumple(main.Jugador jugador, main.Partido partido) {
+	override cumple(Jugador jugador, Partido partido) {
 		return ((getCondicion1.cumple(jugador, partido)) || (getCondicion2.cumple(jugador, partido)))
 	}
 }

@@ -1,7 +1,8 @@
-package entrega1.tipoInscripcion
+package main.xtend.entrega1.tipoInscripcion
 
 import entrega1.InscripcionRechazadaException
 import entrega1.condiciones.Condicion
+import entrega1.tipoInscripcion.TipoInscripcion
 import main.Inscripcion
 import main.Jugador
 import main.Partido
@@ -16,10 +17,10 @@ class InscripcionCondicional extends TipoInscripcion {
 	}
 
 	override inscribirA(Jugador jugador, Partido partido, Inscripcion unaInsc) {
-		if (!condicion.cumple(jugador, partido)){
+		if (!getCondicion.cumple(jugador, partido)){
 			throw new InscripcionRechazadaException("El partido no cumple las condiciones del jugador")
 		}
-		confirmarInscripcion(partido.inscripciones.size,unaInsc,partido)	
+		confirmarInscripcion(partido.getInscripciones.size,unaInsc,partido)	
 		//Los condicionales no tienen prioridad alguna, se los agrega al final de las inscripciones.
 	}
 	

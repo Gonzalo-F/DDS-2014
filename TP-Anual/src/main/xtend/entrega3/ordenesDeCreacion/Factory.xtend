@@ -1,6 +1,10 @@
-package entrega3.ordenesDeCreacion
+package main.xtend.entrega3.ordenesDeCreacion
 
-import entrega3.Administrador
+import entrega3.ordenesDeCreacion.InformarAprobacion
+import entrega3.ordenesDeCreacion.InformarRechazo
+import entrega3.ordenesDeCreacion.JugadorSugerido
+import entrega3.ordenesDeCreacion.OrdenAprobar
+import entrega3.ordenesDeCreacion.OrdenRechazar
 
 class Factory {
 	

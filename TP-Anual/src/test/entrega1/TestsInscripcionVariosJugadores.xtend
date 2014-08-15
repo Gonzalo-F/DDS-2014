@@ -1,17 +1,17 @@
-package entrega1
+package test.entrega1
 
-
+import entrega1.InscripcionRechazadaException
 import entrega1.condiciones.CondicionLugar
 import entrega1.tipoInscripcion.InscripcionCondicional
 import entrega1.tipoInscripcion.InscripcionEstandar
 import entrega1.tipoInscripcion.InscripcionSolidario
+
 import main.Inscripcion
 import main.Jugador
 import main.Partido
 import org.junit.Test
 
 import static org.junit.Assert.*
-import entrega1.tipoInscripcion.TipoInscripcion
 
 class TestsInscripcionVariosJugadores {
 
@@ -84,7 +84,7 @@ class TestsInscripcionVariosJugadores {
 	}
 
 	def assertPosicion(Inscripcion insc, int n) {
-		assertEquals(partido.inscripciones.indexOf(insc), n)
+		assertEquals(partido.getInscripciones.indexOf(insc), n)
 	}
 
 }

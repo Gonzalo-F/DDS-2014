@@ -1,7 +1,8 @@
-package entrega3.ordenesDeCreacion
+package main.xtend.entrega3.ordenesDeCreacion
 
+import entrega3.ordenesDeCreacion.Orden
+import entrega3.ordenesDeCreacion.Rechazo
 import java.util.List
-import entrega3.Administrador
 import main.Jugador
 
 class JugadorSugerido {
@@ -36,14 +37,14 @@ class JugadorSugerido {
 	}
 	
 	def clonateAprobado() {
-		var Jugador jugador = new Jugador(this.edad,this.nombre)
+		var Jugador jugador = new Jugador(this.getEdad,this.nombre)
 		admin.agregaA(jugador)
 		
 		//que hacemos con este jugador??? queda flotando, no quiere el garbage el pobre :(
 	}
 	
 	def clonateRechazado(String motivo, Administrador admin) {
-		var Rechazo persona = new Rechazo(this.nombre, this.edad, motivo,admin)
+		var Rechazo persona = new Rechazo(this.nombre, this.getEdad, motivo,admin)
 		persona.agregarListaAdmin()
 	}
 	
