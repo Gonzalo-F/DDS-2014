@@ -1,10 +1,9 @@
 package test.entrega2
 
-import entrega2.StubNotificador
-import entrega2.observerNotificador.DiezConfirmadosObserver
 import main.Jugador
 import main.Partido
 import main.xtend.entrega1.tipoInscripcion.InscripcionEstandar
+import main.xtend.entrega2.observerNotificador.DiezConfirmadosObserver
 import org.junit.Before
 import org.junit.Test
 

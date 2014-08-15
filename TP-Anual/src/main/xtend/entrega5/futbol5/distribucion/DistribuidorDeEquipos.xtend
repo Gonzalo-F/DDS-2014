@@ -1,7 +1,7 @@
 package main.xtend.entrega5.futbol5.distribucion
 
-import entrega5.futbol5.Jugador
 import java.util.List
+import main.xtend.entrega5.futbol5.Jugador
 
 abstract class DistribuidorDeEquipos {
 	def List<Jugador> equipo1(List<Jugador> jugadores){}

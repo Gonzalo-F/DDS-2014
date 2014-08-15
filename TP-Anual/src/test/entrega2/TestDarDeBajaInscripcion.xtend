@@ -1,9 +1,9 @@
 package test.entrega2
 
-import entrega2.NoInscriptoException
 import main.Jugador
 import main.Partido
 import main.xtend.entrega1.tipoInscripcion.InscripcionEstandar
+import main.xtend.excepciones.entrega2.NoInscriptoException
 import org.junit.Test
 
 import static org.junit.Assert.*

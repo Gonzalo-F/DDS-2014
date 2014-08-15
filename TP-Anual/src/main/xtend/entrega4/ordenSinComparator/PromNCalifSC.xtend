@@ -1,6 +1,5 @@
 package main.xtend.entrega4.ordenSinComparator
 
-import entrega4.ordenSinComparator.OrdenSC
 import main.Partido
 
 class PromNCalifSC extends OrdenSC {

@@ -5,7 +5,7 @@ import java.util.List
 import main.Jugador
 import main.Partido
 
-class StubNotificador implements entrega2.observerNotificador.Notificador {
+class StubNotificador implements main.xtend.entrega2.observerNotificador.Notificador {
 
 	@Property List<Partido> partidosNotificados
 	@Property List<Jugador> amigosDelJugadorANotificar

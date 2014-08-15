@@ -1,6 +1,7 @@
 package main.xtend.entrega3.ordenesDeCreacion
 
 import java.util.Date
+import main.xtend.entrega3.Administrador
 
 class Rechazo {
 	String nombre

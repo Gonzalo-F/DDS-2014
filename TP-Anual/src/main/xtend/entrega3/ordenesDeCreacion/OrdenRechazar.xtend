@@ -1,6 +1,6 @@
 package main.xtend.entrega3.ordenesDeCreacion
 
-import entrega3.ordenesDeCreacion.Orden
+import main.xtend.entrega3.Administrador
 
 class OrdenRechazar extends Orden{
 	@Property String motivo

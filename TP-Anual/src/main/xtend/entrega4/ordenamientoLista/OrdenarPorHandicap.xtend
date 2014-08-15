@@ -2,7 +2,7 @@ package main.xtend.entrega4.ordenamientoLista
 
 import main.Jugador
 
-class OrdenarPorHandicap extends entrega4.ordenamientoLista.OrdenLista {
+class OrdenarPorHandicap extends OrdenLista {
 	
 	override evaluar(Jugador jugador) { 
 		jugador.getHandicap

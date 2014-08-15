@@ -1,9 +1,8 @@
 package main.xtend.entrega5.futbol5
 
-import entrega5.futbol5.inscripcion.CriterioInscripcion
-
 import java.util.ArrayList
 import java.util.List
+import main.xtend.entrega5.futbol5.inscripcion.CriterioInscripcion
 
 class Jugador {
 

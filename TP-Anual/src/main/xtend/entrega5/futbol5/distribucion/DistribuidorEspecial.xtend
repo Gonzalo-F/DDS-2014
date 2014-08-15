@@ -1,8 +1,7 @@
 package main.xtend.entrega5.futbol5.distribucion
 
-import entrega5.futbol5.Jugador
-import entrega5.futbol5.distribucion.DistribuidorDeEquipos
 import java.util.List
+import main.xtend.entrega5.futbol5.Jugador
 
 class DistribuidorEspecial extends DistribuidorDeEquipos {
 	override equipo1(List<Jugador> jugadores){

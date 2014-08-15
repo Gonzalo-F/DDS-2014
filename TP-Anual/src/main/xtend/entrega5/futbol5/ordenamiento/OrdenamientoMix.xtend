@@ -1,18 +1,17 @@
 package main.xtend.entrega5.futbol5.ordenamiento
 
-
 import java.util.ArrayList
 import java.util.List
 
-class OrdenamientoMix extends entrega5.futbol5.ordenamiento.CriterioOrdenamiento {
+class OrdenamientoMix extends CriterioOrdenamiento {
 
-	List<entrega5.futbol5.ordenamiento.CriterioOrdenamiento> criterios
+	List<CriterioOrdenamiento> criterios
 
 	new() {
-		criterios = new ArrayList<entrega5.futbol5.ordenamiento.CriterioOrdenamiento>
+		criterios = new ArrayList<main.xtend.entrega5.futbol5.ordenamiento.CriterioOrdenamiento>
 	}
 
-	def addCriterio(entrega5.futbol5.ordenamiento.CriterioOrdenamiento criterio) {
+	def addCriterio(main.xtend.entrega5.futbol5.ordenamiento.CriterioOrdenamiento criterio) {
 		criterios.add(criterio)
 	}
 

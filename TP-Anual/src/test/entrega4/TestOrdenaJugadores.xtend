@@ -1,14 +1,14 @@
 package test.entrega4
 
-import entrega4.divisionLista.Division
-import entrega4.ordenSinComparator.HandicapSC
-import entrega4.ordenSinComparator.OrdenSC
-import entrega4.ordenSinComparator.PromNCalifSC
 import java.util.List
 import main.Jugador
 import main.Partido
 import main.xtend.entrega1.tipoInscripcion.InscripcionEstandar
 import main.xtend.entrega3.Administrador
+import main.xtend.entrega4.divisionLista.Division
+import main.xtend.entrega4.ordenSinComparator.HandicapSC
+import main.xtend.entrega4.ordenSinComparator.OrdenSC
+import main.xtend.entrega4.ordenSinComparator.PromNCalifSC
 import org.junit.Before
 import org.junit.Test
 
