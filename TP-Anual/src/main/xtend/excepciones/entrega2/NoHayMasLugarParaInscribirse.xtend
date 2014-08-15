@@ -1,4 +1,4 @@
-package entrega2
+package main.xtend.excepciones.entrega2
 
 class NoHayMasLugarParaInscribirse extends RuntimeException {
 	

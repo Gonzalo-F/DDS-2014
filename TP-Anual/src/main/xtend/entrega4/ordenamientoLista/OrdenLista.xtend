@@ -1,4 +1,4 @@
-package entrega4.ordenamientoLista
+package main.xtend.entrega4.ordenamientoLista
 
 import java.util.Comparator
 import main.Jugador

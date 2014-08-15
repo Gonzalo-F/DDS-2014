@@ -1,6 +1,5 @@
 package main.xtend.entrega1.tipoInscripcion
 
-import entrega1.tipoInscripcion.TipoInscripcion
 import main.Inscripcion
 import main.Jugador
 import main.Partido

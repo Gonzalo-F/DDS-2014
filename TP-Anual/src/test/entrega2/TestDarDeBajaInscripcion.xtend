@@ -1,8 +1,9 @@
-package entrega2
+package test.entrega2
 
-import entrega1.tipoInscripcion.InscripcionEstandar
+import entrega2.NoInscriptoException
 import main.Jugador
 import main.Partido
+import main.xtend.entrega1.tipoInscripcion.InscripcionEstandar
 import org.junit.Test
 
 import static org.junit.Assert.*
@@ -19,9 +20,9 @@ class TestDarDeBajaInscripcion {
 		var inscripcion = partido.inscribir(jugador, new InscripcionEstandar)
 		jugador.darseDeBaja(partido, reemplazante, new InscripcionEstandar)
 
-		assertFalse(partido.inscripciones.contains(inscripcion))
+		assertFalse(partido.getInscripciones.contains(inscripcion))
 		
-		assertEquals(partido.inscripciones.size, 1)
+		assertEquals(partido.getInscripciones.size, 1)
 	}
 
 	@Test
@@ -29,8 +30,8 @@ class TestDarDeBajaInscripcion {
 		var insc = partido.inscribir(jugador, new InscripcionEstandar)
 		jugador.darseDeBaja(partido)
 
-		assertFalse(partido.inscripciones.contains(insc))
-		assertEquals(1, jugador.penalizacionesCometidas.size)
+		assertFalse(partido.getInscripciones.contains(insc))
+		assertEquals(1, jugador.getPenalizacionesCometidas.size)
 
 	}
 	

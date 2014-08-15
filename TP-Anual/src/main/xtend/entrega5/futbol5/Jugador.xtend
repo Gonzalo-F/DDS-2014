@@ -1,4 +1,4 @@
-package entrega5.futbol5
+package main.xtend.entrega5.futbol5
 
 import entrega5.futbol5.inscripcion.CriterioInscripcion
 
@@ -25,7 +25,7 @@ class Jugador {
 	}
 
 	def tuModoDeInscripcionDejaLugar() {
-		this.criterioInscripcion.dejaLugarAotro
+		this.getCriterioInscripcion.dejaLugarAotro
 	}
 
 	override toString() {

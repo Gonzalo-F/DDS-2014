@@ -1,4 +1,4 @@
-package entrega2.bajaJugador
+package main.xtend.entrega2.bajaJugador
 
 import java.util.Date
 import main.Partido

@@ -1,4 +1,4 @@
-package entrega2.observerNotificador
+package main.xtend.entrega2.observerNotificador
 
 import main.Inscripcion
 

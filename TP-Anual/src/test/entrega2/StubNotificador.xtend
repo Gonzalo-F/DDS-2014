@@ -1,4 +1,4 @@
-package entrega2
+package test.entrega2
 
 import java.util.ArrayList
 import java.util.List
@@ -15,15 +15,15 @@ class StubNotificador implements entrega2.observerNotificador.Notificador {
 	}
 
 	override notificarAdminHay10(Partido unPartido) {
-		partidosNotificados.add(unPartido)
+		getPartidosNotificados.add(unPartido)
 	}
 
 	override notificarAdminYaNoHay10(Partido unPartido) {
-		partidosNotificados.remove(unPartido)
+		getPartidosNotificados.remove(unPartido)
 	}
 
 	override notificarAmigosNuevaInscripcion(Jugador unJugador) {
-		this.amigosDelJugadorANotificar.addAll(unJugador.getAmigos)
+		this.getAmigosDelJugadorANotificar.addAll(unJugador.getAmigos)
 
 	}
 }

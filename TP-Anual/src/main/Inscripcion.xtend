@@ -1,6 +1,6 @@
 package main
 
-import entrega1.tipoInscripcion.TipoInscripcion
+import main.xtend.entrega1.tipoInscripcion.TipoInscripcion
 
 class Inscripcion {
 	@Property TipoInscripcion tipo

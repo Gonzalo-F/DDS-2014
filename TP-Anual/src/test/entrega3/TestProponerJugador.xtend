@@ -1,6 +1,7 @@
 package test.entrega3
 
 import main.Jugador
+import main.xtend.entrega3.Administrador
 import org.junit.Test
 
 import static org.junit.Assert.*

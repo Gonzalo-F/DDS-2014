@@ -1,14 +1,14 @@
 package test.entrega1
 
-import entrega1.InscripcionRechazadaException
-import entrega1.condiciones.CondicionLugar
-import entrega1.tipoInscripcion.InscripcionCondicional
-import entrega1.tipoInscripcion.InscripcionEstandar
-import entrega1.tipoInscripcion.InscripcionSolidario
-
 import main.Inscripcion
 import main.Jugador
 import main.Partido
+import main.xtend.entrega1.condiciones.CondicionLugar
+import main.xtend.entrega1.tipoInscripcion.InscripcionCondicional
+import main.xtend.entrega1.tipoInscripcion.InscripcionEstandar
+import main.xtend.entrega1.tipoInscripcion.InscripcionSolidario
+import main.xtend.entrega1.tipoInscripcion.TipoInscripcion
+import main.xtend.excepciones.entrega1.InscripcionRechazadaException
 import org.junit.Test
 
 import static org.junit.Assert.*

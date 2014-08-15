@@ -1,18 +1,18 @@
-package entrega5
+package test.entrega5
 
-import entrega5.futbol5.Jugador
-import entrega5.futbol5.Partido
-import entrega5.futbol5.distribucion.DistribuidorEspecial
-import entrega5.futbol5.distribucion.DistribuidorParidad
-import entrega5.futbol5.excepciones.PartidoAbiertoNoPermiteValidarInscripcion
-import entrega5.futbol5.excepciones.PartidoConEquiposGeneradosNoPuedeValidar
-import entrega5.futbol5.excepciones.PartidoSin10InscriptosNoPermiteValidarInscripcion
-import entrega5.futbol5.inscripcion.ModoEstandar
-import entrega5.futbol5.inscripcion.ModoSolidario
-import entrega5.futbol5.ordenamiento.OrdenamientoCalificacionUltimos2Partidos
-import entrega5.futbol5.ordenamiento.OrdenamientoMix
-import entrega5.futbol5.ordenamiento.OrdenamientoPorHandicap
 import java.util.ArrayList
+import main.xtend.entrega5.futbol5.Jugador
+import main.xtend.entrega5.futbol5.Partido
+import main.xtend.entrega5.futbol5.distribucion.DistribuidorEspecial
+import main.xtend.entrega5.futbol5.distribucion.DistribuidorParidad
+import main.xtend.entrega5.futbol5.excepciones.PartidoAbiertoNoPermiteValidarInscripcion
+import main.xtend.entrega5.futbol5.excepciones.PartidoConEquiposGeneradosNoPuedeValidar
+import main.xtend.entrega5.futbol5.excepciones.PartidoSin10InscriptosNoPermiteValidarInscripcion
+import main.xtend.entrega5.futbol5.inscripcion.ModoEstandar
+import main.xtend.entrega5.futbol5.inscripcion.ModoSolidario
+import main.xtend.entrega5.futbol5.ordenamiento.OrdenamientoCalificacionUltimos2Partidos
+import main.xtend.entrega5.futbol5.ordenamiento.OrdenamientoMix
+import main.xtend.entrega5.futbol5.ordenamiento.OrdenamientoPorHandicap
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -36,7 +36,7 @@ class TestGenerarEquipos {
 	@Before
 	def void init() {
 		partidoPocosJugadores = nuevoPartidoTipico()
-		(1 .. 7).forEach[inscribir(partidoPocosJugadores, new Jugador("nati", new ModoEstandar))]
+		(1 .. 7).forEach[inscribir(partidoPocosJugadores, new Jugador("nati", new ModoEstandar ( ) ))]
 
 		partido1 = nuevoPartidoTipico()
 
@@ -126,16 +126,16 @@ class TestGenerarEquipos {
 	@Test
 	def void distribuirEquiposParEImpar() {
 		cerrarPartido1()
-		Assert.assertArrayEquals(newArrayList(ferme, pato, lechu, rodri, leo), partido1.equipo1)
-		Assert.assertArrayEquals(newArrayList(roly, dodi, chicho, sytek, mike), partido1.equipo2)
+		Assert.assertArrayEquals(newArrayList(ferme, pato, lechu, rodri, leo), partido1.getEquipo1)
+		Assert.assertArrayEquals(newArrayList(roly, dodi, chicho, sytek, mike), partido1.getEquipo2)
 	}
 
 	@Test
 	def void distribuirEquipos14589() {
 		partido1.distribucionEquipos = new DistribuidorEspecial // ordenamiento
 		cerrarPartido1()
-		Assert.assertArrayEquals(newArrayList(ferme, dodi, lechu, sytek, leo), partido1.equipo1)
-		Assert.assertArrayEquals(newArrayList(roly, pato, chicho, rodri, mike), partido1.equipo2)
+		Assert.assertArrayEquals(newArrayList(ferme, dodi, lechu, sytek, leo), partido1.getEquipo1)
+		Assert.assertArrayEquals(newArrayList(roly, pato, chicho, rodri, mike), partido1.getEquipo2)
 	}
 	
 	@Test
@@ -166,11 +166,11 @@ class TestGenerarEquipos {
 	}
 
 	def nuevoPartidoTipico() {
-		new Partido(new DistribuidorParidad, new OrdenamientoPorHandicap)
+		new Partido(new DistribuidorParidad, new OrdenamientoPorHandicap ( ) )
 	}
 	
 	def contenesAJugador(Partido partido,Jugador jugador){
-		partido.inscriptos.contains(jugador)	
+		partido.getInscriptos.contains(jugador)	
 	}
 	
 	def cerrarPartido1() {
@@ -180,15 +180,15 @@ class TestGenerarEquipos {
 	
 	def listadoOrdenadoPorHandicap(Partido unPartido) {
 		unPartido.ordenarEquipos.map [ jugador |
-			println("Jugador: " + jugador + " - calificacion: " + jugador.calificacion)
+			println("Jugador: " + jugador + " - calificacion: " + jugador.getCalificacion)
 		]
 	}
 	def listadoOrdenadoPorUltimas2Calificaciones(Partido unPartido) {
 		unPartido.ordenarEquipos.map [ jugador |
-			val misPuntajes = jugador.puntajes.clone.reverse.take(2).toList
+			val misPuntajes = jugador.getPuntajes.clone.reverse.take(2).toList
 			val promedio = misPuntajes.fold(0d, [acum, puntaje|acum + puntaje]) / misPuntajes.size
 			println(
-				"Jugador: " + jugador + " puntajes: " + jugador.puntajes + " ult.puntajes: " + misPuntajes +
+				"Jugador: " + jugador + " puntajes: " + jugador.getPuntajes + " ult.puntajes: " + misPuntajes +
 					" promedio: " + promedio)
 		]
 	}

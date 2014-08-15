@@ -1,9 +1,9 @@
 package test.entrega3
 
-import entrega1.tipoInscripcion.InscripcionEstandar
-import entrega3.NoSePuedeCalificarExcepcion
 import main.Jugador
 import main.Partido
+import main.xtend.entrega1.tipoInscripcion.InscripcionEstandar
+import main.xtend.excepciones.entrega3.NoSePuedeCalificarExcepcion
 import org.junit.Assert
 import org.junit.Test
 

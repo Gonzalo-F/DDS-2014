@@ -1,4 +1,4 @@
-package entrega5.futbol5
+package main.xtend.entrega5.futbol5
 
 import entrega5.futbol5.distribucion.DistribuidorDeEquipos
 import entrega5.futbol5.estadosPart.Abierto
@@ -13,15 +13,15 @@ import java.util.List
 
 class Partido {
 
-	@Property List<Jugador> inscriptos
-	@Property List<Jugador> equipo1
-	@Property List<Jugador> equipo2
+	@Property List<entrega5.futbol5.Jugador> inscriptos
+	@Property List<entrega5.futbol5.Jugador> equipo1
+	@Property List<entrega5.futbol5.Jugador> equipo2
 	@Property Estado estado
 	@Property CriterioOrdenamiento criterioOrdenamiento
 	@Property DistribuidorDeEquipos distribucionEquipos
 
 	new(DistribuidorDeEquipos distribuidor, CriterioOrdenamiento orden) {
-		inscriptos = new ArrayList<Jugador>
+		inscriptos = new ArrayList<entrega5.futbol5.Jugador>
 		this.estado = new Abierto()
 		this.distribucionEquipos = distribuidor
 		this.criterioOrdenamiento = orden
@@ -37,19 +37,19 @@ class Partido {
 		if (cantidadInscriptos < 10) {
 			throw new PartidoSin10InscriptosNoPermiteValidarInscripcion()
 		}
-		this.estado.validar()
+		this.getEstado.validar()
 	}
 
-	def distribuirEquipos(List<Jugador> jugadores) {
-		equipo1 = distribucionEquipos.equipo1(jugadores)
-		equipo2 = distribucionEquipos.equipo2(jugadores)
+	def distribuirEquipos(List<entrega5.futbol5.Jugador> jugadores) {
+		equipo1 = getDistribucionEquipos.equipo1(jugadores)
+		equipo2 = getDistribucionEquipos.equipo2(jugadores)
 	}
 
-	def List<Jugador> ordenarEquipos() {
-		getCriterioOrdenamiento.ordenar(inscriptos)
+	def List<entrega5.futbol5.Jugador> ordenarEquipos() {
+		getCriterioOrdenamiento.ordenar(getInscriptos)
 	}
 
-	def void inscribir(Jugador jugador) {
+	def void inscribir(entrega5.futbol5.Jugador jugador) {
 		if (cantidadInscriptos < 10) {
 			agregarJugador(jugador)
 		} else {
@@ -61,8 +61,8 @@ class Partido {
 		}
 	}
 	
-	def reemplazar(Jugador jugador) {
-		inscriptos.remove(this.jugadorQueCedeLugar())
+	def reemplazar(entrega5.futbol5.Jugador jugador) {
+		getInscriptos.remove(this.jugadorQueCedeLugar())
 		agregarJugador(jugador)
 	}
 	
@@ -70,7 +70,7 @@ class Partido {
 		getInscriptos.size
 	}
 
-	def agregarJugador(Jugador jugador) {
+	def agregarJugador(entrega5.futbol5.Jugador jugador) {
 		this.getInscriptos.add(jugador)
 
 	}
@@ -79,7 +79,7 @@ class Partido {
 		getInscriptos.exists[jugador|jugador.tuModoDeInscripcionDejaLugar]
 	}
 
-	def Jugador jugadorQueCedeLugar() {
+	def entrega5.futbol5.Jugador jugadorQueCedeLugar() {
 		return getInscriptos.filter[jugador|jugador.tuModoDeInscripcionDejaLugar].get(0)
 	}
 

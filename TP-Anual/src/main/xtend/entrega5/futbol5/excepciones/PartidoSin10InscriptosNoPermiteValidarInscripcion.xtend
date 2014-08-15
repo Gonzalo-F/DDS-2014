@@ -1,4 +1,4 @@
-package entrega5.futbol5.excepciones
+package main.xtend.entrega5.futbol5.excepciones
 
 class PartidoSin10InscriptosNoPermiteValidarInscripcion extends RuntimeException {
 	

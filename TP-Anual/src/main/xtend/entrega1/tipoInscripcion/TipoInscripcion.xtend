@@ -1,9 +1,9 @@
 package main.xtend.entrega1.tipoInscripcion
 
-import entrega1.InscripcionRechazadaException
 import main.Inscripcion
 import main.Jugador
 import main.Partido
+import main.xtend.excepciones.entrega1.InscripcionRechazadaException
 
 abstract class TipoInscripcion {
 	@Property int prioridad

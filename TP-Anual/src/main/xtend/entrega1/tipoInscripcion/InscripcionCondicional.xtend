@@ -1,11 +1,10 @@
 package main.xtend.entrega1.tipoInscripcion
 
-import entrega1.InscripcionRechazadaException
-import entrega1.condiciones.Condicion
-import entrega1.tipoInscripcion.TipoInscripcion
 import main.Inscripcion
 import main.Jugador
 import main.Partido
+import main.xtend.entrega1.condiciones.Condicion
+import main.xtend.excepciones.entrega1.InscripcionRechazadaException
 
 class InscripcionCondicional extends TipoInscripcion {
 

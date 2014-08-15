@@ -1,4 +1,4 @@
-package entrega5.futbol5.distribucion
+package main.xtend.entrega5.futbol5.distribucion
 
 import entrega5.futbol5.Jugador
 import java.util.List

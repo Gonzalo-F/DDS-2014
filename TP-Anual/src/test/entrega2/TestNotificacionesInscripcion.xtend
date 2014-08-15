@@ -1,9 +1,10 @@
-package entrega2
+package test.entrega2
 
-import entrega1.tipoInscripcion.InscripcionEstandar
+import entrega2.StubNotificador
 import entrega2.observerNotificador.DiezConfirmadosObserver
 import main.Jugador
 import main.Partido
+import main.xtend.entrega1.tipoInscripcion.InscripcionEstandar
 import org.junit.Before
 import org.junit.Test
 
@@ -17,7 +18,7 @@ class TestNotificacionesInscripcion {
 	@Before
 	def inicio() {
 
-		partido.observadores.add(new DiezConfirmadosObserver(stubNotificador))
+		partido.getObservadores.add(new DiezConfirmadosObserver(stubNotificador))
 		for (i : 1 .. 9) {
 			var Jugador jugador = new Jugador(i, "Player" + i)
 			partido.inscribir(jugador, new InscripcionEstandar)
@@ -31,7 +32,7 @@ class TestNotificacionesInscripcion {
 		
 		var inscri = partido.inscribir(jugador10, new InscripcionEstandar)
 		assertEquals(1, stubNotificador.partidosNotificados.size)
-		assertTrue(partido.inscripciones.contains(inscri))
+		assertTrue(partido.getInscripciones.contains(inscri))
 
 	}
 }

@@ -1,5 +1,6 @@
-package entrega4.ordenSinComparator
+package main.xtend.entrega4.ordenSinComparator
 
+import entrega4.ordenSinComparator.OrdenSC
 import main.Partido
 
 class PromNCalifSC extends OrdenSC {
@@ -11,7 +12,7 @@ class PromNCalifSC extends OrdenSC {
 	}
 	
 	override ordenarLista(Partido partido){
-		criterio = [jugador | jugador.promedioCalificaciones(jugador.listaDeCalificaciones,n)]
+		criterio = [jugador | jugador.promedioCalificaciones(jugador.getListaDeCalificaciones,n)]
 		super.ordenarLista(partido)
 	}
 }

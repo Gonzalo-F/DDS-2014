@@ -1,14 +1,14 @@
 package main
 
-import entrega1.tipoInscripcion.TipoInscripcion
-import entrega2.NoInscriptoException
-import entrega2.bajaJugador.Penalizacion
-import entrega2.observerNotificador.InscripcionObserver
-import entrega4.divisionLista.Division
-import entrega4.ordenSinComparator.OrdenSC
+import main.xtend.excepciones.entrega2.NoInscriptoException
+import main.xtend.entrega2.bajaJugador.Penalizacion
+import main.xtend.entrega2.observerNotificador.InscripcionObserver
+import main.xtend.entrega4.divisionLista.Division
+import main.xtend.entrega4.ordenSinComparator.OrdenSC
 import java.util.ArrayList
 import java.util.Date
 import java.util.List
+import main.xtend.entrega1.tipoInscripcion.TipoInscripcion
 
 class Partido {
 	@Property String lugar

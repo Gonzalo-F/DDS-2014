@@ -1,9 +1,8 @@
 package main.xtend.entrega3.ordenesDeCreacion
 
-import entrega3.ordenesDeCreacion.Orden
-import entrega3.ordenesDeCreacion.Rechazo
 import java.util.List
 import main.Jugador
+import main.xtend.entrega3.Administrador
 
 class JugadorSugerido {
 	@Property

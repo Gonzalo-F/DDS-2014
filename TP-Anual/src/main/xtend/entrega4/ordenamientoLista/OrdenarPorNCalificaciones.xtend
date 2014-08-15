@@ -1,5 +1,6 @@
-package entrega4.ordenamientoLista
+package main.xtend.entrega4.ordenamientoLista
 
+import entrega4.ordenamientoLista.OrdenLista
 import main.Jugador
 
 class OrdenarPorNCalificaciones extends OrdenLista {
@@ -10,7 +11,7 @@ class OrdenarPorNCalificaciones extends OrdenLista {
 	}
 	
 	override evaluar(Jugador jugador) { 
-		jugador.promedioCalificaciones(jugador.listaDeCalificaciones,n)
+		jugador.promedioCalificaciones(jugador.getListaDeCalificaciones,getN)
 	}
 	
 }

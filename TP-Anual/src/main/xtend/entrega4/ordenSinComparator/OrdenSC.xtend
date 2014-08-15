@@ -1,4 +1,4 @@
-package entrega4.ordenSinComparator
+package main.xtend.entrega4.ordenSinComparator
 
 import main.Jugador
 import main.Partido

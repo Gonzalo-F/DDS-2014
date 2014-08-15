@@ -1,18 +1,18 @@
-package entrega4
+package test.entrega4
 
-import entrega1.tipoInscripcion.InscripcionEstandar
-import entrega3.Administrador
 import entrega4.divisionLista.Division
 import entrega4.ordenSinComparator.HandicapSC
+import entrega4.ordenSinComparator.OrdenSC
+import entrega4.ordenSinComparator.PromNCalifSC
 import java.util.List
 import main.Jugador
 import main.Partido
+import main.xtend.entrega1.tipoInscripcion.InscripcionEstandar
+import main.xtend.entrega3.Administrador
 import org.junit.Before
 import org.junit.Test
 
 import static org.junit.Assert.*
-import entrega4.ordenSinComparator.OrdenSC
-import entrega4.ordenSinComparator.PromNCalifSC
 
 class TestGenerarEquiposTentativos {
 	var admin = new Administrador("emii", "emii@abc.com")
@@ -49,8 +49,8 @@ class TestGenerarEquiposTentativos {
 		var Jugador jugador10 = dameJugadorConHandicap(3)
 
 		Division.divisionPorPares.dividirEquipos(partido.confirmados, partido)
-		estaEnEquipo(partido.equipoA, jugador10)
-		estaEnEquipo(partido.equipoB, jugador9)
+		estaEnEquipo(partido.getEquipoA, jugador10)
+		estaEnEquipo(partido.getEquipoB, jugador9)
 	}
 
 	@Test
@@ -59,8 +59,8 @@ class TestGenerarEquiposTentativos {
 		var Jugador jugador10 = dameJugadorConHandicap(3)
 
 		Division.divisionB.dividirEquipos(partido.confirmados, partido)
-		estaEnEquipo(partido.equipoA, jugador10)
-		estaEnEquipo(partido.equipoB, jugador9)
+		estaEnEquipo(partido.getEquipoA, jugador10)
+		estaEnEquipo(partido.getEquipoB, jugador9)
 
 	//por la logica de cuando se incriben estandar que se meten "por adelante" en el array.
 	}
@@ -70,8 +70,8 @@ class TestGenerarEquiposTentativos {
 		var Jugador jugador1 = dameJugadorConHandicap(7)
 		var Jugador jugador2 = dameJugadorConHandicap(3)
 		equipoTentativo(new HandicapSC(), Division.divisionB)
-		estaEnEquipo(partido.equipoA, jugador2)
-		estaEnEquipo(partido.equipoA, jugador1)
+		estaEnEquipo(partido.getEquipoA, jugador2)
+		estaEnEquipo(partido.getEquipoA, jugador1)
 	}
 
 	@Test
@@ -79,8 +79,8 @@ class TestGenerarEquiposTentativos {
 		var Jugador jugador1 = dameJugadorConHandicap(7)
 		var Jugador jugador2 = dameJugadorConHandicap(3)
 		equipoTentativo(new HandicapSC(), Division.divisionPorPares)
-		estaEnEquipo(partido.equipoA, jugador2)
-		estaEnEquipo(partido.equipoA, jugador1)
+		estaEnEquipo(partido.getEquipoA, jugador2)
+		estaEnEquipo(partido.getEquipoA, jugador1)
 	}
 
 	@Test

@@ -1,11 +1,12 @@
-package entrega4.ordenSinComparator
+package main.xtend.entrega4.ordenSinComparator
 
+import entrega4.ordenSinComparator.OrdenSC
 import main.Partido
 
 class HandicapSC extends OrdenSC {
 	
 	override ordenarLista(Partido partido){
-		criterio = [handicap]
+		criterio = [getHandicap]
 		super.ordenarLista(partido)
 	}
 }

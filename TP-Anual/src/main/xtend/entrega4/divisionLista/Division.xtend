@@ -1,4 +1,4 @@
-package entrega4.divisionLista
+package main.xtend.entrega4.divisionLista
 
 import java.util.ArrayList
 import java.util.List

@@ -1,13 +1,13 @@
 package main
 
-import entrega1.tipoInscripcion.TipoInscripcion
-import entrega2.bajaJugador.Penalizacion
-import entrega3.Administrador
-import entrega3.Calificacion
-import entrega3.NoSePuedeCalificarExcepcion
-import entrega3.ordenesDeCreacion.JugadorSugerido
 import java.util.ArrayList
 import java.util.List
+import main.xtend.entrega1.tipoInscripcion.TipoInscripcion
+import main.xtend.entrega2.bajaJugador.*
+import main.xtend.entrega3.Administrador
+import main.xtend.entrega3.Calificacion
+import main.xtend.entrega3.ordenesDeCreacion.JugadorSugerido
+import main.xtend.excepciones.entrega3.NoSePuedeCalificarExcepcion
 
 class Jugador {
 	@Property int edad
