@@ -1,6 +1,6 @@
 /bin
 /xtend-gen
 /target
-/settings
+/.settings
 .classpath
 .project
