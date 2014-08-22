@@ -5,3 +5,5 @@
 .project
 /src/main/xtend-gen
 /src/test/xtend-gen
+/src/main/generated-sources/xtend
+/src/test/generated-sources/xtend
