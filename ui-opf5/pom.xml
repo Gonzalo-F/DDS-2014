@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -8,19 +7,19 @@
 	<artifactId>ui-opf5</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	
-		
+
+
 	<parent>
 		<groupId>org.uqbar-project</groupId>
 		<artifactId>uqbar-xtend-parent</artifactId>
 		<version>1.0</version>
 	</parent>
-	
+
 	<properties>
 		<jetty.version>6.1.4</jetty.version>
 		<jetty.version>7.6.3.v20120416</jetty.version>
 	</properties>
-	
+
 	<dependencies>
 		<!-- UQBAR -->
 		<dependency>
@@ -33,9 +32,15 @@
 			<artifactId>uqbar-wicket-xtend</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<!-- /UQBAR -->
 		
-		<!--  JUNIT DEPENDENCY FOR TESTING -->
+		<dependency>
+			<groupId>TP-Anual</groupId>
+			<artifactId>TP-Anual</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<!-- /UQBAR -->
+
+		<!-- JUNIT DEPENDENCY FOR TESTING -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -43,14 +48,14 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!--  JETTY DEPENDENCIES FOR TESTING  -->
+		<!-- JETTY DEPENDENCIES FOR TESTING -->
 		<dependency>
 			<groupId>org.eclipse.jetty.aggregate</groupId>
 			<artifactId>jetty-all-server</artifactId>
 			<version>${jetty.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<!--  /JETTY DEPENDENCIES FOR TESTING  -->
+		<!-- /JETTY DEPENDENCIES FOR TESTING -->
 	</dependencies>
 	<build>
 		<resources>
@@ -99,4 +104,4 @@
 			</snapshots>
 		</repository>
 	</repositories>
-	</project>
+</project>
