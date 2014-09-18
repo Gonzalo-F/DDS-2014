@@ -1,8 +1,8 @@
 package wicket_tp_anual.ui_opf5
 
-import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.WebPage
 import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
+import org.uqbar.wicket.xtend.XButton
 
 /**
  * 
@@ -12,9 +12,11 @@ class HomePage extends WebPage {
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 
 	new() {
-		val label = new Label("version", application.frameworkSettings.version)
+		val boton1 = new XButton("buscarJugadores")
+		val boton2 = new XButton("generarEquipos")
 		
-		this.addChild(label);
+		this.addChild(boton1);
+		this.addChild(boton2)
 
 		// TODO Add your page's components here
     }
