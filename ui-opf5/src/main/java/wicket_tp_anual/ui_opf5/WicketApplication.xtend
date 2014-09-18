@@ -10,7 +10,7 @@ import org.apache.wicket.protocol.http.WebApplication
 class WicketApplication extends WebApplication {
 	
 	override getHomePage() {
-		HomePage
+		MenuPrincipalPage
 	}
 	
 	override init() {

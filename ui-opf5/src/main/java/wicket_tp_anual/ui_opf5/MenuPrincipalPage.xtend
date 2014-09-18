@@ -8,7 +8,7 @@ import org.uqbar.wicket.xtend.XButton
  * 
  * @author ?
  */
-class HomePage extends WebPage {
+class MenuPrincipalPage extends WebPage {
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 
 	new() {
