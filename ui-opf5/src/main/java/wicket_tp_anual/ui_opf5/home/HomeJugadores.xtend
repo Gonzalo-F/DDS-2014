@@ -13,18 +13,18 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 	}
 	// de momento los creo asi, pero hay que agregarles un apodo 
 	def init() {
-		new Jugador(20, "Emiliano","Emi")
-		new Jugador(21, "Lucas","Pugna")
-		new Jugador(20, "Gonzalo","Gonzo")
-		new Jugador(25, "Rodrigo","Ro")
-		new Jugador(22, "Luciano","Lucho")
-		new Jugador(19, "Tobias","Tobi")
-		new Jugador(19, "Franco","Chapa")
-		new Jugador(20, "Sebastian","Seba")
-		new Jugador(23, "Fernando","Pelado")
-		new Jugador(22, "Agustin","Negro")
-		new Jugador(30, "Nicolas","El Rasta")
-		new Jugador(22, "Ezequiel","Peti")
+		new Jugador(20, "Emiliano")
+		new Jugador(21, "Lucas")
+		new Jugador(20, "Gonzalo")
+		new Jugador(25, "Rodrigo")
+		new Jugador(22, "Luciano")
+		new Jugador(19, "Tobias")
+		new Jugador(19, "Franco")
+		new Jugador(20, "Sebastian")
+		new Jugador(23, "Fernando")
+		new Jugador(22, "Agustin")
+		new Jugador(30, "Nicolas")
+		new Jugador(22, "Ezequiel")
 		
 	}
 	
@@ -34,7 +34,7 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 	}
 
 	override createExample() { // los ejemplos tienen constructores sin parametros... habria que cambiarlos?
-		new Jugador(20,"Pablo","El Flaco")
+		new Jugador(20,"Pablo")
 	}
 
 	override getEntityType() {
