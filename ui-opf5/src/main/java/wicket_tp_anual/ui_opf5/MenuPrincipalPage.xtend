@@ -4,20 +4,15 @@ import org.apache.wicket.markup.html.WebPage
 import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import org.uqbar.wicket.xtend.XButton
 
-/**
- * 
- * @author ?
- */
 class MenuPrincipalPage extends WebPage {
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 
 	new() {
-		val boton1 = new XButton("buscarJugadores")
-		val boton2 = new XButton("generarEquipos")
-		
-		this.addChild(boton1);
-		this.addChild(boton2)
-
-		// TODO Add your page's components here
-    }
+		this.addChild(new XButton("buscarJugadores"))
+		this.addChild(new XButton("generarEquipos").onClick = [|this.abrirGenerarEquipos])
+	}
+	
+	def abrirGenerarEquipos() {
+		responsePage = new GenerarEquiposPage(this)
+	}
 }

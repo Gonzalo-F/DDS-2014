@@ -13,9 +13,4 @@ class WicketApplication extends WebApplication {
 		MenuPrincipalPage
 	}
 	
-	override init() {
-		super.init()
-		// add your configuration here
-	}
-	
 }
