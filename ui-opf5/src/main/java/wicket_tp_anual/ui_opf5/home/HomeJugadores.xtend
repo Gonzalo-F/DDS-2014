@@ -35,7 +35,7 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 	}
 
 	override createExample() { // los ejemplos tienen constructores sin parametros... habria que cambiarlos?
-		new Jugador(20,"Pablo")
+		new Jugador(20,"Pablo","Peti")
 	}
 
 	override getEntityType() {
