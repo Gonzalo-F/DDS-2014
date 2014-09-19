@@ -13,13 +13,13 @@ class TestNotificarBajas {
 
 	var Partido partido = new Partido(2040, 20140413, "El tinglado")
 	var stubNotificador = new StubNotificador
-	var Jugador jugador = new Jugador(25, "Pecho Frio")
+	var Jugador jugador = new Jugador(25,"Roman", "Pecho Frio")
 
 	@Before
 	def inicio() {
 		partido.getObservadores.add(new DiezConfirmadosObserver(stubNotificador))
 		for (i : 1 .. 9) {
-			var Jugador jugador = new Jugador(i, "Player" + i)
+			var Jugador jugador = new Jugador(i, "Player" + i,"Apodo"+i)
 			partido.inscribir(jugador, new InscripcionEstandar)
 
 		}

@@ -17,8 +17,8 @@ import static org.junit.Assert.*
 class TestGenerarEquiposTentativos {
 	var admin = new Administrador("emii", "emii@abc.com")
 	var partido = new Partido(20141213, 2040, "Tinglado")
-	var jugadorC1 = new Jugador(20, "Calificador1")
-	var jugadorC2 = new Jugador(20, "Calificador2")
+	var jugadorC1 = new Jugador(20, "Calificador1","Apodo1")
+	var jugadorC2 = new Jugador(20, "Calificador2","Apodo2")
 
 	@Before
 	def inicio() {
@@ -106,7 +106,7 @@ class TestGenerarEquiposTentativos {
 	}
 
 	def jugadorConCalificacion(int calificacion) {
-		var j = new Jugador(1, "Player X")
+		var j = new Jugador(1, "Player X", "Apodo X")
 		partido.inscribir(j, new InscripcionEstandar)
 		jugadorC1.calificar(partido, j, calificacion, "Tuve ganas de calificarte asi")
 
@@ -117,13 +117,13 @@ class TestGenerarEquiposTentativos {
 	}
 
 	def jugadorConHandicap(int handicap) {
-		var j = new Jugador(1, "Player X")
+		var j = new Jugador(1, "Player X","Apodo X")
 		partido.inscribir(j, new InscripcionEstandar)
 		admin.ponerHandicap(j, handicap)
 	}
 
 	def dameJugadorConHandicap(int handicap) {
-		var j = new Jugador(1, "Player X")
+		var j = new Jugador(1, "Player X","Apodo X")
 		partido.inscribir(j, new InscripcionEstandar)
 		admin.ponerHandicap(j, handicap)
 		return j

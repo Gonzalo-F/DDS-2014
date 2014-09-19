@@ -11,8 +11,8 @@ import static org.junit.Assert.*
 class TestDarDeBajaInscripcion {
 
 	var Partido partido = new Partido(2040, 20140413, 'Tinglado')
-	var Jugador jugador = new Jugador(15, "Pirulito")
-	var Jugador reemplazante = new Jugador(20, "Cacho")
+	var Jugador jugador = new Jugador(15, "Pirulito","Piru")
+	var Jugador reemplazante = new Jugador(20, "Alberto","Cacho")
 
 	@Test
 	def testDarseDeBajaConReemplazante() {

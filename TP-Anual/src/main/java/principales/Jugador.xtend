@@ -8,19 +8,22 @@ import entrega3.ordenesDeCreacion.JugadorSugerido
 import excepciones.entrega3.NoSePuedeCalificarExcepcion
 import java.util.ArrayList
 import java.util.List
+import org.uqbar.commons.model.Entity
 
-class Jugador {
+class Jugador extends Entity implements Cloneable{
 	@Property int edad
 	@Property String nombre
+	@Property String apodo
 	@Property ArrayList<Jugador> amigos
 	@Property int handicap
 	@Property ArrayList<Calificacion> listaDeCalificaciones = new ArrayList()
 	@Property List<Penalizacion> penalizacionesCometidas = new ArrayList()
 	@Property Partido ultimoPartidoJugado
 
-	new(int edad, String nombre) {
+	new(int edad, String nombre, String apodo) {
 		this.edad = edad
 		this.nombre = nombre
+		this.apodo= apodo
 	}
 
 	def calificar(Partido partido, Jugador calificado, int puntaje, String comentario) {
@@ -39,8 +42,8 @@ class Jugador {
 		partido.confirmados.contains(this)
 	}
 
-	def proponerJugadorA(Administrador admin, String nombre, int edad) {
-		var JugadorSugerido sugerido = new JugadorSugerido(edad, nombre, this, admin)
+	def proponerJugadorA(Administrador admin, String nombre,String apodo, int edad) {
+		var JugadorSugerido sugerido = new JugadorSugerido(edad, nombre, this, admin,apodo)
 		admin.agregarPendiente(sugerido)
 		sugerido
 

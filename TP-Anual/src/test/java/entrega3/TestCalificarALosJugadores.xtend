@@ -10,8 +10,8 @@ import principales.Partido
 class TestCalificarALosJugadores {
 
 	var Partido partido = new Partido(2040, 20140413, 'Tinglado')
-	var Jugador calificador = new Jugador(15, "Tomas")
-	var Jugador calificado = new Jugador(30, "Nicolas")
+	var Jugador calificador = new Jugador(15, "Tomas","Petiso")
+	var Jugador calificado = new Jugador(30, "Nicolas","Nico")
 	
 	@Test
 	def calificarAJugador(){

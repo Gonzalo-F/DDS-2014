@@ -16,7 +16,7 @@ import static org.junit.Assert.*
 class TestInscripcion {
 
 	var Partido partido = new Partido(2040, 20140413, 'Tinglado')
-	var Jugador jugador = new Jugador(15, "Pirulito")
+	var Jugador jugador = new Jugador(15, "Pirulito","Lito")
 
 	@Test
 	def testInscribirEstandar() {

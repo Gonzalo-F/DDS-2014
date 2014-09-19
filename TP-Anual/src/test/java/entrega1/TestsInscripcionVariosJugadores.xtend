@@ -23,7 +23,7 @@ class TestsInscripcionVariosJugadores {
 	@Test
 	def testInscribirEstandarHabiendoEstandares() {
 		crearInscripciones(4, estandar)
-		var insc = crearInscripcion(14, "Luisito", estandar)
+		var insc = crearInscripcion(14,"Luis", "Luisito", estandar)
 		assertPosicion(insc, 0)
 
 	}
@@ -31,14 +31,14 @@ class TestsInscripcionVariosJugadores {
 	@Test
 	def testInscribirSolidarioHabiendoEstandares() {
 		crearInscripciones(4, estandar)
-		var insc = crearInscripcion(14, "Luisito", solidario)
+		var insc = crearInscripcion(14,"Luis", "Luisito", solidario)
 		assertPosicion(insc, 4)
 	}
 
 	@Test
 	def testInscribirEstandarHabiendoSolidarios() {
 		crearInscripciones(4, solidario)
-		var insc = crearInscripcion(14, "Luisito", estandar)
+		var insc = crearInscripcion(14,"Luis", "Luisito", estandar)
 		assertPosicion(insc, 0)
 	}
 
@@ -46,15 +46,15 @@ class TestsInscripcionVariosJugadores {
 	def testInscribirCondicionalHabiendoEstandaresYSolidarios() {
 		crearInscripciones(5, estandar)
 		crearInscripciones(2, solidario)
-		var insc = crearInscripcion(14, "Luisito", condicional)
+		var insc = crearInscripcion(14, "Luis","Luisito", condicional)
 		assertPosicion(insc, 7)
 	}
 
 	@Test
 	def testInscribirSolidarioHabiendoEstandaresYCondicionales() {
 		crearInscripciones(7, estandar)
-		crearInscripcion(14, "Player8", condicional)
-		var insc = crearInscripcion(9, "Mukenio", solidario)
+		crearInscripcion(14, "Player8","Pitu", condicional)
+		var insc = crearInscripcion(9, "Mukenio","Lala", solidario)
 		assertPosicion(insc, 7)
 	}
 
@@ -62,7 +62,7 @@ class TestsInscripcionVariosJugadores {
 	def testRechazaInscripcionPorHaberMasde10Estandar() {
 		crearInscripciones(10, estandar)
 		try {
-			crearInscripcion(15, "Player11", estandar)
+			crearInscripcion(15, "Player11","El nono", estandar)
 		} catch (InscripcionRechazadaException e) {
 			return
 		}
@@ -72,14 +72,14 @@ class TestsInscripcionVariosJugadores {
 	/*======================================================
 	METODOS AUXILIARES 
 	======================================================*/
-	def crearInscripcion(int edad, String nombre, TipoInscripcion tipo) {
-		var Jugador jugador = new Jugador(edad, nombre)
+	def crearInscripcion(int edad, String nombre,String apodo, TipoInscripcion tipo) {
+		var Jugador jugador = new Jugador(edad, nombre,apodo)
 		partido.inscribir(jugador, tipo)
 	}
 
 	def crearInscripciones(int n, TipoInscripcion tipo) {
 		for (i : 1 .. n) {
-			crearInscripcion(i, "Player" + i, tipo)
+			crearInscripcion(i, "Player" + i,"Apodo"+i, tipo)
 		}
 	}
 

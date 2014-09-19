@@ -19,14 +19,14 @@ class TestNotificacionesInscripcion {
 
 		partido.getObservadores.add(new DiezConfirmadosObserver(stubNotificador))
 		for (i : 1 .. 9) {
-			var Jugador jugador = new Jugador(i, "Player" + i)
+			var Jugador jugador = new Jugador(i, "Player" + i,"Apodo"+ i)
 			partido.inscribir(jugador, new InscripcionEstandar)
 		}
 	}
 
 	@Test
 	def testInscribirJugador10YNotificar() {
-		var Jugador jugador10 = new Jugador(15, "Player10")
+		var Jugador jugador10 = new Jugador(15, "Player10", "Apodo10")
 		assertEquals(0, stubNotificador.partidosNotificados.size)
 		
 		var inscri = partido.inscribir(jugador10, new InscripcionEstandar)
