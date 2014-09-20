@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<link
+		href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:regular,bold'
+		rel='stylesheet' type='text/css' />
+	<link 
+		rel="stylesheet"
+		href="style.css"
+		type="text/css"
+		media="screen"
+		title="Stylesheet" />
+	
+	<link href="css/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap-theme.css" rel="stylesheet" media="screen">
+    
+    <title>Generador de Equipos</title>  
+       
+</head>
+<body style="background: #F7F8E0">
+<div>
+
+<form wicket:id="jugador">
+	<div>
+		<label>Nombre:</label>
+        <label>rinaldi</label>
+	</div>
+	<div>
+		<label>Apodo:</label>
+		<label>C&iacute;int&uacute;uron negroo&oacute;h</label>
+	</div>
+	<div>
+		<label>Handicap:</label>
+		<label>99999</label>
+	</div>
+	<div>
+		<label>Promedio Ultimo partido:</label>
+		<label>1</label>
+	</div>
+	<div>
+		<label>Promedio todos los partidos:</label>
+		<label>0.5</label>
+	</div>
+	<div>
+		<label>Fecha de Nacimiento:</label>
+		<label>01/01/1562</label>
+	</div>
+	<div>
+		<label>Cantidad de partidos jugados</label>
+		<label>11</label>
+	</div>
+	
+	<table>
+   	<tr>
+		<td><label>Amigos</label></td>
+	</tr>
+	<tr>
+		<td>
+		<table class="table table-striped table-bordered table-condensed">
+			<thead>
+	        	<tr>
+	            	<th id="main">Nombre</th>
+	               	<th id="main">Apodo</th>
+	               	<th id="main">Handicap</th>
+	               	<th id="main">Promedio</th>
+               	</tr>
+			</thead>
+			<tr>
+				<td><span>Chuck</span></td>
+				<td><span>Norry</span></td>
+				<td><span>9</span></td>
+				<td><span>10</span></td>
+			</tr>
+		</table>
+		</td>
+		
+	</tr>
+	</table>
+	
+	<table>
+   	<tr>
+		<td><label>Infracciones</label></td>
+	</tr>
+	<tr>
+		<td>
+		<table class="table table-striped table-bordered table-condensed">
+			<thead>
+	        	<tr>
+	            	<th id="main">Fecha</th>
+	               	<th id="main">Hora</th>
+	               	<th id="main">Motivo</th>
+				</tr>
+			</thead>
+			<tr>
+				<td><span>21/06/2014</span></td>
+				<td><span>01:00</span></td>
+				<td><span>Quebraste a Pablillo Maquinola</span></td>
+			</tr>
+		</table>
+		</td>
+		
+	</tr>
+	</table>
+	
+	<button wicket:id="volver">
+			Volver
+	</button>
+</form>
+</div>
+</body>
+</html>
