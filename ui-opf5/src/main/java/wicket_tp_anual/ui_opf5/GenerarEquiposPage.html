@@ -14,6 +14,41 @@
 		title="Stylesheet" />
 </head>
 <body style="background: #F7F8E0">
+<table>
+	<tr>
+		<label>Partido:</label>
+		<select>
+			<option>partido1</option>
+		</select>
+	</tr>
+	<tr>
+		<label>Criterio de seleccion:</label>
+		<select>
+			<option>criterio1</option>
+		</select>
+	</tr>
+	<tr>
+		<td><label>Ordenamiento</label></td>
+		<td>
+			<table>
+				<tr>
+					<td><input type="checkbox" /></td>
+					<td><label>Handicap</label></td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" /></td>
+					<td><label>Promedio del ultimo partido</label></td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" /></td>
+					<td><label>Promedio de los ultimos N partidos</label></td>
+					<td><label>N</label></td>
+					<td><input type="text" /></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
 	<button wicket:id="volver">
 			Volver
 	</button>
