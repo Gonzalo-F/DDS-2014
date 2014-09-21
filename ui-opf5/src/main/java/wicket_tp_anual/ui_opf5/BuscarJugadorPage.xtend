@@ -1,11 +1,11 @@
 package wicket_tp_anual.ui_opf5
 
 import org.apache.wicket.markup.html.WebPage
+import org.apache.wicket.markup.html.form.Form
+import org.apache.wicket.markup.html.form.TextField
+import org.apache.wicket.model.CompoundPropertyModel
 import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import wicket_tp_anual.ui_opf5.BuscadorModel.BuscadorJugadores
-import org.apache.wicket.markup.html.form.Form
-import org.apache.wicket.model.CompoundPropertyModel
-import org.apache.wicket.markup.html.form.TextField
 
 class BuscarJugadorPage extends WebPage{
 	
@@ -26,6 +26,7 @@ class BuscarJugadorPage extends WebPage{
 	def agregarFiltrosBusqueda(Form<BuscadorJugadores> parent) {
 		parent.addChild(new TextField<String>("nombre"))
 		parent.addChild(new TextField<String>("apodo"))
+		
 	}
 	
 }
