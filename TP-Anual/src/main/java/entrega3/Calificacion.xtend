@@ -21,4 +21,8 @@ class Calificacion {
 
 	}
 	
+	new(int puntaje){
+		this.puntaje=puntaje
+	}
+	
 }

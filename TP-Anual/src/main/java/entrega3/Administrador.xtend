@@ -50,7 +50,7 @@ class Administrador {
 		this.getJugadoresAprobados.add(jugador)
 	}
 
-	def ponerHandicap(Jugador unJugador, int valor) {
+	def ponerHandicap(Jugador unJugador, Double valor) {
 		unJugador.handicap = valor
 	}
 

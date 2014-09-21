@@ -3,8 +3,9 @@ package principales
 import entrega1.tipoInscripcion.TipoInscripcion
 import entrega2.bajaJugador.Penalizacion
 import entrega2.observerNotificador.InscripcionObserver
-import entrega4.divisionLista.Division
-import entrega4.ordenSinComparator.OrdenSC
+import entrega4.reentrega.divisor.DistribuidorDeEquipos
+import entrega4.reentrega.ordenamiento.CriterioOrdenamiento
+import entrega5.futbol5.excepciones.PartidoSin10InscriptosNoPermiteValidarInscripcion
 import excepciones.entrega2.NoInscriptoException
 import java.util.ArrayList
 import java.util.Date
@@ -16,19 +17,24 @@ class Partido {
 	@Property int fecha
 
 	/* Fecha y hora deber�an ser Date */
-	@Property ArrayList<Inscripcion> inscripciones
-	@Property List<InscripcionObserver> observadores
+	@Property ArrayList<Inscripcion> inscripciones = new ArrayList
+	@Property List<InscripcionObserver> observadores = new ArrayList
 
 	//@Property OrdenLista orden
-	@Property List<Jugador> equipoA
-	@Property List<Jugador> equipoB
-
+	@Property List<Jugador> equipo1
+	@Property List<Jugador> equipo2
+	@Property CriterioOrdenamiento criterioOrdenamiento
+	@Property DistribuidorDeEquipos distribucionEquipos
+	
 	new(int fecha, int hora, String lugar) {
 		this.hora = hora
 		this.fecha = fecha
 		this.lugar = lugar
-		this.inscripciones = new ArrayList()
-		this.observadores = new ArrayList()
+	}
+	
+	new (DistribuidorDeEquipos division, CriterioOrdenamiento orden){
+		distribucionEquipos=division
+		criterioOrdenamiento=orden
 	}
 
 	def getListaJugadores() {
@@ -76,9 +82,30 @@ class Partido {
 		listaJugadores.subList(0, n)
 	}
 
-	def generarEquiposTentativos(OrdenSC orden, Division division) {
-		var List<Jugador> ordenados = orden.ordenarLista(this)
-		division.dividirEquipos(ordenados, this)
+	def generarEquiposTentativos(){
+		validarInscripciones
+		this.distribuirEquipos(this.ordenarEquipos)
+//		var List<Jugador> ordenados = orden.ordenarLista(this)
+//		division.dividirEquipos(ordenados, this)
+	}
+	
+	def validarInscripciones() {
+		if (cantidadInscriptos < 10) {
+			throw new PartidoSin10InscriptosNoPermiteValidarInscripcion()
+	}
+	}
+	
+	
+	def cantidadInscriptos() {
+		inscripciones.size
+	}
+	def distribuirEquipos(List<Jugador> jugadores) {
+		equipo1 = getDistribucionEquipos.equipo1(jugadores)
+		equipo2 = getDistribucionEquipos.equipo2(jugadores)
+	}
+	
+	def List<Jugador> ordenarEquipos() {
+		getCriterioOrdenamiento.ordenar(confirmados)
 	}
 
 	def notificarObservers((InscripcionObserver)=>void notificacion) {
