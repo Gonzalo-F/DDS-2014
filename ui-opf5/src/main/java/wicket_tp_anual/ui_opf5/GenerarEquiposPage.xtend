@@ -1,27 +1,40 @@
 package wicket_tp_anual.ui_opf5
 
+import entrega4.reentrega.divisor.DistribuidorDeEquipos
 import org.apache.wicket.markup.html.WebPage
+import org.apache.wicket.markup.html.form.DropDownChoice
 import org.apache.wicket.markup.html.form.Form
 import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import org.uqbar.wicket.xtend.XButton
+import principales.Partido
 
 class GenerarEquiposPage extends WebPage {
 		
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 	private final MenuPrincipalPage mainPage
+	@Property var Partido partido = new Partido()
 	
 	new(MenuPrincipalPage mp) {
 		this.mainPage=mp
 		
-		val generadorForm = new Form("generador")
-		// AL GENERADOR HAY QUE CREARLE UNA CLASE APARTE PARA MODELAR EL COMPORTAMIENTO... SOLO BINDEO PARA LINKEAR
+		
+	val Form<Partido> generadorForm = new Form<Partido>("generador",this.partido.asCompoundModel)
+				// AL GENERADOR HAY QUE CREARLE UNA CLASE APARTE PARA MODELAR EL COMPORTAMIENTO... SOLO BINDEO PARA LINKEAR
+		agregarCondiciones(generadorForm)
 		agregarEquipos(generadorForm)
 		agregarAcciones(generadorForm)
 		this.addChild(generadorForm)
 		
 	}
 	
-	def agregarEquipos(Form<Object> parent) {
+	def agregarCondiciones(Form<Partido> parent) {
+		parent.addChild(new DropDownChoice<DistribuidorDeEquipos>("distribucionEquipos") => [
+				choices = loadableModel([|DistribuidorDeEquipos.home.allInstances])]
+				)		
+	}
+	
+	
+	def agregarEquipos(Form<Partido> parent) {
 		parent.addChild(new XButton("verJugador").onClick=[|verJugador])
 	}
 	

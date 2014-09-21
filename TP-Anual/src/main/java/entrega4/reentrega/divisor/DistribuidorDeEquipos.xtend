@@ -1,9 +1,10 @@
 package entrega4.reentrega.divisor
 
 import java.util.List
+import org.uqbar.commons.model.Entity
 import principales.Jugador
 
-abstract class DistribuidorDeEquipos {
+abstract class DistribuidorDeEquipos extends Entity{
 	def List<Jugador> equipo1(List<Jugador> jugadores){}
 	def List<Jugador> equipo2(List<Jugador> jugadores){}
 	

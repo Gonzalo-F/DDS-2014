@@ -36,6 +36,10 @@ class Partido {
 		distribucionEquipos=division
 		criterioOrdenamiento=orden
 	}
+	
+	new() {
+
+	}
 
 	def getListaJugadores() {
 		inscripciones.map(inscripcion|inscripcion.jugador)
