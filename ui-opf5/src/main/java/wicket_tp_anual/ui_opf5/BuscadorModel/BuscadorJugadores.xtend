@@ -4,7 +4,8 @@ import java.io.Serializable
 import org.uqbar.commons.utils.ApplicationContext
 import wicket_tp_anual.ui_opf5.home.HomeJugadores
 import principales.Jugador
-
+import java.util.ArrayList
+import java.util.List
 
 class BuscadorJugadores implements Serializable{
 	
@@ -12,10 +13,14 @@ class BuscadorJugadores implements Serializable{
 	@Property String nombre
 	@Property Integer handicapDesde
 	@Property Integer handicapHasta
-
+	@Property List<Jugador> resultados
+	
 	def search(){
+		resultados = new ArrayList<Jugador>
+		resultados = getHomeJugadores().search(getApodo, getNombre)
 		
 	}
+	
 	def HomeJugadores getHomeJugadores() {
 		ApplicationContext::instance.getSingleton(typeof(Jugador))
 	}

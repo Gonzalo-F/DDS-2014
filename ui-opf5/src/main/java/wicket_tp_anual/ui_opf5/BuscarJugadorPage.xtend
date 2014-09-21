@@ -8,6 +8,8 @@ import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import wicket_tp_anual.ui_opf5.BuscadorModel.BuscadorJugadores
 import org.apache.wicket.markup.html.form.CheckBox
 import org.uqbar.wicket.xtend.XButton
+import org.uqbar.wicket.xtend.XListView
+import org.apache.wicket.markup.html.basic.Label
 
 class BuscarJugadorPage extends WebPage{
 	
@@ -21,10 +23,21 @@ class BuscarJugadorPage extends WebPage{
 		val Form<BuscadorJugadores> buscarForm = new Form<BuscadorJugadores>("buscarJugadoresForm", new CompoundPropertyModel<BuscadorJugadores>(this.buscador))
 		this.agregarFiltrosBusqueda(buscarForm)
 		this.agregarAcciones(buscarForm)
+		this.grillaResultados(buscarForm)
 		this.addChild(buscarForm)
 		this.buscarJugador()
 		
 		
+	}
+	
+	def grillaResultados(Form<BuscadorJugadores> parent) {
+		val lista = new XListView("resultados")
+		lista.populateItem = [ jug |
+			jug.model = jug.modelObject.asCompoundModel
+			jug.addChild(new Label("nombre"))
+			jug.addChild(new Label("apodo"))]
+			parent.addChild(lista)
+			
 	}
 	
 	def agregarAcciones(Form<BuscadorJugadores> parent) {

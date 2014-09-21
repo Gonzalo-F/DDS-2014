@@ -12,7 +12,7 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 	new() {
 		this.init
 	}
-	// de momento los creo asi, pero hay que agregarles un apodo 
+	
 	def init() {
 		new Jugador(20, "Emiliano","Emi")
 		new Jugador(21, "Lucas","Pugna")
@@ -40,6 +40,20 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 
 	override getEntityType() {
 		typeof(Jugador)
+	}
+	
+	def search(String apodo, String nombre) {
+		allInstances.filter[jug|this.match(apodo, jug.getApodo) && this.match(nombre, jug.getNombre)].toList
+	}
+	
+	def match(Object expectedValue, Object realValue) {
+		if (expectedValue == null) {
+			return true
+		}
+		if (realValue == null) {
+			return false
+		}
+		realValue.toString().toLowerCase().contains(expectedValue.toString().toLowerCase())
 	}
 
 }
