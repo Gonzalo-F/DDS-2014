@@ -16,8 +16,13 @@ class MenuPrincipalPage extends WebPage {
 	}
 	
 	def agregarAcciones(Form parent){
-		parent.addChild(new XButton("buscarJugadores"))
+		parent.addChild(new XButton("buscarJugadores").onClick= [|this.abrirBuscarJugador()])
 		parent.addChild(new XButton("generarEquipos").onClick = [|this.abrirGenerarEquipos])
+	}
+	
+	def abrirBuscarJugador() {
+		responsePage = new BuscarJugadorPage(this)
+		
 	}
 	
 	def abrirGenerarEquipos() {
