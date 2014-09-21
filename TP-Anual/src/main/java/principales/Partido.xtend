@@ -10,8 +10,9 @@ import excepciones.entrega2.NoInscriptoException
 import java.util.ArrayList
 import java.util.Date
 import java.util.List
+import org.uqbar.commons.model.Entity
 
-class Partido {
+class Partido extends Entity{
 	@Property String lugar
 	@Property int hora
 	@Property int fecha

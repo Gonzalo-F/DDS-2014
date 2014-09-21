@@ -4,7 +4,8 @@ import org.uqbar.commons.model.CollectionBasedHome
 import principales.Partido
 import org.apache.commons.collections15.Predicate
 
-class HomePartido extends CollectionBasedHome<Partido>{
+class HomePartidos extends CollectionBasedHome<Partido> {
+
 	
 	override Predicate<Partido> getCriterio(Partido example) {
 		null
