@@ -10,8 +10,12 @@ class BuscadorJugadores implements Serializable{
 	
 	@Property String apodo
 	@Property String nombre
+	@Property Integer handicapDesde
+	@Property Integer handicapHasta
 
-	
+	def search(){
+		
+	}
 	def HomeJugadores getHomeJugadores() {
 		ApplicationContext::instance.getSingleton(typeof(Jugador))
 	}

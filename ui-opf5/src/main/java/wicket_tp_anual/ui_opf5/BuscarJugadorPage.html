@@ -39,10 +39,10 @@
 					<tr>
 					<td><label>Desde:</label></td>	
 					<td><input type="checkbox"></td>
-					<td><input type="text" /></td>
+					<td><input wicket:id="handicapDesde" type="text" /></td>
 					<td><label>Hasta:</label></td>
 					<td><input type="checkbox"></td>
-					<td><input type="text" /></td>		
+					<td><input wicket:id="handicapHasta" type="text" /></td>		
 								
 					</tr>
 					
@@ -67,8 +67,14 @@
 					</td>
 					</tr>
 				</table>
-
+				
+				<button wicket:id="buscar" >Buscar</button>		
+				
+			<button wicket:id="volver" >Volver al menu principal</button>
+			
 			</div>
+		
+			
 		</form>
 
 </body>
