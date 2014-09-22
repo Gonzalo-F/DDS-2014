@@ -55,9 +55,18 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 	}
 	
 	def search(String apodo, String nombre) {
-		allInstances.filter[jug|this.match(apodo, jug.getApodo) && this.match(nombre, jug.getNombre)].toList
+		allInstances.filter[jug|this.match(apodo, jug.getApodo) && this.matchParcial(nombre, jug.getNombre)].toList
 	}
 	
+	def matchParcial(Object nombreIngresado, Object nombreCompleto) {
+		if (nombreIngresado == null) {
+			return true
+		}
+		if (nombreCompleto == null) {
+			return false
+		}
+		nombreCompleto.toString().toLowerCase().startsWith(nombreIngresado.toString().toLowerCase())
+	}
 	def match(Object expectedValue, Object realValue) {
 		if (expectedValue == null) {
 			return true
