@@ -16,20 +16,21 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 	}
 	
 	def init() {
-		this.create(20,"Emiliano","Emi")
-		this.create(21, "Lucas","Pugna")
-		this.create(20, "Gonzalo","Gonzo")
-		this.create(25, "Rodrigo","Peti")
-		this.create(22, "Luciano","Lucho")
-		this.create(19, "Tobias","Tobi")
-		this.create(19, "Franco","Fran")
-		this.create(20, "Sebastian","Sebas")
-		this.create(23, "Fernando","Fer")
-		this.create(22, "Agustin","Toto")
+		this.create(20,"Emiliano","Emi",9.0)
+		this.create(21, "Lucas","Pugna",9.0)
+		this.create(20, "Gonzalo","Gonzo",2.0)
+		this.create(25, "Rodrigo","Peti",5.5)
+		this.create(22, "Luciano","Lucho",7.9)
+		this.create(19, "Tobias","Tobi",10.0)
+		this.create(19, "Franco","Fran",8.7)
+		this.create(20, "Sebastian","Sebas",1.0)
+		this.create(23, "Fernando","Fer",1.9)
+		this.create(22, "Agustin","Toto",9.99)
 	}
 	
-	def create(int edad, String nombre, String apodo){
+	def create(int edad, String nombre, String apodo, Double handicap){
 		var jugadorEstandar = new Jugador(edad,nombre,apodo)
+		jugadorEstandar.handicap= handicap
 		inscribir(jugadorEstandar,getPartido("La canchita de Ramon"))
 		this.create(jugadorEstandar)
 	}
@@ -54,8 +55,19 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 		typeof(Jugador)
 	}
 	
-	def search(String apodo, String nombre) {
-		allInstances.filter[jug|this.match(apodo, jug.getApodo) && this.matchParcial(nombre, jug.getNombre)].toList
+	def search(String apodo, String nombre, Double handicap) {
+		allInstances.filter[jug|this.match(apodo, jug.getApodo) && this.matchParcial(nombre, jug.getNombre) && this.handicap(handicap,jug.getHandicap)].toList
+	}
+	
+	def handicap(Double hi, Double hr) {
+		if (hi == null) {
+			return true
+		}
+		if (hr == null) {
+			return false
+		}
+		hr > hi
+		
 	}
 	
 	def matchParcial(Object nombreIngresado, Object nombreCompleto) {

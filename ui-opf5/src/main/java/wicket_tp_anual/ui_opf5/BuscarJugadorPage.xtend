@@ -62,9 +62,9 @@ class BuscarJugadorPage extends WebPage{
 		parent.addChild(new TextField<String>("nombre"))
 		parent.addChild(new TextField<String>("apodo"))
 		//parent.addChild(new CheckBox("desde"))
-		parent.addChild(new TextField<Integer>("handicapDesde"))
+		parent.addChild(new TextField<Integer>("handicap"))
 		//parent.addChild(new CheckBox("hasta"))
-		parent.addChild(new TextField<Integer>("handicapHasta"))
+		//parent.addChild(new TextField<Integer>("handicapHasta"))
 		
 	}
 	

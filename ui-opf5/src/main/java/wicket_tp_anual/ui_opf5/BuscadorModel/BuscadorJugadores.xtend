@@ -11,13 +11,13 @@ class BuscadorJugadores implements Serializable{
 	
 	@Property String apodo
 	@Property String nombre
-	@Property Integer handicapDesde
-	@Property Integer handicapHasta
+	@Property Double handicap
+	
 	@Property List<Jugador> resultados
 	
 	def search(){
 		resultados = new ArrayList<Jugador>
-		resultados = getHomeJugadores().search(getApodo, getNombre)
+		resultados = getHomeJugadores().search(getApodo, getNombre, getHandicap)
 		
 	}
 	
