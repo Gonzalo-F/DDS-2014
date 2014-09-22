@@ -1,8 +1,8 @@
 package wicket_tp_anual.ui_opf5.home
 
+import org.apache.commons.collections15.Predicate
 import org.uqbar.commons.model.CollectionBasedHome
 import principales.Partido
-import org.apache.commons.collections15.Predicate
 
 class HomePartidos extends CollectionBasedHome<Partido> {
 
@@ -30,6 +30,14 @@ class HomePartidos extends CollectionBasedHome<Partido> {
 	
 	override getEntityType() {
 		typeof(Partido)
+	}
+	
+	def get(String descripcion) {
+		getPartidos.findFirst [ partido | partido.getDescripcion.equals(descripcion) ]
+	}
+	
+	def getPartidos() {
+		allInstances
 	}
 	
 }
