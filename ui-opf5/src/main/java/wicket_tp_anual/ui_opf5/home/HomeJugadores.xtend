@@ -31,7 +31,7 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 	}
 	
 	def create(int edad, String nombre, String apodo){
-		val jug= new Jugador(edad,nombre,apodo)
+		new Jugador(edad,nombre,apodo)
 		
 	}
 
