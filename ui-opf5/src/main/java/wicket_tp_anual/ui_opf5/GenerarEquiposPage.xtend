@@ -12,11 +12,11 @@ class GenerarEquiposPage extends WebPage {
 		
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 	private final MenuPrincipalPage mainPage
-	@Property var Partido partido = new Partido()
+	@Property var Partido partido
 	
-	new(MenuPrincipalPage mp) {
+	new(MenuPrincipalPage mp,Partido partidoSeleccionado) {
 		this.mainPage=mp
-		
+		this.partido=partidoSeleccionado
 		
 	val Form<Partido> generadorForm = new Form<Partido>("generador",this.partido.asCompoundModel)
 				// AL GENERADOR HAY QUE CREARLE UNA CLASE APARTE PARA MODELAR EL COMPORTAMIENTO... SOLO BINDEO PARA LINKEAR

@@ -36,6 +36,6 @@ class MenuPrincipalPage extends WebPage {
 	}
 	
 	def abrirGenerarEquipos() {
-		responsePage = new GenerarEquiposPage(this)
+		responsePage = new GenerarEquiposPage(this,opf5.partidoSeleccionado)
 	}
 }
