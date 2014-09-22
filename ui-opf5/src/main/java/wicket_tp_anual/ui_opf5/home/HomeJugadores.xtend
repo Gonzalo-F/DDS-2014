@@ -26,14 +26,11 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 		this.create(20, "Sebastian","Sebas")
 		this.create(23, "Fernando","Fer")
 		this.create(22, "Agustin","Toto")
-		this.create(30, "Nicolas","Nico")
-		this.create(22, "Ezequiel","Topo")
-		
 	}
 	
 	def create(int edad, String nombre, String apodo){
 		var jugadorEstandar = new Jugador(edad,nombre,apodo)
-		inscribir(jugadorEstandar,getPartido("La canchita de Ramon (...)"))
+		inscribir(jugadorEstandar,getPartido("La canchita de Ramon"))
 		this.create(jugadorEstandar)
 	}
 	
@@ -41,8 +38,8 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 		partido.inscribir(jugador,new InscripcionEstandar)
 	}
 	
-	def getPartido(String modeloDescripcion) {
-		(ApplicationContext::instance.getSingleton(typeof(Partido)) as HomePartidos).get(modeloDescripcion)
+	def getPartido(String descripcion) {
+		(ApplicationContext::instance.getSingleton(typeof(Partido)) as HomePartidos).get(descripcion)
 	}
 	
 	override Predicate<Jugador> getCriterio(Jugador example) {

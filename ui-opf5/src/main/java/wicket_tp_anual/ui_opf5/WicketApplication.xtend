@@ -23,7 +23,7 @@ class WicketApplication extends WebApplication {
 	override init() {
 		super.init()
 		ApplicationContext.instance.configureSingleton(Partido, new HomePartidos)
-//		ApplicationContext.instance.configureSingleton(Jugador, new HomeJugadores)
+		ApplicationContext.instance.configureSingleton(Jugador, new HomeJugadores)
 		ApplicationContext.instance.configureSingleton(DistribuidorDeEquipos, new HomeDistribuidorDeEquipos)
 		
 	}	
