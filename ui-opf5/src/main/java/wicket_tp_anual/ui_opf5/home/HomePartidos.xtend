@@ -18,7 +18,8 @@ class HomePartidos extends CollectionBasedHome<Partido> {
 	}
 	
 	def create(int fecha, int hora, String lugar){
-		new Partido(fecha, hora, lugar)
+		var partido = new Partido(fecha, hora, lugar)
+		create(partido)
 	}
 	override Predicate<Partido> getCriterio(Partido example) {
 		null
