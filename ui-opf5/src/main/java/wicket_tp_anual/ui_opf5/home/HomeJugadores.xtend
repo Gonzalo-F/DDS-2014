@@ -14,21 +14,26 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 	}
 	
 	def init() {
-		new Jugador(20, "Emiliano","Emi")
-		new Jugador(21, "Lucas","Pugna")
-		new Jugador(20, "Gonzalo","Gonzo")
-		new Jugador(25, "Rodrigo","Peti")
-		new Jugador(22, "Luciano","Lucho")
-		new Jugador(19, "Tobias","Tobi")
-		new Jugador(19, "Franco","Fran")
-		new Jugador(20, "Sebastian","Sebas")
-		new Jugador(23, "Fernando","Fer")
-		new Jugador(22, "Agustin","Toto")
-		new Jugador(30, "Nicolas","Nico")
-		new Jugador(22, "Ezequiel","Topo")
+		this.create(20,"Emiliano","Emi")
+		
+		this.create(21, "Lucas","Pugna")
+		this.create(20, "Gonzalo","Gonzo")
+		this.create(25, "Rodrigo","Peti")
+		this.create(22, "Luciano","Lucho")
+		this.create(19, "Tobias","Tobi")
+		this.create(19, "Franco","Fran")
+		this.create(20, "Sebastian","Sebas")
+		this.create(23, "Fernando","Fer")
+		this.create(22, "Agustin","Toto")
+		this.create(30, "Nicolas","Nico")
+		this.create(22, "Ezequiel","Topo")
 		
 	}
 	
+	def create(int edad, String nombre, String apodo){
+		val jug= new Jugador(edad,nombre,apodo)
+		
+	}
 
 	override Predicate<Jugador> getCriterio(Jugador example) {
 		null
