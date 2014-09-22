@@ -15,7 +15,6 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 	
 	def init() {
 		this.create(20,"Emiliano","Emi")
-		
 		this.create(21, "Lucas","Pugna")
 		this.create(20, "Gonzalo","Gonzo")
 		this.create(25, "Rodrigo","Peti")
