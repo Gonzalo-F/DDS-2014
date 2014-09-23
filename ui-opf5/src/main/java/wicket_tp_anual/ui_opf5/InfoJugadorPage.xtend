@@ -6,6 +6,7 @@ import org.apache.wicket.markup.html.form.Form
 import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import org.uqbar.wicket.xtend.XButton
 import principales.Jugador
+import wicket_tp_anual.ui_opf5.BuscadorModel.LabelJugador
 
 class InfoJugadorPage extends WebPage {
 		
@@ -32,9 +33,9 @@ class InfoJugadorPage extends WebPage {
 	}
 	
 	def agregarDatos(Form<Jugador> parent) {
-		parent.addChild(new Label("nombre"))
-		parent.addChild(new Label("apodo"))
-		parent.addChild(new Label("handicap"))
+		parent.addChild(new LabelJugador("nombre", jugador))
+		parent.addChild(new LabelJugador("apodo", jugador))
+		parent.addChild(new LabelJugador("handicap", jugador))
 	}
 		
 	def verJugador(Jugador jugadorSeleccionado) {
