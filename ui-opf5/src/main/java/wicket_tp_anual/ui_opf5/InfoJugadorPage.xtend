@@ -41,6 +41,7 @@ class InfoJugadorPage extends WebPage {
 			jug.model = jug.modelObject.asCompoundModel
 			jug.addChild(new LabelJugador("nombre",jug.modelObject))
 			jug.addChild(new LabelJugador("apodo", jug.modelObject))
+			jug.addChild(new LabelJugador("promedioTotal", jug.modelObject))
 			jug.addChild(new LabelJugador("handicap", jug.modelObject))
 			jug.addChild(new XButton("ver").onClick = [|verJugador(jug.modelObject)]
 			)]
