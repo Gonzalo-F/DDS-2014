@@ -45,8 +45,7 @@ class Partido extends Entity{
 	}
 
 	def getDescripcion(){
-	return lugar
-//	.concat(fecha.toString).concat(" ").concat(hora.toString).concat(")")
+	lugar.concat(" (").concat(fecha.toString).concat(" - ").concat(hora.toString).concat(")")
 	}
 	
 	def getListaJugadores() {

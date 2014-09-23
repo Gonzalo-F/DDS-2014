@@ -31,7 +31,7 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 	def create(int edad, String nombre, String apodo, Double handicap){
 		var jugadorEstandar = new Jugador(edad,nombre,apodo)
 		jugadorEstandar.handicap= handicap
-		inscribir(jugadorEstandar,getPartido("La canchita de Ramon"))
+		inscribir(jugadorEstandar,getPartido("La canchita de Ramon (31092014 - 23)"))
 		this.create(jugadorEstandar)
 	}
 	

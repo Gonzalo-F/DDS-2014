@@ -24,6 +24,7 @@ class GenerarEquiposPage extends WebPage {
 		partido.criterioOrdenamiento = new OrdenamientoPorHandicap()
 		
 	val Form<Partido> generadorForm = new Form<Partido>("generador",this.partido.asCompoundModel)
+		generadorForm.addChild(new Label("descripcion"))
 		agregarCondiciones(generadorForm)
 		agregarEquipos(generadorForm)
 		agregarAcciones(generadorForm)
