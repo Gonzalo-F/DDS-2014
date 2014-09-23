@@ -29,6 +29,11 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 		this.create(23, "Fernando","Fer",1.9, newArrayList(cal(1),cal(7),cal(6)))
 		this.create(22, "Agustin","Toto",9.99, newArrayList(cal(1),cal(3),cal(1)))
 		getJugador("Emiliano").agregarAmigos(newArrayList("Lucas","Gonzalo"))
+		getJugador("Lucas").agregarAmigos(newArrayList("Emiliano","Fernando","Toto"))
+		getJugador("Luciano").agregarAmigos(newArrayList("Tobias","Franco"))
+		getJugador("Rodrigo").agregarAmigos(newArrayList("Tobias","Sebastian","Fernando"))
+		getJugador("Gonzalo").agregarAmigos(newArrayList("Lucas","Emiliano","Fernando"))
+		getJugador("Agustin").agregarAmigos(newArrayList("Luciano"))
 	}
 	
 	def agregarAmigos(Jugador jugador, ArrayList<String> nombresAmigos) {
@@ -74,8 +79,8 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 		typeof(Jugador)
 	}
 	
-	def search(String apodo, String nombre, Double handicap) {
-		allInstances.filter[jug|this.match(apodo, jug.getApodo) && this.matchParcial(nombre, jug.getNombre) && this.handicap(handicap,jug.getHandicap)].toList
+	def search(String apodo, String nombre, Double handicap, Double promedio) {
+		allInstances.filter[jug|this.match(apodo, jug.getApodo) && this.matchParcial(nombre, jug.getNombre) && this.handicap(handicap,jug.getHandicap) && this.handicap(promedio, jug.promedioTotal)].toList
 	}
 	
 	def handicap(Double hi, Double hr) {
