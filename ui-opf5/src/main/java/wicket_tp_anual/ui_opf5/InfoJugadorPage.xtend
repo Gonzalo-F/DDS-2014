@@ -12,17 +12,19 @@ class InfoJugadorPage extends WebPage {
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 	private final GenerarEquiposPage generadorPage
 	private final BuscarJugadorPage buscadorPage
+	private final InfoJugadorPage infoPage
 	@Property Jugador jugador	
-	int variable
+	int variable	
 	
-	new(int b, GenerarEquiposPage gp, BuscarJugadorPage bp, Jugador jugador) {
+	new(int b, GenerarEquiposPage gp, BuscarJugadorPage bp, InfoJugadorPage ip, Jugador jugador) {
 		this.generadorPage=gp
 		this.buscadorPage=bp
+		this.infoPage=ip
 		this.variable=b
 						
 		this.jugador=jugador
 		
-		val Form<Jugador> infoJugadorForm = new Form<Jugador>("infoJugador",this.jugador.asCompoundModel)
+		val Form<Jugador> infoJugadorForm = new Form<Jugador>("infoJugador",this.jugador.asCompoundModel)		
 		agregarDatos(infoJugadorForm)
 		agregarAcciones(infoJugadorForm)
 		this.addChild(infoJugadorForm)
@@ -34,6 +36,10 @@ class InfoJugadorPage extends WebPage {
 		parent.addChild(new Label("apodo"))
 		parent.addChild(new Label("handicap"))
 	}
+		
+	def verJugador(Jugador jugadorSeleccionado) {
+		responsePage = new InfoJugadorPage(2, null, null, this,jugadorSeleccionado)
+	}
 	
 	def agregarAcciones(Form parent) {
 		parent.addChild(new XButton("volver").onClick=[|volver]);
@@ -44,8 +50,12 @@ class InfoJugadorPage extends WebPage {
 			responsePage = generadorPage
 		}
 		else{
-			responsePage = buscadorPage
+			if(variable == 1){
+				responsePage = buscadorPage
+			}
+			else{}
+				responsePage = infoPage
+			}
 		}
-	}
-	
+		
 }

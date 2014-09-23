@@ -46,7 +46,7 @@ class BuscarJugadorPage extends WebPage{
 	}
 	
 	def verJugador(Jugador jugadorSeleccionado) {
-		responsePage = new InfoJugadorPage(1, null, this,jugadorSeleccionado)
+		responsePage = new InfoJugadorPage(1, null, this, null, jugadorSeleccionado)
 	}
 	
 	def agregarAcciones(Form<BuscadorJugadores> parent) {
