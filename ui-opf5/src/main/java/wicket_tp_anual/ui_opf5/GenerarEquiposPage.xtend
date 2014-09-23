@@ -56,7 +56,7 @@ class GenerarEquiposPage extends WebPage {
 		jugadoresDelEquipo.populateItem = [ item |
 			item.model = item.modelObject.asCompoundModel
 			item.addChild(new Label("nombre"))
-//			parent.addChild(new XButton("verJugador").onClick=[|verJugador(item.modelObject)])
+			item.addChild(new XButton("verJugadorSeleccionado").onClick=[|verJugador(item.modelObject)])
 		]
 		
 		return jugadoresDelEquipo
@@ -67,8 +67,8 @@ class GenerarEquiposPage extends WebPage {
 		parent.addChild(new XButton("volver").onClick=[|volver]);
 	}
 	
-	def verJugador(Jugador jugador) {
-		responsePage = new InfoJugadorPage(this)
+	def verJugador(Jugador jugadorSeleccionado) {
+		responsePage = new InfoJugadorPage(this,jugadorSeleccionado)
 	}
 	
 	def volver() {
