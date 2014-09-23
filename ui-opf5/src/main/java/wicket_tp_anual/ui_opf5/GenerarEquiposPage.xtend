@@ -14,6 +14,7 @@ import org.uqbar.wicket.xtend.XButton
 import org.uqbar.wicket.xtend.XListView
 import principales.Jugador
 import principales.Partido
+import wicket_tp_anual.ui_opf5.BuscadorModel.LabelJugador
 
 class GenerarEquiposPage extends WebPage {
 		
@@ -82,7 +83,7 @@ class GenerarEquiposPage extends WebPage {
 		val jugadoresDelEquipo = new XListView(id)
 		jugadoresDelEquipo.populateItem = [ item |
 			item.model = item.modelObject.asCompoundModel
-			item.addChild(new Label("nombre"))
+			item.addChild(new LabelJugador("nombre", item.modelObject))
 			item.addChild(new XButton("verJugadorSeleccionado").onClick=[|verJugador(item.modelObject)])
 		]
 		
