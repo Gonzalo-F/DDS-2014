@@ -1,6 +1,8 @@
 package wicket_tp_anual.ui_opf5
 
 import entrega4.reentrega.divisor.DistribuidorDeEquipos
+import entrega4.reentrega.ordenamiento.CriterioOrdenamiento
+import entrega4.reentrega.ordenamiento.OrdenamientoCalificacionUltimos2Partidos
 import entrega4.reentrega.ordenamiento.OrdenamientoMix
 import entrega4.reentrega.ordenamiento.OrdenamientoPorHandicap
 import org.apache.wicket.markup.html.WebPage
@@ -12,8 +14,6 @@ import org.uqbar.wicket.xtend.XButton
 import org.uqbar.wicket.xtend.XListView
 import principales.Jugador
 import principales.Partido
-import java.util.List
-import entrega4.reentrega.ordenamiento.CriterioOrdenamiento
 
 class GenerarEquiposPage extends WebPage {
 		
@@ -51,6 +51,7 @@ class GenerarEquiposPage extends WebPage {
 		parent.addChild(criteriosOrdenamiento)
 		
 		parent.addChild(new XButton("criterioHandicap").onClick = [|agregarCriterio(new OrdenamientoPorHandicap)])
+		parent.addChild(new XButton("criterio2Calificaciones").onClick = [|agregarCriterio(new OrdenamientoCalificacionUltimos2Partidos)])
 				
 		parent.addChild(new XButton("generarEquiposTentativos") => [
 			setEnabled(partido.abierto)

@@ -13,4 +13,8 @@ class OrdenamientoCalificacionUltimos2Partidos extends CriterioOrdenamiento {
 		]
 	}
 	
+	override descripcion(){
+		return "Ultimas 2 Calificaciones"
+	}
+	
 }
