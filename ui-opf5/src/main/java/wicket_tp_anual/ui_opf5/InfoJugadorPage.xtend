@@ -36,6 +36,16 @@ class InfoJugadorPage extends WebPage {
 		parent.addChild(new LabelJugador("nombre", jugador))
 		parent.addChild(new LabelJugador("apodo", jugador))
 		parent.addChild(new LabelJugador("handicap", jugador))
+		val lista = new GrillaJugadores("amigos")
+		lista.populateItem = [ jug |
+			jug.model = jug.modelObject.asCompoundModel
+			jug.addChild(new LabelJugador("nombre",jug.modelObject))
+			jug.addChild(new LabelJugador("apodo", jug.modelObject))
+			jug.addChild(new LabelJugador("handicap", jug.modelObject))
+			jug.addChild(new XButton("ver").onClick = [|verJugador(jug.modelObject)]
+			)]
+		
+			parent.addChild(lista)
 	}
 		
 	def verJugador(Jugador jugadorSeleccionado) {

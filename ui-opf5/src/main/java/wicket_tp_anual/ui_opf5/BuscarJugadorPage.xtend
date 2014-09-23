@@ -33,7 +33,7 @@ class BuscarJugadorPage extends WebPage{
 	}
 	
 	def grillaResultados(Form<BuscadorJugadores> parent) {
-		val lista = new XListView("resultados")
+		val lista = new GrillaJugadores("resultados")
 		lista.populateItem = [ jug |
 			jug.model = jug.modelObject.asCompoundModel
 			jug.addChild(new LabelJugador("nombre",jug.modelObject))
@@ -41,6 +41,7 @@ class BuscarJugadorPage extends WebPage{
 			jug.addChild(new LabelJugador("handicap", jug.modelObject))
 			jug.addChild(new XButton("ver").onClick = [|verJugador(jug.modelObject)]
 			)]
+		
 			parent.addChild(lista)
 			
 	}
