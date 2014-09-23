@@ -5,9 +5,11 @@ import java.util.List
 
 class OrdenamientoMix extends CriterioOrdenamiento {
 
+ @Property List<CriterioOrdenamiento> criterios
 	new() {
 		criterios = new ArrayList<CriterioOrdenamiento>
 	}
+
 
 	override calcularValor() {
 		[ jugador |
@@ -18,4 +20,9 @@ class OrdenamientoMix extends CriterioOrdenamiento {
 	override descripcion(){
 		return "Ordenar por Mix"
 	}
+	
+	def addCriterio(CriterioOrdenamiento ordenamiento) {
+		criterios.add(ordenamiento)
+	}
+	
 }

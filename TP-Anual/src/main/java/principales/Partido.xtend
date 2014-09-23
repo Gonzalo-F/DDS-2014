@@ -25,7 +25,7 @@ class Partido extends Entity{
 	//@Property OrdenLista orden
 	@Property List<Jugador> equipo1
 	@Property List<Jugador> equipo2
-	@Property CriterioOrdenamiento criterioOrdenamiento
+	@Property OrdenamientoMix criterioOrdenamiento
 	@Property DistribuidorDeEquipos distribucionEquipos
 	
 	@Property Boolean abierto = true
@@ -38,7 +38,7 @@ class Partido extends Entity{
 	
 	new (DistribuidorDeEquipos division, CriterioOrdenamiento orden){
 		distribucionEquipos=division
-		criterioOrdenamiento=orden
+		criterioOrdenamiento.addCriterio(orden)
 	}
 	
 	new() {
