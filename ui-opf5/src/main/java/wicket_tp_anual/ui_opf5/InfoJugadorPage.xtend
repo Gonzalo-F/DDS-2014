@@ -57,16 +57,11 @@ class InfoJugadorPage extends WebPage {
 	}
 	
 	def volver() {
-		if(variable == 0){
-			responsePage = generadorPage
-		}
-		else{
-			if(variable == 1){
-				responsePage = buscadorPage
-			}
-			else{}
-				responsePage = infoPage
-			}
+		switch variable{
+			case 0:	responsePage = generadorPage
+			case 1:	responsePage = buscadorPage
+			case 2:	responsePage = infoPage
+			}		
 		}
 		
 }
