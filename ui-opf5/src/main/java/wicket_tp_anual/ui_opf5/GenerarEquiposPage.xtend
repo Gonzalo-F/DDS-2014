@@ -42,14 +42,24 @@ class GenerarEquiposPage extends WebPage {
 	
 	
 	def agregarEquipos(Form<Partido> parent) {
-		val equipo1 = new XListView("equipo1")
-		equipo1.populateItem = [ item |
+		val equipo1 = listaDeJugadores("equipo1")
+		val equipo2 = listaDeJugadores("equipo2")
+		
+		
+		parent.addChild(equipo1)
+		parent.addChild(equipo2)
+		
+	}
+	
+	def listaDeJugadores(String id) {
+		val jugadoresDelEquipo = new XListView(id)
+		jugadoresDelEquipo.populateItem = [ item |
 			item.model = item.modelObject.asCompoundModel
 			item.addChild(new Label("nombre"))
 //			parent.addChild(new XButton("verJugador").onClick=[|verJugador(item.modelObject)])
 		]
-		parent.addChild(equipo1)
 		
+		return jugadoresDelEquipo
 	}
 	
 	
