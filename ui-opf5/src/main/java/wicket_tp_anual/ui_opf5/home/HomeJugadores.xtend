@@ -28,7 +28,14 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 		this.create(20, "Sebastian","Sebas",1.0, newArrayList(cal(4),cal(7),cal(3)))
 		this.create(23, "Fernando","Fer",1.9, newArrayList(cal(1),cal(7),cal(6)))
 		this.create(22, "Agustin","Toto",9.99, newArrayList(cal(1),cal(3),cal(1)))
+		getJugador("Emiliano").agregarAmigos(newArrayList("Lucas","Gonzalo"))
 	}
+	
+	def agregarAmigos(Jugador jugador, ArrayList<String> nombresAmigos) {
+		nombresAmigos.forEach[amigou | jugador.agregarAmigo(this.getJugador(amigou))]
+	}		
+	
+
 	
 	def cal(int puntaje){
 		new Calificacion(puntaje)
@@ -50,11 +57,16 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 		(ApplicationContext::instance.getSingleton(typeof(Partido)) as HomePartidos).get(descripcion)
 	}
 	
+	
+	def getJugador(String descripcion) {
+		allInstances.findFirst [ jugador | jugador.nombre.equals(descripcion) ]
+	}
+	
 	override Predicate<Jugador> getCriterio(Jugador example) {
 		null
 	}
 
-	override createExample() { // los ejemplos tienen constructores sin parametros... habria que cambiarlos?
+	override createExample() {
 		new Jugador(20,"Pablo","Peti")
 	}
 
