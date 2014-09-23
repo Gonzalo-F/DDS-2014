@@ -10,11 +10,16 @@ import principales.Jugador
 class InfoJugadorPage extends WebPage {
 		
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
-	private final GenerarEquiposPage mainPage
-	@Property Jugador jugador
+	private final GenerarEquiposPage generadorPage
+	private final BuscarJugadorPage buscadorPage
+	@Property Jugador jugador	
+	int variable
 	
-	new(GenerarEquiposPage mp, Jugador jugador) {
-		this.mainPage=mp
+	new(int b, GenerarEquiposPage gp, BuscarJugadorPage bp, Jugador jugador) {
+		this.generadorPage=gp
+		this.buscadorPage=bp
+		this.variable=b
+						
 		this.jugador=jugador
 		
 		val Form<Jugador> infoJugadorForm = new Form<Jugador>("infoJugador",this.jugador.asCompoundModel)
@@ -35,7 +40,12 @@ class InfoJugadorPage extends WebPage {
 	}
 	
 	def volver() {
-		responsePage = mainPage
+		if(variable == 0){
+			responsePage = generadorPage
+		}
+		else{
+			responsePage = buscadorPage
+		}
 	}
 	
 }

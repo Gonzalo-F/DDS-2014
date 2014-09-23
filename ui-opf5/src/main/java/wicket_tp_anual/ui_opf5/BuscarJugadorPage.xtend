@@ -11,6 +11,7 @@ import org.uqbar.wicket.xtend.XButton
 import org.uqbar.wicket.xtend.XListView
 import org.apache.wicket.markup.html.basic.Label
 import wicket_tp_anual.ui_opf5.BuscadorModel.LabelJugador
+import principales.Jugador
 
 class BuscarJugadorPage extends WebPage{
 	
@@ -38,15 +39,14 @@ class BuscarJugadorPage extends WebPage{
 			jug.addChild(new LabelJugador("nombre",jug.modelObject))
 			jug.addChild(new LabelJugador("apodo", jug.modelObject))
 			jug.addChild(new LabelJugador("handicap", jug.modelObject))
-			jug.addChild(new XButton("ver").onClick = [|verJugador()]
+			jug.addChild(new XButton("ver").onClick = [|verJugador(jug.modelObject)]
 			)]
 			parent.addChild(lista)
 			
 	}
 	
-	def verJugador() {
-		volver()
-		/* debiera ser información de jugador */
+	def verJugador(Jugador jugadorSeleccionado) {
+		responsePage = new InfoJugadorPage(1, null, this,jugadorSeleccionado)
 	}
 	
 	def agregarAcciones(Form<BuscadorJugadores> parent) {
