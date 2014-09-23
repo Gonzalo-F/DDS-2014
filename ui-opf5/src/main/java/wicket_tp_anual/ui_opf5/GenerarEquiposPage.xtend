@@ -35,7 +35,8 @@ class GenerarEquiposPage extends WebPage {
 	
 	def agregarCondiciones(Form<Partido> parent) {
 		parent.addChild(new DropDownChoice<DistribuidorDeEquipos>("distribucionEquipos") => [
-				choices = loadableModel([|DistribuidorDeEquipos.home.allInstances])]
+				choices = loadableModel([|DistribuidorDeEquipos.home.allInstances])
+				choiceRenderer = choiceRenderer([DistribuidorDeEquipos m| m.descripcion ])]
 				)	
 				
 		parent.addChild(new XButton("generarEquiposTentativos") => [

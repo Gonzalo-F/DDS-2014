@@ -16,4 +16,8 @@ abstract class DistribuidorDeEquipos extends Entity{
 		}
 		return lista
 	}
+	
+	def String descripcion(){
+//	overridean las sublases	
+		}
 }

@@ -11,4 +11,8 @@ class DistribuidorParidad extends DistribuidorDeEquipos {
 	override equipo2(List<Jugador> jugadores){
 		getEquipo(jugadores,#[2,4,6,8,10])
 	}
+	
+	override descripcion(){
+		return "Division por Pares/Impares"
+	}
 }
