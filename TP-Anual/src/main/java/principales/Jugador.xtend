@@ -70,12 +70,12 @@ class Jugador extends Entity implements Cloneable{
 
 	def double promedioCalificaciones(ArrayList<Calificacion> lista, int n) {
 		var Double suma = 0.0
-		var Double promedio
 		for (i : 0 .. (n - 1)) {
 			var calificacion = lista.get(i)
 			suma = suma + (calificacion.getPuntaje)
 		}
-		return (promedio = suma / n)
+		promedioTotal = (suma / n)
+		return (suma / n)
 	}
 
 	def promedioUltimoPartido() {
