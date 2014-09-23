@@ -1,6 +1,7 @@
 package wicket_tp_anual.ui_opf5
 
 import entrega4.reentrega.divisor.DistribuidorDeEquipos
+import entrega4.reentrega.ordenamiento.OrdenamientoMix
 import entrega4.reentrega.ordenamiento.OrdenamientoPorHandicap
 import org.apache.wicket.markup.html.WebPage
 import org.apache.wicket.markup.html.basic.Label
@@ -11,6 +12,8 @@ import org.uqbar.wicket.xtend.XButton
 import org.uqbar.wicket.xtend.XListView
 import principales.Jugador
 import principales.Partido
+import java.util.List
+import entrega4.reentrega.ordenamiento.CriterioOrdenamiento
 
 class GenerarEquiposPage extends WebPage {
 		
@@ -21,7 +24,7 @@ class GenerarEquiposPage extends WebPage {
 	new(MenuPrincipalPage mp,Partido partidoSeleccionado) {
 		this.mainPage=mp
 		this.partido=partidoSeleccionado
-		partido.criterioOrdenamiento = new OrdenamientoPorHandicap()
+		partido.criterioOrdenamiento = new OrdenamientoMix
 		
 	val Form<Partido> generadorForm = new Form<Partido>("generador",this.partido.asCompoundModel)
 		generadorForm.addChild(new Label("descripcion"))
@@ -39,6 +42,16 @@ class GenerarEquiposPage extends WebPage {
 				choiceRenderer = choiceRenderer([DistribuidorDeEquipos m| m.descripcion ])]
 				)	
 				
+		val criteriosOrdenamiento = new XListView("criterioOrdenamiento.criterios")
+		criteriosOrdenamiento.populateItem = [ item |
+			item.model = item.modelObject.asCompoundModel
+			item.addChild(new Label("descripcion"))
+			item.addChild(new XButton("remover").onClick = [|removerCriterio(item.modelObject)])
+		]
+		parent.addChild(criteriosOrdenamiento)
+		
+		parent.addChild(new XButton("criterioHandicap").onClick = [|agregarCriterio(new OrdenamientoPorHandicap)])
+				
 		parent.addChild(new XButton("generarEquiposTentativos") => [
 			setEnabled(partido.abierto)
 			onClick=[|partido.generarEquiposTentativos]
@@ -46,12 +59,19 @@ class GenerarEquiposPage extends WebPage {
 		])		
 	}
 	
+	def removerCriterio(Object unCriterio) {
+		partido.criterioOrdenamiento.criterios.remove(unCriterio)
+	}
+	
+	
+	def agregarCriterio(CriterioOrdenamiento unCriterio) {
+	partido.criterioOrdenamiento.addCriterio(unCriterio)
+	}
 	
 	def agregarEquipos(Form<Partido> parent) {
 		val equipo1 = listaDeJugadores("equipo1")
 		val equipo2 = listaDeJugadores("equipo2")
-		
-		
+				
 		parent.addChild(equipo1)
 		parent.addChild(equipo2)
 		

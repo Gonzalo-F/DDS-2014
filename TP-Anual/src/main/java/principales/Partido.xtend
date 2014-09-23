@@ -5,6 +5,7 @@ import entrega2.bajaJugador.Penalizacion
 import entrega2.observerNotificador.InscripcionObserver
 import entrega4.reentrega.divisor.DistribuidorDeEquipos
 import entrega4.reentrega.ordenamiento.CriterioOrdenamiento
+import entrega4.reentrega.ordenamiento.OrdenamientoMix
 import entrega5.futbol5.excepciones.PartidoSin10InscriptosNoPermiteValidarInscripcion
 import excepciones.entrega2.NoInscriptoException
 import java.util.ArrayList
