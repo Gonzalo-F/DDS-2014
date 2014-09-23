@@ -27,6 +27,8 @@ class Partido extends Entity{
 	@Property CriterioOrdenamiento criterioOrdenamiento
 	@Property DistribuidorDeEquipos distribucionEquipos
 	
+	@Property Boolean abierto = true
+	
 	new(int fecha, int hora, String lugar) {
 		this.hora = hora
 		this.fecha = fecha
@@ -128,6 +130,10 @@ class Partido extends Entity{
 
 	def inscripcionesEstandar() {
 		inscripciones.filter[inscripcion|inscripcion.tipo.prioridad == 0]
+	}
+	
+	def cerrar() {
+		abierto=false
 	}
 
 }

@@ -24,12 +24,12 @@ class GenerarEquiposPage extends WebPage {
 		partido.criterioOrdenamiento = new OrdenamientoPorHandicap()
 		
 	val Form<Partido> generadorForm = new Form<Partido>("generador",this.partido.asCompoundModel)
-				// AL GENERADOR HAY QUE CREARLE UNA CLASE APARTE PARA MODELAR EL COMPORTAMIENTO... SOLO BINDEO PARA LINKEAR
 		agregarCondiciones(generadorForm)
 		agregarEquipos(generadorForm)
 		agregarAcciones(generadorForm)
-		this.addChild(generadorForm)
-		
+	
+	this.addChild(generadorForm)
+	
 	}
 	
 	def agregarCondiciones(Form<Partido> parent) {
@@ -37,7 +37,11 @@ class GenerarEquiposPage extends WebPage {
 				choices = loadableModel([|DistribuidorDeEquipos.home.allInstances])]
 				)	
 				
-		parent.addChild(new XButton("generarEquiposTentativos").onClick=[|partido.generarEquiposTentativos])			
+		parent.addChild(new XButton("generarEquiposTentativos") => [
+			setEnabled(partido.abierto)
+			onClick=[|partido.generarEquiposTentativos]
+			
+		])		
 	}
 	
 	
@@ -64,7 +68,15 @@ class GenerarEquiposPage extends WebPage {
 	
 	
 	def agregarAcciones(Form parent) {
-		parent.addChild(new XButton("volver").onClick=[|volver]);
+		parent.addChild(new XButton("confirmarEquipos").onClick=[|
+			partido.cerrar
+			confirmacionExitosa()
+		])
+		parent.addChild(new XButton("volver").onClick=[|volver])
+	}
+	
+	def confirmacionExitosa() {
+		responsePage = new GenerarEquiposPage(this.mainPage,this.partido)
 	}
 	
 	def verJugador(Jugador jugadorSeleccionado) {
