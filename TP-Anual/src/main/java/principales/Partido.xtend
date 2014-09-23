@@ -12,6 +12,7 @@ import java.util.ArrayList
 import java.util.Date
 import java.util.List
 import org.uqbar.commons.model.Entity
+import entrega4.reentrega.ordenamiento.OrdenamientoCalificacionUltimos2Partidos
 
 class Partido extends Entity{
 	@Property String lugar
@@ -38,6 +39,8 @@ class Partido extends Entity{
 	
 	new (DistribuidorDeEquipos division, CriterioOrdenamiento orden){
 		distribucionEquipos=division
+		
+		criterioOrdenamiento= new OrdenamientoMix
 		criterioOrdenamiento.addCriterio(orden)
 	}
 	
@@ -134,6 +137,10 @@ class Partido extends Entity{
 	
 	def cerrar() {
 		abierto=false
+	}
+	
+	def agregarCriterio(CriterioOrdenamiento unCriterio) {
+		criterioOrdenamiento.addCriterio(unCriterio)
 	}
 
 }

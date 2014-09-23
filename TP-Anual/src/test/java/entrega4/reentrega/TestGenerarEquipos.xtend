@@ -71,20 +71,6 @@ class TestGenerarEquipos {
 	}
 
 	@Test
-	def partidoSinIniciarNoPuedeGenerarEquipos() {
-
-		//Inscribir 3 jugadores m�s para completar 10 inscriptos
-		inscribirJugadoresMismoModo(partidoPocosJugadores, newArrayList(sytek, chicho, pato),new InscripcionEstandar)
-		try {
-			partidoPocosJugadores.generarEquiposTentativos
-		} catch (PartidoAbiertoNoPermiteValidarInscripcion e) {
-			return
-		}
-		Assert.fail()
-
-	}
-
-	@Test
 	def void inscripcionJugadorNuevoDesplazaAPrimerSolidario() {
 		inscribir(partido1, roly,new InscripcionEstandar)
 		Assert.assertTrue(contenesAJugador(partido1,roly))
@@ -104,7 +90,7 @@ class TestGenerarEquipos {
 
 	@Test
 	def void generarEquiposPorCalificacionUltimos2Partidos() {
-		partido1.criterioOrdenamiento = new OrdenamientoCalificacionUltimos2Partidos
+		partido1.agregarCriterio(new OrdenamientoCalificacionUltimos2Partidos)
 		println("******************************************")
 		println("ordenamiento por ultimas 2 calificaciones")
 		println(listadoOrdenadoPorUltimas2Calificaciones(partido1))
@@ -115,10 +101,10 @@ class TestGenerarEquipos {
 
 	@Test
 	def void generarEquiposPorMixDeCriterios() {
-		val ordenamientoMix = new OrdenamientoMix
-		ordenamientoMix.addCriterio(new OrdenamientoCalificacionUltimos2Partidos)
-		ordenamientoMix.addCriterio(new OrdenamientoPorHandicap)
-		partido1.criterioOrdenamiento = ordenamientoMix
+		
+		partido1.agregarCriterio(new OrdenamientoCalificacionUltimos2Partidos)
+		partido1.agregarCriterio(new OrdenamientoPorHandicap)
+		
 		println("******************************************")
 		println("ordenamiento por mix")
 		println(partido1.ordenarEquipos)
@@ -170,7 +156,7 @@ class TestGenerarEquipos {
 	}
 
 	def nuevoPartidoTipico() {
-		new Partido(new DistribuidorParidad, new OrdenamientoPorHandicap ( ) )
+		new Partido(new DistribuidorParidad, new OrdenamientoPorHandicap)
 	}
 	
 	def contenesAJugador(Partido partido,Jugador jugador){
