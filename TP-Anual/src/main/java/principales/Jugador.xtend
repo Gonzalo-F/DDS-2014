@@ -14,7 +14,7 @@ class Jugador extends Entity implements Cloneable{
 	@Property int edad
 	@Property String nombre
 	@Property String apodo
-	@Property ArrayList<Jugador> amigos
+	@Property ArrayList<Jugador> amigos = new ArrayList()
 	@Property Double handicap
 	@Property ArrayList<Calificacion> listaDeCalificaciones = new ArrayList()
 	@Property List<Penalizacion> penalizacionesCometidas = new ArrayList()
@@ -94,4 +94,7 @@ class Jugador extends Entity implements Cloneable{
 		listaDeCalificaciones.map[calificacion|calificacion.puntaje]
 	}
 	
+	def agregarAmigo(Jugador jugador){
+		amigos.add(jugador)
+	}
 }
