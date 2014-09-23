@@ -18,38 +18,41 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 	}
 	
 	def init() {
-		this.create(20,"Emiliano","Emi",9.0, newArrayList(cal(2),cal(1),cal(6)))
-		this.create(21, "Lucas","Pugna",9.0, newArrayList(cal(2),cal(8),cal(2)))
-		this.create(20, "Gonzalo","Gonzo",2.0, newArrayList(cal(9),cal(4),cal(1)))
-		this.create(25, "Rodrigo","Peti",5.5, newArrayList(cal(8),cal(1),cal(4)))
-		this.create(22, "Luciano","Lucho",7.9, newArrayList(cal(10),cal(3),cal(1)))
-		this.create(19, "Tobias","Tobi",10.0, newArrayList(cal(2),cal(7),cal(6)))
-		this.create(19, "Franco","Fran",8.7, newArrayList(cal(7),cal(7),cal(7)))
-		this.create(20, "Sebastian","Sebas",1.0, newArrayList(cal(4),cal(7),cal(3)))
-		this.create(23, "Fernando","Fer",1.9, newArrayList(cal(1),cal(7),cal(6)))
-		this.create(22, "Agustin","Toto",9.99, newArrayList(cal(1),cal(3),cal(1)))
+		this.create(20,"Emiliano","Emi",9.0)
+		this.create(21, "Lucas","Pugna",9.0)
+		this.create(20, "Gonzalo","Gonzo",2.0)
+		this.create(25, "Rodrigo","Peti",5.5)
+		this.create(22, "Luciano","Lucho",7.9)
+		this.create(19, "Tobias","Tobi",10.0)
+		this.create(19, "Franco","Fran",8.7)
+		this.create(20, "Sebastian","Sebas",1.0)
+		this.create(23, "Fernando","Fer",1.9)
+		this.create(22, "Agustin","Toto",9.99)
 		getJugador("Emiliano").agregarAmigos(newArrayList("Lucas","Gonzalo"))
 		getJugador("Lucas").agregarAmigos(newArrayList("Emiliano","Fernando","Toto"))
 		getJugador("Luciano").agregarAmigos(newArrayList("Tobias","Franco"))
 		getJugador("Rodrigo").agregarAmigos(newArrayList("Tobias","Sebastian","Fernando"))
 		getJugador("Gonzalo").agregarAmigos(newArrayList("Lucas","Emiliano","Fernando"))
 		getJugador("Agustin").agregarAmigos(newArrayList("Luciano"))
+		getJugador("Emiliano").calificarJugador("Lucas", 5)
+		getJugador("Gonzalo").calificarJugador("Lucas", 8)
+		getJugador("Luciano").calificarJugador("Lucas", 3)
+		getJugador("Lucas").setPromedioTotal()
+	}
+	
+	
+	
+	def calificarJugador(Jugador jugador, String jugador1, int puntaje){
+		jugador.calificar(getPartido("La canchita de Ramon (31092014 - 23)"), this.getJugador(jugador1), puntaje, "Un comentario")
 	}
 	
 	def agregarAmigos(Jugador jugador, ArrayList<String> nombresAmigos) {
 		nombresAmigos.forEach[amigou | jugador.agregarAmigo(this.getJugador(amigou))]
-	}		
-	
-
-	
-	def cal(int puntaje){
-		new Calificacion(puntaje)
 	}
 	
-	def create(int edad, String nombre, String apodo, Double handicap, ArrayList<Calificacion> calificaciones){
+	def create(int edad, String nombre, String apodo, Double handicap){
 		var jugadorEstandar = new Jugador(edad,nombre,apodo)
 		jugadorEstandar.handicap= handicap
-		jugadorEstandar.listaDeCalificaciones=calificaciones
 		inscribir(jugadorEstandar,getPartido("La canchita de Ramon (31092014 - 23)"))
 		this.create(jugadorEstandar)
 	}
