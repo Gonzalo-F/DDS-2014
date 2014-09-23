@@ -102,7 +102,7 @@ class GenerarEquiposPage extends WebPage {
 	}
 	
 	def verJugador(Jugador jugadorSeleccionado) {
-		responsePage = new InfoJugadorPage(this,jugadorSeleccionado)
+		responsePage = new InfoJugadorPage(0, this, null,jugadorSeleccionado)
 	}
 	
 	def volver() {
