@@ -1,6 +1,7 @@
 package wicket_tp_anual.ui_opf5
 
 import entrega4.reentrega.divisor.DistribuidorDeEquipos
+import entrega4.reentrega.ordenamiento.OrdenamientoPorHandicap
 import org.apache.wicket.markup.html.WebPage
 import org.apache.wicket.markup.html.form.DropDownChoice
 import org.apache.wicket.markup.html.form.Form
@@ -17,6 +18,7 @@ class GenerarEquiposPage extends WebPage {
 	new(MenuPrincipalPage mp,Partido partidoSeleccionado) {
 		this.mainPage=mp
 		this.partido=partidoSeleccionado
+		partido.criterioOrdenamiento = new OrdenamientoPorHandicap()
 		
 	val Form<Partido> generadorForm = new Form<Partido>("generador",this.partido.asCompoundModel)
 				// AL GENERADOR HAY QUE CREARLE UNA CLASE APARTE PARA MODELAR EL COMPORTAMIENTO... SOLO BINDEO PARA LINKEAR
@@ -30,7 +32,9 @@ class GenerarEquiposPage extends WebPage {
 	def agregarCondiciones(Form<Partido> parent) {
 		parent.addChild(new DropDownChoice<DistribuidorDeEquipos>("distribucionEquipos") => [
 				choices = loadableModel([|DistribuidorDeEquipos.home.allInstances])]
-				)		
+				)	
+				
+		parent.addChild(new XButton("generarEquiposTentativos").onClick=[|partido.generarEquiposTentativos])			
 	}
 	
 	
