@@ -35,9 +35,17 @@ class BuscarJugadorPage extends WebPage{
 		lista.populateItem = [ jug |
 			jug.model = jug.modelObject.asCompoundModel
 			jug.addChild(new Label("nombre"))
-			jug.addChild(new Label("apodo"))]
+			jug.addChild(new Label("apodo"))
+			jug.addChild(new Label("handicap"))
+			jug.addChild(new XButton("ver").onClick = [|verJugador()]
+			)]
 			parent.addChild(lista)
 			
+	}
+	
+	def verJugador() {
+		volver()
+		/* debiera ser información de jugador */
 	}
 	
 	def agregarAcciones(Form<BuscadorJugadores> parent) {
