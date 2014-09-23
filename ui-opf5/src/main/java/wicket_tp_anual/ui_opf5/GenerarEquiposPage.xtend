@@ -3,10 +3,13 @@ package wicket_tp_anual.ui_opf5
 import entrega4.reentrega.divisor.DistribuidorDeEquipos
 import entrega4.reentrega.ordenamiento.OrdenamientoPorHandicap
 import org.apache.wicket.markup.html.WebPage
+import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.form.DropDownChoice
 import org.apache.wicket.markup.html.form.Form
 import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import org.uqbar.wicket.xtend.XButton
+import org.uqbar.wicket.xtend.XListView
+import principales.Jugador
 import principales.Partido
 
 class GenerarEquiposPage extends WebPage {
@@ -39,7 +42,14 @@ class GenerarEquiposPage extends WebPage {
 	
 	
 	def agregarEquipos(Form<Partido> parent) {
-		parent.addChild(new XButton("verJugador").onClick=[|verJugador])
+		val equipo1 = new XListView("equipo1")
+		equipo1.populateItem = [ item |
+			item.model = item.modelObject.asCompoundModel
+			item.addChild(new Label("nombre"))
+//			parent.addChild(new XButton("verJugador").onClick=[|verJugador(item.modelObject)])
+		]
+		parent.addChild(equipo1)
+		
 	}
 	
 	
@@ -47,7 +57,7 @@ class GenerarEquiposPage extends WebPage {
 		parent.addChild(new XButton("volver").onClick=[|volver]);
 	}
 	
-	def verJugador() {
+	def verJugador(Jugador jugador) {
 		responsePage = new InfoJugadorPage(this)
 	}
 	

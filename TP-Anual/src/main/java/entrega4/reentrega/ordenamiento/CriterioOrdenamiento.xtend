@@ -1,9 +1,10 @@
 package entrega4.reentrega.ordenamiento
 
+import java.io.Serializable
 import java.util.List
 import principales.Jugador
 
-abstract class CriterioOrdenamiento {
+abstract class CriterioOrdenamiento implements Serializable{
 	
 	def ordenar(List <Jugador> inscriptos) {
 		inscriptos.sortBy(calcularValor()).clone.reverse

@@ -1,11 +1,12 @@
 package entrega1.tipoInscripcion
 
 import excepciones.entrega1.InscripcionRechazadaException
+import java.io.Serializable
 import principales.Inscripcion
 import principales.Jugador
 import principales.Partido
 
-abstract class TipoInscripcion {
+abstract class TipoInscripcion implements Serializable {
 	@Property int prioridad
 	
 	def void inscribirA(Jugador jugador, Partido partido, Inscripcion inscripcion){

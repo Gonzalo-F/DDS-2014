@@ -1,8 +1,9 @@
 package principales
 
 import entrega1.tipoInscripcion.TipoInscripcion
+import java.io.Serializable
 
-class Inscripcion {
+class Inscripcion implements Serializable {
 	@Property TipoInscripcion tipo
 	@Property Partido partido
 	@Property Jugador jugador
