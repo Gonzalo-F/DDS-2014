@@ -39,7 +39,7 @@ class InfoJugadorPage extends WebPage {
 		parent.addChild(new LabelJugador("handicap", jugador))
 		parent.addChild(new Label("promedioUltimoPartido"))
 		parent.addChild(new LabelJugador("promedioTotal", jugador))
-		parent.addChild(new LabelJugador("edad",jugador))
+		parent.addChild(new LabelJugador("nacimiento",jugador))
 			val lista = new GrillaJugadores("amigos")
 			lista.populateItem = [ jug |
 				jug.model = jug.modelObject.asCompoundModel

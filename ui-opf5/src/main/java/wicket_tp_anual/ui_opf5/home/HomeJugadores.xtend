@@ -1,7 +1,6 @@
 package wicket_tp_anual.ui_opf5.home
 
 import entrega1.tipoInscripcion.InscripcionEstandar
-import entrega3.Calificacion
 import java.util.ArrayList
 import org.apache.commons.collections15.Predicate
 import org.uqbar.commons.model.CollectionBasedHome
@@ -9,6 +8,7 @@ import org.uqbar.commons.utils.ApplicationContext
 import org.uqbar.commons.utils.Observable
 import principales.Jugador
 import principales.Partido
+import org.joda.time.LocalDate
 
 @Observable
 class HomeJugadores extends CollectionBasedHome<Jugador> {
@@ -79,7 +79,8 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 	
 	def create(int edad, String nombre, String apodo, Double handicap){
 		var jugadorEstandar = new Jugador(edad,nombre,apodo)
-		jugadorEstandar.handicap= handicap
+		jugadorEstandar.handicap= handicap		
+		jugadorEstandar.nacimiento = new LocalDate()
 		inscribir(jugadorEstandar,getPartido("La canchita de Ramon (31092014 - 23)"))
 		this.create(jugadorEstandar)
 	}
