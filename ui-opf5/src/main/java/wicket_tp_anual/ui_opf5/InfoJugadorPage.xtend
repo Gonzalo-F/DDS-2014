@@ -36,8 +36,9 @@ class InfoJugadorPage extends WebPage {
 	def agregarDatos(Form<Jugador> parent) {
 		parent.addChild(new LabelJugador("nombre", jugador))
 		parent.addChild(new LabelJugador("apodo", jugador))
-		parent.addChild(new LabelJugador("promedioTotal", jugador))
 		parent.addChild(new LabelJugador("handicap", jugador))
+		parent.addChild(new LabelJugador("promedioTotal", jugador))
+		parent.addChild(new LabelJugador("edad",jugador))
 			val lista = new GrillaJugadores("amigos")
 			lista.populateItem = [ jug |
 				jug.model = jug.modelObject.asCompoundModel
