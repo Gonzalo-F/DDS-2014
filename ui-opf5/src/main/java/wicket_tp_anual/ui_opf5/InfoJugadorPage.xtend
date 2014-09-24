@@ -5,6 +5,7 @@ import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.form.Form
 import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import org.uqbar.wicket.xtend.XButton
+import org.uqbar.wicket.xtend.XListView
 import principales.Jugador
 import wicket_tp_anual.ui_opf5.BuscadorModel.LabelJugador
 
@@ -37,17 +38,25 @@ class InfoJugadorPage extends WebPage {
 		parent.addChild(new LabelJugador("apodo", jugador))
 		parent.addChild(new LabelJugador("promedioTotal", jugador))
 		parent.addChild(new LabelJugador("handicap", jugador))
-		val lista = new GrillaJugadores("amigos")
-		lista.populateItem = [ jug |
-			jug.model = jug.modelObject.asCompoundModel
-			jug.addChild(new LabelJugador("nombre",jug.modelObject))
-			jug.addChild(new LabelJugador("apodo", jug.modelObject))
-			jug.addChild(new LabelJugador("promedioTotal", jug.modelObject))
-			jug.addChild(new LabelJugador("handicap", jug.modelObject))
-			jug.addChild(new XButton("ver").onClick = [|verJugador(jug.modelObject)]
-			)]
-		
-			parent.addChild(lista)
+			val lista = new GrillaJugadores("amigos")
+			lista.populateItem = [ jug |
+				jug.model = jug.modelObject.asCompoundModel
+				jug.addChild(new LabelJugador("nombre",jug.modelObject))
+				jug.addChild(new LabelJugador("apodo", jug.modelObject))
+				jug.addChild(new LabelJugador("promedioTotal", jug.modelObject))
+				jug.addChild(new LabelJugador("handicap", jug.modelObject))
+				jug.addChild(new XButton("ver").onClick = [|verJugador(jug.modelObject)]
+				)]
+		parent.addChild(lista)
+			val infracciones = new XListView("penalizacionesCometidas")
+			infracciones.populateItem = [inf |
+				inf.model = inf.modelObject.asCompoundModel
+				inf.addChild(new Label("fecha"))
+				inf.addChild(new Label("motivo"))
+				inf.addChild(new Label("partido"))
+			]
+		parent.addChild(infracciones)
+			
 	}
 		
 	def verJugador(Jugador jugadorSeleccionado) {
