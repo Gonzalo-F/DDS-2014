@@ -19,5 +19,12 @@
 			<artifactId>arena-jface</artifactId>
 			<version>3.3-SNAPSHOT</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.4</version>
+		</dependency>
+		
 	</dependencies>
  </project>
