@@ -57,6 +57,10 @@ class BuscarJugadorPage extends WebPage{
 		buscarBoton.onClick = [| buscador.search ]
 		parent.addChild(buscarBoton)
 		
+		parent.addChild(new XButton("limpiar")
+			.onClick = [| buscador.clear ]
+		)
+		
 		val volverBoton= new XButton("volver")
 		volverBoton.onClick= [|volver()]
 		parent.addChild(volverBoton)

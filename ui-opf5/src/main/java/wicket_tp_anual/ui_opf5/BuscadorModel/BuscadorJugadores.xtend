@@ -25,6 +25,15 @@ class BuscadorJugadores implements Serializable{
 		
 	}
 	
+	def void clear() {
+		nombre = null
+		apodo = null
+		handicap = null
+		promedioDesde = null
+		promedioHasta = null
+		nacimiento = null
+	}
+	
 	def HomeJugadores getHomeJugadores() {
 		ApplicationContext::instance.getSingleton(typeof(Jugador))
 	}
