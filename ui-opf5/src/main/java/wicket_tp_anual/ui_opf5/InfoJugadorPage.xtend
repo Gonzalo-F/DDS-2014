@@ -37,6 +37,7 @@ class InfoJugadorPage extends WebPage {
 		parent.addChild(new LabelJugador("nombre", jugador))
 		parent.addChild(new LabelJugador("apodo", jugador))
 		parent.addChild(new LabelJugador("handicap", jugador))
+		parent.addChild(new Label("promedioUltimoPartido"))
 		parent.addChild(new LabelJugador("promedioTotal", jugador))
 		parent.addChild(new LabelJugador("edad",jugador))
 			val lista = new GrillaJugadores("amigos")

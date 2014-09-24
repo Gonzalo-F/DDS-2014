@@ -18,6 +18,7 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 	}
 	
 	def init() {
+		//Creación de jugadores
 		this.create(20,"Emiliano","Emi",9.0)
 		this.create(21, "Lucas","Pugna",9.0)
 		this.create(20, "Gonzalo","Gonzo",2.0)
@@ -28,41 +29,45 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 		this.create(20, "Sebastian","Sebas",1.0)
 		this.create(23, "Fernando","Fer",1.9)
 		this.create(22, "Agustin","Toto",9.99)
+		
+		//Agrega amigos
 		getJugador("Emiliano").agregarAmigos(newArrayList("Lucas","Gonzalo"))
 		getJugador("Lucas").agregarAmigos(newArrayList("Emiliano","Fernando","Agustin"))
 		getJugador("Luciano").agregarAmigos(newArrayList("Tobias","Franco"))
 		getJugador("Rodrigo").agregarAmigos(newArrayList("Tobias","Sebastian","Fernando"))
 		getJugador("Gonzalo").agregarAmigos(newArrayList("Lucas","Emiliano","Fernando"))
 		getJugador("Agustin").agregarAmigos(newArrayList("Luciano"))
+		
+		//Agrega calificaciones
 		getJugador("Emiliano").calificarJugador("Lucas", 5)
 		getJugador("Gonzalo").calificarJugador("Lucas", 8)
 		getJugador("Luciano").calificarJugador("Lucas", 3)
-		getJugador("Lucas").setPromedioP()
 		getJugador("Emiliano").calificarJugador("Sebastian", 6)
 		getJugador("Lucas").calificarJugador("Sebastian", 4)
-		getJugador("Sebastian").setPromedioP()
 		getJugador("Emiliano").calificarJugador("Luciano", 9)
-		getJugador("Luciano").setPromedioP()
 		getJugador("Gonzalo").calificarJugador("Emiliano", 8)
 		getJugador("Franco").calificarJugador("Emiliano", 10)
-		getJugador("Emiliano").setPromedioP()
 		getJugador("Gonzalo").calificarJugador("Rodrigo", 2)
 		getJugador("Franco").calificarJugador("Rodrigo", 3)
-		getJugador("Rodrigo").setPromedioP()
 		getJugador("Gonzalo").calificarJugador("Tobias", 7)
-		getJugador("Tobias").setPromedioP()
 		getJugador("Tobias").calificarJugador("Gonzalo",10)
-		getJugador("Gonzalo").setPromedioP()
 		getJugador("Gonzalo").calificarJugador("Franco", 4)
 		getJugador("Rodrigo").calificarJugador("Franco", 9)
-		getJugador("Franco").setPromedioP()
-		getJugador("Rodrigo").calificarJugador("Fernando", 10)
-		getJugador("Fernando").setPromedioP()
 		getJugador("Rodrigo").calificarJugador("Agustin", 9)
-		getJugador("Agustin").setPromedioP()
+		getJugador("Rodrigo").calificarJugador("Fernando", 10)
 		
-
-	}	
+		//Setea promedios totales
+		setearPromedios()
+		
+		//Asigna ultimos partidos jugados
+		getJugador("Emiliano").ultimoPartidoJugado = getPartido("La canchita de Ramon (31092014 - 23)")
+		
+	
+	}
+	
+	def setearPromedios() {
+		allInstances.forEach[jug | jug.setPromedioP()]
+	}
 		
 	def calificarJugador(Jugador jugador, String jugador1, int puntaje){
 		jugador.calificar(getPartido("La canchita de Ramon (31092014 - 23)"), this.getJugador(jugador1), puntaje, "Un comentario")
