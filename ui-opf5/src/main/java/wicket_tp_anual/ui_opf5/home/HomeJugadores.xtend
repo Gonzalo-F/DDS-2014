@@ -110,11 +110,11 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 		typeof(Jugador)
 	}
 	
-	def search(String apodo, String nombre, Double handicap, Double promedioDesde, Double promedioHasta, LocalDate nacimiento) {
+	def search(String apodo, String nombre, Double handicap, String selectorHandicap, Double promedioDesde, Double promedioHasta, LocalDate nacimiento) {
 		allInstances.filter[jug|
 			this.match(apodo, jug.getApodo) &&
 			this.matchParcial(nombre, jug.getNombre) &&
-			this.matchHandicap(handicap,jug.getHandicap) &&
+			this.matchHandicap(handicap, selectorHandicap, jug.getHandicap) &&
 			this.matchPromedio(promedioDesde, promedioHasta, jug.promedioTotal) &&
 			this.matchNacimiento(nacimiento, jug.nacimiento)
 		].toList
@@ -135,10 +135,17 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 		(desde <= promedio) && (promedio <= hasta) 
 	}
 	
-	def matchHandicap(Double hi, Double hr) {
-		if (hi == null) {return true}
-		if (hr == null) {return false}
-		hr > hi
+	def matchHandicap(Double hi, String selector, Double hr) {
+		if(selector == "Desde"){
+			if (hi == null) {return true}
+			if (hr == null) {return false}
+			hr > hi			
+		}
+		else{
+			if (hi == null) {return true}
+			if (hr == null) {return false}
+			hr < hi	
+		}
 		
 	}
 	

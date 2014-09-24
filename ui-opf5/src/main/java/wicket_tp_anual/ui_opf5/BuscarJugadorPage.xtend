@@ -13,6 +13,7 @@ import org.apache.wicket.markup.html.basic.Label
 import wicket_tp_anual.ui_opf5.BuscadorModel.LabelJugador
 import principales.Jugador
 import org.joda.time.LocalDate
+import org.apache.wicket.markup.html.form.DropDownChoice
 
 class BuscarJugadorPage extends WebPage{
 	
@@ -78,6 +79,8 @@ class BuscarJugadorPage extends WebPage{
 		parent.addChild(new TextField<String>("nombre"))
 		parent.addChild(new TextField<String>("apodo"))
 		parent.addChild(new TextField<LocalDate>("nacimiento"))
+		parent.addChild(new DropDownChoice<String>("selectorHandicap")=> [
+				choices = #["Desde","Hasta"] ])
 		parent.addChild(new TextField<Integer>("handicap"))		
 			//var chkPd = new CheckBox("chkPromedioDesde")
 		var txtPd = new TextField<Double>("promedioDesde")

@@ -16,12 +16,13 @@ class BuscadorJugadores implements Serializable{
 	@Property Double promedioDesde
 	@Property Double promedioHasta
 	@Property LocalDate nacimiento
+	@Property String selectorHandicap
 	
 	@Property List<Jugador> resultados
 	
 	def search(){
 		resultados = new ArrayList<Jugador>
-		resultados = getHomeJugadores().search(getApodo, getNombre, getHandicap, promedioDesde, promedioHasta, getNacimiento)
+		resultados = getHomeJugadores().search(getApodo, getNombre, getHandicap, selectorHandicap, promedioDesde, promedioHasta, getNacimiento)
 		
 	}
 	
@@ -32,6 +33,7 @@ class BuscadorJugadores implements Serializable{
 		promedioDesde = null
 		promedioHasta = null
 		nacimiento = null
+		selectorHandicap = null
 	}
 	
 	def HomeJugadores getHomeJugadores() {
