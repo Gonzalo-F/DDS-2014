@@ -119,29 +119,25 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 	}
 	
 	def matchPromedio(Double desde, Double hasta, Double promedio) {
-		if (desde == null || hasta == null) {return true}
-		if (promedio == null) { return false}
-		return (desde <= promedio) && (promedio <= hasta) 
+		if (desde == null && hasta == null) {return true}
+		if (promedio == null) {return false}
+		if (desde == null) {return promedio <= hasta}
+		if (hasta == null) {return promedio >= desde}
+		
+		(desde <= promedio) && (promedio <= hasta) 
 	}
 	
 	def matchHandicap(Double hi, Double hr) {
-		if (hi == null) {
-			return true
-		}
-		if (hr == null) {
-			return false
-		}
+		if (hi == null) {return true}
+		if (hr == null) {return false}
 		hr > hi
 		
 	}
 	
 	def matchParcial(Object nombreIngresado, Object nombreCompleto) {
-		if (nombreIngresado == null) {
-			return true
-		}
-		if (nombreCompleto == null) {
-			return false
-		}
+		if (nombreIngresado == null) {return true}
+		if (nombreCompleto == null) {return false}
+		
 		nombreCompleto.toString().toLowerCase().startsWith(nombreIngresado.toString().toLowerCase())
 	}
 	def match(Object expectedValue, Object realValue) {
