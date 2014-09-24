@@ -37,6 +37,7 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 		getJugador("Emiliano").calificarJugador("Lucas", 5)
 		getJugador("Gonzalo").calificarJugador("Lucas", 8)
 		getJugador("Luciano").calificarJugador("Lucas", 3)
+		getJugador("Lucas").setPromedioP()
 
 	}	
 		
