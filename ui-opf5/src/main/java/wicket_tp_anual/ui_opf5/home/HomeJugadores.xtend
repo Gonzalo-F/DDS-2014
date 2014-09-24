@@ -37,11 +37,9 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 		getJugador("Emiliano").calificarJugador("Lucas", 5)
 		getJugador("Gonzalo").calificarJugador("Lucas", 8)
 		getJugador("Luciano").calificarJugador("Lucas", 3)
-		getJugador("Lucas").setPromedioTotal()
-	}
-	
-	
-	
+
+	}	
+		
 	def calificarJugador(Jugador jugador, String jugador1, int puntaje){
 		jugador.calificar(getPartido("La canchita de Ramon (31092014 - 23)"), this.getJugador(jugador1), puntaje, "Un comentario")
 	}
@@ -83,7 +81,7 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 	}
 	
 	def search(String apodo, String nombre, Double handicap, Double promedio) {
-		allInstances.filter[jug|this.match(apodo, jug.getApodo) && this.matchParcial(nombre, jug.getNombre) && this.matchDouble(handicap,jug.getHandicap) && this.matchDouble(promedio, jug.setPromedioTotal)].toList
+		allInstances.filter[jug|this.match(apodo, jug.getApodo) && this.matchParcial(nombre, jug.getNombre) && this.matchDouble(handicap,jug.getHandicap) && this.matchDouble(promedio, jug.setPromedioP)].toList
 	}
 	
 	def matchDouble(Double hi, Double hr) {
