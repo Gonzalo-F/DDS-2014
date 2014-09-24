@@ -81,7 +81,7 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 	}
 	
 	def search(String apodo, String nombre, Double handicap, Double promedio) {
-		allInstances.filter[jug|this.match(apodo, jug.getApodo) && this.matchParcial(nombre, jug.getNombre) && this.matchDouble(handicap,jug.getHandicap) && this.matchDouble(promedio, jug.setPromedioP)].toList
+		allInstances.filter[jug|this.match(apodo, jug.getApodo) && this.matchParcial(nombre, jug.getNombre) && this.matchDouble(handicap,jug.getHandicap) && this.matchDouble(promedio, jug.promedioTotal)].toList
 	}
 	
 	def matchDouble(Double hi, Double hr) {
