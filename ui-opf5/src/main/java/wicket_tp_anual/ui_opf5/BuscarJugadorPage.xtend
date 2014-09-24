@@ -12,6 +12,7 @@ import org.uqbar.wicket.xtend.XListView
 import org.apache.wicket.markup.html.basic.Label
 import wicket_tp_anual.ui_opf5.BuscadorModel.LabelJugador
 import principales.Jugador
+import org.joda.time.LocalDate
 
 class BuscarJugadorPage extends WebPage{
 	
@@ -72,7 +73,8 @@ class BuscarJugadorPage extends WebPage{
 	def agregarFiltrosBusqueda(Form<BuscadorJugadores> parent) {
 		parent.addChild(new TextField<String>("nombre"))
 		parent.addChild(new TextField<String>("apodo"))
-		parent.addChild(new TextField<Integer>("handicap"))
+		parent.addChild(new TextField<LocalDate>("nacimiento"))
+		parent.addChild(new TextField<Integer>("handicap"))		
 			//var chkPd = new CheckBox("chkPromedioDesde")
 		var txtPd = new TextField<Double>("promedioDesde")
 			//txtPd.setEnabled(chkPd.modelObject)
