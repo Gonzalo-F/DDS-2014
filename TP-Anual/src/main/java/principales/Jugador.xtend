@@ -20,6 +20,7 @@ class Jugador extends Entity implements Cloneable{
 	@Property List<Penalizacion> penalizacionesCometidas = new ArrayList()
 	@Property Partido ultimoPartidoJugado
 	@Property Double promedioTotal
+	@Property Double promedioUltimoPartido
 
 	new(int edad, String nombre, String apodo) {
 		this.edad = edad
@@ -81,14 +82,13 @@ class Jugador extends Entity implements Cloneable{
 	def promedioUltimoPartido() {
 		var ArrayList<Calificacion> c = new ArrayList()
 
-		/*Filter "manual" */
 		for (i : 1 .. getListaDeCalificaciones.size) {
 			var calificacion = getListaDeCalificaciones.get(i)
 			if (calificacion.getPartido == getUltimoPartidoJugado) {
 				c.add(calificacion)
 			}
 		}
-		return this.promedioCalificaciones(c, c.size)
+		promedioUltimoPartido = promedioCalificaciones(c, c.size)
 
 	}
 	
