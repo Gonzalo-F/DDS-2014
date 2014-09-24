@@ -18,7 +18,7 @@ class BuscadorJugadores implements Serializable{
 	
 	def search(){
 		resultados = new ArrayList<Jugador>
-		resultados = getHomeJugadores().search(getApodo, getNombre, getHandicap, promedioTotal)
+		resultados = getHomeJugadores().search(getApodo, getNombre, getHandicap, getPromedioTotal)
 		
 	}
 	

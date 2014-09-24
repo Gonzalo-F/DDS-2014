@@ -29,7 +29,7 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 		this.create(23, "Fernando","Fer",1.9)
 		this.create(22, "Agustin","Toto",9.99)
 		getJugador("Emiliano").agregarAmigos(newArrayList("Lucas","Gonzalo"))
-		getJugador("Lucas").agregarAmigos(newArrayList("Emiliano","Fernando","Toto"))
+		getJugador("Lucas").agregarAmigos(newArrayList("Emiliano","Fernando","Agustin"))
 		getJugador("Luciano").agregarAmigos(newArrayList("Tobias","Franco"))
 		getJugador("Rodrigo").agregarAmigos(newArrayList("Tobias","Sebastian","Fernando"))
 		getJugador("Gonzalo").agregarAmigos(newArrayList("Lucas","Emiliano","Fernando"))
@@ -83,10 +83,10 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 	}
 	
 	def search(String apodo, String nombre, Double handicap, Double promedio) {
-		allInstances.filter[jug|this.match(apodo, jug.getApodo) && this.matchParcial(nombre, jug.getNombre) && this.handicap(handicap,jug.getHandicap) && this.handicap(promedio, jug.promedioTotal)].toList
+		allInstances.filter[jug|this.match(apodo, jug.getApodo) && this.matchParcial(nombre, jug.getNombre) && this.matchDouble(handicap,jug.getHandicap) && this.matchDouble(promedio, jug.setPromedioTotal)].toList
 	}
 	
-	def handicap(Double hi, Double hr) {
+	def matchDouble(Double hi, Double hr) {
 		if (hi == null) {
 			return true
 		}
