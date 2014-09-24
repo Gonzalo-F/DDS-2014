@@ -29,7 +29,7 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 		this.create(23, "Fernando","Fer",1.9)
 		this.create(22, "Agustin","Toto",9.99)
 		getJugador("Emiliano").agregarAmigos(newArrayList("Lucas","Gonzalo"))
-		getJugador("Lucas").agregarAmigos(newArrayList("Emiliano","Fernando","Toto"))
+		getJugador("Lucas").agregarAmigos(newArrayList("Emiliano","Fernando","Agustin"))
 		getJugador("Luciano").agregarAmigos(newArrayList("Tobias","Franco"))
 		getJugador("Rodrigo").agregarAmigos(newArrayList("Tobias","Sebastian","Fernando"))
 		getJugador("Gonzalo").agregarAmigos(newArrayList("Lucas","Emiliano","Fernando"))
