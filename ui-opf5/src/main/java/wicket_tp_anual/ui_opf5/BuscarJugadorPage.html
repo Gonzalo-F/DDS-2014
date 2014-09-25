@@ -20,11 +20,11 @@
 </head>
 <body style="background: #F7F8E0">
 	
-
+<div class="container">
 		<form wicket:id="buscarJugadoresForm" class="form-horizontal">
 
 			<div>
-				<table>
+				<table >
 				<tr>
 					<td><label>Por nombre
 						(comienza con)</label></td>
@@ -68,7 +68,7 @@
 				<button wicket:id="limpiar">Limpiar</button>	
 				
 			<button wicket:id="volver" >Volver al menu principal</button>
-			
+			<td>
 			<table class="table table-striped table-bordered table-condensed">
            		<thead>
 	           		<tr>
@@ -80,8 +80,7 @@
 	               		
 	               	</tr>
 	            </thead>
-				<tbody>
-	               	<tr wicket:id="resultados">
+				              	<tr wicket:id="resultados">
 	                   	<td>
 	                   	    <span wicket:id= "nombre">nombre</span> 
 	               	    </td> 
@@ -98,13 +97,15 @@
 	           	        	<button wicket:id="ver">Ver m&aacutes</button>
 	           	        </td>
 	               	</tr>
-               	</tbody>
+	               	
+               	
            	</table>
+           	</td>
 			
 			</div>
 		
 			
 		</form>
-
+</div>
 </body>
 </html>
