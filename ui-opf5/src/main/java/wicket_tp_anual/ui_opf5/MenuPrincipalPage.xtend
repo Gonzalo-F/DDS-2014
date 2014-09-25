@@ -12,20 +12,21 @@ import wicket_tp_anual.ui_opf5.appModel.OrganizadorPF5
 class MenuPrincipalPage extends WebPage {
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 	var OrganizadorPF5 opf5	
+
 	new() {
-		this.opf5= new OrganizadorPF5()
-	val Form<OrganizadorPF5> mainForm = new Form<OrganizadorPF5>("buscarJugadoresForm", new CompoundPropertyModel<OrganizadorPF5>(this.opf5))	
-	agregarAcciones(mainForm)
+		this.opf5 = new OrganizadorPF5()
+		val mainForm = new Form<OrganizadorPF5>("buscarJugadoresForm", new CompoundPropertyModel<OrganizadorPF5>(this.opf5))	
+		agregarAcciones(mainForm)
 	
-	this.addChild(mainForm)
+		this.addChild(mainForm)
 	}
 	
 	def agregarAcciones(Form<OrganizadorPF5> parent){
-		parent.addChild(new XButton("buscarJugadores").onClick= [|this.abrirBuscarJugador()])
+		parent.addChild(new XButton("buscarJugadores").onClick= [|this.abrirBuscarJugador])
 		parent.addChild(new XButton("generarEquipos").onClick = [|this.abrirGenerarEquipos])
 		parent.addChild(new DropDownChoice<Partido>("partidoSeleccionado") => [
-			choices = loadableModel([| Partido.home.allInstances ])
-			choiceRenderer = choiceRenderer([Partido m| m.getDescripcion ])
+			choices = loadableModel[| Partido.home.allInstances ]
+			choiceRenderer = choiceRenderer[Partido m| m.descripcion ]
 		]) 
 		
 	}
