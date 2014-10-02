@@ -17,6 +17,7 @@ class BuscadorJugadores implements Serializable{
 	@Property Double promedioHasta
 	@Property LocalDate nacimiento
 	@Property String selectorHandicap
+	@Property String selectorInfracciones
 	
 	@Property List<Jugador> resultados
 	
@@ -34,6 +35,7 @@ class BuscadorJugadores implements Serializable{
 		promedioHasta = null
 		nacimiento = null
 		selectorHandicap = null
+		selectorInfracciones=null
 	}
 	
 	def HomeJugadores getHomeJugadores() {

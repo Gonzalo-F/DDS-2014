@@ -57,14 +57,19 @@
 					<td><input type="checkbox">Hasta</td>
 					<td><input wicket:id="promedioHasta" type="text"/></td></tr>
 					<tr>
-					<td> <label>Por infracciones:</label>
-					<select>
+					<td> <label>Por infracciones:</label></td>
+					</tr>
+					<tr>
+					<td>
+					<select wicket:id="selectorInfracciones">
         				<option>con infracciones</option>
         				<option>sin infracciones</option>
         				<option>todos</option>
        				 </select>
-					</td>
-					</tr>
+       				 </td>
+       				 </tr>
+       				 
+					
 				</table>
 				
 				<button wicket:id="buscar" >Buscar</button>	
