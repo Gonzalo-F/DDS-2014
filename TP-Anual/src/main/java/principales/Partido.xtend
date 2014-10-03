@@ -15,9 +15,9 @@ import org.uqbar.commons.model.Entity
 import entrega4.reentrega.ordenamiento.OrdenamientoCalificacionUltimos2Partidos
 
 class Partido extends Entity{
-	@Property String lugar=""
-	@Property int hora=0
-	@Property int fecha=0
+	@Property String lugar
+	@Property int hora
+	@Property int fecha
 
 	/* Fecha y hora deber�an ser Date */
 	@Property ArrayList<Inscripcion> inscripciones = new ArrayList
