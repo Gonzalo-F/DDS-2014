@@ -8,7 +8,6 @@ import org.apache.wicket.markup.html.WebPage
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.form.DropDownChoice
 import org.apache.wicket.markup.html.form.Form
-import org.apache.wicket.model.CompoundPropertyModel
 import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import org.uqbar.wicket.xtend.XButton
 import org.uqbar.wicket.xtend.XListView
@@ -102,6 +101,11 @@ class GenerarEquiposPage extends WebPage {
 			confirmacionExitosa()
 		])
 		parent.addChild(new XButton("volver").onClick=[|volver])
+		parent.addChild(new XButton("elegirPartido").onClick=[|recargarPagina])
+	}
+	
+	def recargarPagina() {
+		responsePage=this
 	}
 	
 	def ps() {

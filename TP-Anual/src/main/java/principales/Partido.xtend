@@ -15,9 +15,9 @@ import org.uqbar.commons.model.Entity
 import entrega4.reentrega.ordenamiento.OrdenamientoCalificacionUltimos2Partidos
 
 class Partido extends Entity{
-	@Property String lugar
-	@Property int hora
-	@Property int fecha
+	@Property String lugar = "Lugar"
+	@Property int hora = 0000
+	@Property int fecha = 00000000
 
 	/* Fecha y hora deber�an ser Date */
 	@Property ArrayList<Inscripcion> inscripciones = new ArrayList
@@ -26,7 +26,7 @@ class Partido extends Entity{
 	//@Property OrdenLista orden
 	@Property List<Jugador> equipo1
 	@Property List<Jugador> equipo2
-	@Property OrdenamientoMix criterioOrdenamiento
+	@Property OrdenamientoMix criterioOrdenamiento = new OrdenamientoMix
 	@Property DistribuidorDeEquipos distribucionEquipos
 	
 	@Property Boolean abierto = true
