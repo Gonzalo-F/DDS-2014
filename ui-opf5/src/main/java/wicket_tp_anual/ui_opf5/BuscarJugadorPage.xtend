@@ -10,6 +10,7 @@ import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import org.uqbar.wicket.xtend.XButton
 import principales.Jugador
 import wicket_tp_anual.ui_opf5.BuscadorModel.BuscadorJugadores
+import org.apache.wicket.markup.html.panel.FeedbackPanel
 
 class BuscarJugadorPage extends WebPage implements VisualizarJugadoresPage {
 
@@ -68,7 +69,7 @@ class BuscarJugadorPage extends WebPage implements VisualizarJugadoresPage {
 		parent.addChild(new DropDownChoice<String>("selectorHandicap") => [choices = #["Desde", "Hasta"]])
 		parent.addChild(new TextField<Integer>("handicap"))
 		parent.addChild(new DropDownChoice<String>("selectorInfracciones") => [choices = #["Con Infracciones", "Sin infracciones","Todos"]])
-
+		parent.addChild(new FeedbackPanel("error"))
 		//var chkPd = new CheckBox("chkPromedioDesde")
 		var txtPd = new TextField<Double>("promedioDesde")
 
