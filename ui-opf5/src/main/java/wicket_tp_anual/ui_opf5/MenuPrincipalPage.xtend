@@ -24,11 +24,6 @@ class MenuPrincipalPage extends WebPage {
 	def agregarAcciones(Form<OrganizadorPF5> parent){
 		parent.addChild(new XButton("buscarJugadores").onClick= [|this.abrirBuscarJugador])
 		parent.addChild(new XButton("generarEquipos").onClick = [|this.abrirGenerarEquipos])
-		parent.addChild(new DropDownChoice<Partido>("partidoSeleccionado") => [
-			choices = loadableModel[| Partido.home.allInstances ]
-			choiceRenderer = choiceRenderer[Partido m| m.descripcion ]
-		]) 
-		
 	}
 	
 	def abrirBuscarJugador() {
@@ -37,6 +32,6 @@ class MenuPrincipalPage extends WebPage {
 	}
 	
 	def abrirGenerarEquipos() {
-		responsePage = new GenerarEquiposPage(this,opf5.partidoSeleccionado)
+		responsePage = new GenerarEquiposPage(this)
 	}
 }

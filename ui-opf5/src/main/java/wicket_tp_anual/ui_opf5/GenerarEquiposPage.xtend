@@ -3,12 +3,12 @@ package wicket_tp_anual.ui_opf5
 import entrega4.reentrega.divisor.DistribuidorDeEquipos
 import entrega4.reentrega.ordenamiento.CriterioOrdenamiento
 import entrega4.reentrega.ordenamiento.OrdenamientoCalificacionUltimos2Partidos
-import entrega4.reentrega.ordenamiento.OrdenamientoMix
 import entrega4.reentrega.ordenamiento.OrdenamientoPorHandicap
 import org.apache.wicket.markup.html.WebPage
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.form.DropDownChoice
 import org.apache.wicket.markup.html.form.Form
+import org.apache.wicket.model.CompoundPropertyModel
 import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import org.uqbar.wicket.xtend.XButton
 import org.uqbar.wicket.xtend.XListView
@@ -20,30 +20,35 @@ class GenerarEquiposPage extends WebPage {
 		
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 	private final MenuPrincipalPage mainPage
-	@Property var Partido partido
+	@Property var Generador generador 
 	
-	new(MenuPrincipalPage mp,Partido partidoSeleccionado) {
+	new(MenuPrincipalPage mp) {
 		this.mainPage=mp
-		this.partido=partidoSeleccionado
-		partido.criterioOrdenamiento = new OrdenamientoMix
-		
-	val Form<Partido> generadorForm = new Form<Partido>("generador",this.partido.asCompoundModel)
-		generadorForm.addChild(new Label("descripcion"))
+		this.generador= new Generador
+				
+	val Form<Generador> generadorForm = new Form<Generador>("generadorForm", generador.asCompoundModel)	
 		agregarCondiciones(generadorForm)
 		agregarEquipos(generadorForm)
 		agregarAcciones(generadorForm)
-	
+		generadorForm.addChild(new Label("partidoSeleccionado.descripcion"))
+		
 	this.addChild(generadorForm)
 	
 	}
 	
-	def agregarCondiciones(Form<Partido> parent) {
-		parent.addChild(new DropDownChoice<DistribuidorDeEquipos>("distribucionEquipos") => [
+	def agregarCondiciones(Form<Generador> parent) {
+				
+		parent.addChild(new DropDownChoice<Partido>("partidoSeleccionado") => [
+			choices = loadableModel[| Partido.home.allInstances ]
+			choiceRenderer = choiceRenderer[Partido m| m.descripcion ]
+		]) 
+		
+		parent.addChild(new DropDownChoice<DistribuidorDeEquipos>("partidoSeleccionado.distribucionEquipos") => [
 				choices = loadableModel([|DistribuidorDeEquipos.home.allInstances])
 				choiceRenderer = choiceRenderer([DistribuidorDeEquipos m| m.descripcion ])]
 				)	
 				
-		val criteriosOrdenamiento = new XListView("criterioOrdenamiento.criterios")
+		val criteriosOrdenamiento = new XListView("partidoSeleccionado.criterioOrdenamiento.criterios")
 		criteriosOrdenamiento.populateItem = [ item |
 			item.model = item.modelObject.asCompoundModel
 			item.addChild(new Label("descripcion"))
@@ -55,24 +60,24 @@ class GenerarEquiposPage extends WebPage {
 		parent.addChild(new XButton("criterio2Calificaciones").onClick = [|agregarCriterio(new OrdenamientoCalificacionUltimos2Partidos)])
 				
 		parent.addChild(new XButton("generarEquiposTentativos") => [
-			setEnabled(partido.abierto)
-			onClick=[|partido.generarEquiposTentativos]
+			setEnabled(ps.abierto)
+			onClick=[|ps.generarEquiposTentativos]
 			
 		])		
 	}
 	
 	def removerCriterio(Object unCriterio) {
-		partido.criterioOrdenamiento.criterios.remove(unCriterio)
+		ps.criterioOrdenamiento.criterios.remove(unCriterio)
 	}
 	
 	
 	def agregarCriterio(CriterioOrdenamiento unCriterio) {
-	partido.criterioOrdenamiento.addCriterio(unCriterio)
+	ps.criterioOrdenamiento.addCriterio(unCriterio)
 	}
 	
-	def agregarEquipos(Form<Partido> parent) {
-		val equipo1 = listaDeJugadores("equipo1")
-		val equipo2 = listaDeJugadores("equipo2")
+	def agregarEquipos(Form<Generador> parent) {
+		val equipo1 = listaDeJugadores("partidoSeleccionado.equipo1")
+		val equipo2 = listaDeJugadores("partidoSeleccionado.equipo2")
 				
 		parent.addChild(equipo1)
 		parent.addChild(equipo2)
@@ -93,14 +98,18 @@ class GenerarEquiposPage extends WebPage {
 	
 	def agregarAcciones(Form parent) {
 		parent.addChild(new XButton("confirmarEquipos").onClick=[|
-			partido.cerrar
+			ps.cerrar
 			confirmacionExitosa()
 		])
 		parent.addChild(new XButton("volver").onClick=[|volver])
 	}
 	
+	def ps() {
+		return generador.partidoSeleccionado
+	}
+	
 	def confirmacionExitosa() {
-		responsePage = new GenerarEquiposPage(this.mainPage,this.partido)
+		responsePage = new GenerarEquiposPage(this.mainPage)
 	}
 	
 	def verJugador(Jugador jugadorSeleccionado) {
