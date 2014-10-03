@@ -23,7 +23,7 @@ class BuscadorJugadores implements Serializable{
 	
 	def search(){
 		resultados = new ArrayList<Jugador>
-		resultados = getHomeJugadores().search(getApodo, getNombre, getHandicap, selectorHandicap, promedioDesde, promedioHasta, getNacimiento)
+		resultados = getHomeJugadores().search(getApodo, getNombre, getHandicap, selectorHandicap, promedioDesde, promedioHasta, getNacimiento,selectorInfracciones)
 		
 	}
 	
@@ -35,6 +35,7 @@ class BuscadorJugadores implements Serializable{
 		promedioHasta = null
 		nacimiento = null
 		selectorHandicap = null
+		selectorInfracciones=null
 		selectorInfracciones=null
 	}
 	
