@@ -175,19 +175,16 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 
 	def matchInfracciones(String selector, List<Penalizacion> penalizaciones) {
 		val cantidad = penalizaciones.size
-		if (selector == "Todos") {
+		if (selector == "Con Infracciones") {
+			return cantidad > 0
+		}else{
+		if (selector == "Sin Infracciones"){
+			cantidad==0
+		} else{
 			return true
-		} else {
-			if (selector == "Sin infracciones" && cantidad == 0) {
-				return true
-			} else {
-				if (selector == "Con infracciones" && cantidad > 0) {
-					return true
-				} else {
-					return false
-				}
-			}
 		}
+	}
+	
 	}
 
 	def matchParcial(Object nombreIngresado, Object nombreCompleto) {

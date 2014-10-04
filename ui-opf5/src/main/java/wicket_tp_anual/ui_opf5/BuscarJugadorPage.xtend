@@ -68,7 +68,7 @@ class BuscarJugadorPage extends WebPage implements VisualizarJugadoresPage {
 		parent.addChild(new TextField<LocalDate>("nacimiento"))
 		parent.addChild(new DropDownChoice<String>("selectorHandicap") => [choices = #["Desde", "Hasta"]])
 		parent.addChild(new TextField<Integer>("handicap"))
-		parent.addChild(new DropDownChoice<String>("selectorInfracciones") => [choices = #["Con Infracciones", "Sin infracciones","Todos"]])
+		parent.addChild(new DropDownChoice<String>("selectorInfracciones") => [choices = #["Con Infracciones", "Sin infracciones"]])
 		parent.addChild(new FeedbackPanel("error"))
 		//var chkPd = new CheckBox("chkPromedioDesde")
 		var txtPd = new TextField<Double>("promedioDesde")
