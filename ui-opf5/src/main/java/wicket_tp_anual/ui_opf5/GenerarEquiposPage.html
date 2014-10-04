@@ -26,13 +26,20 @@
 <h1 align="center">
 			Generar equipos
 	</h1>
-<div>
 
-<form wicket:id="generador">
-	<h1 wicket:id="descripcion">descripcion</h1>
+<div>
+<form wicket:id="generadorForm">
+	<div>
+		<label>Partido:</label>
+		<select wicket:id="partidoSeleccionado">
+        	<option>criterio1</option>
+        </select>
+        <button wicket:id="elegirPartido">Elegir Partido</button>
+	</div>
+	 <h1 wicket:id="partidoSeleccionado.descripcion">descripcion</h1>
 	<div>
 		<label>Criterio de seleccion:</label>
-		<select wicket:id="distribucionEquipos">
+		<select wicket:id="partidoSeleccionado.distribucionEquipos">
         <option>criterio1</option>
         </select>
 	</div>
@@ -45,7 +52,7 @@
 	<tr>
 		<td>
 			<table class="table table-striped table-bordered table-condensed">
-				<tr wicket:id="criterioOrdenamiento.criterios">
+				<tr wicket:id="partidoSeleccionado.criterioOrdenamiento.criterios">
 					<td><label wicket:id="descripcion">criterio1</label></td>
 					<td><button wicket:id="remover">X</button></td>
 				</tr>
@@ -73,7 +80,7 @@
 	<tr>
 		<td>
 		<table class="table table-striped table-bordered table-condensed">
-			<tr wicket:id="equipo1">
+			<tr wicket:id="partidoSeleccionado.equipo1">
 				<td><label wicket:id="nombre">nomJugador</label></td>
 				<td><button wicket:id="verJugadorSeleccionado">Ver</button></td>
 			</tr>
@@ -81,7 +88,7 @@
 		</td>
 		<td>
 		<table class="table table-striped table-bordered table-condensed">
-			<tr wicket:id="equipo2">
+			<tr wicket:id="partidoSeleccionado.equipo2">
 				<td><label wicket:id="nombre">nomJugador</label></td>
 				<td><button wicket:id="verJugadorSeleccionado">Ver</button></td>
 			</tr>

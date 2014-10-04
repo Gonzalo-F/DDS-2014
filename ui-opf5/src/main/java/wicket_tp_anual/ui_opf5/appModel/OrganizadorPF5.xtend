@@ -4,5 +4,5 @@ import java.io.Serializable
 import principales.Partido
 
 class OrganizadorPF5 implements Serializable{
-	@Property Partido partidoSeleccionado
+//	@Property Partido partidoSeleccionado
 }
