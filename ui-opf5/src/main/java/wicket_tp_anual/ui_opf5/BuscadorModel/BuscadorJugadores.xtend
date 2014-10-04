@@ -7,6 +7,7 @@ import principales.Jugador
 import java.util.ArrayList
 import java.util.List
 import org.joda.time.LocalDate
+import java.util.Date
 
 class BuscadorJugadores implements Serializable{
 	
@@ -15,7 +16,7 @@ class BuscadorJugadores implements Serializable{
 	@Property Double handicap
 	@Property Double promedioDesde
 	@Property Double promedioHasta
-	@Property LocalDate nacimiento
+	@Property Date nacimiento
 	@Property String selectorHandicap
 	@Property String selectorInfracciones
 	

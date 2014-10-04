@@ -11,6 +11,8 @@ import principales.Partido
 import org.joda.time.LocalDate
 import java.util.List
 import entrega2.bajaJugador.Penalizacion
+import java.util.Date
+import java.text.SimpleDateFormat
 
 @Observable
 class HomeJugadores extends CollectionBasedHome<Jugador> {
@@ -83,7 +85,7 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 	def create(int edad, String nombre, String apodo, Double handicap) {
 		var jugadorEstandar = new Jugador(edad, nombre, apodo)
 		jugadorEstandar.handicap = handicap
-		jugadorEstandar.nacimiento = new LocalDate()
+		jugadorEstandar.nacimiento = this.stringToDate("10/07/1993")
 		inscribir(jugadorEstandar, getPartido("La canchita de Ramon (31092014 - 23)"))
 		this.create(jugadorEstandar)
 	}
@@ -113,7 +115,7 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 	}
 
 	def search(String apodo, String nombre, Double handicap, String selectorHandicap, Double promedioDesde,
-		Double promedioHasta, LocalDate nacimiento, String selectorInfracciones) {
+		Double promedioHasta, Date nacimiento, String selectorInfracciones) {
 		allInstances.filter [ jug |
 			this.match(apodo, jug.getApodo) && this.matchParcial(nombre, jug.getNombre) &&
 				this.matchHandicap(handicap, selectorHandicap, jug.getHandicap) &&
@@ -123,14 +125,14 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 		].toList
 	}
 
-	def matchNacimiento(LocalDate date, LocalDate date2) {
+	def matchNacimiento(Date date, Date date2) {
 		if (date == null) {
 			return true
 		}
 		if (date2 == null) {
 			return false
 		}
-		date.isBefore(date2)
+		date.before(date2)
 	}
 
 	def matchPromedio(Double desde, Double hasta, Double promedio) {
@@ -179,15 +181,15 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 			if (selector == "Sin infracciones" && cantidad == 0) {
 				return true
 			} else {
-			if (selector == "Con infracciones" && cantidad > 0) {
-				return true
-			}
-			return false
+				if (selector == "Con infracciones" && cantidad > 0) {
+					return true
+				} else {
+					return false
+				}
 			}
 		}
 	}
 
-	
 	def matchParcial(Object nombreIngresado, Object nombreCompleto) {
 		if (nombreIngresado == null) {
 			return true
@@ -207,6 +209,12 @@ class HomeJugadores extends CollectionBasedHome<Jugador> {
 			return false
 		}
 		realValue.toString().toLowerCase().contains(expectedValue.toString().toLowerCase())
+	}
+
+	def Date stringToDate(String fecha) {
+		val formatoFecha = new SimpleDateFormat("dd/mm/yyyy")
+		return formatoFecha.parse(fecha)
+
 	}
 
 }
