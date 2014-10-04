@@ -68,6 +68,7 @@ class BuscarJugadorPage extends WebPage implements VisualizarJugadoresPage {
 		parent.addChild(new TextField<LocalDate>("nacimiento"))
 		parent.addChild(new DropDownChoice<String>("selectorHandicap") => [choices = #["Desde", "Hasta"]])
 		parent.addChild(new TextField<Integer>("handicap"))
+		// no le pongo la opcion todos, porque a mi entender no tiene sentido ponerla (Nati)
 		parent.addChild(new DropDownChoice<String>("selectorInfracciones") => [choices = #["Con Infracciones", "Sin infracciones"]])
 		parent.addChild(new FeedbackPanel("error"))
 		//var chkPd = new CheckBox("chkPromedioDesde")
