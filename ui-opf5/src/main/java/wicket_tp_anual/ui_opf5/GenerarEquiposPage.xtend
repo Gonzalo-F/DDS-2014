@@ -14,12 +14,14 @@ import org.uqbar.wicket.xtend.XListView
 import principales.Jugador
 import principales.Partido
 import wicket_tp_anual.ui_opf5.BuscadorModel.LabelJugador
+import entrega4.reentrega.ordenamiento.OrnamientoNcalificaciones
 
 class GenerarEquiposPage extends WebPage {
 		
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 	private final MenuPrincipalPage mainPage
 	@Property var Generador generador 
+	var int cantidad
 	
 	new(MenuPrincipalPage mp) {
 		this.mainPage=mp
@@ -36,6 +38,7 @@ class GenerarEquiposPage extends WebPage {
 	}
 	
 	def agregarCondiciones(Form<Generador> parent) {
+		
 				
 		parent.addChild(new DropDownChoice<Partido>("partidoSeleccionado") => [
 			choices = loadableModel[| Partido.home.allInstances ]
@@ -57,10 +60,11 @@ class GenerarEquiposPage extends WebPage {
 		
 		parent.addChild(new XButton("criterioHandicap").onClick = [|agregarCriterio(new OrdenamientoPorHandicap)])
 		parent.addChild(new XButton("criterio2Calificaciones").onClick = [|agregarCriterio(new OrdenamientoCalificacionUltimos2Partidos)])
+		parent.addChild(new XButton("criterioNcalificaciones").onClick=[| agregarCriterio(new OrnamientoNcalificaciones())])
 				
 		parent.addChild(new XButton("generarEquiposTentativos") => [
 			setEnabled(ps.abierto)
-			onClick=[|ps.generarEquiposTentativos]
+			onClick=[|ps.generarEquiposTentativos(cantidad)]
 			
 		])		
 	}

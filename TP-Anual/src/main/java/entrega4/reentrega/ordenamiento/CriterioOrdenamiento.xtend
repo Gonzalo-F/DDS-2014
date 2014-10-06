@@ -10,10 +10,10 @@ abstract class CriterioOrdenamiento implements Serializable{
 //		overridean las subclases
 	}
 	
-	def ordenar(List <Jugador> inscriptos) {
-		inscriptos.sortBy(calcularValor()).clone.reverse
+	def ordenar(List <Jugador> inscriptos,int cantidad) {
+		inscriptos.sortBy(calcularValor(cantidad)).clone.reverse
 	}
 	
-	def (Jugador) => Double calcularValor()
+	def (Jugador) => Double calcularValor(int cantidad)
 		 
 }

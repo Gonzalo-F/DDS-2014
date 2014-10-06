@@ -97,9 +97,9 @@ class Partido extends Entity{
 		listaJugadores.subList(0, n)
 	}
 
-	def generarEquiposTentativos(){
+	def generarEquiposTentativos(int cant){
 		validarInscripciones
-		this.distribuirEquipos(this.ordenarEquipos)
+		this.distribuirEquipos(this.ordenarEquipos(cant))
 //		var List<Jugador> ordenados = orden.ordenarLista(this)
 //		division.dividirEquipos(ordenados, this)
 	}
@@ -119,8 +119,8 @@ class Partido extends Entity{
 		equipo2 = getDistribucionEquipos.equipo2(jugadores)
 	}
 	
-	def List<Jugador> ordenarEquipos() {
-		getCriterioOrdenamiento.ordenar(confirmados)
+	def List<Jugador> ordenarEquipos(int c) {
+		getCriterioOrdenamiento.ordenar(confirmados,c)
 	}
 
 	def notificarObservers((InscripcionObserver)=>void notificacion) {

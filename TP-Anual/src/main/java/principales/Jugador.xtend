@@ -106,4 +106,9 @@ class Jugador extends Entity implements Cloneable{
 	def setPromedioP(){
 		promedioTotal = promedioCalificaciones(getListaDeCalificaciones, getListaDeCalificaciones.size)
 	}
+	
+	def tenesCalificacionesSuficientes(int i) {
+		listaDeCalificaciones.size >= i
+	}
+	
 }

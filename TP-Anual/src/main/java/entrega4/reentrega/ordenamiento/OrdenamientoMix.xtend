@@ -11,9 +11,9 @@ class OrdenamientoMix extends CriterioOrdenamiento {
 	}
 
 
-	override calcularValor() {
+	override calcularValor(int cantidad) {
 		[ jugador |
-			criterios.fold(0d, [acum, criterio|acum + criterio.calcularValor().apply(jugador)]) / criterios.size
+			criterios.fold(0d, [acum, criterio|acum + criterio.calcularValor(cantidad).apply(jugador)]) / criterios.size
 		]
 	}
 	

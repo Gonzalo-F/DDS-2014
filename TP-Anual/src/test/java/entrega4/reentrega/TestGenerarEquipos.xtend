@@ -35,6 +35,7 @@ class TestGenerarEquipos {
 	Jugador eric
 	Jugador leo
 	Jugador ferme
+	int cantidad
 
 	@Before
 	def void init() {
@@ -63,7 +64,7 @@ class TestGenerarEquipos {
 	@Test
 	def pocosInscriptosNoGeneranEquipos() {
 		try {
-			partidoPocosJugadores.generarEquiposTentativos
+			partidoPocosJugadores.generarEquiposTentativos(cantidad)
 		} catch (PartidoSin10InscriptosNoPermiteValidarInscripcion e) {
 			return
 		}
@@ -84,7 +85,7 @@ class TestGenerarEquipos {
 		println("ordenamiento por handicap")
 		println(listadoOrdenadoPorHandicap(partido1))
 		Assert.assertArrayEquals(newArrayList(ferme, leo, sytek, roly, mike, rodri, lechu, pato, chicho, dodi),
-			partido1.ordenarEquipos)
+			partido1.ordenarEquipos(cantidad))
 	}
 	
 
@@ -95,7 +96,7 @@ class TestGenerarEquipos {
 		println("ordenamiento por ultimas 2 calificaciones")
 		println(listadoOrdenadoPorUltimas2Calificaciones(partido1))
 		Assert.assertArrayEquals(newArrayList(ferme, pato, lechu, roly, chicho, mike, sytek, rodri, dodi, leo),
-			partido1.ordenarEquipos)
+			partido1.ordenarEquipos(cantidad))
 	}
 	
 
@@ -107,9 +108,9 @@ class TestGenerarEquipos {
 		
 		println("******************************************")
 		println("ordenamiento por mix")
-		println(partido1.ordenarEquipos)
+		println(partido1.ordenarEquipos(cantidad))
 		Assert.assertArrayEquals(newArrayList(ferme, pato, roly, lechu, chicho, dodi, rodri, sytek, mike, leo),
-			partido1.ordenarEquipos)
+			partido1.ordenarEquipos(cantidad))
 	}
 
 	@Test
@@ -132,7 +133,7 @@ class TestGenerarEquipos {
 		partido1.distribucionEquipos = new DistribuidorEspecial // ordenamiento
 		cerrarPartido1()
 		try {
-			partido1.generarEquiposTentativos
+			partido1.generarEquiposTentativos(cantidad)
 		} catch (PartidoConEquiposGeneradosNoPuedeValidar e) {
 
 			return
@@ -165,16 +166,16 @@ class TestGenerarEquipos {
 	
 	def cerrarPartido1() {
 //		partido1.cerrar
-		partido1.generarEquiposTentativos
+		partido1.generarEquiposTentativos(cantidad)
 	}
 	
 	def listadoOrdenadoPorHandicap(Partido unPartido) {
-		unPartido.ordenarEquipos.map [ jugador |
+		unPartido.ordenarEquipos(cantidad).map [ jugador |
 			println("Jugador: " + jugador.nombre + " - calificacion: " + jugador.handicap)
 		]
 	}
 	def listadoOrdenadoPorUltimas2Calificaciones(Partido unPartido) {
-		unPartido.ordenarEquipos.map [ jugador |
+		unPartido.ordenarEquipos(cantidad).map [ jugador |
 			val misPuntajes = jugador.getPuntajes.clone.reverse.take(2).toList
 			val promedio = misPuntajes.fold(0d, [acum, puntaje|acum + puntaje]) / misPuntajes.size
 			println(
