@@ -15,7 +15,7 @@ class MenuPrincipalPage extends WebPage {
 
 	new() {
 		this.opf5 = new OrganizadorPF5()
-		val mainForm = new Form<OrganizadorPF5>("buscarJugadoresForm", new CompoundPropertyModel<OrganizadorPF5>(this.opf5))	
+		val mainForm = new Form<OrganizadorPF5>("mainForm", new CompoundPropertyModel<OrganizadorPF5>(this.opf5))	
 		agregarAcciones(mainForm)
 	
 		this.addChild(mainForm)
