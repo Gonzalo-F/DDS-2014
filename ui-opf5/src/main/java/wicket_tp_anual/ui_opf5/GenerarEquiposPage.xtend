@@ -123,22 +123,19 @@ class GenerarEquiposPage extends WebPage {
 			setEnabled(ps.abierto)
 			onClick=[|
 				ps.cerrar
-				confirmacionExitosa()
+				recargarPagina()
 			]
 		])
 		parent.addChild(new XButton("volver").onClick=[|volver])
 		parent.addChild(new XButton("elegirPartido").onClick=[|recargarPagina])
 	}
 	
-	def recargarPagina() {
-		responsePage=this
-	}
 	
 	def ps() {
 		return generador.partidoSeleccionado
 	}
 	
-	def confirmacionExitosa() {
+	def recargarPagina() {
 		responsePage = new GenerarEquiposPage(this.mainPage,this.generador)
 	}
 	
