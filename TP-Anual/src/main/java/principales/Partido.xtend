@@ -12,7 +12,7 @@ import java.util.ArrayList
 import java.util.Date
 import java.util.List
 import org.uqbar.commons.model.Entity
-import entrega4.reentrega.ordenamiento.OrdenamientoCalificacionUltimos2Partidos
+import org.uqbar.commons.model.UserException
 
 class Partido extends Entity{
 	@Property String lugar = "Lugar"
@@ -46,6 +46,15 @@ class Partido extends Entity{
 	
 	new() {
 
+	}
+	
+	def validarGeneracion() {
+		if (distribucionEquipos == null) {
+			throw new UserException("Debe seleccionar un criterio de distribución")
+		}
+		if (criterioOrdenamiento.criterios.size==0) {
+			throw new UserException("Debe seleccionar al menos un criterio de ordenamiento")
+		}
 	}
 
 	def getDescripcion(){

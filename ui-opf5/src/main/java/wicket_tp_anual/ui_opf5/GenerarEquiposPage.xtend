@@ -4,17 +4,18 @@ import entrega4.reentrega.divisor.DistribuidorDeEquipos
 import entrega4.reentrega.ordenamiento.CriterioOrdenamiento
 import entrega4.reentrega.ordenamiento.OrdenamientoCalificacionUltimos2Partidos
 import entrega4.reentrega.ordenamiento.OrdenamientoPorHandicap
+import entrega4.reentrega.ordenamiento.OrnamientoNcalificaciones
 import org.apache.wicket.markup.html.WebPage
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.form.DropDownChoice
 import org.apache.wicket.markup.html.form.Form
+import org.apache.wicket.markup.html.panel.FeedbackPanel
 import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import org.uqbar.wicket.xtend.XButton
 import org.uqbar.wicket.xtend.XListView
 import principales.Jugador
 import principales.Partido
 import wicket_tp_anual.ui_opf5.BuscadorModel.LabelJugador
-import entrega4.reentrega.ordenamiento.OrnamientoNcalificaciones
 
 class GenerarEquiposPage extends WebPage {
 		
@@ -39,6 +40,7 @@ class GenerarEquiposPage extends WebPage {
 	
 	def agregarCondiciones(Form<Generador> parent) {
 		
+		parent.addChild(new FeedbackPanel("errores"))
 				
 		parent.addChild(new DropDownChoice<Partido>("partidoSeleccionado") => [
 			choices = loadableModel[| Partido.home.allInstances ]
@@ -64,7 +66,10 @@ class GenerarEquiposPage extends WebPage {
 				
 		parent.addChild(new XButton("generarEquiposTentativos") => [
 			setEnabled(ps.abierto)
-			onClick=[|ps.generarEquiposTentativos(cantidad)]
+			onClick=[|
+				ps.validarGeneracion
+				ps.generarEquiposTentativos(cantidad)
+			]
 			
 		])		
 	}
