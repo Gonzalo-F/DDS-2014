@@ -6,8 +6,9 @@ import wicket_tp_anual.ui_opf5.home.HomeJugadores
 import principales.Jugador
 import java.util.ArrayList
 import java.util.List
-import org.joda.time.LocalDate
 import java.util.Date
+import org.uqbar.commons.model.UserException
+import com.uqbar.commons.StringUtils
 
 class BuscadorJugadores implements Serializable{
 	
@@ -38,6 +39,20 @@ class BuscadorJugadores implements Serializable{
 		selectorHandicap = null
 		selectorInfracciones=null
 		selectorInfracciones=null
+	}
+	
+	def validar() {
+		if (StringUtils.isAlpha(nombre)) {			
+		}
+		else{
+			throw new UserException("El nombre debe ser solo letras")
+		}
+		
+		if (StringUtils.isAlpha(apodo)) {			
+		}
+		else{
+			throw new UserException("El apodo debe ser solo letras")
+		}		
 	}
 	
 	def HomeJugadores getHomeJugadores() {

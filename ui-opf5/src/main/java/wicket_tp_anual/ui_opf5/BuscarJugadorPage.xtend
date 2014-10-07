@@ -4,7 +4,6 @@ import org.apache.wicket.markup.html.WebPage
 import org.apache.wicket.markup.html.form.DropDownChoice
 import org.apache.wicket.markup.html.form.Form
 import org.apache.wicket.markup.html.form.TextField
-import org.apache.wicket.model.CompoundPropertyModel
 import org.joda.time.LocalDate
 import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import org.uqbar.wicket.xtend.XButton
@@ -42,7 +41,9 @@ class BuscarJugadorPage extends WebPage implements VisualizarJugadoresPage {
 
 	def agregarAcciones(Form<BuscadorJugadores> parent) {
 		val buscarBoton = new XButton("buscar")
-		buscarBoton.onClick = [|buscador.search]
+		buscarBoton.onClick = [|buscador.validar
+								buscador.search
+		]
 		parent.addChild(buscarBoton)
 
 		parent.addChild(
