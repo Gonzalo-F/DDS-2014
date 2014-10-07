@@ -8,7 +8,6 @@ import org.uqbar.commons.utils.ApplicationContext
 import org.uqbar.commons.utils.Observable
 import principales.Jugador
 import principales.Partido
-import org.joda.time.LocalDate
 import java.util.List
 import entrega2.bajaJugador.Penalizacion
 import java.util.Date

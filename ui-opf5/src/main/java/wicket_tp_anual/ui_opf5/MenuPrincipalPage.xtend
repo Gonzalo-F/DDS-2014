@@ -1,12 +1,10 @@
 package wicket_tp_anual.ui_opf5
 
 import org.apache.wicket.markup.html.WebPage
-import org.apache.wicket.markup.html.form.DropDownChoice
 import org.apache.wicket.markup.html.form.Form
 import org.apache.wicket.model.CompoundPropertyModel
 import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import org.uqbar.wicket.xtend.XButton
-import principales.Partido
 import wicket_tp_anual.ui_opf5.appModel.OrganizadorPF5
 
 class MenuPrincipalPage extends WebPage {
