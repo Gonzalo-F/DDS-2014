@@ -27,19 +27,20 @@ class GenerarEquiposPage extends WebPage {
 	new(MenuPrincipalPage mp, Generador gen) {
 		this.mainPage=mp
 		this.generador= gen
-				
-	val Form<Generador> generadorForm = new Form<Generador>("generadorForm", generador.asCompoundModel)	
-		agregarCondiciones(generadorForm)
-		agregarEquipos(generadorForm)
-		agregarAcciones(generadorForm)
-		generadorForm.addChild(new Label("partidoSeleccionado.descripcion"))
-		
-	this.addChild(generadorForm)
+	
+	
+		this.addChild(
+				new Form<Generador>("generadorForm", generador.asCompoundModel) => [
+					agregarCondiciones
+					agregarEquipos
+					agregarAcciones
+				])
 	
 	}
 	
 	def agregarCondiciones(Form<Generador> parent) {
 		
+		parent.addChild(new Label("partidoSeleccionado.descripcion"))
 		parent.addChild(new FeedbackPanel("errores"))
 				
 		parent.addChild(new DropDownChoice<Partido>("partidoSeleccionado") => [
