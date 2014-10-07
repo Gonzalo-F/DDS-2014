@@ -32,6 +32,6 @@ class MenuPrincipalPage extends WebPage {
 	}
 	
 	def abrirGenerarEquipos() {
-		responsePage = new GenerarEquiposPage(this)
+		responsePage = new GenerarEquiposPage(this,new Generador)
 	}
 }

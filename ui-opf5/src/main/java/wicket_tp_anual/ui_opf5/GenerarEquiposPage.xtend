@@ -24,9 +24,9 @@ class GenerarEquiposPage extends WebPage {
 	@Property var Generador generador 
 	var int cantidad
 	
-	new(MenuPrincipalPage mp) {
+	new(MenuPrincipalPage mp, Generador gen) {
 		this.mainPage=mp
-		this.generador= new Generador
+		this.generador= gen
 				
 	val Form<Generador> generadorForm = new Form<Generador>("generadorForm", generador.asCompoundModel)	
 		agregarCondiciones(generadorForm)
@@ -48,6 +48,7 @@ class GenerarEquiposPage extends WebPage {
 		]) 
 		
 		parent.addChild(new DropDownChoice<DistribuidorDeEquipos>("partidoSeleccionado.distribucionEquipos") => [
+				setEnabled(ps.abierto)
 				choices = loadableModel([|DistribuidorDeEquipos.home.allInstances])
 				choiceRenderer = choiceRenderer([DistribuidorDeEquipos m| m.descripcion ])]
 				)	
@@ -56,13 +57,26 @@ class GenerarEquiposPage extends WebPage {
 		criteriosOrdenamiento.populateItem = [ item |
 			item.model = item.modelObject.asCompoundModel
 			item.addChild(new Label("descripcion"))
-			item.addChild(new XButton("remover").onClick = [|removerCriterio(item.modelObject)])
+			item.addChild(new XButton("remover") =>[
+				setEnabled(ps.abierto)
+				onClick = [|removerCriterio(item.modelObject)]
+				])
 		]
+		
 		parent.addChild(criteriosOrdenamiento)
 		
-		parent.addChild(new XButton("criterioHandicap").onClick = [|agregarCriterio(new OrdenamientoPorHandicap)])
-		parent.addChild(new XButton("criterio2Calificaciones").onClick = [|agregarCriterio(new OrdenamientoCalificacionUltimos2Partidos)])
-		parent.addChild(new XButton("criterioNcalificaciones").onClick=[| agregarCriterio(new OrnamientoNcalificaciones())])
+		parent.addChild(new XButton("criterioHandicap") =>[
+			onClick = [|agregarCriterio(new OrdenamientoPorHandicap)]
+			setEnabled(ps.abierto)
+			])
+		parent.addChild(new XButton("criterio2Calificaciones") =>[
+			onClick = [|agregarCriterio(new OrdenamientoCalificacionUltimos2Partidos)]
+			setEnabled(ps.abierto)
+			])
+		parent.addChild(new XButton("criterioNcalificaciones") =>[
+			onClick=[| agregarCriterio(new OrnamientoNcalificaciones())]
+			setEnabled(ps.abierto)
+			])
 				
 		parent.addChild(new XButton("generarEquiposTentativos") => [
 			setEnabled(ps.abierto)
@@ -105,9 +119,12 @@ class GenerarEquiposPage extends WebPage {
 	
 	
 	def agregarAcciones(Form parent) {
-		parent.addChild(new XButton("confirmarEquipos").onClick=[|
-			ps.cerrar
-			confirmacionExitosa()
+		parent.addChild(new XButton("confirmarEquipos")=>[
+			setEnabled(ps.abierto)
+			onClick=[|
+				ps.cerrar
+				confirmacionExitosa()
+			]
 		])
 		parent.addChild(new XButton("volver").onClick=[|volver])
 		parent.addChild(new XButton("elegirPartido").onClick=[|recargarPagina])
@@ -122,7 +139,7 @@ class GenerarEquiposPage extends WebPage {
 	}
 	
 	def confirmacionExitosa() {
-		responsePage = new GenerarEquiposPage(this.mainPage)
+		responsePage = new GenerarEquiposPage(this.mainPage,this.generador)
 	}
 	
 	def verJugador(Jugador jugadorSeleccionado) {

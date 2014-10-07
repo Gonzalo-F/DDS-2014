@@ -49,6 +49,9 @@ class Partido extends Entity{
 	}
 	
 	def validarGeneracion() {
+		if (cantidadInscriptos < 10) {
+			throw new UserException("No hay suficientes jugadores para generar equipos")
+		}
 		if (distribucionEquipos == null) {
 			throw new UserException("Debe seleccionar un criterio de distribución")
 		}
@@ -145,6 +148,9 @@ class Partido extends Entity{
 	}
 	
 	def cerrar() {
+		if (equipo1==null || equipo2==null) {
+			throw new UserException("Debe generar equipos tentativos antes de confirmarlos")
+		}
 		abierto=false
 	}
 	
