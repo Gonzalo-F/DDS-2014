@@ -42,16 +42,24 @@ class BuscadorJugadores implements Serializable{
 	}
 	
 	def validar() {
-		if (StringUtils.isAlpha(nombre)) {			
+		if (StringUtils.isEmpty(nombre)) {			
 		}
-		else{
-			throw new UserException("El nombre debe ser solo letras")
+		else {
+			if (StringUtils.isAlpha(nombre)) {			
+			}
+			else{
+				throw new UserException("El nombre debe ser solo letras")
+			}
 		}
 		
-		if (StringUtils.isAlpha(apodo)) {			
+		if (StringUtils.isEmpty(apodo)) {			
 		}
-		else{
-			throw new UserException("El apodo debe ser solo letras")
+		else {
+			if (StringUtils.isAlpha(apodo)) {			
+			}
+			else{
+				throw new UserException("El apodo debe ser solo letras")
+			}			
 		}		
 	}
 	
