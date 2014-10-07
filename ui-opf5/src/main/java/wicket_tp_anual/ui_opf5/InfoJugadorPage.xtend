@@ -20,10 +20,11 @@ class InfoJugadorPage extends WebPage implements VisualizarJugadoresPage {
 		this.returnPage = returnPage
 		this.jugador = jugador
 
-		val Form<Jugador> infoJugadorForm = new Form<Jugador>("infoJugador", this.jugador.asCompoundModel)
-		agregarDatos(infoJugadorForm)
-		agregarAcciones(infoJugadorForm)
-		this.addChild(infoJugadorForm)
+		this.addChild( new Form<Jugador>("infoJugador", this.jugador.asCompoundModel) => [
+		agregarDatos
+		agregarAcciones
+		])
+
 
 	}
 
