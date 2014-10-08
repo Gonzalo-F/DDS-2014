@@ -6,13 +6,10 @@ import entrega1.tipoInscripcion.TipoInscripcion
 import entrega3.Calificacion
 import entrega4.reentrega.divisor.DistribuidorEspecial
 import entrega4.reentrega.divisor.DistribuidorParidad
-import entrega4.reentrega.ordenamiento.OrdenamientoCalificacionUltimos2Partidos
-import entrega4.reentrega.ordenamiento.OrdenamientoMix
 import entrega4.reentrega.ordenamiento.OrdenamientoPorHandicap
-import entrega5.futbol5.excepciones.PartidoAbiertoNoPermiteValidarInscripcion
+import entrega4.reentrega.ordenamiento.OrnamientoNcalificaciones
 import entrega5.futbol5.excepciones.PartidoConEquiposGeneradosNoPuedeValidar
 import entrega5.futbol5.excepciones.PartidoSin10InscriptosNoPermiteValidarInscripcion
-import entrega5.futbol5.inscripcion.ModoSolidario
 import java.util.ArrayList
 import org.junit.Assert
 import org.junit.Before
@@ -91,7 +88,7 @@ class TestGenerarEquipos {
 
 	@Test
 	def void generarEquiposPorCalificacionUltimos2Partidos() {
-		partido1.agregarCriterio(new OrdenamientoCalificacionUltimos2Partidos)
+		partido1.agregarCriterio(new OrnamientoNcalificaciones(2))
 		println("******************************************")
 		println("ordenamiento por ultimas 2 calificaciones")
 		println(listadoOrdenadoPorUltimas2Calificaciones(partido1))
@@ -103,7 +100,7 @@ class TestGenerarEquipos {
 	@Test
 	def void generarEquiposPorMixDeCriterios() {
 		
-		partido1.agregarCriterio(new OrdenamientoCalificacionUltimos2Partidos)
+		partido1.agregarCriterio(new OrnamientoNcalificaciones(2))
 		partido1.agregarCriterio(new OrdenamientoPorHandicap)
 		
 		println("******************************************")
