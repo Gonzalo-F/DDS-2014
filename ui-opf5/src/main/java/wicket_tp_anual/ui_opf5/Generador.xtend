@@ -6,5 +6,6 @@ import principales.Partido
 class Generador implements Serializable{
 
 	@Property Partido partidoSeleccionado = new Partido
+	@Property int cantidad
 		
 }

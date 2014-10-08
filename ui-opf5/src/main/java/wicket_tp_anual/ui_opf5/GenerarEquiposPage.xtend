@@ -16,6 +16,7 @@ import org.uqbar.wicket.xtend.XListView
 import principales.Jugador
 import principales.Partido
 import wicket_tp_anual.ui_opf5.BuscadorModel.LabelJugador
+import org.apache.wicket.markup.html.form.TextField
 
 class GenerarEquiposPage extends WebPage {
 		
@@ -78,12 +79,14 @@ class GenerarEquiposPage extends WebPage {
 			onClick=[| agregarCriterio(new OrnamientoNcalificaciones())]
 			setEnabled(ps.abierto)
 			])
+			
+		parent.addChild(new TextField<Integer>("cantidad"))
 				
 		parent.addChild(new XButton("generarEquiposTentativos") => [
 			setEnabled(ps.abierto)
 			onClick=[|
 				ps.validarGeneracion
-				ps.generarEquiposTentativos(cantidad)
+				ps.generarEquiposTentativos(generador.cantidad)
 			]
 			
 		])		
@@ -95,7 +98,7 @@ class GenerarEquiposPage extends WebPage {
 	
 	
 	def agregarCriterio(CriterioOrdenamiento unCriterio) {
-	ps.criterioOrdenamiento.addCriterio(unCriterio)
+		ps.criterioOrdenamiento.addCriterio(unCriterio)
 	}
 	
 	def agregarEquipos(Form<Generador> parent) {
