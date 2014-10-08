@@ -8,14 +8,15 @@ import org.apache.wicket.markup.html.WebPage
 import org.apache.wicket.markup.html.basic.Label
 import org.apache.wicket.markup.html.form.DropDownChoice
 import org.apache.wicket.markup.html.form.Form
+import org.apache.wicket.markup.html.form.TextField
 import org.apache.wicket.markup.html.panel.FeedbackPanel
+import org.uqbar.commons.model.UserException
 import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import org.uqbar.wicket.xtend.XButton
 import org.uqbar.wicket.xtend.XListView
 import principales.Jugador
 import principales.Partido
 import wicket_tp_anual.ui_opf5.BuscadorModel.LabelJugador
-import org.apache.wicket.markup.html.form.TextField
 
 class GenerarEquiposPage extends WebPage {
 		
@@ -77,7 +78,10 @@ class GenerarEquiposPage extends WebPage {
 		parent.addChild(new TextField<Integer>("cantidad"))
 		
 		parent.addChild(new XButton("criterioNcalificaciones") =>[
-			onClick=[| agregarCriterio(new OrnamientoNcalificaciones(generador.cantidad))]
+			onClick=[| 
+			validarCantidadN
+			agregarCriterio(new OrnamientoNcalificaciones(generador.cantidad))
+			]
 			setEnabled(ps.abierto)
 			])
 			
@@ -91,6 +95,12 @@ class GenerarEquiposPage extends WebPage {
 			]
 			
 		])		
+	}
+	
+	def validarCantidadN() {
+		if(generador.cantidad==0){
+			throw new UserException("No es valido elegir 'CERO ultimas calificaciones' como criterio.")
+		}
 	}
 	
 	def removerCriterio(Object unCriterio) {

@@ -1,5 +1,6 @@
 package entrega4.reentrega.ordenamiento
 
+import org.uqbar.commons.model.UserException
 import principales.Jugador
 
 class OrnamientoNcalificaciones extends CriterioOrdenamiento {
