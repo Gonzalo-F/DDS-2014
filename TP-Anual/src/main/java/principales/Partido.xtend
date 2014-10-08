@@ -48,17 +48,7 @@ class Partido extends Entity{
 
 	}
 	
-	def validarGeneracion() {
-		if (cantidadInscriptos < 10) {
-			throw new UserException("No hay suficientes jugadores para generar equipos")
-		}
-		if (distribucionEquipos == null) {
-			throw new UserException("Debe seleccionar un criterio de distribución")
-		}
-		if (criterioOrdenamiento.criterios.size==0) {
-			throw new UserException("Debe seleccionar al menos un criterio de ordenamiento")
-		}
-	}
+	
 
 	def getDescripcion(){
 		lugar.concat(" (").concat(fecha.toString).concat(" - ").concat(hora.toString).concat(")")

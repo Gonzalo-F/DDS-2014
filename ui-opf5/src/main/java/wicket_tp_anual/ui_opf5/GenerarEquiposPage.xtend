@@ -90,7 +90,7 @@ class GenerarEquiposPage extends WebPage {
 		parent.addChild(new XButton("generarEquiposTentativos") => [
 			setEnabled(ps.abierto)
 			onClick=[|
-				ps.validarGeneracion
+				validarGeneracion
 				ps.generarEquiposTentativos(generador.cantidad)
 			]
 			
@@ -160,6 +160,18 @@ class GenerarEquiposPage extends WebPage {
 	
 	def volver() {
 		responsePage = mainPage
+	}
+	
+	def validarGeneracion() {
+		if (ps.cantidadInscriptos < 10) {
+			throw new UserException("No hay suficientes jugadores para generar equipos")
+		}
+		if (ps.distribucionEquipos == null) {
+			throw new UserException("Debe seleccionar un criterio de distribución")
+		}
+		if (ps.criterioOrdenamiento.criterios.size==0) {
+			throw new UserException("Debe seleccionar al menos un criterio de ordenamiento")
+		}
 	}
 	
 }
