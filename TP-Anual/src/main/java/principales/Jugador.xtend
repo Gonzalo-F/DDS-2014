@@ -7,10 +7,9 @@ import entrega3.Calificacion
 import entrega3.ordenesDeCreacion.JugadorSugerido
 import excepciones.entrega3.NoSePuedeCalificarExcepcion
 import java.util.ArrayList
+import java.util.Date
 import java.util.List
 import org.uqbar.commons.model.Entity
-import org.joda.time.LocalDate
-import java.util.Date
 
 class Jugador extends Entity implements Cloneable{
 	@Property int edad
