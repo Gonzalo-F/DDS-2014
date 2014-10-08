@@ -6,14 +6,15 @@ import java.util.List
 class OrdenamientoMix extends CriterioOrdenamiento {
 
  @Property List<CriterioOrdenamiento> criterios
+	
 	new() {
 		criterios = new ArrayList<CriterioOrdenamiento>
 	}
 
 
-	override calcularValor(int cantidad) {
+	override calcularValor() {
 		[ jugador |
-			criterios.fold(0d, [acum, criterio|acum + criterio.calcularValor(cantidad).apply(jugador)]) / criterios.size
+			criterios.fold(0d, [acum, criterio|acum + criterio.calcularValor().apply(jugador)]) / criterios.size
 		]
 	}
 	

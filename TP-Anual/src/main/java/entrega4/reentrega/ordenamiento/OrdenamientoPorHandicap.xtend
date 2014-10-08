@@ -9,7 +9,7 @@ class OrdenamientoPorHandicap extends CriterioOrdenamiento {
 		return "Ordenar por Handicap"
 	}
 	
-	override calcularValor(int cantidad) {
+	override calcularValor() {
 		[ Jugador jugador | jugador.getHandicap ]
 	}
 	

@@ -2,7 +2,6 @@ package wicket_tp_anual.ui_opf5
 
 import entrega4.reentrega.divisor.DistribuidorDeEquipos
 import entrega4.reentrega.ordenamiento.CriterioOrdenamiento
-import entrega4.reentrega.ordenamiento.OrdenamientoCalificacionUltimos2Partidos
 import entrega4.reentrega.ordenamiento.OrdenamientoPorHandicap
 import entrega4.reentrega.ordenamiento.OrnamientoNcalificaciones
 import org.apache.wicket.markup.html.WebPage
@@ -23,7 +22,6 @@ class GenerarEquiposPage extends WebPage {
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 	private final MenuPrincipalPage mainPage
 	@Property var Generador generador 
-	var int cantidad
 	
 	new(MenuPrincipalPage mp, Generador gen) {
 		this.mainPage=mp
@@ -72,15 +70,18 @@ class GenerarEquiposPage extends WebPage {
 			setEnabled(ps.abierto)
 			])
 		parent.addChild(new XButton("criterio2Calificaciones") =>[
-			onClick = [|agregarCriterio(new OrdenamientoCalificacionUltimos2Partidos)]
-			setEnabled(ps.abierto)
-			])
-		parent.addChild(new XButton("criterioNcalificaciones") =>[
-			onClick=[| agregarCriterio(new OrnamientoNcalificaciones())]
+			onClick = [|agregarCriterio(new OrnamientoNcalificaciones(2))]
 			setEnabled(ps.abierto)
 			])
 			
 		parent.addChild(new TextField<Integer>("cantidad"))
+		
+		parent.addChild(new XButton("criterioNcalificaciones") =>[
+			onClick=[| agregarCriterio(new OrnamientoNcalificaciones(generador.cantidad))]
+			setEnabled(ps.abierto)
+			])
+			
+		
 				
 		parent.addChild(new XButton("generarEquiposTentativos") => [
 			setEnabled(ps.abierto)

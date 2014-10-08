@@ -3,7 +3,14 @@ package entrega4.reentrega.ordenamiento
 import principales.Jugador
 
 class OrnamientoNcalificaciones extends CriterioOrdenamiento {
-	override calcularValor(int cantidad) {
+	
+	int cantidad
+	
+	new(int cant) {
+		cantidad=cant
+	}
+	
+	override calcularValor() {
 		
 		{
 		[ Jugador jugador |if( jugador.tenesCalificacionesSuficientes(cantidad)){
@@ -19,7 +26,7 @@ class OrnamientoNcalificaciones extends CriterioOrdenamiento {
 	
 	
 	override descripcion(){
-		return "Ultimas N Calificaciones"
+		return "Ultimas ".concat(cantidad.toString).concat(" calificaciones.")
 	}
 	
 	}
