@@ -81,6 +81,38 @@ BEGIN
 		(@Lugar, @Fecha, @Hora, @Abierto)
 END
 GO
+
+
+CREATE PROCEDURE GRUPO_1.cargar_penalizaciones
+	@Fecha date,
+	@Motivo nvarchar(45),
+	@Partido_Id numeric(18,0),
+	@Jugador_Id numeric(18,0),
+AS 
+BEGIN
+	INSERT INTO GRUPO_1.Penalizaciones
+		(Fecha,Motivo, Partido_Id, Jugador_Id)
+	VALUES 
+		(@Fecha, @Motivo, @Partido_Id, @Jugador_Id)
+END
+GO
+
+CREATE PROCEDURE GRUPO_1.cargar_calificaciones
+	
+	@Descripcion nvarchar(45),
+	@JugadorCalificado numeric(18,0),
+	@JugadorCalificante numeric(18,0),
+	@Partido_Id numeric(18,0)
+	
+AS 
+BEGIN
+	INSERT INTO GRUPO_1.Calificaciones
+		(Descripcion, JugadorCalificado, JugadorCalificante, Partido_Id)
+	VALUES 
+		(@Descripcion, @JugadorCalificado, @JugadorCalificante, @Partido_Id)
+END
+GO
+	
 	
 
 -- FIN DE CREACION DE PROCEDIMIENTO
