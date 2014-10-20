@@ -18,6 +18,9 @@ DROP TABLE GRUPO_1.Penalizaciones
 IF OBJECT_ID('GRUPO_1.Calificaciones', 'U') IS NOT NULL
 DROP TABLE GRUPO_1.Calificaciones
 
+IF OBJECT_ID('GRUPO_1.Inscripciones', 'U') IS NOT NULL
+DROP TABLE GRUPO_1.Inscripciones
+
 IF OBJECT_ID('GRUPO_1.Jugadores', 'U') IS NOT NULL
 DROP TABLE GRUPO_1.Jugadores
 
@@ -37,7 +40,7 @@ CREATE TABLE GRUPO_1.Jugadores
 	FechaNac date NOT NULL,
 	Handicap numeric(18,0) NOT NULL,
 	Promedio numeric(18,2) NOT NULL
-	PRIMARY KEY (id),
+	PRIMARY KEY (Id),
 )
 
 CREATE TABLE GRUPO_1.Partidos
@@ -47,7 +50,7 @@ CREATE TABLE GRUPO_1.Partidos
 	Fecha date NOT NULL,
 	Hora time NOT NULL,
 	Abierto bit /* 1 Abierto, 0 Cerrado */ NOT NULL,
-	PRIMARY KEY (id),
+	PRIMARY KEY (Id),
 )
 
 CREATE TABLE GRUPO_1.Calificaciones
@@ -57,10 +60,10 @@ CREATE TABLE GRUPO_1.Calificaciones
 	JugadorCalificante numeric(18,0) NOT NULL,
 	Descripcion varchar(45),
 	Partido_Id numeric(18,0) NOT NULL,
-	PRIMARY KEY (id),
-	FOREIGN KEY (JugadorCalificado) REFERENCES GRUPO_1.Jugadores (id),
-	FOREIGN KEY (JugadorCalificante) REFERENCES GRUPO_1.Jugadores (id),
-	FOREIGN KEY (Partido_Id) REFERENCES GRUPO_1.Partidos (id),
+	PRIMARY KEY (Id),
+	FOREIGN KEY (JugadorCalificado) REFERENCES GRUPO_1.Jugadores (Id),
+	FOREIGN KEY (JugadorCalificante) REFERENCES GRUPO_1.Jugadores (Id),
+	FOREIGN KEY (Partido_Id) REFERENCES GRUPO_1.Partidos (Id),
 )
 
 CREATE TABLE GRUPO_1.Penalizaciones
@@ -70,9 +73,20 @@ CREATE TABLE GRUPO_1.Penalizaciones
 	Motivo varchar(45),
 	Partido_Id numeric(18,0) NOT NULL,
 	Jugador_Id numeric(18,0) NOT NULL,
-	PRIMARY KEY (id),
-	FOREIGN KEY (Partido_Id) REFERENCES GRUPO_1.Partidos (id),
-	FOREIGN KEY (Jugador_Id) REFERENCES GRUPO_1.Jugadores (id),
+	PRIMARY KEY (Id),
+	FOREIGN KEY (Partido_Id) REFERENCES GRUPO_1.Partidos (Id),
+	FOREIGN KEY (Jugador_Id) REFERENCES GRUPO_1.Jugadores (Id),
+)
+
+CREATE TABLE GRUPO_1.Inscripciones
+(
+	Id numeric(18,0) IDENTITY(1,1),
+	Partido_Id numeric(18,0),
+	Jugador_Id numeric(18,0),
+	Prioridad numeric(18,0),
+	PRIMARY KEY (Id),
+	FOREIGN KEY (Partido_Id) REFERENCES GRUPO_1.Partidos (Id),
+	FOREIGN KEY (Jugador_Id) REFERENCES GRUPO_1.Jugadores (Id),
 )
 
 -- FIN DE CREACION DE TABLAS
