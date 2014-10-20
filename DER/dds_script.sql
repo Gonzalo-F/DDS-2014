@@ -42,6 +42,9 @@ DROP TABLE GRUPO_1.Partidos
 IF OBJECT_ID('GRUPO_1.cargar_jugador', 'P') IS NOT NULL
 DROP PROCEDURE GRUPO_1.cargar_jugador
 
+IF OBJECT_ID('GRUPO_1.cargar_partido', 'P') IS NOT NULL
+DROP PROCEDURE GRUPO_1.cargar_partido
+
 -- FIN DE ELIMINACION DE PROCEDIMIENTO, FUNCIONES, VISTAS Y TRIGGERS NECESARIOS
 
 GO
@@ -49,7 +52,6 @@ GO
 -- CREACION DE PROCEDIMIENTOS
 
 CREATE PROCEDURE GRUPO_1.cargar_jugador
-	@Id numeric(18,0),
 	@Nombre nvarchar(45),
 	@Apodo nvarchar (45),
 	@FechaNac date,
@@ -59,27 +61,26 @@ CREATE PROCEDURE GRUPO_1.cargar_jugador
 AS
 BEGIN
 	INSERT INTO GRUPO_1.Jugadores
-		(Id, Nombre, Apodo, FechaNac,Handicap,Promedio)
+		(Nombre, Apodo, FechaNac,Handicap,Promedio)
 	VALUES
-		(@Id, @Nombre, @Apodo, @FechaNac,@Handicap,@Promedio)
+		(@Nombre, @Apodo, @FechaNac,@Handicap,@Promedio)
 END
 GO
 
 CREATE PROCEDURE GRUPO_1.cargar_partido
-	@Id numeric(18,0),
 	@Lugar nvarchar(45),
 	@Fecha date,
 	@Hora time,
 	@Abierto bit
 	
-	AS 
-	BEGIN
+AS 
+BEGIN
 	INSERT INTO GRUPO_1.Partidos
-	(Id,Lugar,Fecha,Hora,Abierto)
+		(Lugar,Fecha,Hora,Abierto)
 	VALUES 
-	(@Id, @Lugar, @Fecha, @Hora, @Abierto)
-	END
-	
+		(@Lugar, @Fecha, @Hora, @Abierto)
+END
+GO
 	
 
 -- FIN DE CREACION DE PROCEDIMIENTO
@@ -92,7 +93,7 @@ CREATE TABLE GRUPO_1.Jugadores
 	Nombre nvarchar(45) NOT NULL,
 	Apodo nvarchar (45) NOT NULL,
 	FechaNac date NOT NULL,
-	Handicap numeric(18,0) NOT NULL,
+	Handicap numeric(18,2) NOT NULL,
 	Promedio numeric(18,2) NOT NULL
 	PRIMARY KEY (Id),
 )
@@ -162,3 +163,9 @@ CREATE TABLE GRUPO_1.Equipos
 )
 
 -- FIN DE CREACION DE TABLAS
+
+-- CARGA DE TABLAS
+
+EXEC GRUPO_1.cargar_jugador Carlos, Juan, '26/09/2013', 8, 3 /* Ejemplo */
+
+-- FIN CARGA DE TABLAS
