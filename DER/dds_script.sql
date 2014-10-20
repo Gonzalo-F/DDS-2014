@@ -49,14 +49,19 @@ GO
 -- CREACION DE PROCEDIMIENTOS
 
 CREATE PROCEDURE GRUPO_1.cargar_jugador
-	@usuario_id numeric(18,0),
-	@rol_id numeric(18,0)
+	@Id numeric(18,0),
+	@Nombre nvarchar(45),
+	@Apodo nvarchar (45),
+	@FechaNac date,
+	@Handicap numeric(18,0),
+	@Promedio numeric(18,2)
+	
 AS
 BEGIN
-	INSERT INTO LOS_SUPER_AMIGOS.Rol_x_Usuario
-		(rol_id, usuario_id)
+	INSERT INTO GRUPO_1.Jugadores
+		(Id, Nombre, Apodo, FechaNac,Handicap,Promedio)
 	VALUES
-		(@rol_id, @usuario_id)
+		(@Id, @Nombre, @Apodo, @FechaNac,@Handicap,@Promedio)
 END
 GO
 
