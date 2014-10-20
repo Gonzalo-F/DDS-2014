@@ -65,6 +65,23 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE GRUPO_1.cargar_partido
+	@Id numeric(18,0),
+	@Lugar nvarchar(45),
+	@Fecha date,
+	@Hora time,
+	@Abierto bit
+	
+	AS 
+	BEGIN
+	INSERT INTO GRUPO_1.Partidos
+	(Id,Lugar,Fecha,Hora,Abierto)
+	VALUES 
+	(@Id, @Lugar, @Fecha, @Hora, @Abierto)
+	END
+	
+	
+
 -- FIN DE CREACION DE PROCEDIMIENTO
 
 -- CREACION DE TABLAS
