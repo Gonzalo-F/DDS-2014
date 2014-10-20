@@ -12,12 +12,13 @@ END
 -- ELIMINACION DE TABLAS NECESARIAS
 -- Si existe, lo elimina
 
+IF OBJECT_ID('GRUPO_1.Calificaciones', 'U') IS NOT NULL
+DROP TABLE GRUPO_1.Calificaciones
 IF OBJECT_ID('GRUPO_1.Jugadores', 'U') IS NOT NULL
 DROP TABLE GRUPO_1.Jugadores
 IF OBJECT_ID('GRUPO_1.Partidos', 'U') IS NOT NULL
 DROP TABLE GRUPO_1.Partidos
-IF OBJECT_ID('GRUPO_1.Calificaciones', 'U') IS NOT NULL
-DROP TABLE GRUPO_1.Calificaciones
+
 
 -- FIN ELIMINACION DE TABLAS
 
@@ -25,17 +26,17 @@ DROP TABLE GRUPO_1.Calificaciones
 
 CREATE TABLE GRUPO_1.Jugadores
 (
-Id_Jugador int identity(1,1) PRIMARY KEY,
+Id numeric(18,0) identity(1,1) PRIMARY KEY,
 Nombre nvarchar(45) NOT NULL,
 Apodo nvarchar (45) NOT NULL,
 FechaNac date NOT NULL,
-Handicap numeric(5,2) NOT NULL,
-Promedio numeric(2,2) NOT NULL
+Handicap numeric(18,0) NOT NULL,
+Promedio numeric(18,2) NOT NULL
 )
 
 CREATE TABLE GRUPO_1.Partidos
 (
-Id_Partido int identity(1,1) PRIMARY KEY,
+Id numeric(18,0) identity(1,1) PRIMARY KEY,
 Lugar nvarchar(45) NOT NULL,
 Fecha date NOT NULL,
 Hora time NOT NULL,
@@ -44,11 +45,11 @@ Abierto bit /* 1 Abierto, 0 Cerrado */ NOT NULL,
 
 CREATE TABLE GRUPO_1.Calificaciones
 (
-Id_Calificacion int identity(1,1) PRIMARY KEY,
-JugadorCalificado int FOREIGN KEY REFERENCES GRUPO_1.Jugadores NOT NULL,
-JugadorCalificante int FOREIGN KEY REFERENCES GRUPO_1.Jugadores NOT NULL,
+Id numeric(18,0) identity(1,1) PRIMARY KEY,
+JugadorCalificado numeric(18,0) FOREIGN KEY REFERENCES GRUPO_1.Jugadores NOT NULL,
+JugadorCalificante numeric(18,0) FOREIGN KEY REFERENCES GRUPO_1.Jugadores NOT NULL,
 Descripcion varchar(45),
-Partido_Id int FOREIGN KEY REFERENCES GRUPO_1.Jugadores NOT NULL
+Partido_Id numeric(18,0) FOREIGN KEY REFERENCES GRUPO_1.Jugadores NOT NULL
 )
 
 
