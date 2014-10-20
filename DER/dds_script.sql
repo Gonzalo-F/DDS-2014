@@ -12,6 +12,8 @@ END
 -- ELIMINACION DE TABLAS NECESARIAS
 -- Si existe, lo elimina
 
+IF OBJECT_ID('GRUPO_1.Penalizaciones', 'U') IS NOT NULL
+DROP TABLE GRUPO_1.Penalizaciones
 IF OBJECT_ID('GRUPO_1.Calificaciones', 'U') IS NOT NULL
 DROP TABLE GRUPO_1.Calificaciones
 IF OBJECT_ID('GRUPO_1.Jugadores', 'U') IS NOT NULL
@@ -50,6 +52,15 @@ JugadorCalificado numeric(18,0) FOREIGN KEY REFERENCES GRUPO_1.Jugadores NOT NUL
 JugadorCalificante numeric(18,0) FOREIGN KEY REFERENCES GRUPO_1.Jugadores NOT NULL,
 Descripcion varchar(45),
 Partido_Id numeric(18,0) FOREIGN KEY REFERENCES GRUPO_1.Jugadores NOT NULL
+)
+
+CREATE TABLE GRUPO_1.Penalizaciones
+(
+Id numeric(18,0) identity(1,1) PRIMARY KEY,
+Fecha date NOT NULL,
+Motivo varchar(45),
+Partido_Id numeric(18,0) FOREIGN KEY REFERENCES GRUPO_1.Partidos NOT NULL,
+Jugador_Id numeric(18,0) FOREIGN KEY REFERENCES GRUPO_1.Jugadores NOT NULL
 )
 
 
