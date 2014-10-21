@@ -299,7 +299,6 @@ EXEC GRUPO_1.cargar_calificaciones 'pecho frio, como bostero', 1,3, 2, 1
 EXEC GRUPO_1.cargar_calificaciones 'Podria ser peor', 6, 10, 15, 3
 
 -- tabla de amigos
--- tabla de amigos
 
 EXEC GRUPO_1.cargar_amigos 1,4
 EXEC GRUPO_1.cargar_amigos 1,19
@@ -316,7 +315,17 @@ EXEC GRUPO_1.cargar_amigos 3,15
 EXEC GRUPO_1.cargar_amigos 18,2
 EXEC GRUPO_1.cargar_amigos 2,6
 
+-- tabla de penalizaciones
 
+EXEC GRUPO_1.cargar_penalizaciones '26/09/2014',N,1,1
+EXEC GRUPO_1.cargar_penalizaciones '26/09/2013',N,1,1
+EXEC GRUPO_1.cargar_penalizaciones '26/09/2014',N,1,1
+EXEC GRUPO_1.cargar_penalizaciones '26/09/2013',N,1,3
+EXEC GRUPO_1.cargar_penalizaciones '26/09/2013',N,1,3
+EXEC GRUPO_1.cargar_penalizaciones '26/09/2014',N,1,4
+EXEC GRUPO_1.cargar_penalizaciones '26/09/2010',N,1,2
+EXEC GRUPO_1.cargar_penalizaciones '26/09/2013',N,1,7
+EXEC GRUPO_1.cargar_penalizaciones '26/08/2014',N,1,7
 
 
 
