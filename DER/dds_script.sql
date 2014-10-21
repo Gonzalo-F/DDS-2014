@@ -273,6 +273,14 @@ EXEC GRUPO_1.cargar_partido 'Segurola y Habanna', '20/12/2014', '23:00', 0
 EXEC GRUPO_1.cargar_partido 'La Canchita de Ramon', '03/11/2014', '20:00', 1
 EXEC GRUPO_1.cargar_partido 'El Monumental', '13/11/2014', '21:30', 1
 
+--tabla de penalizaciones
+EXEC GRUPO_1.cargar_penalizaciones '10/10/2014', 'No dejaste reemplazante', 1, 4
+EXEC GRUPO_1.cargar_penalizaciones '20/10/2014', 'No dejaste reemplazante', 1, 10
+EXEC GRUPO_1.cargar_penalizaciones '17/10/2014', 'No dejaste reemplazante', 4, 3
+EXEC GRUPO_1.cargar_penalizaciones '25/11/2014', 'No dejaste reemplazante', 1, 4
+
+
+
 
 
 
