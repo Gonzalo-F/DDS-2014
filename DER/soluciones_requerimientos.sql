@@ -11,10 +11,16 @@ select * from GRUPO_1.Amigos
 SELECT * FROM GRUPO_1.Jugadores_malos
 
 -- 2
-SELECT j.Id Id_Jugador, COUNT(*) Penalizaciones
+SELECT j.Id Id_Jugador, j.Nombre, COUNT(*) Penalizaciones
 FROM GRUPO_1.Jugadores j,GRUPO_1.Penalizaciones p
 where j.Id=Jugador_Id
-GROUP BY j.Id
+	AND YEAR(p.Fecha) = YEAR(GETDATE()) 
+	AND (
+		MONTH(GETDATE())=MONTH(p.Fecha)
+		OR
+		(MONTH(GETDATE())-1)=MONTH(p.Fecha) AND DAY(GETDATE())<= DAY(p.Fecha)
+	)
+GROUP BY j.Id,j.Nombre
 HAVING COUNT(*)>3
 
 -- 3
