@@ -1,3 +1,4 @@
+
 -- CREACION DE SCHEMA
 -- Comprueba si no existe ninguno, sino existe lo crea.
 USE DDS2014
@@ -245,6 +246,28 @@ CREATE TABLE GRUPO_1.Equipos
 -- CARGA DE TABLAS
 
 EXEC GRUPO_1.cargar_jugador Carlos, Juan, '26/09/2013', 8, 3 /* Ejemplo */
+EXEC GRUPO_1.cargar_jugador Emiliano, Emi, '13/08/2014', 2, 5
+EXEC GRUPO_1.cargar_jugador Lucas, Pugna, '26/09/1994', 10, 6
+EXEC GRUPO_1.cargar_jugador Gonzalo, Gonza, '12/04/1993', 9, 3
+EXEC GRUPO_1.cargar_jugador Nicolas, Nico, '27/07/1993', 3, 3
+EXEC GRUPO_1.cargar_jugador Alberto, Tito, '03/01/1987', 8, 10
+EXEC GRUPO_1.cargar_jugador Gaston, Gas, '01/11/1976', 6, 6
+EXEC GRUPO_1.cargar_jugador Tomas, Petiso, '23/04/1997', 8, 3
+EXEC GRUPO_1.cargar_jugador Pablo, Pablito, '26/12/1988', 7, 7
+EXEC GRUPO_1.cargar_jugador Hector, Gordo, '07/07/1990', 8, 8
+EXEC GRUPO_1.cargar_jugador Agustin, Tino, '12/09/1992', 8, 9
+EXEC GRUPO_1.cargar_jugador Hernan, Herni, '26/09/1989', 10, 10
+EXEC GRUPO_1.cargar_jugador Ivan, Ivan, '23/12/1990', 4, 6
+EXEC GRUPO_1.cargar_jugador Luciano, Lucho, '15/02/1991', 7, 5
+EXEC GRUPO_1.cargar_jugador Matias, Mati, '26/09/1992', 5, 8
+EXEC GRUPO_1.cargar_jugador Federico,Facha, '16/03/1990', 8, 8
+EXEC GRUPO_1.cargar_jugador Bruno,Rasta, '16/06/1992', 8, 4
+EXEC GRUPO_1.cargar_jugador Maximiliano,Maxi, '08/12/1990', 5, 8
+EXEC GRUPO_1.cargar_jugador Leonardo,Leo, '16/01/1992', 8, 10
+EXEC GRUPO_1.cargar_jugador Daniel,Dani, '16/03/1990', 5, 8
+
+
+
 
 -- FIN CARGA DE TABLAS
 GO
