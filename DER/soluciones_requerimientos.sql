@@ -15,6 +15,7 @@ SELECT j.Id Id_Jugador, COUNT(*) Penalizaciones
 FROM GRUPO_1.Jugadores j,GRUPO_1.Penalizaciones p
 where j.Id=Jugador_Id
 GROUP BY j.Id
+HAVING COUNT(*)>3
 
 -- 3
 SELECT * FROM GRUPO_1.Jugadores_malos WHERE YEAR(GETDATE()) - YEAR(fechaNac) < 25
