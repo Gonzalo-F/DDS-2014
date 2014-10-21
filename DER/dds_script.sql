@@ -10,8 +10,6 @@ END
 
 -- FIN CREACION DE SCHEMA
 
-
-
 -- ELIMINACION DE TABLAS NECESARIAS
 -- Si existe, lo elimina
 
@@ -370,6 +368,28 @@ EXEC GRUPO_1.cargar_penalizaciones '26/09/2014',N,1,4--
 EXEC GRUPO_1.cargar_penalizaciones '26/09/2010',N,1,2
 EXEC GRUPO_1.cargar_penalizaciones '26/09/2013',N,1,7
 EXEC GRUPO_1.cargar_penalizaciones '26/08/2014',N,1,7
+
+EXEC GRUPO_1.cargar_inscripciones 1,1,0
+EXEC GRUPO_1.cargar_inscripciones 1,2,0
+EXEC GRUPO_1.cargar_inscripciones 1,3,0
+EXEC GRUPO_1.cargar_inscripciones 1,4,0
+EXEC GRUPO_1.cargar_inscripciones 1,5,0
+EXEC GRUPO_1.cargar_inscripciones 1,6,0
+EXEC GRUPO_1.cargar_inscripciones 1,7,0
+EXEC GRUPO_1.cargar_inscripciones 1,8,0
+EXEC GRUPO_1.cargar_inscripciones 1,9,0
+EXEC GRUPO_1.cargar_inscripciones 1,10,0
+
+EXEC GRUPO_1.cargar_inscripciones 2,10,0
+EXEC GRUPO_1.cargar_inscripciones 2,11,0
+EXEC GRUPO_1.cargar_inscripciones 2,12,0
+EXEC GRUPO_1.cargar_inscripciones 2,13,0
+EXEC GRUPO_1.cargar_inscripciones 2,14,0
+EXEC GRUPO_1.cargar_inscripciones 2,15,0
+EXEC GRUPO_1.cargar_inscripciones 2,16,0
+EXEC GRUPO_1.cargar_inscripciones 2,17,0
+EXEC GRUPO_1.cargar_inscripciones 2,18,0
+EXEC GRUPO_1.cargar_inscripciones 2,19,0
 
 -- FIN CARGA DE TABLAS
 GO
