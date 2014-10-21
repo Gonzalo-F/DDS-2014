@@ -124,16 +124,16 @@ END
 GO
 
 CREATE PROCEDURE GRUPO_1.cargar_equipos
-	@Id numeric (18,0),
+	@Numero_equipo numeric (18,0),
 	@Partido_Id numeric (18,0),
 	@Jugador_Id numeric (18,0)
 	
 AS 
 BEGIN
 	INSERT INTO GRUPO_1.Equipos
-		(Id, Partido_Id, Jugador_Id)
+		(Numero_equipo, Partido_Id, Jugador_Id)
 	VALUES 
-		(@Id, @Partido_Id, @Jugador_Id)
+		(@Numero_equipo, @Partido_Id, @Jugador_Id)
 END
 GO
 
@@ -284,10 +284,10 @@ CREATE TABLE GRUPO_1.Amigos
 
 CREATE TABLE GRUPO_1.Equipos
 (
-	Id numeric(18,0),
+	Numero_equipo numeric(18,0),
 	Partido_Id numeric(18,0),
 	Jugador_Id numeric(18,0),
-	PRIMARY KEY (Id),
+	PRIMARY KEY (Numero_equipo),
 	FOREIGN KEY (Partido_Id) REFERENCES GRUPO_1.Partidos (Id),
 	FOREIGN KEY (Jugador_Id) REFERENCES GRUPO_1.Jugadores (Id),
 )
