@@ -282,10 +282,11 @@ CREATE TABLE GRUPO_1.Amigos
 
 CREATE TABLE GRUPO_1.Equipos
 (
+	Id numeric(18,0) IDENTITY(1,1),
 	Numero_equipo numeric(18,0),
 	Partido_Id numeric(18,0),
 	Jugador_Id numeric(18,0),
-	PRIMARY KEY (Numero_equipo),
+	PRIMARY KEY (Id),
 	FOREIGN KEY (Partido_Id) REFERENCES GRUPO_1.Partidos (Id),
 	FOREIGN KEY (Jugador_Id) REFERENCES GRUPO_1.Jugadores (Id),
 )
