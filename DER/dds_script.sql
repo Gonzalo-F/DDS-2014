@@ -9,6 +9,8 @@ END
 
 -- FIN CREACION DE SCHEMA
 
+
+
 -- ELIMINACION DE TABLAS NECESARIAS
 -- Si existe, lo elimina
 
@@ -33,8 +35,8 @@ DROP TABLE GRUPO_1.Jugadores
 IF OBJECT_ID('GRUPO_1.Partidos', 'U') IS NOT NULL
 DROP TABLE GRUPO_1.Partidos
 
-
 -- FIN ELIMINACION DE TABLAS
+
 
 -- ELIMINACION DE PROCESOS, FUNCIONES, VISTAS Y TRIGGERS NECESARIOS
 -- Si existe, lo elimina
@@ -44,6 +46,21 @@ DROP PROCEDURE GRUPO_1.cargar_jugador
 
 IF OBJECT_ID('GRUPO_1.cargar_partido', 'P') IS NOT NULL
 DROP PROCEDURE GRUPO_1.cargar_partido
+
+IF OBJECT_ID('GRUPO_1.cargar_calificaciones', 'P') IS NOT NULL
+DROP PROCEDURE GRUPO_1.cargar_calificaciones
+
+IF OBJECT_ID('GRUPO_1.cargar_penalizaciones', 'P') IS NOT NULL
+DROP PROCEDURE GRUPO_1.cargar_penalizaciones
+
+IF OBJECT_ID('GRUPO_1.baja_con_reemplazo', 'P') IS NOT NULL
+DROP PROCEDURE GRUPO_1.baja_con_reemplazo
+
+IF OBJECT_ID('GRUPO_1.baja_sin_reemplazo', 'P') IS NOT NULL
+DROP PROCEDURE GRUPO_1.baja_sin_reemplazo
+
+IF OBJECT_ID('GRUPO_1.Jugadores_malos') IS NOT NULL
+DROP VIEW GRUPO_1.Jugadores_malos
 
 -- FIN DE ELIMINACION DE PROCEDIMIENTO, FUNCIONES, VISTAS Y TRIGGERS NECESARIOS
 
@@ -55,7 +72,7 @@ CREATE PROCEDURE GRUPO_1.cargar_jugador
 	@Nombre nvarchar(45),
 	@Apodo nvarchar (45),
 	@FechaNac date,
-	@Handicap numeric(18,0),
+	@Handicap numeric(18,2),
 	@Promedio numeric(18,2)
 	
 AS
@@ -87,7 +104,7 @@ CREATE PROCEDURE GRUPO_1.cargar_penalizaciones
 	@Fecha date,
 	@Motivo nvarchar(45),
 	@Partido_Id numeric(18,0),
-	@Jugador_Id numeric(18,0),
+	@Jugador_Id numeric(18,0)
 AS 
 BEGIN
 	INSERT INTO GRUPO_1.Penalizaciones
@@ -112,10 +129,39 @@ BEGIN
 		(@Descripcion, @JugadorCalificado, @JugadorCalificante, @Partido_Id)
 END
 GO
+
+CREATE PROCEDURE GRUPO_1.baja_con_reemplazo
+	@Id_Jugador_baja numeric(18,0),
+	@Id_Jugador_reemplazo numeric(18,0),
+	@Prioridad numeric(18,0)
 	
+AS
+BEGIN	
+	INSERT INTO GRUPO_1.Inscripciones
+		(Partido_Id, Jugador_Id, Prioridad)
+	VALUES
+		( (SELECT Partido_Id FROM GRUPO_1.Inscripciones WHERE Jugador_Id = @Id_Jugador_baja ), @Id_Jugador_reemplazo, @Prioridad)
+		
+	DELETE GRUPO_1.Inscripciones WHERE Jugador_Id = @Id_Jugador_baja
+END
+GO
+
+CREATE PROCEDURE GRUPO_1.baja_sin_reemplazo
+	@Id_Jugador numeric(18,0),
+	@Id_Partido numeric(18,0)
+AS
+BEGIN
+	DELETE GRUPO_1.Jugadores WHERE Id = @Id_Jugador
 	
+	INSERT INTO GRUPO_1.Penalizaciones
+		(Fecha, Motivo, Partido_Id, Jugador_Id)
+	VALUES
+		(GETDATE(), 'Darse de baja sin reeemplazante', @Id_Partido, @Id_Jugador)
+END
+GO
 
 -- FIN DE CREACION DE PROCEDIMIENTO
+
 
 -- CREACION DE TABLAS
 
@@ -201,3 +247,16 @@ CREATE TABLE GRUPO_1.Equipos
 EXEC GRUPO_1.cargar_jugador Carlos, Juan, '26/09/2013', 8, 3 /* Ejemplo */
 
 -- FIN CARGA DE TABLAS
+GO
+
+
+-- CREACION DE VISTAS
+
+CREATE VIEW GRUPO_1.Jugadores_malos
+AS
+	SELECT *
+	FROM GRUPO_1.Jugadores
+	WHERE Handicap <= 5
+GO
+
+-- FIN DE CREACION DE VISTAS
