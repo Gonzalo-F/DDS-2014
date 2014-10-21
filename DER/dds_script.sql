@@ -161,6 +161,16 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE GRUPO_1.cargar_amigos
+	@JugadorAmigable_Id numeric(18,0),
+	@Amigo_Id numeric(18,0)
+AS
+BEGIN
+	INSERT INTO GRUPO_1.Amigos
+	(JugadorAmigable_Id, Amigo_Id)
+	VALUES (@JugadorAmigable_Id, @Amigo_Id)
+	END
+	GO
 -- FIN DE CREACION DE PROCEDIMIENTO
 
 
@@ -278,6 +288,24 @@ EXEC GRUPO_1.cargar_penalizaciones '10/10/2014', 'No dejaste reemplazante', 1, 4
 EXEC GRUPO_1.cargar_penalizaciones '20/10/2014', 'No dejaste reemplazante', 1, 10
 EXEC GRUPO_1.cargar_penalizaciones '17/10/2014', 'No dejaste reemplazante', 4, 3
 EXEC GRUPO_1.cargar_penalizaciones '25/11/2014', 'No dejaste reemplazante', 1, 4
+
+-- tabla de amigos
+
+EXEC GRUPO_1.cargar_amigos 1,4
+EXEC GRUPO_1.cargar_amigos 1,19
+EXEC GRUPO_1.cargar_amigos 1,8
+EXEC GRUPO_1.cargar_amigos 3,4
+EXEC GRUPO_1.cargar_amigos 3,8
+EXEC GRUPO_1.cargar_amigos 8,11
+EXEC GRUPO_1.cargar_amigos 11,4
+EXEC GRUPO_1.cargar_amigos 14,4
+EXEC GRUPO_1.cargar_amigos 15,18
+EXEC GRUPO_1.cargar_amigos 12,7
+EXEC GRUPO_1.cargar_amigos 6,7
+EXEC GRUPO_1.cargar_amigos 3,15
+EXEC GRUPO_1.cargar_amigos 18,2
+EXEC GRUPO_1.cargar_amigos 2,6
+
 
 
 
