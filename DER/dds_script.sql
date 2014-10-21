@@ -54,6 +54,9 @@ DROP PROCEDURE GRUPO_1.cargar_calificaciones
 IF OBJECT_ID('GRUPO_1.cargar_penalizaciones', 'P') IS NOT NULL
 DROP PROCEDURE GRUPO_1.cargar_penalizaciones
 
+IF OBJECT_ID('GRUPO_1.cargar_amigos', 'P') IS NOT NULL
+DROP PROCEDURE GRUPO_1.cargar_amigos
+
 IF OBJECT_ID('GRUPO_1.baja_con_reemplazo', 'P') IS NOT NULL
 DROP PROCEDURE GRUPO_1.baja_con_reemplazo
 
@@ -118,6 +121,7 @@ GO
 CREATE PROCEDURE GRUPO_1.cargar_calificaciones
 	
 	@Descripcion nvarchar(45),
+	@Nota numeric(18,0),
 	@JugadorCalificado numeric(18,0),
 	@JugadorCalificante numeric(18,0),
 	@Partido_Id numeric(18,0)
@@ -125,11 +129,22 @@ CREATE PROCEDURE GRUPO_1.cargar_calificaciones
 AS 
 BEGIN
 	INSERT INTO GRUPO_1.Calificaciones
-		(Descripcion, JugadorCalificado, JugadorCalificante, Partido_Id)
+		(Descripcion,  Nota, JugadorCalificado, JugadorCalificante, Partido_Id)
 	VALUES 
-		(@Descripcion, @JugadorCalificado, @JugadorCalificante, @Partido_Id)
+		(@Descripcion, @Nota, @JugadorCalificado, @JugadorCalificante, @Partido_Id)
 END
 GO
+
+CREATE PROCEDURE GRUPO_1.cargar_amigos
+	@JugadorAmigable_Id numeric(18,0),
+	@Amigo_Id numeric(18,0)
+AS
+BEGIN
+	INSERT INTO GRUPO_1.Amigos
+	(JugadorAmigable_Id, Amigo_Id)
+	VALUES (@JugadorAmigable_Id, @Amigo_Id)
+	END
+	GO
 
 CREATE PROCEDURE GRUPO_1.baja_con_reemplazo
 	@Id_Jugador_baja numeric(18,0),
@@ -161,16 +176,6 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE GRUPO_1.cargar_amigos
-	@JugadorAmigable_Id numeric(18,0),
-	@Amigo_Id numeric(18,0)
-AS
-BEGIN
-	INSERT INTO GRUPO_1.Amigos
-	(JugadorAmigable_Id, Amigo_Id)
-	VALUES (@JugadorAmigable_Id, @Amigo_Id)
-	END
-	GO
 -- FIN DE CREACION DE PROCEDIMIENTO
 
 
@@ -200,9 +205,10 @@ CREATE TABLE GRUPO_1.Partidos
 CREATE TABLE GRUPO_1.Calificaciones
 (
 	Id numeric(18,0) IDENTITY(1,1),
+	Descripcion varchar(45),
+	Nota numeric(18,0),
 	JugadorCalificado numeric(18,0) NOT NULL,
 	JugadorCalificante numeric(18,0) NOT NULL,
-	Descripcion varchar(45),
 	Partido_Id numeric(18,0) NOT NULL,
 	PRIMARY KEY (Id),
 	FOREIGN KEY (JugadorCalificado) REFERENCES GRUPO_1.Jugadores (Id),
