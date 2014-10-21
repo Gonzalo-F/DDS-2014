@@ -244,7 +244,7 @@ CREATE TABLE GRUPO_1.Equipos
 -- FIN DE CREACION DE TABLAS
 
 -- CARGA DE TABLAS
-
+-- tabla de jugadores
 EXEC GRUPO_1.cargar_jugador Carlos, Juan, '26/09/2013', 8, 3 /* Ejemplo */
 EXEC GRUPO_1.cargar_jugador Emiliano, Emi, '13/08/2014', 2, 5
 EXEC GRUPO_1.cargar_jugador Lucas, Pugna, '26/09/1994', 10, 6
@@ -265,6 +265,15 @@ EXEC GRUPO_1.cargar_jugador Bruno,Rasta, '16/06/1992', 8, 4
 EXEC GRUPO_1.cargar_jugador Maximiliano,Maxi, '08/12/1990', 5, 8
 EXEC GRUPO_1.cargar_jugador Leonardo,Leo, '16/01/1992', 8, 10
 EXEC GRUPO_1.cargar_jugador Daniel,Dani, '16/03/1990', 5, 8
+
+-- tabla de partidos
+
+EXEC GRUPO_1.cargar_partido Tinglado, '25/11/2014', '21:00', 1
+EXEC GRUPO_1.cargar_partido 'Segurola y Habanna', '20/12/2014', '23:00', 0
+EXEC GRUPO_1.cargar_partido 'La Canchita de Ramon', '03/11/2014', '20:00', 1
+EXEC GRUPO_1.cargar_partido 'El Monumental', '13/11/2014', '21:30', 1
+
+
 
 
 
