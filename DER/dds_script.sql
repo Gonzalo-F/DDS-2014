@@ -180,32 +180,46 @@ BEGIN
 	GO
 
 CREATE PROCEDURE GRUPO_1.baja_con_reemplazo
-	@Id_Jugador_baja numeric(18,0),
-	@Id_Jugador_reemplazo numeric(18,0),
+	@Jugador_baja_Id numeric(18,0),
+	@Jugador_reemplazo_Id numeric(18,0),
+	@Partido_Id numeric(18,0),
 	@Prioridad numeric(18,0)
 	
 AS
-BEGIN	
-	INSERT INTO GRUPO_1.Inscripciones
-		(Partido_Id, Jugador_Id, Prioridad)
-	VALUES
-		( (SELECT Partido_Id FROM GRUPO_1.Inscripciones WHERE Jugador_Id = @Id_Jugador_baja ), @Id_Jugador_reemplazo, @Prioridad)
-		
-	DELETE GRUPO_1.Inscripciones WHERE Jugador_Id = @Id_Jugador_baja
+BEGIN
+	IF 1 = (SELECT COUNT(*) FROM GRUPO_1.Inscripciones WHERE Jugador_Id = @Jugador_baja_Id AND Partido_Id = @Partido_Id)
+	BEGIN
+		IF 0 = (SELECT COUNT(*) FROM GRUPO_1.Inscripciones WHERE Jugador_Id = @Jugador_reemplazo_Id AND Partido_Id = @Partido_Id)
+		BEGIN
+			EXEC GRUPO_1.cargar_inscripciones @Partido_Id, @Jugador_reemplazo_Id, @Prioridad	
+			DELETE GRUPO_1.Inscripciones WHERE Jugador_Id = @Jugador_baja_Id AND Partido_Id = @Partido_Id
+			PRINT 'El jugador ha sido dado de baja y se inscibió a su reemplazo'
+		END
+		ELSE
+			PRINT 'El reemplazante estaba inscripto con anterioridad a dicho partido. Transacción cancelada'
+	END
+	ELSE
+		PRINT 'El jugador no estaba inscripto a dicho partido. Transacción cancelada'
+	
 END
 GO
 
 CREATE PROCEDURE GRUPO_1.baja_sin_reemplazo
-	@Id_Jugador numeric(18,0),
-	@Id_Partido numeric(18,0)
+	@Jugador_Id numeric(18,0),
+	@Partido_Id numeric(18,0)
 AS
 BEGIN
-	DELETE GRUPO_1.Jugadores WHERE Id = @Id_Jugador
+	DECLARE @Date DATE
+	SET @Date = GETDATE()
 	
-	INSERT INTO GRUPO_1.Penalizaciones
-		(Fecha, Motivo, Partido_Id, Jugador_Id)
-	VALUES
-		(GETDATE(), 'Darse de baja sin reeemplazante', @Id_Partido, @Id_Jugador)
+	IF 1 = (SELECT COUNT(*) FROM GRUPO_1.Inscripciones WHERE Jugador_Id = @Jugador_Id AND Partido_Id = @Partido_Id)
+	BEGIN
+		EXEC GRUPO_1.cargar_penalizaciones @Date, 'Darse de baja sin reeemplazante', @Partido_Id, @Jugador_Id
+		DELETE GRUPO_1.Inscripciones WHERE Jugador_Id = @Jugador_Id AND Partido_Id = @Partido_Id
+		PRINT 'El jugador ha sido dado de baja y se fue penalizado'
+	END
+	ELSE
+		PRINT 'El jugador no estaba inscripto a dicho partido. Transacción cancelada'
 END
 GO
 
