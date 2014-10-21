@@ -48,6 +48,12 @@ DROP PROCEDURE GRUPO_1.cargar_jugador
 IF OBJECT_ID('GRUPO_1.cargar_partido', 'P') IS NOT NULL
 DROP PROCEDURE GRUPO_1.cargar_partido
 
+IF OBJECT_ID('GRUPO_1.cargar_inscripciones', 'P') IS NOT NULL
+DROP PROCEDURE GRUPO_1.cargar_inscripciones
+
+IF OBJECT_ID('GRUPO_1.cargar_equipos', 'P') IS NOT NULL
+DROP PROCEDURE GRUPO_1.cargar_equipos
+
 IF OBJECT_ID('GRUPO_1.cargar_calificaciones', 'P') IS NOT NULL
 DROP PROCEDURE GRUPO_1.cargar_calificaciones
 
@@ -100,6 +106,34 @@ BEGIN
 		(Lugar,Fecha,Hora,Abierto)
 	VALUES 
 		(@Lugar, @Fecha, @Hora, @Abierto)
+END
+GO
+
+CREATE PROCEDURE GRUPO_1.cargar_inscripciones
+	@Partido_Id numeric (18,0),
+	@Jugador_Id numeric (18,0),
+	@Prioridad numeric (18,0)
+		
+AS 
+BEGIN
+	INSERT INTO GRUPO_1.Inscripciones
+		(Partido_Id, Jugador_Id, Prioridad)
+	VALUES 
+		(@Partido_Id, @Jugador_Id, @Prioridad)
+END
+GO
+
+CREATE PROCEDURE GRUPO_1.cargar_equipos
+	@Id numeric (18,0),
+	@Partido_Id numeric (18,0),
+	@Jugador_Id numeric (18,0)
+	
+AS 
+BEGIN
+	INSERT INTO GRUPO_1.Equipos
+		(Id, Partido_Id, Jugador_Id)
+	VALUES 
+		(@Id, @Partido_Id, @Jugador_Id)
 END
 GO
 
@@ -337,11 +371,8 @@ EXEC GRUPO_1.cargar_penalizaciones '26/09/2010',N,1,2
 EXEC GRUPO_1.cargar_penalizaciones '26/09/2013',N,1,7
 EXEC GRUPO_1.cargar_penalizaciones '26/08/2014',N,1,7
 
-
-
-
 -- FIN CARGA DE TABLAS
-
+GO
 
 
 -- CREACION DE VISTAS
