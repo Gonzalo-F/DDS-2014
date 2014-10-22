@@ -430,6 +430,22 @@ EXEC GRUPO_1.cargar_inscripciones 2,17,0
 EXEC GRUPO_1.cargar_inscripciones 2,18,0
 EXEC GRUPO_1.cargar_inscripciones 2,19,0
 
+-- tabla equipos
+
+EXEC GRUPO_1.cargar_equipos 1,1,1
+EXEC GRUPO_1.cargar_equipos 1,1,2
+EXEC GRUPO_1.cargar_equipos 1,1,3
+EXEC GRUPO_1.cargar_equipos 1,1,4
+EXEC GRUPO_1.cargar_equipos 1,1,5
+EXEC GRUPO_1.cargar_equipos 2,1,10
+EXEC GRUPO_1.cargar_equipos 2,1,11
+EXEC GRUPO_1.cargar_equipos 2,1,12
+EXEC GRUPO_1.cargar_equipos 2,1,13
+EXEC GRUPO_1.cargar_equipos 2,1,14
+
+
+
+
 -- cargar promedios
 DECLARE mi_cursor CURSOR FOR
 	SELECT Id FROM GRUPO_1.Jugadores
