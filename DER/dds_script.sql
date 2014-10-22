@@ -73,6 +73,9 @@ DROP FUNCTION GRUPO_1.calcular_promedio
 IF OBJECT_ID('GRUPO_1.Jugadores_malos') IS NOT NULL
 DROP VIEW GRUPO_1.Jugadores_malos
 
+IF OBJECT_ID('GRUPO_1.actualizar_promedio') IS NOT NULL
+DROP TRIGGER Grupo_1.actualizar_promedio
+
 -- FIN DE ELIMINACION DE PROCEDIMIENTO, FUNCIONES, VISTAS Y TRIGGERS NECESARIOS
 
 GO
@@ -456,3 +459,18 @@ AS
 GO
 
 -- FIN DE CREACION DE VISTAS
+
+
+-- CREACION DE TRIGGERS
+
+CREATE TRIGGER GRUPO_1.actualizar_promedio ON GRUPO_1.Calificaciones
+FOR INSERT
+AS
+BEGIN
+	DECLARE @id numeric(18,0)
+	SET @id = (SELECT i.JugadorCalificado_Id FROM INSERTED i)
+	UPDATE GRUPO_1.Jugadores SET Promedio = GRUPO_1.calcular_promedio(@id) WHERE Id = @id
+END
+GO
+
+-- FIN DE CREACION DE TRIGGERS
