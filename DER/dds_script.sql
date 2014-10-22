@@ -67,6 +67,9 @@ DROP PROCEDURE GRUPO_1.baja_con_reemplazo
 IF OBJECT_ID('GRUPO_1.baja_sin_reemplazo', 'P') IS NOT NULL
 DROP PROCEDURE GRUPO_1.baja_sin_reemplazo
 
+IF OBJECT_ID('GRUPO_1.calcular_promedio') IS NOT NULL
+DROP FUNCTION GRUPO_1.calcular_promedio
+
 IF OBJECT_ID('GRUPO_1.Jugadores_malos') IS NOT NULL
 DROP VIEW GRUPO_1.Jugadores_malos
 
@@ -161,7 +164,7 @@ CREATE PROCEDURE GRUPO_1.cargar_calificaciones
 AS 
 BEGIN
 	INSERT INTO GRUPO_1.Calificaciones
-		(Descripcion,  Nota, JugadorCalificado, JugadorCalificante, Partido_Id)
+		(Descripcion,  Nota, JugadorCalificado_Id, JugadorCalificante_Id, Partido_Id)
 	VALUES 
 		(@Descripcion, @Nota, @JugadorCalificado, @JugadorCalificante, @Partido_Id)
 		
@@ -223,6 +226,22 @@ BEGIN
 END
 GO
 
+CREATE FUNCTION GRUPO_1.calcular_promedio
+(
+	@Jugador_Id numeric(18,0)
+)
+RETURNS numeric(18,2)
+AS
+BEGIN
+	DECLARE @Cantidad_notas numeric(18,0)
+	DECLARE @Promedio numeric(18,2)
+	SET @Cantidad_notas = (SELECT COUNT(*) FROM GRUPO_1.Calificaciones WHERE JugadorCalificado_Id = @Jugador_Id)
+	SET @Promedio = (SELECT SUM(Nota) FROM GRUPO_1.Calificaciones WHERE JugadorCalificado_Id = @Jugador_Id) / @Cantidad_notas
+	
+	RETURN @Promedio
+END
+GO
+
 -- FIN DE CREACION DE PROCEDIMIENTO
 		
 
@@ -235,7 +254,7 @@ CREATE TABLE GRUPO_1.Jugadores
 	Apodo nvarchar (45) NOT NULL,
 	FechaNac date NOT NULL,
 	Handicap numeric(18,2) NOT NULL,
-	Promedio numeric(18,2)
+	Promedio numeric(18,2),
 	PRIMARY KEY (Id),
 )
 
@@ -254,12 +273,12 @@ CREATE TABLE GRUPO_1.Calificaciones
 	Id numeric(18,0) IDENTITY(1,1),
 	Descripcion varchar(45),
 	Nota numeric(18,0),
-	JugadorCalificado numeric(18,0) NOT NULL,
-	JugadorCalificante numeric(18,0) NOT NULL,
+	JugadorCalificado_Id numeric(18,0) NOT NULL,
+	JugadorCalificante_Id numeric(18,0) NOT NULL,
 	Partido_Id numeric(18,0) NOT NULL,
 	PRIMARY KEY (Id),
-	FOREIGN KEY (JugadorCalificado) REFERENCES GRUPO_1.Jugadores (Id),
-	FOREIGN KEY (JugadorCalificante) REFERENCES GRUPO_1.Jugadores (Id),
+	FOREIGN KEY (JugadorCalificado_Id) REFERENCES GRUPO_1.Jugadores (Id),
+	FOREIGN KEY (JugadorCalificante_Id) REFERENCES GRUPO_1.Jugadores (Id),
 	FOREIGN KEY (Partido_Id) REFERENCES GRUPO_1.Partidos (Id),
 )
 
@@ -384,6 +403,8 @@ EXEC GRUPO_1.cargar_penalizaciones '26/09/2010',N,1,2
 EXEC GRUPO_1.cargar_penalizaciones '26/09/2013',N,1,7
 EXEC GRUPO_1.cargar_penalizaciones '26/08/2014',N,1,7
 
+-- tabla inscripciones
+
 EXEC GRUPO_1.cargar_inscripciones 1,1,0
 EXEC GRUPO_1.cargar_inscripciones 1,2,0
 EXEC GRUPO_1.cargar_inscripciones 1,3,0
@@ -406,8 +427,23 @@ EXEC GRUPO_1.cargar_inscripciones 2,17,0
 EXEC GRUPO_1.cargar_inscripciones 2,18,0
 EXEC GRUPO_1.cargar_inscripciones 2,19,0
 
--- FIN CARGA DE TABLAS
+-- cargar promedios
+DECLARE mi_cursor CURSOR FOR
+	SELECT Id FROM GRUPO_1.Jugadores
+	DECLARE @id numeric(18,0)
+OPEN mi_cursor
+FETCH FROM mi_cursor INTO @id
+WHILE  @@FETCH_STATUS = 0
+BEGIN	
+	UPDATE GRUPO_1.Jugadores SET Promedio = GRUPO_1.calcular_promedio(@id) WHERE Id = @id
+
+	FETCH FROM mi_cursor INTO @id
+END
+CLOSE mi_cursor
+DEALLOCATE mi_cursor
 GO
+
+-- FIN CARGA DE TABLAS
 
 
 -- CREACION DE VISTAS
