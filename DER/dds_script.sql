@@ -443,10 +443,8 @@ EXEC GRUPO_1.cargar_equipos 2,1,12
 EXEC GRUPO_1.cargar_equipos 2,1,13
 EXEC GRUPO_1.cargar_equipos 2,1,14
 
-
-
-
 -- cargar promedios
+
 DECLARE mi_cursor CURSOR FOR
 	SELECT Id FROM GRUPO_1.Jugadores
 	DECLARE @id numeric(18,0)
@@ -482,10 +480,20 @@ GO
 CREATE TRIGGER GRUPO_1.actualizar_promedio ON GRUPO_1.Calificaciones
 FOR INSERT
 AS
-BEGIN
-	DECLARE @id numeric(18,0)
-	SET @id = (SELECT i.JugadorCalificado_Id FROM INSERTED i)
-	UPDATE GRUPO_1.Jugadores SET Promedio = GRUPO_1.calcular_promedio(@id) WHERE Id = @id
+BEGIN	
+	DECLARE mi_cursor CURSOR FOR
+		SELECT i.JugadorCalificado_Id FROM INSERTED i
+		DECLARE @id numeric(18,0)
+	OPEN mi_cursor
+	FETCH FROM mi_cursor INTO @id
+	WHILE  @@FETCH_STATUS = 0
+	BEGIN	
+		UPDATE GRUPO_1.Jugadores SET Promedio = GRUPO_1.calcular_promedio(@id) WHERE Id = @id
+
+		FETCH FROM mi_cursor INTO @id
+	END
+	CLOSE mi_cursor
+	DEALLOCATE mi_cursor
 END
 GO
 
