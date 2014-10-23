@@ -22,7 +22,10 @@ class MenuPrincipalPage extends WebPage {
 	def agregarAcciones(Form<OrganizadorPF5> parent){
 		parent.addChild(new XButton("buscarJugadores").onClick= [|this.abrirBuscarJugador])
 		parent.addChild(new XButton("generarEquipos").onClick = [|this.abrirGenerarEquipos])
+		parent.addChild(new XButton ("cargarJugador"))
 	}
+	
+	
 	
 	def abrirBuscarJugador() {
 		responsePage = new BuscarJugadorPage(this)
