@@ -13,8 +13,9 @@ import java.util.Date
 import java.util.List
 import org.uqbar.commons.model.Entity
 import org.uqbar.commons.model.UserException
+import java.io.Serializable
 
-class Partido extends Entity{
+class Partido extends Entity implements Serializable{
 	@Property String lugar = "Lugar"
 	@Property int hora = 0000
 	@Property int fecha = 00000000
@@ -31,6 +32,10 @@ class Partido extends Entity{
 	
 	@Property Boolean abierto = true
 	
+	new(){
+		
+	}
+	
 	new(int fecha, int hora, String lugar) {
 		this.hora = hora
 		this.fecha = fecha
@@ -44,9 +49,7 @@ class Partido extends Entity{
 		criterioOrdenamiento.addCriterio(orden)
 	}
 	
-	new() {
-
-	}
+	
 	
 	
 

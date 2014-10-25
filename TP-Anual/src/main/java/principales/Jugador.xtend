@@ -10,8 +10,9 @@ import java.util.ArrayList
 import java.util.Date
 import java.util.List
 import org.uqbar.commons.model.Entity
+import java.io.Serializable
 
-class Jugador extends Entity implements Cloneable{
+class Jugador extends Entity implements Serializable{
 	@Property int edad
 	@Property Date nacimiento
 	@Property String nombre
@@ -23,6 +24,10 @@ class Jugador extends Entity implements Cloneable{
 	@Property Partido ultimoPartidoJugado
 	@Property Double promedioTotal
 	@Property Double promedioUltimoPartido
+	
+	new(){
+		
+	}
 
 	new(int edad, String nombre, String apodo) {
 		this.edad = edad
