@@ -5,6 +5,7 @@ import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import wicket_tp_anual.ui_opf5.BuscadorModel.BuscadorJugadores
 import org.apache.wicket.markup.html.form.Form
 import org.apache.wicket.markup.html.form.TextField
+import org.uqbar.wicket.xtend.XButton
 
 class CargarJugadorPage extends WebPage {
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
@@ -18,6 +19,7 @@ class CargarJugadorPage extends WebPage {
 		this.addChild(
 			new Form<BuscadorJugadores>("cargarJugadoresForm", buscador.asCompoundModel) => [
 				agregarCampos
+				agregarBotones
 				
 			])
 
@@ -27,8 +29,17 @@ class CargarJugadorPage extends WebPage {
 		parent.addChild(new TextField<String>("nombre"))
 		parent.addChild(new TextField<String>("apodo"))
 		parent.addChild(new TextField<String>("nacimiento"))
-		
-		
+		parent.addChild(new TextField<String>("handicap"))
+			
+	}
+	
+	def agregarBotones(Form<BuscadorJugadores> parent){
+		parent.addChild(new XButton("guardar"))
+		parent.addChild(new XButton("volver").onClick=[|volver()])
+	}
+	
+	def volver() {
+		responsePage = mainPage
 	}
 }
 
