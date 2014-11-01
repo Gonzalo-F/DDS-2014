@@ -1,6 +1,7 @@
 package principales
 
 import entrega1.tipoInscripcion.TipoInscripcion
+
 import entrega2.bajaJugador.Penalizacion
 import entrega3.Administrador
 import entrega3.Calificacion
@@ -9,11 +10,15 @@ import excepciones.entrega3.NoSePuedeCalificarExcepcion
 import java.util.ArrayList
 import java.util.Date
 import java.util.List
-import org.uqbar.commons.model.Entity
+import org.uqbar.commons.utils.Observable
 import java.io.Serializable
+import org.uqbar.commons.model.Entity
+import javax.persistence.Id
+import javax.persistence.GeneratedValue
 
+@Observable
 class Jugador extends Entity implements Serializable {
-	private Long id
+	private Integer id
 	private Date nacimiento
 	private String nombre
 	private String apodo
@@ -44,8 +49,13 @@ class Jugador extends Entity implements Serializable {
 
 	//------getters y setters ------//
 	//FALTA GET DE ID PORQUE TIRA ERROR
-	def void setId(Long value){
-		id=value
+	@Id
+	@GeneratedValue
+	override getId() {
+		this.id
+	}
+	override void setId(Integer value){
+		this.id=value
 	}
 	def getEdad() {
 		edad
