@@ -1,4 +1,4 @@
-package wicket_tp_anual.ui_opf5.Hibernate
+package wicket_tp_anual.ui_opf5
 
 import javax.servlet.Filter
 import javax.servlet.ServletRequest
@@ -7,7 +7,7 @@ import javax.servlet.FilterChain
 import java.io.IOException
 import javax.servlet.ServletException
 import javax.servlet.FilterConfig
-
+import wicket_tp_anual.ui_opf5.home.SessionManager
 
 class FiltroHibernate implements Filter {
 	override destroy() {

@@ -1,4 +1,4 @@
-package wicket_tp_anual.ui_opf5.Hibernate
+package wicket_tp_anual.ui_opf5.home
 
 import org.hibernate.Session
 import org.hibernate.SessionFactory
