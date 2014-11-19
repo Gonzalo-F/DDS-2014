@@ -17,20 +17,20 @@ import javax.persistence.Id
 import javax.persistence.GeneratedValue
 
 @Observable
-class Jugador extends Entity implements Serializable {
+class Jugador  implements Serializable {
 	private Integer id
-	private Date nacimiento
-	private String nombre
-	private String apodo
-	private Double handicap
+	private Date nacimiento=null
+	private String nombre=""
+	private String apodo=""
+	private Double handicap=0.0
 	
 	@Property ArrayList<Jugador> amigos = new ArrayList()
 	@Property ArrayList<Calificacion> listaDeCalificaciones = new ArrayList()
 	@Property List<Penalizacion> penalizacionesCometidas = new ArrayList()
-	@Property Partido ultimoPartidoJugado
-	@Property Double promedioTotal
-	@Property Double promedioUltimoPartido
-	private int edad
+	@Property Partido ultimoPartidoJugado=null
+	@Property private Double promedioTotal=0.0
+	@Property Double promedioUltimoPartido=0.0
+	private int edad=0
 
 	new() {
 	}
@@ -49,36 +49,23 @@ class Jugador extends Entity implements Serializable {
 
 	//------getters y setters ------//
 	//FALTA GET DE ID PORQUE TIRA ERROR
+	
+	new(String nombre, String apodo, Date nac, Double handicap, Double promedio) {
+		this.nombre = nombre
+		this.apodo = apodo
+		this.nacimiento=nac
+		this.handicap=handicap
+		this.promedioTotal=promedio
+	}
+
 	@Id
 	@GeneratedValue
-	override getId() {
-		this.id
-	}
-	override void setId(Integer value){
-		this.id=value
-	}
-	def getEdad() {
-		edad
+	def getId() {
+		id
 	}
 
-	def void setEdad(int value) {
-		edad = value
-	}
-
-	def getNacimiento() {
-		nacimiento
-	}
-
-	def void setNacimiento(Date value) {
-		nacimiento = value
-	}
-
-	def getHandicap() {
-		handicap
-	}
-
-	def void setHandicap(Double value) {
-		handicap = value
+	def setId(int value) {
+		id = value
 	}
 
 	def getNombre() {
@@ -92,11 +79,37 @@ class Jugador extends Entity implements Serializable {
 	def getApodo() {
 		apodo
 	}
-	
-	def void setApodo(String value){
-		apodo=value
+
+	def void setApodo(String value) {
+		apodo = value
 	}
 
+	def getFechaNac() {
+		nacimiento
+	}
+
+	def void setFechaNac(Date value) {
+		nacimiento = value
+	}
+	
+	def getHandicap() {
+		handicap
+	}
+	
+	def void setHandicap(Double value) {
+		handicap=value
+	}
+	
+	def getPromedio() {
+		promedioTotal
+	}
+	
+	def void setPromedio(Double value) {
+		promedioTotal=value
+	}
+	
+	
+	
 	//-------fin de getters y setters-----//
 	def calificar(Partido partido, Jugador calificado, int puntaje, String comentario) {
 		if (!calificado.jugoEn(partido)) {

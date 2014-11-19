@@ -1,14 +1,15 @@
 package wicket_tp_anual.ui_opf5.BuscadorModel
 
-import java.io.Serializable
-import org.uqbar.commons.utils.ApplicationContext
-import wicket_tp_anual.ui_opf5.home.HomeJugadores
-import principales.Jugador
-import java.util.ArrayList
-import java.util.List
-import java.util.Date
-import org.uqbar.commons.model.UserException
 import com.uqbar.commons.StringUtils
+import java.io.Serializable
+import java.util.ArrayList
+import java.util.Date
+import java.util.List
+import org.uqbar.commons.model.UserException
+import org.uqbar.commons.utils.ApplicationContext
+import principales.Jugador
+import wicket_tp_anual.ui_opf5.home.HomeJugadores
+import wicket_tp_anual.ui_opf5.home.RepoJugadores
 
 class BuscadorJugadores implements Serializable{
 	
@@ -25,7 +26,8 @@ class BuscadorJugadores implements Serializable{
 	
 	def search(){
 		resultados = new ArrayList<Jugador>
-		resultados = getHomeJugadores().search(getApodo, getNombre, getHandicap, selectorHandicap, promedioDesde, promedioHasta, getNacimiento,selectorInfracciones)
+		resultados = new RepoJugadores().getAll()
+		//resultados = getHomeJugadores().search(getApodo, getNombre, getHandicap, selectorHandicap, promedioDesde, promedioHasta, getNacimiento,selectorInfracciones)
 		
 	}
 	

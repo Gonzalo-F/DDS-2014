@@ -8,6 +8,7 @@ import principales.Partido
 import wicket_tp_anual.ui_opf5.home.HomeDistribuidorDeEquipos
 import wicket_tp_anual.ui_opf5.home.HomeJugadores
 import wicket_tp_anual.ui_opf5.home.HomePartidos
+import wicket_tp_anual.ui_opf5.home.SessionManager
 
 /**
  * Application object for your web application. If you want to run this application without deploying, run the Start class.
@@ -22,8 +23,9 @@ class WicketApplication extends WebApplication {
 	
 	override init() {
 		super.init()
+		SessionManager::startApplication
 		ApplicationContext.instance.configureSingleton(Partido, new HomePartidos)
-		ApplicationContext.instance.configureSingleton(Jugador, new HomeJugadores)
+		//ApplicationContext.instance.configureSingleton(Jugador, new HomeJugadores)
 		ApplicationContext.instance.configureSingleton(DistribuidorDeEquipos, new HomeDistribuidorDeEquipos)
 		
 	}	
