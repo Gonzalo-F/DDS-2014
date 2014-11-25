@@ -15,9 +15,12 @@ import java.io.Serializable
 import javax.persistence.Id
 import javax.persistence.GeneratedValue
 import javax.persistence.Entity
+import javax.persistence.Table
 
 @Entity
+@Table(name ="Jugadores")
 @Observable
+
 class Jugador  implements Serializable {
 	private Integer id
 	@Property private Date nacimiento=null
