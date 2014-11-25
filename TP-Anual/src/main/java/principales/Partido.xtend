@@ -17,8 +17,11 @@ import javax.persistence.Entity
 import org.uqbar.commons.utils.Observable
 import javax.persistence.Id
 import javax.persistence.GeneratedValue
+import javax.persistence.Table
+import javax.persistence.Column
 
 @Entity
+@Table(name ="Partidos")
 @Observable
 class Partido implements Serializable{
 	private Long id
@@ -152,6 +155,7 @@ class Partido implements Serializable{
 	//Hibernate
 	@Id
 	@GeneratedValue
+	@Column(name="Id")
 	def getId() {
 		this.id
 	}
@@ -159,7 +163,7 @@ class Partido implements Serializable{
 	def setId(Long id) {
 		this.id = id
 	}
-
+@Column(name="Lugar")
 	def getLugar() {
 		lugar
 	}
@@ -167,7 +171,7 @@ class Partido implements Serializable{
 	def setLugar(String lugar) {
 		this.lugar = lugar
 	}
-	
+	@Column(name="Hora")
 	def getHora() {
 		hora
 	}
@@ -175,12 +179,20 @@ class Partido implements Serializable{
 	def setHora(int hora) {
 		this.hora = hora
 	}
-	
+	@Column(name="Fecha")
 	def getFecha() {
 		fecha
 	}
 
 	def setFecha(int fecha) {
 		this.fecha = fecha
+	}
+	@Column(name="Abierto")
+	def getAbierto(){
+		abierto
+	}
+	
+	def setAbierto(Boolean abierto){
+		this.abierto=abierto
 	}
 }
