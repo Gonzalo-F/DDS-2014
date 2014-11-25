@@ -11,7 +11,7 @@ class CondicionParaTodos implements Condicion {
 	}
 
 	override boolean cumple(Jugador jugador, Partido partido) {
-		partido.getListaJugadores.exists[unJugador | !(cumple(unJugador,partido))]
+		partido.obtenerJugadores.exists[unJugador | !(cumple(unJugador,partido))]
 	}
 	
 }

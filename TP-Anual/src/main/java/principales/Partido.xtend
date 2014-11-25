@@ -58,7 +58,7 @@ class Partido implements Serializable{
 		lugar.concat(" (").concat(fecha.toString).concat(" - ").concat(hora.toString).concat(")")
 	}
 	
-	def getListaJugadores() {
+	def obtenerJugadores() {
 		inscripciones.map(inscripcion|inscripcion.jugador)
 	}
 
@@ -100,7 +100,7 @@ class Partido implements Serializable{
 		if (inscripciones.size < 10) {
 			n = inscripciones.size
 		}
-		listaJugadores.subList(0, n)
+		obtenerJugadores.subList(0, n)
 	}
 
 	def generarEquiposTentativos(int cant){
