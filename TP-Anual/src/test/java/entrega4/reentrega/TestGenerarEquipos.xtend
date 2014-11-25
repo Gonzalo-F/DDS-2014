@@ -173,10 +173,10 @@ class TestGenerarEquipos {
 	}
 	def listadoOrdenadoPorUltimas2Calificaciones(Partido unPartido) {
 		unPartido.ordenarEquipos(cantidad).map [ jugador |
-			val misPuntajes = jugador.getPuntajes.clone.reverse.take(2).toList
+			val misPuntajes = jugador.obtenerPuntaje.clone.reverse.take(2).toList
 			val promedio = misPuntajes.fold(0d, [acum, puntaje|acum + puntaje]) / misPuntajes.size
 			println(
-				"Jugador: " + jugador.nombre + " puntajes: " + jugador.getPuntajes + " ult.puntajes: " + misPuntajes +
+				"Jugador: " + jugador.nombre + " puntajes: " + jugador.obtenerPuntaje + " ult.puntajes: " + misPuntajes +
 					" promedio: " + promedio)
 		]
 	}

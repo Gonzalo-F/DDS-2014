@@ -144,7 +144,7 @@ class Jugador implements Serializable {
 	}
 
 	def agregarPenalizacion(Penalizacion penalizacion) {
-		getPenalizacionesCometidas.add(penalizacion)
+		penalizacionesCometidas.add(penalizacion)
 	}
 
 	def darseDeBaja(Partido partido, Jugador reemplazante, TipoInscripcion tipo) {
@@ -160,7 +160,7 @@ class Jugador implements Serializable {
 		var Double promedio
 		for (i : 0 .. (n - 1)) {
 			var calificacion = lista.get(i)
-			suma = suma + (calificacion.getPuntaje)
+			suma = suma + (calificacion.puntaje)
 		}
 		return promedio = (suma / n) * 1.0
 	}
@@ -168,9 +168,9 @@ class Jugador implements Serializable {
 	def promedioUltimoPartido() {
 		var ArrayList<Calificacion> c = new ArrayList()
 
-		for (i : 1 .. getListaDeCalificaciones.size) {
-			var calificacion = getListaDeCalificaciones.get(i)
-			if (calificacion.getPartido == getUltimoPartidoJugado) {
+		for (i : 1 .. listaDeCalificaciones.size) {
+			var calificacion = listaDeCalificaciones.get(i)
+			if (calificacion.partido == ultimoPartidoJugado) {
 				c.add(calificacion)
 			}
 		}
@@ -178,7 +178,7 @@ class Jugador implements Serializable {
 
 	}
 
-	def getPuntajes() {
+	def obtenerPuntaje() {
 		listaDeCalificaciones.map[calificacion|calificacion.puntaje]
 	}
 
@@ -187,7 +187,7 @@ class Jugador implements Serializable {
 	}
 
 	def setPromedioP() {
-		promedioTotal = promedioCalificaciones(getListaDeCalificaciones, getListaDeCalificaciones.size)
+		promedioTotal = promedioCalificaciones(listaDeCalificaciones, listaDeCalificaciones.size)
 	}
 
 	def tenesCalificacionesSuficientes(int i) {
