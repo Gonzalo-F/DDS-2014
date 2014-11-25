@@ -16,25 +16,25 @@ import javax.persistence.Id
 import javax.persistence.GeneratedValue
 import javax.persistence.Entity
 import javax.persistence.Table
+import javax.persistence.Column
 
 @Entity
-@Table(name ="Jugadores")
+@Table(name="Jugadores")
 @Observable
-
-class Jugador  implements Serializable {
+class Jugador implements Serializable {
 	private Integer id
-	@Property private Date nacimiento=null
-	private String nombre=""
-	private String apodo=""
-	private Double handicap=0.0
-	
+	@Property private Date nacimiento = null
+	private String nombre = ""
+	private String apodo = ""
+	private Double handicap = 0.0
+
 	@Property ArrayList<Jugador> amigos = new ArrayList()
 	@Property ArrayList<Calificacion> listaDeCalificaciones = new ArrayList()
 	@Property List<Penalizacion> penalizacionesCometidas = new ArrayList()
-	@Property Partido ultimoPartidoJugado=null
-	@Property private Double promedioTotal=0.0
-	@Property Double promedioUltimoPartido=0.0
-	private int edad=0
+	@Property Partido ultimoPartidoJugado = null
+	@Property private Double promedioTotal = 0.0
+	@Property Double promedioUltimoPartido = 0.0
+	private int edad = 0
 
 	new() {
 	}
@@ -53,17 +53,17 @@ class Jugador  implements Serializable {
 
 	//------getters y setters ------//
 	//FALTA GET DE ID PORQUE TIRA ERROR
-	
 	new(String nombre, String apodo, Date nac, Double handicap, Double promedio) {
 		this.nombre = nombre
 		this.apodo = apodo
-		this.nacimiento=nac
-		this.handicap=handicap
-		this.promedioTotal=promedio
+		this.nacimiento = nac
+		this.handicap = handicap
+		this.promedioTotal = promedio
 	}
 
 	@Id
 	@GeneratedValue
+	@Column(name="Id")
 	def getId() {
 		id
 	}
@@ -72,6 +72,7 @@ class Jugador  implements Serializable {
 		id = value
 	}
 
+	@Column(name="Nombre")
 	def getNombre() {
 		nombre
 	}
@@ -80,6 +81,7 @@ class Jugador  implements Serializable {
 		nombre = value
 	}
 
+	@Column(name="Apodo")
 	def getApodo() {
 		apodo
 	}
@@ -88,6 +90,7 @@ class Jugador  implements Serializable {
 		apodo = value
 	}
 
+	@Column(name="FechaNac")
 	def getFechaNac() {
 		nacimiento
 	}
@@ -95,25 +98,25 @@ class Jugador  implements Serializable {
 	def void setFechaNac(Date value) {
 		nacimiento = value
 	}
-	
+
+	@Column(name="Handicap")
 	def getHandicap() {
 		handicap
 	}
-	
+
 	def void setHandicap(Double value) {
-		handicap=value
+		handicap = value
 	}
-	
+
+	@Column(name="Promedio")
 	def getPromedio() {
 		promedioTotal
 	}
-	
+
 	def void setPromedio(Double value) {
-		promedioTotal=value
+		promedioTotal = value
 	}
-	
-	
-	
+
 	//-------fin de getters y setters-----//
 	def calificar(Partido partido, Jugador calificado, int puntaje, String comentario) {
 		if (!calificado.jugoEn(partido)) {
