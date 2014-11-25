@@ -4,6 +4,7 @@ import org.hibernate.Session
 import org.hibernate.SessionFactory
 import org.hibernate.cfg.Configuration
 import principales.Jugador
+import principales.Partido
 
 class SessionManager {
 	static ThreadLocal<Session> tlSession = new ThreadLocal
@@ -32,6 +33,7 @@ class SessionManager {
 	
 	def static addClasses(Configuration cfg) {
 		cfg.addAnnotatedClass(Jugador)
+		cfg.addAnnotatedClass(Partido)
 		
 	}
 	

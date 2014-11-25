@@ -11,31 +11,33 @@ import excepciones.entrega2.NoInscriptoException
 import java.util.ArrayList
 import java.util.Date
 import java.util.List
-import org.uqbar.commons.model.Entity
 import org.uqbar.commons.model.UserException
 import java.io.Serializable
+import javax.persistence.Entity
+import org.uqbar.commons.utils.Observable
+import javax.persistence.Id
+import javax.persistence.GeneratedValue
 
-class Partido extends Entity implements Serializable{
-	@Property String lugar = "Lugar"
-	@Property int hora = 0000
-	@Property int fecha = 00000000
+@Entity
+@Observable
+class Partido implements Serializable{
+	private Long id
+	private String lugar = "Lugar"
+	private int hora = 0000
+	private int fecha = 00000000
 
 	/* Fecha y hora deber�an ser Date */
-	@Property ArrayList<Inscripcion> inscripciones = new ArrayList
-	@Property List<InscripcionObserver> observadores = new ArrayList
+	private ArrayList<Inscripcion> inscripciones = new ArrayList
+	private List<InscripcionObserver> observadores = new ArrayList
 
 	//@Property OrdenLista orden
-	@Property List<Jugador> equipo1
-	@Property List<Jugador> equipo2
+	private List<Jugador> equipo1
+	private List<Jugador> equipo2
 	@Property OrdenamientoMix criterioOrdenamiento = new OrdenamientoMix
 	@Property DistribuidorDeEquipos distribucionEquipos
 	
 	@Property Boolean abierto = true
-	
-	new(){
 		
-	}
-	
 	new(int fecha, int hora, String lugar) {
 		this.hora = hora
 		this.fecha = fecha
@@ -49,10 +51,6 @@ class Partido extends Entity implements Serializable{
 		criterioOrdenamiento.addCriterio(orden)
 	}
 	
-	
-	
-	
-
 	def getDescripcion(){
 		lugar.concat(" (").concat(fecha.toString).concat(" - ").concat(hora.toString).concat(")")
 	}
@@ -150,5 +148,39 @@ class Partido extends Entity implements Serializable{
 	def agregarCriterio(CriterioOrdenamiento unCriterio) {
 		criterioOrdenamiento.addCriterio(unCriterio)
 	}
+	
+	//Hibernate
+	@Id
+	@GeneratedValue
+	def getId() {
+		this.id
+	}
 
+	def setId(Long id) {
+		this.id = id
+	}
+
+	def getLugar() {
+		lugar
+	}
+
+	def setLugar(String lugar) {
+		this.lugar = lugar
+	}
+	
+	def getHora() {
+		hora
+	}
+
+	def setHora(int hora) {
+		this.hora = hora
+	}
+	
+	def getFecha() {
+		fecha
+	}
+
+	def setFecha(int fecha) {
+		this.fecha = fecha
+	}
 }

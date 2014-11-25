@@ -6,27 +6,24 @@ import java.util.ArrayList
 import java.util.Date
 import java.util.List
 import org.uqbar.commons.model.UserException
-import org.uqbar.commons.utils.ApplicationContext
 import principales.Jugador
-import wicket_tp_anual.ui_opf5.home.HomeJugadores
 import wicket_tp_anual.ui_opf5.home.RepoJugadores
 
 class BuscadorJugadores implements Serializable{
 	
-	@Property String apodo
-	@Property String nombre
-	@Property Double handicap
-	@Property Double promedioDesde
-	@Property Double promedioHasta
-	@Property Date nacimiento
-	@Property String selectorHandicap
-	@Property String selectorInfracciones
+	@Property String apodo = "";
+	@Property String nombre = "";
+	@Property Double handicap = null;
+	@Property Double promedioDesde = null;
+	@Property Double promedioHasta = null;
+	@Property Date nacimiento = null;
+	@Property String selectorHandicap = "";
+	@Property String selectorInfracciones = "";
 	
-	@Property List<Jugador> resultados
+	@Property List<Jugador> resultados = new ArrayList
 	
-	def search(){
-		resultados = new ArrayList<Jugador>
-		resultados = new RepoJugadores().getAll()
+	def search(){		
+		this.resultados = new RepoJugadores().filtrar(apodo, nombre, handicap, selectorHandicap, promedioDesde, promedioHasta, nacimiento, selectorInfracciones)
 		//resultados = getHomeJugadores().search(getApodo, getNombre, getHandicap, selectorHandicap, promedioDesde, promedioHasta, getNacimiento,selectorInfracciones)
 		
 	}
@@ -65,8 +62,5 @@ class BuscadorJugadores implements Serializable{
 		}		
 	}
 	
-	def HomeJugadores getHomeJugadores() {
-		ApplicationContext::instance.getSingleton(typeof(Jugador))
-	}
 	
 }

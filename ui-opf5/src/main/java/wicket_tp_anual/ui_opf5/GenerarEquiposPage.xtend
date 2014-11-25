@@ -16,13 +16,15 @@ import org.uqbar.wicket.xtend.XButton
 import org.uqbar.wicket.xtend.XListView
 import principales.Jugador
 import principales.Partido
+import wicket_tp_anual.ui_opf5.home.RepoPartidos
 import wicket_tp_anual.ui_opf5.BuscadorModel.LabelJugador
+import java.io.Serializable
 
-class GenerarEquiposPage extends WebPage {
+class GenerarEquiposPage extends WebPage implements Serializable{
 		
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 	private final MenuPrincipalPage mainPage
-	@Property var Generador generador 
+	var Generador generador 
 	
 	new(MenuPrincipalPage mp, Generador gen) {
 		this.mainPage=mp
@@ -44,7 +46,7 @@ class GenerarEquiposPage extends WebPage {
 		parent.addChild(new FeedbackPanel("errores"))
 				
 		parent.addChild(new DropDownChoice<Partido>("partidoSeleccionado") => [
-			choices = loadableModel[| Partido.home.allInstances ]
+			choices = loadableModel[| new RepoPartidos().getAll ]
 			choiceRenderer = choiceRenderer[Partido m| m.descripcion ]
 		]) 
 		

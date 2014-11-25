@@ -3,11 +3,7 @@ package wicket_tp_anual.ui_opf5
 import entrega4.reentrega.divisor.DistribuidorDeEquipos
 import org.apache.wicket.protocol.http.WebApplication
 import org.uqbar.commons.utils.ApplicationContext
-import principales.Jugador
-import principales.Partido
 import wicket_tp_anual.ui_opf5.home.HomeDistribuidorDeEquipos
-import wicket_tp_anual.ui_opf5.home.HomeJugadores
-import wicket_tp_anual.ui_opf5.home.HomePartidos
 import wicket_tp_anual.ui_opf5.home.SessionManager
 
 /**
@@ -21,10 +17,10 @@ class WicketApplication extends WebApplication {
 		MenuPrincipalPage
 	}
 	
-	override init() {
+	override protected init() {
 		super.init()
 		SessionManager::startApplication
-		ApplicationContext.instance.configureSingleton(Partido, new HomePartidos)
+		//ApplicationContext.instance.configureSingleton(Partido, new HomePartidos)
 		//ApplicationContext.instance.configureSingleton(Jugador, new HomeJugadores)
 		ApplicationContext.instance.configureSingleton(DistribuidorDeEquipos, new HomeDistribuidorDeEquipos)
 		

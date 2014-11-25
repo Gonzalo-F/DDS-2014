@@ -12,14 +12,15 @@ import java.util.Date
 import java.util.List
 import org.uqbar.commons.utils.Observable
 import java.io.Serializable
-import org.uqbar.commons.model.Entity
 import javax.persistence.Id
 import javax.persistence.GeneratedValue
+import javax.persistence.Entity
 
+@Entity
 @Observable
 class Jugador  implements Serializable {
 	private Integer id
-	private Date nacimiento=null
+	@Property private Date nacimiento=null
 	private String nombre=""
 	private String apodo=""
 	private Double handicap=0.0
