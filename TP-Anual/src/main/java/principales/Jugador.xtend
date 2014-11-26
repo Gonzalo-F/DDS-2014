@@ -1,22 +1,22 @@
 package principales
 
 import entrega1.tipoInscripcion.TipoInscripcion
-
 import entrega2.bajaJugador.Penalizacion
 import entrega3.Administrador
 import entrega3.Calificacion
 import entrega3.ordenesDeCreacion.JugadorSugerido
 import excepciones.entrega3.NoSePuedeCalificarExcepcion
+import java.io.Serializable
 import java.util.ArrayList
 import java.util.Date
 import java.util.List
-import org.uqbar.commons.utils.Observable
-import java.io.Serializable
-import javax.persistence.Id
-import javax.persistence.GeneratedValue
-import javax.persistence.Entity
-import javax.persistence.Table
 import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
+import javax.persistence.Table
+import org.uqbar.commons.utils.Observable
+import javax.persistence.Transient
 
 @Entity
 @Table(name="GRUPO_1.Jugadores")
@@ -30,7 +30,7 @@ class Jugador implements Serializable {
 
 	@Property ArrayList<Jugador> amigos = new ArrayList()
 	@Property ArrayList<Calificacion> listaDeCalificaciones = new ArrayList()
-	@Property List<Penalizacion> penalizacionesCometidas = new ArrayList()
+	transient List<Penalizacion> penalizacionesCometidas = new ArrayList() 
 	@Property Partido ultimoPartidoJugado = null
 	@Property private Double promedioTotal = 0.0
 	@Property Double promedioUltimoPartido = 0.0
@@ -52,7 +52,6 @@ class Jugador implements Serializable {
 	}
 
 	//------getters y setters ------//
-	//FALTA GET DE ID PORQUE TIRA ERROR
 	new(String nombre, String apodo, Date nac, Double handicap, Double promedio) {
 		this.nombre = nombre
 		this.apodo = apodo
