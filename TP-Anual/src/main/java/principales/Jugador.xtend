@@ -19,7 +19,7 @@ import javax.persistence.Table
 import javax.persistence.Column
 
 @Entity
-@Table(name="Jugadores")
+@Table(name="GRUPO_1.Jugadores")
 @Observable
 class Jugador implements Serializable {
 	private Integer id
@@ -193,5 +193,5 @@ class Jugador implements Serializable {
 	def tenesCalificacionesSuficientes(int i) {
 		listaDeCalificaciones.size >= i
 	}
-
+	
 }

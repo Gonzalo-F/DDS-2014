@@ -21,7 +21,7 @@ import javax.persistence.Table
 import javax.persistence.Column
 
 @Entity
-@Table(name ="Partidos")
+@Table(name ="GRUPO_1.Partidos")
 @Observable
 class Partido implements Serializable{
 	private Long id
