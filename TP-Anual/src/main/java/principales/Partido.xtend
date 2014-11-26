@@ -55,7 +55,7 @@ class Partido implements Serializable{
 		criterioOrdenamiento.addCriterio(orden)
 	}
 	
-	def getDescripcion(){
+	def obtenerDescripcion(){
 		lugar.concat(" (").concat(fecha.toString).concat(" - ").concat(hora.toString).concat(")")
 	}
 	

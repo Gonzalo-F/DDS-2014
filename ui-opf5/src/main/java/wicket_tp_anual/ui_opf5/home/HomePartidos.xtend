@@ -34,7 +34,7 @@ class HomePartidos extends CollectionBasedHome<Partido> {
 	}
 	
 	def get(String descripcion) {
-		getPartidos.findFirst [ partido | partido.getDescripcion.equals(descripcion) ]
+		getPartidos.findFirst [ partido | partido.obtenerDescripcion.equals(descripcion) ]
 	}
 	
 	def getPartidos() {

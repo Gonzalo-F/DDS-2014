@@ -47,7 +47,7 @@ class GenerarEquiposPage extends WebPage implements Serializable{
 				
 		parent.addChild(new DropDownChoice<Partido>("partidoSeleccionado") => [
 			choices = loadableModel[| new RepoPartidos().getAll ]
-			choiceRenderer = choiceRenderer[Partido m| m.descripcion ]
+			choiceRenderer = choiceRenderer[Partido m| m.obtenerDescripcion ]
 		]) 
 		
 		parent.addChild(new DropDownChoice<DistribuidorDeEquipos>("partidoSeleccionado.distribucionEquipos") => [
