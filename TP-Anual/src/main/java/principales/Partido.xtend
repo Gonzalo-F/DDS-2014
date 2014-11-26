@@ -28,6 +28,8 @@ class Partido implements Serializable{
 	private String lugar = "Lugar"
 	private int hora = 0000
 	private int fecha = 00000000
+	private Boolean abierto = true
+	
 
 	/* Fecha y hora deber�an ser Date */
 	private ArrayList<Inscripcion> inscripciones = new ArrayList
@@ -39,7 +41,6 @@ class Partido implements Serializable{
 	@Property OrdenamientoMix criterioOrdenamiento = new OrdenamientoMix
 	@Property DistribuidorDeEquipos distribucionEquipos
 	
-	@Property Boolean abierto = true
 		
 	new(int fecha, int hora, String lugar) {
 		this.hora = hora
@@ -163,6 +164,7 @@ class Partido implements Serializable{
 	def setId(Long id) {
 		this.id = id
 	}
+	
 	@Column(name="Lugar")
 	def getLugar() {
 		lugar
@@ -171,6 +173,7 @@ class Partido implements Serializable{
 	def setLugar(String lugar) {
 		this.lugar = lugar
 	}
+	
 	@Column(name="Hora")
 	def getHora() {
 		hora
@@ -179,6 +182,7 @@ class Partido implements Serializable{
 	def setHora(int hora) {
 		this.hora = hora
 	}
+	
 	@Column(name="Fecha")
 	def getFecha() {
 		fecha
@@ -187,6 +191,7 @@ class Partido implements Serializable{
 	def setFecha(int fecha) {
 		this.fecha = fecha
 	}
+	
 	@Column(name="Abierto", columnDefinition = "BIT", length = 1)
 	def getAbierto(){
 		abierto
