@@ -13,10 +13,10 @@ class RepoJugadores {
 		val query = session.createCriteria(Jugador)
 
 		if (nombre != null) {
-			query.add(like("nombre", "%" + nombre + "%"))
+			query.add(like("nombre", '''%«nombre»%'''.toString))
 		}
 		if (apodo != null) {
-			query.add(like("apodo", "%" + apodo + "%"))
+			query.add(like("apodo", '''%«apodo»%'''.toString))
 		}
 		
 		query.list()

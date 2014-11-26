@@ -14,24 +14,29 @@ import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
+import javax.persistence.ManyToMany
+import javax.persistence.ManyToOne
+import javax.persistence.OneToMany
 import javax.persistence.Table
 import org.uqbar.commons.utils.Observable
-import javax.persistence.Transient
 
 @Entity
 @Table(name="GRUPO_1.Jugadores")
 @Observable
 class Jugador implements Serializable {
 	private Integer id
+	
 	@Property private Date nacimiento = null
+
 	private String nombre = ""
 	private String apodo = ""
 	private Double handicap = 0.0
 
-	@Property ArrayList<Jugador> amigos = new ArrayList()
-	@Property ArrayList<Calificacion> listaDeCalificaciones = new ArrayList()
-	transient List<Penalizacion> penalizacionesCometidas = new ArrayList() 
-	@Property Partido ultimoPartidoJugado = null
+	private List<Jugador> amigos = new ArrayList()
+	private List<Calificacion> listaDeCalificaciones = new ArrayList()
+	
+	@OneToMany List<Penalizacion> penalizacionesCometidas = new ArrayList() 
+	@ManyToOne @Property Partido ultimoPartidoJugado = null
 	@Property private Double promedioTotal = 0.0
 	@Property Double promedioUltimoPartido = 0.0
 	private int edad = 0
@@ -116,6 +121,24 @@ class Jugador implements Serializable {
 		promedioTotal = value
 	}
 
+	@ManyToMany 
+	def List<Jugador> getAmigos() {
+		amigos
+	}
+	
+	def void setAmigos(List<Jugador> amigos) {
+		this.amigos = amigos
+	}
+
+	@OneToMany 
+	def List<Calificacion> getListaDeCalificaciones() {
+		listaDeCalificaciones
+	} 
+
+	def void setListaDeCalificaciones(List<Calificacion> listaDeCalificaciones) {
+		this.listaDeCalificaciones = listaDeCalificaciones
+	}
+
 	//-------fin de getters y setters-----//
 	def calificar(Partido partido, Jugador calificado, int puntaje, String comentario) {
 		if (!calificado.jugoEn(partido)) {
@@ -154,7 +177,7 @@ class Jugador implements Serializable {
 		partido.darDeBajaSinReemplazante(this)
 	}
 
-	def promedioCalificaciones(ArrayList<Calificacion> lista, int n) {
+	def promedioCalificaciones(List<Calificacion> lista, int n) {
 		var suma = 0
 		var Double promedio
 		for (i : 0 .. (n - 1)) {
