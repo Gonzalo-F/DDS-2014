@@ -163,7 +163,7 @@ class Partido implements Serializable{
 	def setId(Long id) {
 		this.id = id
 	}
-@Column(name="Lugar")
+	@Column(name="Lugar")
 	def getLugar() {
 		lugar
 	}
@@ -187,7 +187,7 @@ class Partido implements Serializable{
 	def setFecha(int fecha) {
 		this.fecha = fecha
 	}
-	@Column(name="Abierto")
+	@Column(name="Abierto", columnDefinition = "BIT", length = 1)
 	def getAbierto(){
 		abierto
 	}
