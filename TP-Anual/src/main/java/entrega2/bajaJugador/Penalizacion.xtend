@@ -64,7 +64,7 @@ class Penalizacion {
 		partido = value
 	}
 	
-	@ManyToOne @Column(name="Jugador_Id")
+	@ManyToOne
 	def getJugador() {
 		jugador
 	}

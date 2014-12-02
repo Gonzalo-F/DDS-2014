@@ -8,9 +8,11 @@ import javax.persistence.Id
 import javax.persistence.GeneratedValue
 import javax.persistence.Column
 import javax.persistence.ManyToOne
+import org.uqbar.commons.utils.Observable
 
 @Entity
 @Table (name="GRUPO_1.Calificaciones")
+@Observable
 class Calificacion {
 	private Integer id
 	private int puntaje
@@ -63,7 +65,7 @@ class Calificacion {
 		comentario = value
 	}	
 	
-	@ManyToOne @Column(name="JugadorCalificado_Id")
+	@ManyToOne 
 	def getCalificado() {
 		calificado
 	}
