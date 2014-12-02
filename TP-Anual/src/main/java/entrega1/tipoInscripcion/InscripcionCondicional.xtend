@@ -19,7 +19,7 @@ class InscripcionCondicional extends TipoInscripcion {
 		if (!getCondicion.cumple(jugador, partido)){
 			throw new InscripcionRechazadaException("El partido no cumple las condiciones del jugador")
 		}
-		confirmarInscripcion(partido.getInscripciones.size,unaInsc,partido)	
+		confirmarInscripcion(partido.cantidadInscriptos,unaInsc,partido)	
 		//Los condicionales no tienen prioridad alguna, se los agrega al final de las inscripciones.
 	}
 	

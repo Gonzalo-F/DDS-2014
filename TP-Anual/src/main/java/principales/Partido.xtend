@@ -19,6 +19,7 @@ import javax.persistence.Id
 import javax.persistence.GeneratedValue
 import javax.persistence.Table
 import javax.persistence.Column
+import javax.persistence.Transient
 
 @Entity
 @Table(name ="GRUPO_1.Partidos")
@@ -32,12 +33,12 @@ class Partido implements Serializable{
 	
 
 	/* Fecha y hora deber�an ser Date */
-	private ArrayList<Inscripcion> inscripciones = new ArrayList
-	private List<InscripcionObserver> observadores = new ArrayList
+	@Property @Transient private ArrayList<Inscripcion> inscripciones = new ArrayList
+	@Property @Transient private List<InscripcionObserver> observadores = new ArrayList
 
 	//@Property OrdenLista orden
-	private List<Jugador> equipo1
-	private List<Jugador> equipo2
+	@Property @Transient private List<Jugador> equipo1
+	@Property @Transient private List<Jugador> equipo2
 	@Property OrdenamientoMix criterioOrdenamiento = new OrdenamientoMix
 	@Property DistribuidorDeEquipos distribucionEquipos
 	

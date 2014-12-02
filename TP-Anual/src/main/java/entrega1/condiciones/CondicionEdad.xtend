@@ -13,7 +13,7 @@ class CondicionEdad implements Condicion {
 	}
 
 	override cumple(Jugador jugador, Partido partido) {
-		return ((jugador.getEdad > getEdadMinima) && (jugador.getEdad < getEdadMinima))
+		return ((jugador.edad > getEdadMinima) && (jugador.edad < getEdadMinima))
 	}
 	
 	

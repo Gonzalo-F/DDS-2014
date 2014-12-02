@@ -19,6 +19,9 @@ import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 import javax.persistence.Table
 import org.uqbar.commons.utils.Observable
+import javax.persistence.Transient
+import javax.persistence.JoinTable
+import javax.persistence.JoinColumn
 
 @Entity
 @Table(name="GRUPO_1.Jugadores")
@@ -35,11 +38,11 @@ class Jugador implements Serializable {
 	private List<Jugador> amigos = new ArrayList()
 	private List<Calificacion> listaDeCalificaciones = new ArrayList()
 	
-	@OneToMany List<Penalizacion> penalizacionesCometidas = new ArrayList() 
+	@OneToMany @Property List<Penalizacion> penalizacionesCometidas = new ArrayList() 
 	@ManyToOne @Property Partido ultimoPartidoJugado = null
 	@Property private Double promedioTotal = 0.0
 	@Property Double promedioUltimoPartido = 0.0
-	private int edad = 0
+	@Property @Transient private int edad = 0
 
 	new() {
 	}
@@ -72,7 +75,7 @@ class Jugador implements Serializable {
 		id
 	}
 
-	def setId(int value) {
+	def void setId(int value) {
 		id = value
 	}
 
@@ -138,6 +141,8 @@ class Jugador implements Serializable {
 	def void setListaDeCalificaciones(List<Calificacion> listaDeCalificaciones) {
 		this.listaDeCalificaciones = listaDeCalificaciones
 	}
+	
+	
 
 	//-------fin de getters y setters-----//
 	def calificar(Partido partido, Jugador calificado, int puntaje, String comentario) {

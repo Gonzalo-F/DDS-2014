@@ -11,8 +11,9 @@ import javax.persistence.Column
 @Entity
 @Table (name="GRUPO_1.Penalizaciones")
 class Penalizacion {
-	@Property private Date fecha
-	@Property private String motivo
+	private Integer id
+	private Date fecha
+	private String motivo
 	@Property private Partido partido
 	
 	new (Date fecha, String motivo, Partido partido){
@@ -22,6 +23,43 @@ class Penalizacion {
 		this.partido = partido
 	}
 	
+	@Id
+	@GeneratedValue
+	@Column(name="Id")
+	def getId() {
+		id
+	}
+
+	def void setId(int value) {
+		id = value
+	}
+	
+	@Column(name="Fecha")
+	def getFecha() {
+		fecha
+	}
+
+	def void setFecha(Date value) {
+		fecha = value
+	}
+	
+	@Column(name="Motivo")
+	def getMotivo() {
+		motivo
+	}
+
+	def void setMotivo(String value) {
+		motivo = value
+	}
+	
+	@Column(name="Partido_Id")
+	def getPartido() {
+		motivo
+	}
+
+	def void setPartido(Partido value) {
+		partido = value
+	}
 
 	
 }
