@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue
 import javax.persistence.Entity
 import javax.persistence.Table
 import javax.persistence.Column
+import principales.Jugador
+import javax.persistence.ManyToOne
 
 @Entity
 @Table (name="GRUPO_1.Penalizaciones")
@@ -14,7 +16,8 @@ class Penalizacion {
 	private Integer id
 	private Date fecha
 	private String motivo
-	@Property private Partido partido
+	private Partido partido
+	private Jugador jugador
 	
 	new (Date fecha, String motivo, Partido partido){
 		this.fecha= new Date()
@@ -54,11 +57,20 @@ class Penalizacion {
 	
 	@Column(name="Partido_Id")
 	def getPartido() {
-		motivo
+		partido
 	}
 
 	def void setPartido(Partido value) {
 		partido = value
+	}
+	
+	@ManyToOne @Column(name="Jugador_Id")
+	def getJugador() {
+		jugador
+	}
+
+	def void setJugador(Jugador value) {
+		jugador = value
 	}
 
 	
