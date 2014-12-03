@@ -20,6 +20,9 @@ import javax.persistence.GeneratedValue
 import javax.persistence.Table
 import javax.persistence.Column
 import javax.persistence.Transient
+import javax.persistence.ManyToMany
+import javax.persistence.CascadeType
+import javax.persistence.OneToMany
 
 @Entity
 @Table(name ="GRUPO_1.Partidos")
@@ -33,12 +36,12 @@ class Partido implements Serializable{
 	
 
 	/* Fecha y hora deber�an ser Date */
-	@Property @Transient private ArrayList<Inscripcion> inscripciones = new ArrayList
+	private ArrayList<Inscripcion> inscripciones = new ArrayList
 	@Property @Transient private List<InscripcionObserver> observadores = new ArrayList
 
 	//@Property OrdenLista orden
-	@Property @Transient private List<Jugador> equipo1
-	@Property @Transient private List<Jugador> equipo2
+	private List<Jugador> equipo1
+	private List<Jugador> equipo2
 	@Property OrdenamientoMix criterioOrdenamiento = new OrdenamientoMix
 	@Property DistribuidorDeEquipos distribucionEquipos
 	
@@ -200,5 +203,32 @@ class Partido implements Serializable{
 	
 	def setAbierto(Boolean abierto){
 		this.abierto=abierto
+	}
+	
+	@OneToMany(cascade=CascadeType.ALL, targetEntity=Inscripcion, mappedBy="partido")
+	def List<Inscripcion> getInscripciones() {
+		inscripciones
+	} 
+
+	def void setInscripciones(List<Inscripcion> inscripciones) {
+		this.inscripciones = inscripciones
+	}
+	
+	@OneToMany(cascade=CascadeType.ALL, targetEntity=Jugador, mappedBy="id")
+	def List<Jugador> getEquipo1() {
+		equipo1
+	} 
+
+	def void setEquipo1(List<Jugador> equipo1) {
+		this.equipo1 = equipo1
+	}
+	
+	@OneToMany(cascade=CascadeType.ALL, targetEntity=Jugador, mappedBy="id")
+	def List<Jugador> getEquipo2() {
+		equipo2
+	} 
+
+	def void setEquipo2(List<Jugador> equipo2) {
+		this.equipo2 = equipo2
 	}
 }

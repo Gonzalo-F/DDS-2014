@@ -2,10 +2,18 @@ package principales
 
 import entrega1.tipoInscripcion.TipoInscripcion
 import java.io.Serializable
-import org.uqbar.commons.model.Entity
+import javax.persistence.ManyToOne
+import javax.persistence.Table
+import org.uqbar.commons.utils.Observable
+import javax.persistence.Entity
+import javax.persistence.Id
+import javax.persistence.GeneratedValue
 
-class Inscripcion extends Entity implements Serializable {
-	private Long id
+@Entity
+@Table(name ="GRUPO_1.Inscripciones")
+@Observable
+class Inscripcion implements Serializable {
+	private Integer id
 	private TipoInscripcion tipo
 	private Partido partido
 	private Jugador jugador
@@ -21,6 +29,15 @@ class Inscripcion extends Entity implements Serializable {
 	}
 	
 	//------getters y setters ------//
+	@Id
+	@GeneratedValue
+	def getId() {
+		id
+	}
+
+	def void setId(int value) {
+		id = value
+	}
 	
 	def getTipo(){
 		tipo
@@ -34,6 +51,7 @@ class Inscripcion extends Entity implements Serializable {
 		partido
 	}
 	
+	@ManyToOne
 	def void setPartido(Partido value){
 		partido=value
 	}
