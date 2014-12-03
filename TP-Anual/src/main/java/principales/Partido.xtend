@@ -20,14 +20,14 @@ import javax.persistence.GeneratedValue
 import javax.persistence.Table
 import javax.persistence.Column
 import javax.persistence.Transient
-
 import javax.persistence.CascadeType
 import javax.persistence.OneToMany
-import org.uqbar.commons.model.Entity
+import javax.persistence.Entity
 
+@Entity
 @Table(name ="GRUPO_1.Partidos")
 @Observable
-class Partido extends Entity implements Serializable{
+class Partido implements Serializable{
 	private Integer id
 	private String lugar = "Lugar"
 	private int hora = 0000
@@ -161,7 +161,7 @@ class Partido extends Entity implements Serializable{
 	@Id
 	@GeneratedValue
 	@Column(name="Id")
-	override getId() {
+	def getId() {
 		this.id
 	}
 

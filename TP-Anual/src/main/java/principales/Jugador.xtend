@@ -21,12 +21,13 @@ import javax.persistence.Table
 import org.uqbar.commons.utils.Observable
 import javax.persistence.Transient
 import javax.persistence.CascadeType
-import org.uqbar.commons.model.Entity
+import javax.persistence.Entity
 
+@Entity
 @Table(name="GRUPO_1.Jugadores")
 @Observable
 
-class Jugador extends Entity implements Serializable {
+class Jugador implements Serializable {
 	private Integer id
 	
 	@Property private Date nacimiento = null
@@ -71,7 +72,7 @@ class Jugador extends Entity implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column(name="Id")
-	override getId() {
+	def getId() {
 		id
 	}
 
