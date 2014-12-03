@@ -7,5 +7,6 @@ import java.util.ArrayList
 
 class GeneradorDeEquipos implements Serializable{
 	@Property List<Partido> partidos = new ArrayList()
+	@Property Partido partidoSeleccionado
 	
 }

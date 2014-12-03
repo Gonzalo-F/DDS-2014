@@ -6,8 +6,9 @@ import org.apache.wicket.model.CompoundPropertyModel
 import org.uqbar.wicket.xtend.WicketExtensionFactoryMethods
 import org.uqbar.wicket.xtend.XButton
 import wicket_tp_anual.ui_opf5.appModel.OrganizadorPF5
+import java.io.Serializable
 
-class MenuPrincipalPage extends WebPage {
+class MenuPrincipalPage extends WebPage implements Serializable{
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 	var OrganizadorPF5 opf5	
 
