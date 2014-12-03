@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne
 import org.uqbar.commons.utils.Observable
 
 @Entity
-@Table (name="GRUPO_1.Calificaciones")
+@Table (name="Calificaciones", schema ="GRUPO_1")
 @Observable
 class Calificacion {
 	private Integer id

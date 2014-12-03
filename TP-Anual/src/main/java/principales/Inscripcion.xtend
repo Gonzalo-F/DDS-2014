@@ -10,7 +10,7 @@ import javax.persistence.Id
 import javax.persistence.GeneratedValue
 
 @Entity
-@Table(name ="GRUPO_1.Inscripciones")
+@Table(name ="Inscripciones", schema = "GRUPO_1")
 @Observable
 class Inscripcion implements Serializable {
 	private Integer id

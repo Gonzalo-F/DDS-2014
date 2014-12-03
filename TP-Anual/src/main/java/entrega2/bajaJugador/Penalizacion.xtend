@@ -11,7 +11,7 @@ import principales.Jugador
 import javax.persistence.ManyToOne
 
 @Entity
-@Table (name="GRUPO_1.Penalizaciones")
+@Table (name="Penalizaciones", schema = "GRUPO_1")
 class Penalizacion {
 	private Integer id
 	private Date fecha

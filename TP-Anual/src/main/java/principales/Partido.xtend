@@ -25,7 +25,7 @@ import javax.persistence.OneToMany
 import javax.persistence.Entity
 
 @Entity
-@Table(name ="GRUPO_1.Partidos")
+@Table(name ="Partidos", schema = "GRUPO_1")
 @Observable
 class Partido implements Serializable{
 	private Integer id
@@ -37,7 +37,7 @@ class Partido implements Serializable{
 
 	/* Fecha y hora deber�an ser Date */
 	private ArrayList<Inscripcion> inscripciones = new ArrayList
-	@Property @Transient private List<InscripcionObserver> observadores = new ArrayList
+	// @Property @Transient private List<InscripcionObserver> observadores = new ArrayList
 
 	//@Property OrdenLista orden
 	private List<Jugador> equipo1
@@ -92,12 +92,12 @@ class Partido implements Serializable{
 			throw new NoInscriptoException("no estas inscripto en el" + this)
 		}
 		this.inscripciones.remove(inscrip)
-		this.notificarObservers[seDioDeBaja(inscrip)]
+//		this.notificarObservers[seDioDeBaja(inscrip)]
 	}
 
 	def inscribirA(Inscripcion inscripcion, int posicion) {
 		inscripciones.add(posicion, inscripcion)
-		notificarObservers[seInscribio(inscripcion)]
+//		notificarObservers[seInscribio(inscripcion)]
 	}
 
 	def confirmados() {
@@ -134,9 +134,9 @@ class Partido implements Serializable{
 		getCriterioOrdenamiento.ordenar(confirmados,c)
 	}
 
-	def notificarObservers((InscripcionObserver)=>void notificacion) {
-		observadores.forEach(notificacion)
-	}
+//	def notificarObservers((InscripcionObserver)=>void notificacion) {
+//		observadores.forEach(notificacion)
+//	}
 
 	def inscribir(Jugador jugador, TipoInscripcion tipo) {
 		new Inscripcion(jugador, this, tipo) => [inscribir]

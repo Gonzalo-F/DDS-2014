@@ -24,7 +24,7 @@ import javax.persistence.CascadeType
 import javax.persistence.Entity
 
 @Entity
-@Table(name="GRUPO_1.Jugadores")
+@Table(name="Jugadores", schema = "GRUPO_1")
 @Observable
 
 class Jugador implements Serializable {
@@ -43,13 +43,13 @@ class Jugador implements Serializable {
 	@ManyToOne @Property Partido ultimoPartidoJugado = null
 	@Property private Double promedioTotal = 0.0
 	@Property Double promedioUltimoPartido = 0.0
-	@Property @Transient private int edad = 0
+//	@Property @Transient int edad = 0
 
 	new() {
 	}
 
 	new(int edad, String nombre, String apodo) {
-		this.edad = edad
+//		this.edad = edad
 		this.nombre = nombre
 		this.apodo = apodo
 	}

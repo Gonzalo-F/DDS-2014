@@ -17,7 +17,7 @@ class TestNotificacionesInscripcion {
 	@Before
 	def inicio() {
 
-		partido.getObservadores.add(new DiezConfirmadosObserver(stubNotificador))
+//		partido.getObservadores.add(new DiezConfirmadosObserver(stubNotificador))
 		for (i : 1 .. 9) {
 			var Jugador jugador = new Jugador(i, "Player" + i,"Apodo"+ i)
 			partido.inscribir(jugador, new InscripcionEstandar)
