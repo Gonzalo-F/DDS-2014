@@ -6,7 +6,6 @@ import javax.persistence.Id
 import javax.persistence.GeneratedValue
 import javax.persistence.Entity
 import javax.persistence.Table
-import javax.persistence.Column
 import principales.Jugador
 import javax.persistence.ManyToOne
 
@@ -28,7 +27,6 @@ class Penalizacion {
 	
 	@Id
 	@GeneratedValue
-	@Column(name="Id")
 	def getId() {
 		id
 	}
@@ -37,7 +35,6 @@ class Penalizacion {
 		id = value
 	}
 	
-	@Column(name="Fecha")
 	def getFecha() {
 		fecha
 	}
@@ -46,7 +43,6 @@ class Penalizacion {
 		fecha = value
 	}
 	
-	@Column(name="Motivo")
 	def getMotivo() {
 		motivo
 	}
@@ -55,7 +51,6 @@ class Penalizacion {
 		motivo = value
 	}
 	
-	@Column(name="Partido_Id")
 	def getPartido() {
 		partido
 	}

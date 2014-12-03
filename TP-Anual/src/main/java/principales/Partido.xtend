@@ -160,7 +160,6 @@ class Partido implements Serializable{
 	//Hibernate
 	@Id
 	@GeneratedValue
-	@Column(name="Id")
 	def getId() {
 		this.id
 	}
@@ -169,7 +168,6 @@ class Partido implements Serializable{
 		this.id = id
 	}
 	
-	@Column(name="Lugar")
 	def getLugar() {
 		lugar
 	}
@@ -178,7 +176,6 @@ class Partido implements Serializable{
 		this.lugar = lugar
 	}
 	
-	@Column(name="Hora")
 	def getHora() {
 		hora
 	}
@@ -187,7 +184,6 @@ class Partido implements Serializable{
 		this.hora = hora
 	}
 	
-	@Column(name="Fecha")
 	def getFecha() {
 		fecha
 	}
@@ -196,7 +192,7 @@ class Partido implements Serializable{
 		this.fecha = fecha
 	}
 	
-	@Column(name="Abierto", columnDefinition = "BIT", length = 1)
+	@Column(name="abierto", columnDefinition = "BIT", length = 1)
 	def getAbierto(){
 		abierto
 	}

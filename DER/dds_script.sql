@@ -85,16 +85,17 @@ GO
 CREATE PROCEDURE GRUPO_1.cargar_jugador
 	@Nombre nvarchar(45),
 	@Apodo nvarchar (45),
-	@FechaNac date,
-	@Handicap numeric(18,2)
+	@Nacimiento date,
+	@Handicap numeric(18,2),
+	@UltimoPartidoJugado_Id numeric(18,0)
 	
 	
 AS
 BEGIN
 	INSERT INTO GRUPO_1.Jugadores
-		(Nombre, Apodo, FechaNac,Handicap)
+		(nombre, apodo, nacimiento, handicap, ultimoPartidoJugado_id)
 	VALUES
-		(@Nombre, @Apodo, @FechaNac,@Handicap)
+		(@Nombre, @Apodo, @Nacimiento, @Handicap, @UltimoPartidoJugado_Id)
 END
 GO
 
@@ -107,7 +108,7 @@ CREATE PROCEDURE GRUPO_1.cargar_partido
 AS 
 BEGIN
 	INSERT INTO GRUPO_1.Partidos
-		(Lugar,Fecha,Hora,Abierto)
+		(lugar, fecha, hora, abierto)
 	VALUES 
 		(@Lugar, @Fecha, @Hora, @Abierto)
 END
@@ -116,14 +117,14 @@ GO
 CREATE PROCEDURE GRUPO_1.cargar_inscripciones
 	@Partido_Id numeric (18,0),
 	@Jugador_Id numeric (18,0),
-	@Prioridad numeric (18,0)
+	@Tipo numeric (18,0)
 		
 AS 
 BEGIN
 	INSERT INTO GRUPO_1.Inscripciones
-		(Partido_Id, Jugador_Id, Prioridad)
+		(partido_id, jugador_id, tipo)
 	VALUES 
-		(@Partido_Id, @Jugador_Id, @Prioridad)
+		(@Partido_Id, @Jugador_Id, @Tipo)
 END
 GO
 
@@ -150,7 +151,7 @@ CREATE PROCEDURE GRUPO_1.cargar_penalizaciones
 AS 
 BEGIN
 	INSERT INTO GRUPO_1.Penalizaciones
-		(Fecha,Motivo, Partido_Id, Jugador_Id)
+		(fecha, motivo, partido_id, jugador_id)
 	VALUES 
 		(@Fecha, @Motivo, @Partido_Id, @Jugador_Id)
 END
@@ -167,7 +168,7 @@ CREATE PROCEDURE GRUPO_1.cargar_calificaciones
 AS 
 BEGIN
 	INSERT INTO GRUPO_1.Calificaciones
-		(Descripcion,  Nota, JugadorCalificado_Id, JugadorCalificante_Id, Partido_Id)
+		(comentario,  puntaje, calificado_id, calificador_id, partido_id)
 	VALUES 
 		(@Descripcion, @Nota, @JugadorCalificado, @JugadorCalificante, @Partido_Id)
 		
@@ -193,12 +194,12 @@ CREATE PROCEDURE GRUPO_1.baja_con_reemplazo
 	
 AS
 BEGIN
-	IF 1 = (SELECT COUNT(*) FROM GRUPO_1.Inscripciones WHERE Jugador_Id = @Jugador_baja_Id AND Partido_Id = @Partido_Id)
+	IF 1 = (SELECT COUNT(*) FROM GRUPO_1.Inscripciones WHERE jugador_id = @Jugador_baja_Id AND partido_id = @Partido_Id)
 	BEGIN
-		IF 0 = (SELECT COUNT(*) FROM GRUPO_1.Inscripciones WHERE Jugador_Id = @Jugador_reemplazo_Id AND Partido_Id = @Partido_Id)
+		IF 0 = (SELECT COUNT(*) FROM GRUPO_1.Inscripciones WHERE jugador_id = @Jugador_reemplazo_Id AND partido_id = @Partido_Id)
 		BEGIN
 			EXEC GRUPO_1.cargar_inscripciones @Partido_Id, @Jugador_reemplazo_Id, @Prioridad	
-			DELETE GRUPO_1.Inscripciones WHERE Jugador_Id = @Jugador_baja_Id AND Partido_Id = @Partido_Id
+			DELETE GRUPO_1.Inscripciones WHERE jugador_id = @Jugador_baja_Id AND partido_id = @Partido_Id
 			PRINT 'El jugador ha sido dado de baja y se inscibió a su reemplazo'
 		END
 		ELSE
@@ -218,10 +219,10 @@ BEGIN
 	DECLARE @Date DATE
 	SET @Date = GETDATE()
 	
-	IF 1 = (SELECT COUNT(*) FROM GRUPO_1.Inscripciones WHERE Jugador_Id = @Jugador_Id AND Partido_Id = @Partido_Id)
+	IF 1 = (SELECT COUNT(*) FROM GRUPO_1.Inscripciones WHERE jugador_id = @Jugador_Id AND partido_id = @Partido_Id)
 	BEGIN
 		EXEC GRUPO_1.cargar_penalizaciones @Date, 'Darse de baja sin reeemplazante', @Partido_Id, @Jugador_Id
-		DELETE GRUPO_1.Inscripciones WHERE Jugador_Id = @Jugador_Id AND Partido_Id = @Partido_Id
+		DELETE GRUPO_1.Inscripciones WHERE jugador_id = @Jugador_Id AND partido_id = @Partido_Id
 		PRINT 'El jugador ha sido dado de baja y se fue penalizado'
 	END
 	ELSE
@@ -238,8 +239,8 @@ AS
 BEGIN
 	DECLARE @Cantidad_notas numeric(18,0)
 	DECLARE @Promedio numeric(18,2)
-	SET @Cantidad_notas = (SELECT COUNT(*) FROM GRUPO_1.Calificaciones WHERE JugadorCalificado_Id = @Jugador_Id)
-	SET @Promedio = (SELECT SUM(Nota) FROM GRUPO_1.Calificaciones WHERE JugadorCalificado_Id = @Jugador_Id) / @Cantidad_notas
+	SET @Cantidad_notas = (SELECT COUNT(*) FROM GRUPO_1.Calificaciones WHERE calificado_id = @Jugador_Id)
+	SET @Promedio = (SELECT SUM(puntaje) FROM GRUPO_1.Calificaciones WHERE calificado_id = @Jugador_Id) / @Cantidad_notas
 	
 	RETURN @Promedio
 END
@@ -250,70 +251,72 @@ GO
 
 -- CREACION DE TABLAS
 
-CREATE TABLE GRUPO_1.Jugadores
-(
-	Id numeric(18,0) IDENTITY(1,1),
-	Nombre nvarchar(45) NOT NULL,
-	Apodo nvarchar (45) NOT NULL,
-	FechaNac date NOT NULL,
-	Handicap numeric(18,2) NOT NULL,
-	Promedio numeric(18,2),
-	PRIMARY KEY (Id),
-)
-
 CREATE TABLE GRUPO_1.Partidos
 (
-	Id numeric(18,0) IDENTITY(1,1),
-	Lugar nvarchar(45) NOT NULL,
-	Fecha date NOT NULL,
-	Hora time NOT NULL,
-	Abierto bit /* 1 Abierto, 0 Cerrado */ NOT NULL,
-	PRIMARY KEY (Id),
+	id numeric(18,0) IDENTITY(1,1),
+	lugar nvarchar(45) NOT NULL,
+	fecha date NOT NULL,
+	hora time NOT NULL,
+	abierto bit /* 1 Abierto, 0 Cerrado */ NOT NULL,
+	PRIMARY KEY (id),
+)
+
+CREATE TABLE GRUPO_1.Jugadores
+(
+	id numeric(18,0) IDENTITY(1,1),
+	nombre nvarchar(45) NOT NULL,
+	apodo nvarchar (45) NOT NULL,
+	nacimiento date NOT NULL,
+	handicap numeric(18,2) NOT NULL,
+	promedioTotal numeric(18,2),
+	ultimoPartidoJugado_id numeric(18,0),
+	PRIMARY KEY (id),
+	FOREIGN KEY (ultimoPartidoJugado_id) REFERENCES GRUPO_1.Partidos (id),
 )
 
 CREATE TABLE GRUPO_1.Calificaciones
 (
-	Id numeric(18,0) IDENTITY(1,1),
-	Descripcion varchar(45),
-	Nota numeric(18,0),
-	JugadorCalificado_Id numeric(18,0) NOT NULL,
-	JugadorCalificante_Id numeric(18,0) NOT NULL,
-	Partido_Id numeric(18,0) NOT NULL,
-	PRIMARY KEY (Id),
-	FOREIGN KEY (JugadorCalificado_Id) REFERENCES GRUPO_1.Jugadores (Id),
-	FOREIGN KEY (JugadorCalificante_Id) REFERENCES GRUPO_1.Jugadores (Id),
-	FOREIGN KEY (Partido_Id) REFERENCES GRUPO_1.Partidos (Id),
+	id numeric(18,0) IDENTITY(1,1),
+	comentario varchar(45),
+	puntaje numeric(18,0),
+	calificado_id numeric(18,0) NOT NULL,
+	calificador_id numeric(18,0) NOT NULL,
+	partido_id numeric(18,0) NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (calificado_id) REFERENCES GRUPO_1.Jugadores (id),
+	FOREIGN KEY (calificador_id) REFERENCES GRUPO_1.Jugadores (id),
+	FOREIGN KEY (partido_id) REFERENCES GRUPO_1.Partidos (id),
 )
 
 CREATE TABLE GRUPO_1.Penalizaciones
 (
-	Id numeric(18,0) IDENTITY(1,1),
-	Fecha date NOT NULL,
-	Motivo varchar(45),
-	Partido_Id numeric(18,0) NOT NULL,
-	Jugador_Id numeric(18,0) NOT NULL,
-	PRIMARY KEY (Id),
-	FOREIGN KEY (Partido_Id) REFERENCES GRUPO_1.Partidos (Id),
-	FOREIGN KEY (Jugador_Id) REFERENCES GRUPO_1.Jugadores (Id),
+	id numeric(18,0) IDENTITY(1,1),
+	fecha date NOT NULL,
+	motivo varchar(45),
+	partido_id numeric(18,0) NOT NULL,
+	jugador_id numeric(18,0) NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (partido_id) REFERENCES GRUPO_1.Partidos (id),
+	FOREIGN KEY (jugador_id) REFERENCES GRUPO_1.Jugadores (id),
 )
 
 CREATE TABLE GRUPO_1.Inscripciones
 (
-	Id numeric(18,0) IDENTITY(1,1),
-	Partido_Id numeric(18,0),
-	Jugador_Id numeric(18,0),
-	Prioridad numeric(18,0),
-	PRIMARY KEY (Id),
-	FOREIGN KEY (Partido_Id) REFERENCES GRUPO_1.Partidos (Id),
-	FOREIGN KEY (Jugador_Id) REFERENCES GRUPO_1.Jugadores (Id),
+	id numeric(18,0) IDENTITY(1,1),
+	partido_id numeric(18,0),
+	jugador_id numeric(18,0),
+	tipo numeric(18,0),
+	PRIMARY KEY (id),
+	FOREIGN KEY (partido_id) REFERENCES GRUPO_1.Partidos (id),
+	FOREIGN KEY (jugador_id) REFERENCES GRUPO_1.Jugadores (id),
 )
 
 CREATE TABLE GRUPO_1.Amigos
 (
 	JugadorAmigable_Id numeric(18,0),
 	Amigo_Id numeric(18,0),
-	FOREIGN KEY (JugadorAmigable_Id) REFERENCES GRUPO_1.Jugadores (Id),
-	FOREIGN KEY (Amigo_Id) REFERENCES GRUPO_1.Jugadores (Id),
+	FOREIGN KEY (JugadorAmigable_Id) REFERENCES GRUPO_1.Jugadores (id),
+	FOREIGN KEY (Amigo_Id) REFERENCES GRUPO_1.Jugadores (id),
 )
 
 CREATE TABLE GRUPO_1.Equipos
@@ -323,40 +326,39 @@ CREATE TABLE GRUPO_1.Equipos
 	Partido_Id numeric(18,0),
 	Jugador_Id numeric(18,0),
 	PRIMARY KEY (Id),
-	FOREIGN KEY (Partido_Id) REFERENCES GRUPO_1.Partidos (Id),
-	FOREIGN KEY (Jugador_Id) REFERENCES GRUPO_1.Jugadores (Id),
+	FOREIGN KEY (Partido_Id) REFERENCES GRUPO_1.Partidos (id),
+	FOREIGN KEY (Jugador_Id) REFERENCES GRUPO_1.Jugadores (id),
 )
 
 -- FIN DE CREACION DE TABLAS
 
 -- CARGA DE TABLAS
--- tabla de jugadores
-EXEC GRUPO_1.cargar_jugador Carlos, Juan, '26/09/2013', 8 /* Ejemplo */
-EXEC GRUPO_1.cargar_jugador Emiliano, Emi, '13/08/2014', 2
-EXEC GRUPO_1.cargar_jugador Lucas, Pugna, '26/09/1994', 10
-EXEC GRUPO_1.cargar_jugador Gonzalo, Gonza, '12/04/1993', 9
-EXEC GRUPO_1.cargar_jugador Nicolas, Nico, '27/07/1993', 3
-EXEC GRUPO_1.cargar_jugador Alberto, Tito, '03/01/1987', 8
-EXEC GRUPO_1.cargar_jugador Gaston, Gas, '01/11/1976', 6
-EXEC GRUPO_1.cargar_jugador Tomas, Petiso, '23/04/1997', 8
-EXEC GRUPO_1.cargar_jugador Pablo, Pablito, '26/12/1988', 7
-EXEC GRUPO_1.cargar_jugador Agustin, Tino, '12/09/1992', 8
-EXEC GRUPO_1.cargar_jugador Hernan, Herni, '26/09/1989', 10
-EXEC GRUPO_1.cargar_jugador Ivan, Ivan, '23/12/1990', 4
-EXEC GRUPO_1.cargar_jugador Luciano, Lucho, '15/02/1991', 7
-EXEC GRUPO_1.cargar_jugador Matias, Mati, '26/09/1992', 5
-EXEC GRUPO_1.cargar_jugador Federico,Facha, '16/03/1990', 8
-EXEC GRUPO_1.cargar_jugador Bruno,Rasta, '16/06/1992', 8
-EXEC GRUPO_1.cargar_jugador Maximiliano,Maxi, '08/12/1990', 5
-EXEC GRUPO_1.cargar_jugador Leonardo,Leo, '16/01/1992', 8
-EXEC GRUPO_1.cargar_jugador Daniel,Dani, '16/03/1990', 5
-
 -- tabla de partidos
-
-EXEC GRUPO_1.cargar_partido Tinglado, '25/11/2014', '21:00', 1
+EXEC GRUPO_1.cargar_partido 'Tinglado', '25/11/2014', '21:00', 1
 EXEC GRUPO_1.cargar_partido 'Segurola y Habanna', '20/12/2014', '23:00', 0
 EXEC GRUPO_1.cargar_partido 'La Canchita de Ramon', '03/11/2014', '20:00', 1
 EXEC GRUPO_1.cargar_partido 'El Monumental', '13/11/2014', '21:30', 1
+
+-- tabla de jugadores
+EXEC GRUPO_1.cargar_jugador Carlos, Juan, '26/09/2013', 8, 1 /* Ejemplo */
+EXEC GRUPO_1.cargar_jugador Emiliano, Emi, '13/08/2014', 2, 1
+EXEC GRUPO_1.cargar_jugador Lucas, Pugna, '26/09/1994', 10, 1
+EXEC GRUPO_1.cargar_jugador Gonzalo, Gonza, '12/04/1993', 9, 1
+EXEC GRUPO_1.cargar_jugador Nicolas, Nico, '27/07/1993', 3, 2
+EXEC GRUPO_1.cargar_jugador Alberto, Tito, '03/01/1987', 8, 2
+EXEC GRUPO_1.cargar_jugador Gaston, Gas, '01/11/1976', 6, 2
+EXEC GRUPO_1.cargar_jugador Tomas, Petiso, '23/04/1997', 8, 2
+EXEC GRUPO_1.cargar_jugador Pablo, Pablito, '26/12/1988', 7, 3
+EXEC GRUPO_1.cargar_jugador Agustin, Tino, '12/09/1992', 8, 4
+EXEC GRUPO_1.cargar_jugador Hernan, Herni, '26/09/1989', 10, 3
+EXEC GRUPO_1.cargar_jugador Ivan, Ivan, '23/12/1990', 4, 3
+EXEC GRUPO_1.cargar_jugador Luciano, Lucho, '15/02/1991', 7, 3
+EXEC GRUPO_1.cargar_jugador Matias, Mati, '26/09/1992', 5, 3
+EXEC GRUPO_1.cargar_jugador Federico,Facha, '16/03/1990', 8, 3
+EXEC GRUPO_1.cargar_jugador Bruno,Rasta, '16/06/1992', 8, 3
+EXEC GRUPO_1.cargar_jugador Maximiliano,Maxi, '08/12/1990', 5, 3
+EXEC GRUPO_1.cargar_jugador Leonardo,Leo, '16/01/1992', 8, 3
+EXEC GRUPO_1.cargar_jugador Daniel,Dani, '16/03/1990', 5, 3
 
 -- tabla de calificaciones
 
@@ -452,7 +454,7 @@ OPEN mi_cursor
 FETCH FROM mi_cursor INTO @id
 WHILE  @@FETCH_STATUS = 0
 BEGIN	
-	UPDATE GRUPO_1.Jugadores SET Promedio = GRUPO_1.calcular_promedio(@id) WHERE Id = @id
+	UPDATE GRUPO_1.Jugadores SET promedioTotal = GRUPO_1.calcular_promedio(@id) WHERE id = @id
 
 	FETCH FROM mi_cursor INTO @id
 END
@@ -482,13 +484,13 @@ FOR INSERT
 AS
 BEGIN	
 	DECLARE mi_cursor CURSOR FOR
-		SELECT i.JugadorCalificado_Id FROM INSERTED i
+		SELECT i.calificado_id FROM INSERTED i
 		DECLARE @id numeric(18,0)
 	OPEN mi_cursor
 	FETCH FROM mi_cursor INTO @id
 	WHILE  @@FETCH_STATUS = 0
 	BEGIN	
-		UPDATE GRUPO_1.Jugadores SET Promedio = GRUPO_1.calcular_promedio(@id) WHERE Id = @id
+		UPDATE GRUPO_1.Jugadores SET promedioTotal = GRUPO_1.calcular_promedio(@id) WHERE Id = @id
 
 		FETCH FROM mi_cursor INTO @id
 	END

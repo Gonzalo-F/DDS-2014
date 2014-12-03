@@ -6,7 +6,6 @@ import javax.persistence.Entity
 import javax.persistence.Table
 import javax.persistence.Id
 import javax.persistence.GeneratedValue
-import javax.persistence.Column
 import javax.persistence.ManyToOne
 import org.uqbar.commons.utils.Observable
 
@@ -38,7 +37,6 @@ class Calificacion {
 	
 	@Id
 	@GeneratedValue
-	@Column(name="Id")
 	def getId() {
 		id
 	}
@@ -47,7 +45,6 @@ class Calificacion {
 		id = value
 	}
 	
-	@Column(name="Nota")
 	def getPuntaje() {
 		puntaje
 	}
@@ -56,7 +53,6 @@ class Calificacion {
 		puntaje = value
 	}
 	
-	@Column(name="Descripcion")
 	def getComentario() {
 		comentario
 	}
@@ -74,7 +70,6 @@ class Calificacion {
 		calificado = value
 	}
 	
-	@Column(name="JugadorCalificante_Id")
 	def getCalificador() {
 		calificador
 	}
@@ -83,7 +78,6 @@ class Calificacion {
 		calificador = value
 	}
 	
-	@Column(name="Partido_Id")
 	def getPartido() {
 		partido
 	}

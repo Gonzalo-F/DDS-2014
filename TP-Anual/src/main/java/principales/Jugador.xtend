@@ -10,7 +10,6 @@ import java.io.Serializable
 import java.util.ArrayList
 import java.util.Date
 import java.util.List
-import javax.persistence.Column
 
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
@@ -19,7 +18,6 @@ import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 import javax.persistence.Table
 import org.uqbar.commons.utils.Observable
-import javax.persistence.Transient
 import javax.persistence.CascadeType
 import javax.persistence.Entity
 
@@ -30,7 +28,7 @@ import javax.persistence.Entity
 class Jugador implements Serializable {
 	private Integer id
 	
-	@Property private Date nacimiento = null
+	private Date nacimiento = null
 
 	private String nombre = ""
 	private String apodo = ""
@@ -40,8 +38,8 @@ class Jugador implements Serializable {
 	private List<Calificacion> listaDeCalificaciones = new ArrayList()
 	
 	private List<Penalizacion> penalizacionesCometidas = new ArrayList() 
-	@ManyToOne @Property Partido ultimoPartidoJugado = null
-	@Property private Double promedioTotal = 0.0
+	@Property private Partido ultimoPartidoJugado = null
+	private Double promedioTotal = 0.0
 	@Property Double promedioUltimoPartido = 0.0
 //	@Property @Transient int edad = 0
 
@@ -71,7 +69,6 @@ class Jugador implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@Column(name="Id")
 	def getId() {
 		id
 	}
@@ -80,7 +77,6 @@ class Jugador implements Serializable {
 		id = value
 	}
 
-	@Column(name="Nombre")
 	def getNombre() {
 		nombre
 	}
@@ -89,7 +85,6 @@ class Jugador implements Serializable {
 		nombre = value
 	}
 
-	@Column(name="Apodo")
 	def getApodo() {
 		apodo
 	}
@@ -98,16 +93,14 @@ class Jugador implements Serializable {
 		apodo = value
 	}
 
-	@Column(name="FechaNac")
-	def getFechaNac() {
+	def getNacimiento() {
 		nacimiento
 	}
 
-	def void setFechaNac(Date value) {
+	def void setNacimiento(Date value) {
 		nacimiento = value
 	}
 
-	@Column(name="Handicap")
 	def getHandicap() {
 		handicap
 	}
@@ -116,7 +109,6 @@ class Jugador implements Serializable {
 		handicap = value
 	}
 
-	@Column(name="Promedio")
 	def getPromedio() {
 		promedioTotal
 	}
@@ -150,6 +142,15 @@ class Jugador implements Serializable {
 	
 	def setPenalizacionesCometidas(List<Penalizacion> v) {
 		this.penalizacionesCometidas = v
+	}
+	
+	@ManyToOne(targetEntity=Partido)
+	def getUltimoPartidoJugado() {
+		ultimoPartidoJugado
+	}
+
+	def void setUltimoPartidoJugador(Partido value) {
+		this.ultimoPartidoJugado = value
 	}
 
 	//-------fin de getters y setters-----//
