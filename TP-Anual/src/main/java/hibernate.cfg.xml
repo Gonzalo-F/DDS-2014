@@ -5,8 +5,8 @@
  <session-factory name="">
   <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLJdbcVersion</property>
   <property name="hibernate.connection.url">jdbc:sqlserver://localhost/</property>
-  <property name="hibernate.connection.username">grupo1</property>
-  <property name="hibernate.connection.password">grupo1</property>
+  <property name="hibernate.connection.username">gd</property>
+  <property name="hibernate.connection.password">gd2014</property>
   <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
   <property name="hibernate.hbm2ddl.auto">update</property>
   <property name="hibernate.format_sql">true</property>

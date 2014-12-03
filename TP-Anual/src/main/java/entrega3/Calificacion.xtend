@@ -61,7 +61,7 @@ class Calificacion {
 		comentario
 	}
 
-	def void setComentario(int value) {
+	def void setComentario(String value) {
 		comentario = value
 	}	
 	

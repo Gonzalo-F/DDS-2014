@@ -165,7 +165,7 @@ class Partido implements Serializable{
 		this.id
 	}
 
-	def void setId(Long id) {
+	def setId(int id) {
 		this.id = id
 	}
 	
@@ -210,7 +210,7 @@ class Partido implements Serializable{
 		inscripciones
 	} 
 
-	def void setInscripciones(List<Inscripcion> inscripciones) {
+	def void setInscripciones(ArrayList<Inscripcion> inscripciones) {
 		this.inscripciones = inscripciones
 	}
 	
