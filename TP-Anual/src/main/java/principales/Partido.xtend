@@ -13,22 +13,22 @@ import java.util.Date
 import java.util.List
 import org.uqbar.commons.model.UserException
 import java.io.Serializable
-import javax.persistence.Entity
+
 import org.uqbar.commons.utils.Observable
 import javax.persistence.Id
 import javax.persistence.GeneratedValue
 import javax.persistence.Table
 import javax.persistence.Column
 import javax.persistence.Transient
-import javax.persistence.ManyToMany
+
 import javax.persistence.CascadeType
 import javax.persistence.OneToMany
+import org.uqbar.commons.model.Entity
 
-@Entity
 @Table(name ="GRUPO_1.Partidos")
 @Observable
-class Partido implements Serializable{
-	private Long id
+class Partido extends Entity implements Serializable{
+	private Integer id
 	private String lugar = "Lugar"
 	private int hora = 0000
 	private int fecha = 00000000
@@ -161,7 +161,7 @@ class Partido implements Serializable{
 	@Id
 	@GeneratedValue
 	@Column(name="Id")
-	def getId() {
+	override getId() {
 		this.id
 	}
 
