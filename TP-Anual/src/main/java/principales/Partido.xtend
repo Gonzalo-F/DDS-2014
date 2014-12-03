@@ -45,7 +45,9 @@ class Partido implements Serializable{
 	@Property OrdenamientoMix criterioOrdenamiento = new OrdenamientoMix
 	@Property DistribuidorDeEquipos distribucionEquipos
 	
-		
+	new(){
+	}
+	
 	new(int fecha, int hora, String lugar) {
 		this.hora = hora
 		this.fecha = fecha
