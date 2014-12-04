@@ -9,7 +9,7 @@ import java.util.ArrayList
 class Generador implements Serializable{
 
 	@Property List<Partido> partidos = new ArrayList()
-	@Property Partido partidoSeleccionado
+	@Property Partido partidoSeleccionado = new Partido
 	@Property int cantidad
 	
 	def fillPartidos() {
