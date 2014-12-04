@@ -122,7 +122,7 @@ class Jugador implements Serializable {
 
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable (name = "Amigos", schema="GRUPO_1",joinColumns= @JoinColumn(name = "JugadorAmigable_Id"), inverseJoinColumns = @JoinColumn(name = "Amigo_Id"))
+	@JoinTable (name = "GRUPO_1.Amigos", joinColumns= @JoinColumn(name = "JugadorAmigable_Id"), inverseJoinColumns = @JoinColumn(name = "Amigo_Id"))
 	def List<Jugador> getAmigos() {
 		amigos
 	}

@@ -15,7 +15,7 @@ class DiezConfirmadosObserver implements InscripcionObserver {
 	override seInscribio(Inscripcion unInscripto){
 		confirmados = confirmados +1
 		if (confirmados == 10) {
-			notificador.notificarAdminHay10(unInscripto.getPartido_id)
+			notificador.notificarAdminHay10(unInscripto.getPartido)
 		}
 	}
 	
@@ -23,7 +23,7 @@ class DiezConfirmadosObserver implements InscripcionObserver {
 		if (confirmados > 9){
 			confirmados = confirmados -1
 			if (confirmados < 10) {
-				notificador.notificarAdminYaNoHay10(unInscripto.getPartido_id)
+				notificador.notificarAdminYaNoHay10(unInscripto.getPartido)
 			}
 		}
 	}
