@@ -22,6 +22,7 @@ import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 import javax.persistence.Table
 import org.uqbar.commons.utils.Observable
+import javax.persistence.Transient
 
 @Entity
 @Table(name="Jugadores", schema = "GRUPO_1")
@@ -44,7 +45,7 @@ class Jugador implements Serializable {
 	private Partido ultimoPartidoJugado = null
 	@Column(name="promedio Total")
 	private Double promedioTotal = 0.0
-	@Property Double promedioUltimoPartido = 0.0
+	@Transient Double promedioUltimoPartido = 0.0
 //	@Property @Transient int edad = 0
 
 	new() {
@@ -122,7 +123,7 @@ class Jugador implements Serializable {
 	}
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable (name = "GRUPO_1.Amigos", joinColumns= @JoinColumn(name = "JugadorAmigable_Id"), inverseJoinColumns = @JoinColumn(name = "Amigo_Id"))
+	@JoinTable (name = "Amigos", schema="GRUPO_1",joinColumns= @JoinColumn(name = "JugadorAmigable_Id"), inverseJoinColumns = @JoinColumn(name = "Amigo_Id"))
 	def List<Jugador> getAmigos() {
 		amigos
 	}

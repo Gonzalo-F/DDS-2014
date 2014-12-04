@@ -122,7 +122,7 @@ CREATE PROCEDURE GRUPO_1.cargar_inscripciones
 AS 
 BEGIN
 	INSERT INTO GRUPO_1.Inscripciones
-		(partido_id, jugador_id, tipo)
+		(partido, jugador, tipo)
 	VALUES 
 		(@Partido_Id, @Jugador_Id, @Tipo)
 END
@@ -151,7 +151,7 @@ CREATE PROCEDURE GRUPO_1.cargar_penalizaciones
 AS 
 BEGIN
 	INSERT INTO GRUPO_1.Penalizaciones
-		(fecha, motivo, partido_id, jugador_id)
+		(fecha, motivo, partido, jugador_id)
 	VALUES 
 		(@Fecha, @Motivo, @Partido_Id, @Jugador_Id)
 END
@@ -168,7 +168,7 @@ CREATE PROCEDURE GRUPO_1.cargar_calificaciones
 AS 
 BEGIN
 	INSERT INTO GRUPO_1.Calificaciones
-		(comentario,  puntaje, calificado_id, calificador_id, partido_id)
+		(comentario,  puntaje, calificado_id, calificador, partido)
 	VALUES 
 		(@Descripcion, @Nota, @JugadorCalificado, @JugadorCalificante, @Partido_Id)
 		
@@ -194,12 +194,12 @@ CREATE PROCEDURE GRUPO_1.baja_con_reemplazo
 	
 AS
 BEGIN
-	IF 1 = (SELECT COUNT(*) FROM GRUPO_1.Inscripciones WHERE jugador_id = @Jugador_baja_Id AND partido_id = @Partido_Id)
+	IF 1 = (SELECT COUNT(*) FROM GRUPO_1.Inscripciones WHERE jugador = @Jugador_baja_Id AND partido = @Partido_Id)
 	BEGIN
-		IF 0 = (SELECT COUNT(*) FROM GRUPO_1.Inscripciones WHERE jugador_id = @Jugador_reemplazo_Id AND partido_id = @Partido_Id)
+		IF 0 = (SELECT COUNT(*) FROM GRUPO_1.Inscripciones WHERE jugador = @Jugador_reemplazo_Id AND partido = @Partido_Id)
 		BEGIN
 			EXEC GRUPO_1.cargar_inscripciones @Partido_Id, @Jugador_reemplazo_Id, @Prioridad	
-			DELETE GRUPO_1.Inscripciones WHERE jugador_id = @Jugador_baja_Id AND partido_id = @Partido_Id
+			DELETE GRUPO_1.Inscripciones WHERE jugador = @Jugador_baja_Id AND partido = @Partido_Id
 			PRINT 'El jugador ha sido dado de baja y se inscibió a su reemplazo'
 		END
 		ELSE
@@ -219,10 +219,10 @@ BEGIN
 	DECLARE @Date DATE
 	SET @Date = GETDATE()
 	
-	IF 1 = (SELECT COUNT(*) FROM GRUPO_1.Inscripciones WHERE jugador_id = @Jugador_Id AND partido_id = @Partido_Id)
+	IF 1 = (SELECT COUNT(*) FROM GRUPO_1.Inscripciones WHERE jugador = @Jugador_Id AND partido = @Partido_Id)
 	BEGIN
 		EXEC GRUPO_1.cargar_penalizaciones @Date, 'Darse de baja sin reeemplazante', @Partido_Id, @Jugador_Id
-		DELETE GRUPO_1.Inscripciones WHERE jugador_id = @Jugador_Id AND partido_id = @Partido_Id
+		DELETE GRUPO_1.Inscripciones WHERE jugador = @Jugador_Id AND partido = @Partido_Id
 		PRINT 'El jugador ha sido dado de baja y se fue penalizado'
 	END
 	ELSE
@@ -280,12 +280,12 @@ CREATE TABLE GRUPO_1.Calificaciones
 	comentario varchar(45),
 	puntaje numeric(18,0),
 	calificado_id numeric(18,0) NOT NULL,
-	calificador_id numeric(18,0) NOT NULL,
-	partido_id numeric(18,0) NOT NULL,
+	calificador numeric(18,0) NOT NULL,
+	partido numeric(18,0) NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (calificado_id) REFERENCES GRUPO_1.Jugadores (id),
-	FOREIGN KEY (calificador_id) REFERENCES GRUPO_1.Jugadores (id),
-	FOREIGN KEY (partido_id) REFERENCES GRUPO_1.Partidos (id),
+	FOREIGN KEY (calificador) REFERENCES GRUPO_1.Jugadores (id),
+	FOREIGN KEY (partido) REFERENCES GRUPO_1.Partidos (id),
 )
 
 CREATE TABLE GRUPO_1.Penalizaciones
@@ -293,22 +293,22 @@ CREATE TABLE GRUPO_1.Penalizaciones
 	id numeric(18,0) IDENTITY(1,1),
 	fecha date NOT NULL,
 	motivo varchar(45),
-	partido_id numeric(18,0) NOT NULL,
+	partido numeric(18,0) NOT NULL,
 	jugador_id numeric(18,0) NOT NULL,
 	PRIMARY KEY (id),
-	FOREIGN KEY (partido_id) REFERENCES GRUPO_1.Partidos (id),
+	FOREIGN KEY (partido) REFERENCES GRUPO_1.Partidos (id),
 	FOREIGN KEY (jugador_id) REFERENCES GRUPO_1.Jugadores (id),
 )
 
 CREATE TABLE GRUPO_1.Inscripciones
 (
 	id numeric(18,0) IDENTITY(1,1),
-	partido_id numeric(18,0),
-	jugador_id numeric(18,0),
+	partido numeric(18,0),
+	jugador numeric(18,0),
 	tipo numeric(18,0),
 	PRIMARY KEY (id),
-	FOREIGN KEY (partido_id) REFERENCES GRUPO_1.Partidos (id),
-	FOREIGN KEY (jugador_id) REFERENCES GRUPO_1.Jugadores (id),
+	FOREIGN KEY (partido) REFERENCES GRUPO_1.Partidos (id),
+	FOREIGN KEY (jugador) REFERENCES GRUPO_1.Jugadores (id),
 )
 
 CREATE TABLE GRUPO_1.Amigos
