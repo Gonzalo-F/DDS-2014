@@ -20,6 +20,8 @@ import javax.persistence.Table
 import org.uqbar.commons.utils.Observable
 import javax.persistence.CascadeType
 import javax.persistence.Entity
+import javax.persistence.FetchType
+import javax.persistence.JoinTable
 
 @Entity
 @Table(name="Jugadores", schema = "GRUPO_1")
@@ -117,7 +119,8 @@ class Jugador implements Serializable {
 		promedioTotal = value
 	}
 
-	@ManyToMany 
+	@ManyToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable (name = "GRUPO_1.Amigos", schema=joinColumns= {@JoinColumn(name = "JugadorAmigable_Id")}, inverseJoinColumns = {@JoinColumn(name = "Amigo_Id")})
 	def List<Jugador> getAmigos() {
 		amigos
 	}
@@ -145,11 +148,11 @@ class Jugador implements Serializable {
 	}
 	
 	@ManyToOne(targetEntity=Partido)
-	def getUltimoPartidoJugado() {
+	def Partido getUltimoPartidoJugado() {
 		ultimoPartidoJugado
 	}
 
-	def void setUltimoPartidoJugador(Partido value) {
+	def void setUltimoPartidoJugado(Partido value) {
 		this.ultimoPartidoJugado = value
 	}
 
