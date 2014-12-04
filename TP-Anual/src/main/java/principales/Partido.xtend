@@ -31,7 +31,7 @@ class Partido implements Serializable{
 	private Integer id
 	private String lugar = "Lugar"
 	private int hora = 0000
-	private Date fecha = null
+	private Date fecha = new Date()
 	private Boolean abierto = true
 	
 

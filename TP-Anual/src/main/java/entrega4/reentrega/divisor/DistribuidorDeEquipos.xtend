@@ -18,6 +18,6 @@ abstract class DistribuidorDeEquipos extends Entity{
 	}
 	
 	def String descripcion(){
-//	overridean las sublases	
-		}
+		return "Distribuidor de Equipos"
+	}
 }

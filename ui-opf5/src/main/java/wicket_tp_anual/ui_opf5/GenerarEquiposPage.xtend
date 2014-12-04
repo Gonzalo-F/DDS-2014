@@ -42,7 +42,7 @@ class GenerarEquiposPage extends WebPage implements Serializable{
 	
 	def agregarCondiciones(Form<Generador> parent) {
 		
-		parent.addChild(new Label("partidoSeleccionado.descripcion"))
+		parent.addChild(new Label("partidoSeleccionado.obtenerDescripcion"))
 		parent.addChild(new FeedbackPanel("errores"))
 				
 		parent.addChild(new DropDownChoice<Partido>("partidoSeleccionado") => [
