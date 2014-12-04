@@ -102,7 +102,7 @@ GO
 CREATE PROCEDURE GRUPO_1.cargar_partido
 	@Lugar nvarchar(45),
 	@Fecha date,
-	@Hora time,
+	@Hora int,
 	@Abierto bit
 	
 AS 
@@ -256,7 +256,7 @@ CREATE TABLE GRUPO_1.Partidos
 	id numeric(18,0) IDENTITY(1,1),
 	lugar nvarchar(45) NOT NULL,
 	fecha date NOT NULL,
-	hora time NOT NULL,
+	hora int NOT NULL,
 	abierto bit /* 1 Abierto, 0 Cerrado */ NOT NULL,
 	PRIMARY KEY (id),
 )
@@ -334,10 +334,10 @@ CREATE TABLE GRUPO_1.Equipos
 
 -- CARGA DE TABLAS
 -- tabla de partidos
-EXEC GRUPO_1.cargar_partido 'Tinglado', '25/11/2014', '21:00', 1
-EXEC GRUPO_1.cargar_partido 'Segurola y Habanna', '20/12/2014', '23:00', 0
-EXEC GRUPO_1.cargar_partido 'La Canchita de Ramon', '03/11/2014', '20:00', 1
-EXEC GRUPO_1.cargar_partido 'El Monumental', '13/11/2014', '21:30', 1
+EXEC GRUPO_1.cargar_partido 'Tinglado', '25/11/2014', 2100, 1
+EXEC GRUPO_1.cargar_partido 'Segurola y Habanna', '20/12/2014', 2300, 0
+EXEC GRUPO_1.cargar_partido 'La Canchita de Ramon', '03/11/2014', 2000, 1
+EXEC GRUPO_1.cargar_partido 'El Monumental', '13/11/2014', 2130, 1
 
 -- tabla de jugadores
 EXEC GRUPO_1.cargar_jugador Carlos, Juan, '26/09/2013', 8, 1 /* Ejemplo */
@@ -431,7 +431,7 @@ EXEC GRUPO_1.cargar_inscripciones 2,16,0
 EXEC GRUPO_1.cargar_inscripciones 2,17,0
 EXEC GRUPO_1.cargar_inscripciones 2,18,0
 EXEC GRUPO_1.cargar_inscripciones 2,19,0
-
+select * from Grupo_1.Partidos
 -- tabla equipos
 
 EXEC GRUPO_1.cargar_equipos 1,1,1

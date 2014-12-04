@@ -31,7 +31,7 @@ class Partido implements Serializable{
 	private Integer id
 	private String lugar = "Lugar"
 	private int hora = 0000
-	private int fecha = 00000000
+	private Date fecha = null
 	private Boolean abierto = true
 	
 
@@ -48,7 +48,7 @@ class Partido implements Serializable{
 	new(){
 	}
 	
-	new(int fecha, int hora, String lugar) {
+	new(Date fecha, int hora, String lugar) {
 		this.hora = hora
 		this.fecha = fecha
 		this.lugar = lugar
@@ -190,7 +190,7 @@ class Partido implements Serializable{
 		fecha
 	}
 
-	def setFecha(int fecha) {
+	def setFecha(Date fecha) {
 		this.fecha = fecha
 	}
 	
@@ -208,8 +208,8 @@ class Partido implements Serializable{
 		inscripciones
 	} 
 
-	def void setInscripciones(ArrayList<Inscripcion> inscripciones) {
-		this.inscripciones = inscripciones
+	def void setInscripciones(List<Inscripcion> inscripciones) {
+		this.inscripciones = newArrayList(inscripciones)
 	}
 	
 	@OneToMany(cascade=CascadeType.ALL, targetEntity=Jugador, mappedBy="id")
