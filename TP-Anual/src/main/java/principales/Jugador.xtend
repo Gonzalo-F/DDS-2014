@@ -10,18 +10,18 @@ import java.io.Serializable
 import java.util.ArrayList
 import java.util.Date
 import java.util.List
-import javax.persistence.CascadeType
-import javax.persistence.Column
-import javax.persistence.Entity
+
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.JoinTable
 import javax.persistence.ManyToMany
 import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 import javax.persistence.Table
 import org.uqbar.commons.utils.Observable
+import javax.persistence.CascadeType
+import javax.persistence.Entity
+import javax.persistence.FetchType
+import javax.persistence.JoinTable
 
 @Entity
 @Table(name="Jugadores", schema = "GRUPO_1")
@@ -39,9 +39,8 @@ class Jugador implements Serializable {
 	private List<Jugador> amigos = new ArrayList()
 	private List<Calificacion> listaDeCalificaciones = new ArrayList()
 	
-	private List<Penalizacion> penalizacionesCometidas = new ArrayList()
-	@Column (name="ultimoPartidoJugado_id") 
-	private Partido ultimoPartidoJugado = null
+	private List<Penalizacion> penalizacionesCometidas = new ArrayList() 
+	@Property private Partido ultimoPartidoJugado = null
 	private Double promedioTotal = 0.0
 	@Property Double promedioUltimoPartido = 0.0
 //	@Property @Transient int edad = 0
@@ -111,7 +110,7 @@ class Jugador implements Serializable {
 	def void setHandicap(Double value) {
 		handicap = value
 	}
-	@JoinTable()
+
 	def getPromedio() {
 		promedioTotal
 	}
@@ -120,9 +119,8 @@ class Jugador implements Serializable {
 		promedioTotal = value
 	}
 
-
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable (name = "GRUPO_1.Amigos", joinColumns= @JoinColumn(name = "JugadorAmigable_Id"), inverseJoinColumns = @JoinColumn(name = "Amigo_Id"))
+	@ManyToMany (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable (name = "GRUPO_1.Amigos", schema=joinColumns= {@JoinColumn(name = "JugadorAmigable_Id")}, inverseJoinColumns = {@JoinColumn(name = "Amigo_Id")})
 	def List<Jugador> getAmigos() {
 		amigos
 	}
@@ -149,9 +147,9 @@ class Jugador implements Serializable {
 		this.penalizacionesCometidas = v
 	}
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(targetEntity=Partido)
 	def Partido getUltimoPartidoJugado() {
-		this.ultimoPartidoJugado
+		ultimoPartidoJugado
 	}
 
 	def void setUltimoPartidoJugado(Partido value) {
