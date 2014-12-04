@@ -47,11 +47,11 @@ class Inscripcion implements Serializable {
 		tipo=value
 	}
 	
+	@ManyToOne(targetEntity=Partido)
 	def getPartido(){
 		partido
 	}
 	
-	@ManyToOne(targetEntity=Partido)
 	def void setPartido(Partido value){
 		partido=value
 	}
