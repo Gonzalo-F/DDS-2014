@@ -47,20 +47,20 @@ class Inscripcion implements Serializable {
 		tipo=value
 	}
 	
-	def getPartido(){
+	def getPartido_id(){
 		partido
 	}
 	
 	@ManyToOne(targetEntity=Partido)
-	def void setPartido(Partido value){
+	def void setPartido_id(Partido value){
 		partido=value
 	}
 	
-	def getJugador(){
+	def getJugador_id(){
 		jugador
 	}
 	
-	def void setJugador(Jugador value){
+	def void setJugador_id(Jugador value){
 		jugador=value
 	}
 	
@@ -70,7 +70,7 @@ class Inscripcion implements Serializable {
 	}
 
 	def inscribir() {
-		getTipo.inscribirA(getJugador, getPartido, this)
+		getTipo.inscribirA(getJugador_id, getPartido_id, this)
 	}
 	
 	def boolean ocupaLugarFijo() {

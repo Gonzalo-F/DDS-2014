@@ -22,6 +22,7 @@ import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 import javax.persistence.Table
 import org.uqbar.commons.utils.Observable
+import javax.persistence.Transient
 
 @Entity
 @Table(name="Jugadores", schema = "GRUPO_1")
@@ -43,7 +44,7 @@ class Jugador implements Serializable {
 	@Column (name="ultimoPartidoJugado_id") 
 	private Partido ultimoPartidoJugado = null
 	private Double promedioTotal = 0.0
-	@Property Double promedioUltimoPartido = 0.0
+	@Transient Double promedioUltimoPartido = 0.0
 //	@Property @Transient int edad = 0
 
 	new() {
@@ -112,11 +113,11 @@ class Jugador implements Serializable {
 		handicap = value
 	}
 	@JoinTable()
-	def getPromedio() {
+	def getPromedioTotal() {
 		promedioTotal
 	}
 
-	def void setPromedio(Double value) {
+	def void setPromedioTotal(Double value) {
 		promedioTotal = value
 	}
 
@@ -211,7 +212,7 @@ class Jugador implements Serializable {
 
 		for (i : 1 .. listaDeCalificaciones.size) {
 			var calificacion = listaDeCalificaciones.get(i)
-			if (calificacion.partido == ultimoPartidoJugado) {
+			if (calificacion.partido_id == ultimoPartidoJugado) {
 				c.add(calificacion)
 			}
 		}

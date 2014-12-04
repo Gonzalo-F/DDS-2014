@@ -51,11 +51,11 @@ class Penalizacion {
 		motivo = value
 	}
 	
-	def getPartido() {
+	def getPartido_id() {
 		partido
 	}
 
-	def void setPartido(Partido value) {
+	def void setPartido_id(Partido value) {
 		partido = value
 	}
 	
