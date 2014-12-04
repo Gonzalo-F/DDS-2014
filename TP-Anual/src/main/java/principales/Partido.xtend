@@ -66,7 +66,7 @@ class Partido implements Serializable{
 	}
 	
 	def obtenerJugadores() {
-		inscripciones.map(inscripcion|inscripcion.jugador_id)
+		inscripciones.map(inscripcion|inscripcion.jugador)
 	}
 
 	def permiteInscripciones() {
@@ -89,7 +89,7 @@ class Partido implements Serializable{
 	}
 
 	def eliminarInscripcion(Jugador jugador) {
-		val inscrip = this.inscripciones.findFirst[i|i.jugador_id == jugador]
+		val inscrip = this.inscripciones.findFirst[i|i.jugador == jugador]
 		if (!(this.inscripciones.contains(inscrip))) {
 			throw new NoInscriptoException("no estas inscripto en el" + this)
 		}

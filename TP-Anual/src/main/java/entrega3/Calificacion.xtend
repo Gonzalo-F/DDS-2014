@@ -70,19 +70,19 @@ class Calificacion {
 		calificado = value
 	}
 	
-	def getCalificador_id() {
+	def getCalificador() {
 		calificador
 	}
 
-	def void setCalificador_id(Jugador value) {
+	def void setCalificador(Jugador value) {
 		calificador = value
 	}
 	
-	def getPartido_id() {
+	def getPartido() {
 		partido
 	}
 
-	def void setPartido_id(Partido value) {
+	def void setPartido(Partido value) {
 		partido = value
 	}
 }
