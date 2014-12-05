@@ -6,10 +6,12 @@ import org.junit.Assert
 import org.junit.Test
 import principales.Jugador
 import principales.Partido
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class TestCalificarALosJugadores {
 
-	var Partido partido = new Partido(2040, 20140413, 'Tinglado')
+	var Partido partido = new Partido(stringToHour("21:00"), 20140413, 'Tinglado')
 	var Jugador calificador = new Jugador(15, "Tomas","Petiso")
 	var Jugador calificado = new Jugador(30, "Nicolas","Nico")
 	
@@ -45,4 +47,12 @@ class TestCalificarALosJugadores {
 	    	return
 	    }
 	}
+	
+	//aux fecha
+	
+	def Date stringToHour(String hora) {
+		val formatoHora = new SimpleDateFormat("hh:mm")
+		return formatoHora.parse(hora)
+
+}
 }

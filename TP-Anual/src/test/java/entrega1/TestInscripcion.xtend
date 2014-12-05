@@ -12,10 +12,12 @@ import principales.Jugador
 import principales.Partido
 
 import static org.junit.Assert.*
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class TestInscripcion {
 
-	var Partido partido = new Partido(2040, 20140413, 'Tinglado')
+	var Partido partido = new Partido(stringToHour("20:40"), 20140413, 'Tinglado')
 	var Jugador jugador = new Jugador(15, "Pirulito","Lito")
 
 	@Test
@@ -61,5 +63,13 @@ class TestInscripcion {
 	def inscribirAJugador(TipoInscripcion tipo) {
 		partido.inscribir(jugador, tipo)
 	}
+	
+	//aux hora
+	
+	def Date stringToHour(String hora) {
+		val formatoHora = new SimpleDateFormat("hh:mm")
+		return formatoHora.parse(hora)
+
+}
 
 }

@@ -7,21 +7,24 @@ import principales.Jugador
 import principales.Partido
 
 import static org.junit.Assert.*
+import java.util.Date
+import java.text.SimpleDateFormat
 
 class TestDarDeBajaInscripcion {
 
-	var Partido partido = new Partido(2040, 20140413, 'Tinglado')
-	var Jugador jugador = new Jugador(15, "Pirulito","Piru")
-	var Jugador reemplazante = new Jugador(20, "Alberto","Cacho")
+	var Partido partido = new Partido(stringToHour("20:40"), 20140413, 'Tinglado')
+	var Jugador jugador = new Jugador(15, "Pirulito", "Piru")
+	var Jugador reemplazante = new Jugador(20, "Alberto", "Cacho")
 
 	@Test
 	def testDarseDeBajaConReemplazante() {
+
 		// InscripcionEstandar.inscribir(jugador, partido)
 		var inscripcion = partido.inscribir(jugador, new InscripcionEstandar)
 		jugador.darseDeBaja(partido, reemplazante, new InscripcionEstandar)
 
 		assertFalse(partido.getInscripciones.contains(inscripcion))
-		
+
 		assertEquals(partido.getInscripciones.size, 1)
 	}
 
@@ -34,7 +37,7 @@ class TestDarDeBajaInscripcion {
 		assertEquals(1, jugador.getPenalizacionesCometidas.size)
 
 	}
-	
+
 	@Test
 	def testDarseDeBajaYNoEstaInscriptoSinReemplazante() {
 		try {
@@ -55,7 +58,12 @@ class TestDarDeBajaInscripcion {
 		}
 		fail()
 
+	} //AUX hora
+
+	def Date stringToHour(String hora) {
+		val formatoHora = new SimpleDateFormat("hh:mm")
+		return formatoHora.parse(hora)
+
 	}
-
-
 }
+	
