@@ -116,8 +116,8 @@ class GenerarEquiposPage extends WebPage implements Serializable{
 	}
 	
 	def agregarEquipos(Form<Generador> parent) {
-		val equipo1 = listaDeJugadores("resultadoEquipo1")
-		val equipo2 = listaDeJugadores("resultadoEquipo2")
+		val equipo1 = listaDeJugadores("partidoSeleccionado.equipo1")
+		val equipo2 = listaDeJugadores("partidoSeleccionado.equipo2")
 				
 		parent.addChild(equipo1)
 		parent.addChild(equipo2)
@@ -175,9 +175,9 @@ class GenerarEquiposPage extends WebPage implements Serializable{
 		if (ps.distribucionEquipos == null) {
 			throw new UserException("Debe seleccionar un criterio de distribución")
 		}
-		if (ps.criterioOrdenamiento.criterios.size==0) {
-			throw new UserException("Debe seleccionar al menos un criterio de ordenamiento")
-		}
+//		if (ps.criterioOrdenamiento.criterios.size==0) {
+//			throw new UserException("Debe seleccionar al menos un criterio de ordenamiento")
+//		}
 	}
 	
 }

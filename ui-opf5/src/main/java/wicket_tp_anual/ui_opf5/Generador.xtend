@@ -22,10 +22,8 @@ class Generador implements Serializable{
 	}
 	
 	def search(){
-		if(!partidoSeleccionado.abierto){
 			this.resultadoEquipo1 = new RepoPartidos().buscarEquipo1(partidoSeleccionado)
 			this.resultadoEquipo2 = new RepoPartidos().buscarEquipo2(partidoSeleccionado)
-		}
 	}
 	
 	def cargarInscripciones(){
