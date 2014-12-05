@@ -431,7 +431,6 @@ EXEC GRUPO_1.cargar_inscripciones 2,16,0
 EXEC GRUPO_1.cargar_inscripciones 2,17,0
 EXEC GRUPO_1.cargar_inscripciones 2,18,0
 EXEC GRUPO_1.cargar_inscripciones 2,19,0
-select * from Grupo_1.Partidos
 -- tabla equipos
 
 EXEC GRUPO_1.cargar_equipos 1,1,1
@@ -501,7 +500,3 @@ GO
 
 -- FIN DE CREACION DE TRIGGERS
 
-select * from GRUPO_1.Inscripciones
-select * from GRUPO_1.Amigos
-select * from GRUPO_1.Jugadores where id=1
-select * from GRUPO_1.Penalizaciones

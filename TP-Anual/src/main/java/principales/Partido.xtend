@@ -16,6 +16,8 @@ import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.JoinTable
 import javax.persistence.OneToMany
 import javax.persistence.Table
 import org.uqbar.commons.model.UserException
@@ -215,6 +217,7 @@ class Partido implements Serializable{
 	}
 	
 	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable (name = "Equipos", schema = "GRUPO_1", joinColumns= @JoinColumn(name = "Partido_Id"), inverseJoinColumns = @JoinColumn(name = "Jugador_Id"))
 	def List<Jugador> getEquipo1() {
 		equipo1
 	} 
@@ -224,6 +227,7 @@ class Partido implements Serializable{
 	}
 	
 	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable (name = "Equipos", schema = "GRUPO_1", joinColumns= @JoinColumn(name = "Partido_Id"), inverseJoinColumns = @JoinColumn(name = "Jugador_Id"))
 	def List<Jugador> getEquipo2() {
 		equipo2
 	} 
