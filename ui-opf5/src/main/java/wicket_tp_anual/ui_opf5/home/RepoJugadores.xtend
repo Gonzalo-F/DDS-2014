@@ -9,6 +9,7 @@ import java.util.Date
 import org.hibernate.Transaction
 import org.hibernate.Session
 import org.hibernate.criterion.Restrictions
+import entrega2.bajaJugador.Penalizacion
 
 class RepoJugadores {
 	def List<Jugador> filtrar(String apodo, String nombre, Double handicap, String selectorHandicap, Double promedioDesde,
@@ -33,6 +34,12 @@ class RepoJugadores {
   		val query = session.createCriteria(Jugador)
   		query.add(Restrictions.sqlRestriction("this_.id IN (SELECT Amigo_Id FROM GRUPO_1.Amigos WHERE JugadorAmigable_id = "
   			.concat(jugador.id.toString).concat(")")))
+  		query.list()
+	}
+	
+	def List<Penalizacion> buscarPenalizaciones(Jugador jugador) {
+		val query = session.createCriteria(Penalizacion)
+  		query.add(eq("jugador_id", jugador.id))
   		query.list()
 	}
 	

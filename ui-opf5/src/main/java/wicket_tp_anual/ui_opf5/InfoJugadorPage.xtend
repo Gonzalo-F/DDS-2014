@@ -42,8 +42,12 @@ class InfoJugadorPage extends WebPage implements VisualizarJugadoresPage {
 		parent.addChild(new Label("promedioUltimoPartido"))
 		parent.addChild(new LabelJugador("promedioTotal", jugador))
 		parent.addChild(new LabelJugador("nacimiento", jugador))
-
-		val infracciones = new XListView("penalizacionesCometidas")
+	}
+	
+	def agregarDatosList(Form<InfoJugador> parent){
+		parent.addChild(new GrillaJugadores("resultadoAmigos", this))
+		
+		val infracciones = new XListView("resultadoPenalizaciones")
 		infracciones.populateItem = [ inf |
 			inf.model = inf.modelObject.asCompoundModel
 			inf.addChild(new Label("fecha"))
@@ -51,11 +55,6 @@ class InfoJugadorPage extends WebPage implements VisualizarJugadoresPage {
 			inf.addChild(new Label("partido"))
 		]
 		parent.addChild(infracciones)
-
-	}
-	
-	def agregarDatosList(Form<InfoJugador> parent){
-		parent.addChild(new GrillaJugadores("resultadosAmigos", this))
 	}
 
 	override verJugador(Jugador jugadorSeleccionado) {
