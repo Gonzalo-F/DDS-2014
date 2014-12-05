@@ -27,10 +27,6 @@ class RepoJugadores {
 	}
 	
 	def List<Jugador> buscarAmigos(Jugador jugador) {
-		//val query = session.createSQLQuery("SELECT * FROM GRUPO_1.Amigos a WHERE" + jugador.id + "= a.JugadorAmigable_id")
-//  		val query = session.createSQLQuery("SELECT J.* FROM GRUPO_1.JUGADORES J,
-//			GRUPO_1.Amigos A WHERE J.id = A.Amigo_Id AND A.JugadorAmigable_Id = ?")
-//			query.setParameter(0,jugador.id)
   		val query = session.createCriteria(Jugador)
   		query.add(Restrictions.sqlRestriction("this_.id IN (SELECT Amigo_Id FROM GRUPO_1.Amigos WHERE JugadorAmigable_id = "
   			.concat(jugador.id.toString).concat(")")))
@@ -39,7 +35,7 @@ class RepoJugadores {
 	
 	def List<Penalizacion> buscarPenalizaciones(Jugador jugador) {
 		val query = session.createCriteria(Penalizacion)
-  		query.add(eq("jugador_id", jugador.id))
+  		query.add(eq("jugador", jugador))
   		query.list()
 	}
 	

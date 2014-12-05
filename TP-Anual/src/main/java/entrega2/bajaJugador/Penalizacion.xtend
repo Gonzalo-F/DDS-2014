@@ -59,7 +59,7 @@ class Penalizacion {
 		partido = value
 	}
 	
-	@ManyToOne
+	@ManyToOne(targetEntity=Jugador)
 	def getJugador() {
 		jugador
 	}
