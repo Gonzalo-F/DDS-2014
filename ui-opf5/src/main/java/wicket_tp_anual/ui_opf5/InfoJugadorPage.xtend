@@ -45,7 +45,7 @@ class InfoJugadorPage extends WebPage implements VisualizarJugadoresPage {
 			inf.model = inf.modelObject.asCompoundModel
 			inf.addChild(new Label("fecha"))
 			inf.addChild(new Label("motivo"))
-			inf.addChild(new Label("partido"))
+			inf.addChild(new Label("partido.obtenerDescripcion"))
 		]
 		parent.addChild(infracciones)
 	}	
