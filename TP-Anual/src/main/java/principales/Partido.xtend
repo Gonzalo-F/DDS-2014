@@ -208,7 +208,7 @@ class Partido implements Serializable{
 		this.abierto=abierto
 	}
 	
-	@OneToMany(cascade=CascadeType.ALL, targetEntity=Inscripcion, mappedBy="partido")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="partido")
 	def List<Inscripcion> getInscripciones() {
 		inscripciones
 	} 

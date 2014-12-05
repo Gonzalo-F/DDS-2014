@@ -2,12 +2,13 @@ package principales
 
 import entrega1.tipoInscripcion.TipoInscripcion
 import java.io.Serializable
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
+import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 import javax.persistence.Table
 import org.uqbar.commons.utils.Observable
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.GeneratedValue
 
 @Entity
 @Table(name ="Inscripciones", schema = "GRUPO_1")
@@ -47,7 +48,8 @@ class Inscripcion implements Serializable {
 		tipo=value
 	}
 	
-	@ManyToOne(targetEntity=Partido)
+	@ManyToOne()
+	@JoinColumn (name = "partido")
 	def getPartido(){
 		partido
 	}
