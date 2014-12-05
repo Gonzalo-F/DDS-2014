@@ -28,8 +28,7 @@ class GenerarEquiposPage extends WebPage implements Serializable{
 	
 	new(MenuPrincipalPage mp, Generador gen) {
 		this.mainPage=mp
-		this.generador= gen
-		generador.search()
+		this.generador= gen	
 	
 	
 		this.addChild(
@@ -146,7 +145,10 @@ class GenerarEquiposPage extends WebPage implements Serializable{
 			]
 		])
 		parent.addChild(new XButton("volver").onClick=[|volver])
-		parent.addChild(new XButton("elegirPartido").onClick=[|recargarPagina])
+		parent.addChild(new XButton("elegirPartido").onClick=[|
+			generador.search()
+			recargarPagina
+		])
 	}
 	
 	
