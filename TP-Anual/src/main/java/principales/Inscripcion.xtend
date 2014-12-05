@@ -61,6 +61,8 @@ class Inscripcion implements Serializable {
 		partido=value
 	}
 	
+	@ManyToOne()
+	@JoinColumn (name = "jugador")
 	def getJugador(){
 		jugador
 	}
