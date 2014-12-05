@@ -31,12 +31,12 @@ class InfoJugadorPage extends WebPage implements VisualizarJugadoresPage {
 	}
 
 	def agregarDatos(Form<InfoJugador> parent) {
-		parent.addChild(new LabelJugador("nombre", buscador.jugadorVisualizado))
-		parent.addChild(new LabelJugador("apodo", buscador.jugadorVisualizado))
-		parent.addChild(new LabelJugador("handicap", buscador.jugadorVisualizado))
-		parent.addChild(new Label("promedioUltimoPartido"))
-		parent.addChild(new LabelJugador("promedioTotal", buscador.jugadorVisualizado))
-		parent.addChild(new LabelJugador("nacimiento", buscador.jugadorVisualizado))
+		parent.addChild(new LabelJugador("jugadorVisualizado.nombre", buscador.jugadorVisualizado))
+		parent.addChild(new LabelJugador("jugadorVisualizado.apodo", buscador.jugadorVisualizado))
+		parent.addChild(new LabelJugador("jugadorVisualizado.handicap", buscador.jugadorVisualizado))
+		parent.addChild(new Label("jugadorVisualizado.promedioUltimoPartido"))
+		parent.addChild(new LabelJugador("jugadorVisualizado.promedioTotal", buscador.jugadorVisualizado))
+		parent.addChild(new LabelJugador("jugadorVisualizado.nacimiento", buscador.jugadorVisualizado))
 		
 		parent.addChild(new GrillaJugadores("resultadoAmigos", this))
 		
