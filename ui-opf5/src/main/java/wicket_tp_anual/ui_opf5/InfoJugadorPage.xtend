@@ -21,7 +21,8 @@ class InfoJugadorPage extends WebPage implements VisualizarJugadoresPage {
 	new(Page returnPage, Jugador jugador) {
 		this.returnPage = returnPage
 		this.jugador = jugador
-		this.buscador.jugadorVisualizado = jugador
+		this.buscador = new InfoJugador(jugador)
+		buscador.search()
 
 		this.addChild( new Form<Jugador>("infoJugador", this.jugador.asCompoundModel) => [
 		agregarDatos
