@@ -29,6 +29,7 @@ class GenerarEquiposPage extends WebPage implements Serializable{
 	new(MenuPrincipalPage mp, Generador gen) {
 		this.mainPage=mp
 		this.generador= gen
+		generador.search()
 	
 	
 		this.addChild(
@@ -115,8 +116,8 @@ class GenerarEquiposPage extends WebPage implements Serializable{
 	}
 	
 	def agregarEquipos(Form<Generador> parent) {
-		val equipo1 = listaDeJugadores("partidoSeleccionado.equipo1")
-		val equipo2 = listaDeJugadores("partidoSeleccionado.equipo2")
+		val equipo1 = listaDeJugadores("resultadoEquipo1")
+		val equipo2 = listaDeJugadores("resultadoEquipo2")
 				
 		parent.addChild(equipo1)
 		parent.addChild(equipo2)

@@ -217,7 +217,7 @@ class Partido implements Serializable{
 		this.inscripciones = newArrayList(inscripciones)
 	}
 	
-	@OneToMany(cascade=CascadeType.ALL, targetEntity=Jugador, mappedBy="id")
+	@OneToMany(cascade=CascadeType.ALL)
 	def List<Jugador> getEquipo1() {
 		equipo1
 	} 
@@ -226,7 +226,7 @@ class Partido implements Serializable{
 		this.equipo1 = equipo1
 	}
 	
-	@OneToMany(cascade=CascadeType.ALL, targetEntity=Jugador, mappedBy="id")
+	@OneToMany(cascade=CascadeType.ALL)
 	def List<Jugador> getEquipo2() {
 		equipo2
 	} 
