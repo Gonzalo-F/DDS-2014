@@ -15,16 +15,19 @@ class RepoPartidos {
 	}
 	
 	def List<Jugador> buscarEquipo1(Partido partido) {
-  		val query = session.createCriteria(Jugador)
-  		query.add(Restrictions.sqlRestriction("this_.id IN (SELECT Jugador_Id FROM GRUPO_1.Equipos WHERE Numero_equipo = 1 AND Partido_Id = "
-  			.concat(partido.id.toString).concat(")")))
-  		query.list()
+  		buscarEquipo(partido,1)
 	}
 	
 	def List<Jugador> buscarEquipo2(Partido partido) {
-  		val query = session.createCriteria(Jugador)
-  		query.add(Restrictions.sqlRestriction("this_.id IN (SELECT Jugador_Id FROM GRUPO_1.Equipos WHERE Numero_equipo = 2 AND Partido_Id = "
-  			.concat(partido.id.toString).concat(")")))
+  		buscarEquipo(partido,2)
+	}
+	
+	def List<Jugador> buscarEquipo(Partido partido, int equipo)
+	{
+		val query = session.createCriteria(Jugador)
+  		query.add(Restrictions.sqlRestriction("this_.id IN (SELECT Jugador_Id FROM GRUPO_1.Equipos
+			 WHERE Numero_equipo = ".concat(equipo.toString).concat("AND Partido_Id = "
+  			.concat(partido.id.toString).concat(")"))))
   		query.list()
 	}
 }

@@ -20,6 +20,7 @@ import javax.persistence.OneToMany
 import javax.persistence.Table
 import org.uqbar.commons.model.UserException
 import org.uqbar.commons.utils.Observable
+import javax.persistence.Transient
 
 @Entity
 @Table(name ="Partidos", schema = "GRUPO_1")
@@ -39,8 +40,8 @@ class Partido implements Serializable{
 	//@Property OrdenLista orden
 	private List<Jugador> equipo1
 	private List<Jugador> equipo2
-	@Property OrdenamientoMix criterioOrdenamiento = new OrdenamientoMix
-	@Property DistribuidorDeEquipos distribucionEquipos
+	@Transient @Property OrdenamientoMix criterioOrdenamiento = new OrdenamientoMix
+	@Transient @Property DistribuidorDeEquipos distribucionEquipos
 	
 	new(){
 	}
