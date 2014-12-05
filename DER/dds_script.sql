@@ -117,14 +117,14 @@ GO
 CREATE PROCEDURE GRUPO_1.cargar_inscripciones
 	@Partido_Id numeric (18,0),
 	@Jugador_Id numeric (18,0),
-	@Tipo numeric (18,0)
+	@Prioridad numeric (18,0)
 		
 AS 
 BEGIN
 	INSERT INTO GRUPO_1.Inscripciones
-		(partido, jugador, tipo)
+		(partido, jugador, prioridad)
 	VALUES 
-		(@Partido_Id, @Jugador_Id, @Tipo)
+		(@Partido_Id, @Jugador_Id, @Prioridad)
 END
 GO
 
@@ -305,7 +305,7 @@ CREATE TABLE GRUPO_1.Inscripciones
 	id numeric(18,0) IDENTITY(1,1),
 	partido numeric(18,0),
 	jugador numeric(18,0),
-	tipo numeric(18,0),
+	prioridad numeric(18,0),
 	PRIMARY KEY (id),
 	FOREIGN KEY (partido) REFERENCES GRUPO_1.Partidos (id),
 	FOREIGN KEY (jugador) REFERENCES GRUPO_1.Jugadores (id),
