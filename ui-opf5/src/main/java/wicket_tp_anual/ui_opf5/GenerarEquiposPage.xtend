@@ -29,7 +29,7 @@ class GenerarEquiposPage extends WebPage implements Serializable{
 	new(MenuPrincipalPage mp, Generador gen) {
 		this.mainPage=mp
 		this.generador= gen
-		//generador.search()
+		generador.search()
 	
 	
 		this.addChild(
