@@ -145,7 +145,7 @@ class Partido implements Serializable{
 	}
 
 	def inscripcionesEstandar() {
-		inscripciones.filter[inscripcion|inscripcion.tipo.prioridad == 0]
+		inscripciones.filter[inscripcion|inscripcion.obtenerPrioridad == 0]
 	}
 	
 	def cerrar() {

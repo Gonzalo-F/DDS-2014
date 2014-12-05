@@ -9,15 +9,17 @@ import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 import javax.persistence.Table
 import org.uqbar.commons.utils.Observable
+import javax.persistence.Transient
 
 @Entity
 @Table(name ="Inscripciones", schema = "GRUPO_1")
 @Observable
 class Inscripcion implements Serializable {
 	private Integer id
-	private TipoInscripcion tipo
+	@Transient TipoInscripcion tipo
 	private Partido partido
 	private Jugador jugador
+	private int prioridad
 	
 	new(){
 		
@@ -27,6 +29,7 @@ class Inscripcion implements Serializable {
 		this.jugador = unJugador
 		this.partido = unPartido
 		this.tipo = tipo
+		this.prioridad = tipo.prioridad
 	}
 	
 	//------getters y setters ------//
@@ -40,12 +43,12 @@ class Inscripcion implements Serializable {
 		id = value
 	}
 	
-	def getTipo(){
-		tipo
+	def getPrioridad(){
+		prioridad
 	}
 	
-	def void setTipo(TipoInscripcion value){
-		tipo=value
+	def void setPrioridad(int value){
+		prioridad=value
 	}
 	
 	@ManyToOne()
@@ -67,16 +70,16 @@ class Inscripcion implements Serializable {
 	}
 	
 	//-------fin de getters y setters-----//
-	def prioridad() {
-		getTipo.prioridad
+	def obtenerPrioridad() {
+		tipo.prioridad
 	}
 
 	def inscribir() {
-		getTipo.inscribirA(getJugador, getPartido, this)
+		tipo.inscribirA(getJugador, getPartido, this)
 	}
 	
 	def boolean ocupaLugarFijo() {
-		getTipo.ocupaLugarFijo
+		tipo.ocupaLugarFijo
 	}
 	
 }
