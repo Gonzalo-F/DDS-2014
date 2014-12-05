@@ -151,7 +151,7 @@ CREATE PROCEDURE GRUPO_1.cargar_penalizaciones
 AS 
 BEGIN
 	INSERT INTO GRUPO_1.Penalizaciones
-		(fecha, motivo, partido, jugador_id)
+		(fecha, motivo, partido, jugador)
 	VALUES 
 		(@Fecha, @Motivo, @Partido_Id, @Jugador_Id)
 END
@@ -294,10 +294,10 @@ CREATE TABLE GRUPO_1.Penalizaciones
 	fecha date NOT NULL,
 	motivo varchar(45),
 	partido numeric(18,0) NOT NULL,
-	jugador_id numeric(18,0) NOT NULL,
+	jugador numeric(18,0) NOT NULL,
 	PRIMARY KEY (id),
 	FOREIGN KEY (partido) REFERENCES GRUPO_1.Partidos (id),
-	FOREIGN KEY (jugador_id) REFERENCES GRUPO_1.Jugadores (id),
+	FOREIGN KEY (jugador) REFERENCES GRUPO_1.Jugadores (id),
 )
 
 CREATE TABLE GRUPO_1.Inscripciones
@@ -500,3 +500,8 @@ END
 GO
 
 -- FIN DE CREACION DE TRIGGERS
+
+select * from GRUPO_1.Inscripciones
+select * from GRUPO_1.Amigos
+select * from GRUPO_1.Jugadores where id=1
+select * from GRUPO_1.Penalizaciones

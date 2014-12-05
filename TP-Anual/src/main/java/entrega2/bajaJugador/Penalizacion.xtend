@@ -1,16 +1,21 @@
 package entrega2.bajaJugador
 
 import java.util.Date
-import principales.Partido
-import javax.persistence.Id
-import javax.persistence.GeneratedValue
+import javax.persistence.CascadeType
 import javax.persistence.Entity
-import javax.persistence.Table
-import principales.Jugador
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
+import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+import javax.persistence.Table
+import org.uqbar.commons.utils.Observable
+import principales.Jugador
+import principales.Partido
 
 @Entity
 @Table (name="Penalizaciones", schema = "GRUPO_1")
+@Observable
+
 class Penalizacion {
 	private Integer id
 	private Date fecha
@@ -54,6 +59,8 @@ class Penalizacion {
 		motivo = value
 	}
 	
+	@ManyToOne()
+	@JoinColumn (name = "partido")
 	def getPartido() {
 		partido
 	}
@@ -62,7 +69,8 @@ class Penalizacion {
 		partido = value
 	}
 	
-	@ManyToOne(targetEntity=Jugador)
+	@ManyToOne()
+	@JoinColumn (name = "jugador")
 	def getJugador() {
 		jugador
 	}

@@ -13,6 +13,7 @@ import java.util.List
 import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.FetchType
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
 import javax.persistence.JoinColumn
@@ -21,15 +22,15 @@ import javax.persistence.ManyToMany
 import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 import javax.persistence.Table
-import org.uqbar.commons.utils.Observable
 import javax.persistence.Transient
+import org.uqbar.commons.utils.Observable
 
 @Entity
 @Table(name="Jugadores", schema = "GRUPO_1")
 @Observable
 
 class Jugador implements Serializable {
-	private Integer id
+	private int id
 	
 	private Date nacimiento = null
 
@@ -39,6 +40,7 @@ class Jugador implements Serializable {
 
 	private List<Jugador> amigos = new ArrayList()
 	private List<Calificacion> listaDeCalificaciones = new ArrayList()
+	
 	
 	private List<Penalizacion> penalizacionesCometidas = new ArrayList()
 	@Column (name="ultimoPartidoJugado_id") 
@@ -141,7 +143,7 @@ class Jugador implements Serializable {
 		this.listaDeCalificaciones = listaDeCalificaciones
 	}
 	
-	@OneToMany(cascade=CascadeType.ALL, orphanRemoval=true, mappedBy="jugador")
+	@OneToMany(cascade = CascadeType.ALL,fetch= FetchType.EAGER, mappedBy="jugador")
 	def getPenalizacionesCometidas(){
 		this.penalizacionesCometidas
 	}

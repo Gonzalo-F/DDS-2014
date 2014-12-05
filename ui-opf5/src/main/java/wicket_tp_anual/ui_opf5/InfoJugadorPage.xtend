@@ -40,14 +40,14 @@ class InfoJugadorPage extends WebPage implements VisualizarJugadoresPage {
 		
 		parent.addChild(new GrillaJugadores("resultadoAmigos", this))
 		
-//		val infracciones = new XListView("resultadoPenalizaciones")
-//		infracciones.populateItem = [ inf |
-//			inf.model = inf.modelObject.asCompoundModel
-//			inf.addChild(new Label("fecha"))
-//			inf.addChild(new Label("motivo"))
-//			inf.addChild(new Label("partido"))
-//		]
-//		parent.addChild(infracciones)
+		val infracciones = new XListView("jugadorVisualizado.penalizacionesCometidas")
+		infracciones.populateItem = [ inf |
+			inf.model = inf.modelObject.asCompoundModel
+			inf.addChild(new Label("fecha"))
+			inf.addChild(new Label("motivo"))
+			inf.addChild(new Label("partido"))
+		]
+		parent.addChild(infracciones)
 	}	
 	
 	override verJugador(Jugador jugadorSeleccionado) {

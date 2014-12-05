@@ -35,12 +35,12 @@ class SessionManager {
 	}
 	
 	def static addClasses(Configuration cfg) {
+		cfg.addAnnotatedClass(Penalizacion)
 		cfg.addAnnotatedClass(Jugador)
 		cfg.addAnnotatedClass(Partido)
 		cfg.addAnnotatedClass(Inscripcion)
 		cfg.addAnnotatedClass(Calificacion)
-		cfg.addAnnotatedClass(Penalizacion)
-		
+				
 	}
 	
 	def static startApplication(){
