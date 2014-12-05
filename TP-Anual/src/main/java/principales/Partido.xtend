@@ -159,6 +159,11 @@ class Partido implements Serializable{
 		criterioOrdenamiento.addCriterio(unCriterio)
 	}
 	
+	override String toString()
+	{
+		obtenerDescripcion
+	}
+	
 	//Hibernate
 	@Id
 	@GeneratedValue
@@ -229,4 +234,5 @@ class Partido implements Serializable{
 	def void setEquipo2(List<Jugador> equipo2) {
 		this.equipo2 = equipo2
 	}
+	
 }
