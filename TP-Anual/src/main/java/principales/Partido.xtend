@@ -2,27 +2,24 @@ package principales
 
 import entrega1.tipoInscripcion.TipoInscripcion
 import entrega2.bajaJugador.Penalizacion
-import entrega2.observerNotificador.InscripcionObserver
 import entrega4.reentrega.divisor.DistribuidorDeEquipos
 import entrega4.reentrega.ordenamiento.CriterioOrdenamiento
 import entrega4.reentrega.ordenamiento.OrdenamientoMix
 import entrega5.futbol5.excepciones.PartidoSin10InscriptosNoPermiteValidarInscripcion
 import excepciones.entrega2.NoInscriptoException
+import java.io.Serializable
 import java.util.ArrayList
 import java.util.Date
 import java.util.List
-import org.uqbar.commons.model.UserException
-import java.io.Serializable
-
-import org.uqbar.commons.utils.Observable
-import javax.persistence.Id
-import javax.persistence.GeneratedValue
-import javax.persistence.Table
-import javax.persistence.Column
-import javax.persistence.Transient
 import javax.persistence.CascadeType
-import javax.persistence.OneToMany
+import javax.persistence.Column
 import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
+import javax.persistence.OneToMany
+import javax.persistence.Table
+import org.uqbar.commons.model.UserException
+import org.uqbar.commons.utils.Observable
 
 @Entity
 @Table(name ="Partidos", schema = "GRUPO_1")
