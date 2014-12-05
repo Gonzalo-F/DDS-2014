@@ -18,6 +18,9 @@ class Penalizacion {
 	private Partido partido
 	private Jugador jugador
 	
+	new(){
+	}
+	
 	new (Date fecha, String motivo, Partido partido){
 		this.fecha= new Date()
 		/*La fecha de hoy habria que poner... pero como? */

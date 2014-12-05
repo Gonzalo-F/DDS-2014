@@ -20,6 +20,8 @@ class Calificacion {
 	private Jugador calificador
 	private Partido partido
 	
+	new(){
+	}
 	
 	new (int puntaje, String comentario,Jugador calificado,Jugador calificador, Partido partido){
 		this.puntaje= puntaje
