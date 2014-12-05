@@ -42,8 +42,8 @@ class Partido implements Serializable{
 	//@Property OrdenLista orden
 	private List<Jugador> equipo1
 	private List<Jugador> equipo2
-	@Transient @Property OrdenamientoMix criterioOrdenamiento = new OrdenamientoMix
-	@Transient @Property DistribuidorDeEquipos distribucionEquipos
+	OrdenamientoMix criterioOrdenamiento = new OrdenamientoMix
+	DistribuidorDeEquipos distribucionEquipos
 	
 	new(){
 	}
@@ -60,6 +60,18 @@ class Partido implements Serializable{
 		criterioOrdenamiento= new OrdenamientoMix
 		criterioOrdenamiento.addCriterio(orden)
 	}
+	
+	@Transient 
+	def getCriterioOrdenamiento(){
+		this.criterioOrdenamiento
+	}
+	
+	@Transient
+	def getDistribucionEquipos(){
+		this.distribucionEquipos
+	}
+	
+	
 	
 	def obtenerDescripcion(){
 		lugar.concat(" (").concat(fecha.toString).concat(" - ").concat(hora.toString).concat(")")

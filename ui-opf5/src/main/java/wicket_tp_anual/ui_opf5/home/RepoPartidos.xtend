@@ -36,7 +36,7 @@ class RepoPartidos {
 	{
 		val query = session.createCriteria(Inscripcion)
   		query.add(Restrictions.sqlRestriction("this_.id IN (SELECT TOP 10 id FROM GRUPO_1.Inscripciones
-			 WHERE partido = ".concat(partido.toString).concat("ORDER BY prioridad")))
+			 WHERE partido = ".concat(partido.id.toString).concat("ORDER BY prioridad)")))
   		query.list()
 	}
 }
