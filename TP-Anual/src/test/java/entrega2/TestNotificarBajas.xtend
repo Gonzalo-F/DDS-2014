@@ -8,10 +8,12 @@ import principales.Jugador
 import principales.Partido
 
 import static org.junit.Assert.*
+import java.util.Date
+import java.text.SimpleDateFormat
 
 class TestNotificarBajas {
 
-	var Partido partido = new Partido(2040, 20140413, "El tinglado")
+	var Partido partido = new Partido(stringToDate("25/11/2014"), 2015, "El tinglado")
 	var stubNotificador = new StubNotificador
 	var Jugador jugador = new Jugador(25,"Roman", "Pecho Frio")
 
@@ -33,4 +35,13 @@ class TestNotificarBajas {
 		assertEquals(0, stubNotificador.getPartidosNotificados.size)
 
 	}
+	
+	//aux fecha
+	
+		def Date stringToDate(String fecha) {
+		val formatoHora = new SimpleDateFormat("DD/MM/AAAA")
+		return formatoHora.parse(fecha)
+
+}
+	
 }

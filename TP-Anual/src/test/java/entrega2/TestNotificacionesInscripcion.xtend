@@ -1,17 +1,19 @@
 package entrega2
 
 import entrega1.tipoInscripcion.InscripcionEstandar
-import entrega2.observerNotificador.DiezConfirmadosObserver
+
 import org.junit.Before
 import org.junit.Test
 import principales.Jugador
 import principales.Partido
 
 import static org.junit.Assert.*
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class TestNotificacionesInscripcion {
 
-	var Partido partido = new Partido(2040, 20140413, "El tinglado")
+	var Partido partido = new Partido(stringToDate("13/11/2014"), 2040, "El tinglado")
 	var stubNotificador = new StubNotificador
 
 	@Before
@@ -34,4 +36,11 @@ class TestNotificacionesInscripcion {
 		assertTrue(partido.getInscripciones.contains(inscri))
 
 	}
+	
+		def Date stringToDate(String fecha) {
+		val formatoHora = new SimpleDateFormat("DD/MM/AAAA")
+		return formatoHora.parse(fecha)
+
+}
+
 }

@@ -12,10 +12,12 @@ import principales.Jugador
 import principales.Partido
 
 import static org.junit.Assert.*
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class TestsInscripcionVariosJugadores {
 
-	var Partido partido = new Partido(20140413, 2040, "El tinglado")
+	var Partido partido = new Partido(stringToDate("27/07/2014"), 2040, "El tinglado")
 	var TipoInscripcion estandar = new InscripcionEstandar
 	var TipoInscripcion solidario = new InscripcionSolidario
 	var TipoInscripcion condicional = new InscripcionCondicional(new CondicionLugar("El tinglado"))
@@ -86,5 +88,11 @@ class TestsInscripcionVariosJugadores {
 	def assertPosicion(Inscripcion insc, int n) {
 		assertEquals(partido.getInscripciones.indexOf(insc), n)
 	}
+	
+	def Date stringToDate(String fecha) {
+		val formatoHora = new SimpleDateFormat("DD/MM/AAAA")
+		return formatoHora.parse(fecha)
+
+}
 
 }

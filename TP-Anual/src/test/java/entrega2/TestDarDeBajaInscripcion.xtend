@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat
 
 class TestDarDeBajaInscripcion {
 
-	var Partido partido = new Partido(stringToHour("20:40"), 20140413, 'Tinglado')
+	var Partido partido = new Partido(stringToDate("13/07/2014"), 20140413, 'Tinglado')
 	var Jugador jugador = new Jugador(15, "Pirulito", "Piru")
 	var Jugador reemplazante = new Jugador(20, "Alberto", "Cacho")
 
@@ -60,10 +60,11 @@ class TestDarDeBajaInscripcion {
 
 	} //AUX hora
 
-	def Date stringToHour(String hora) {
-		val formatoHora = new SimpleDateFormat("hh:mm")
-		return formatoHora.parse(hora)
+		def Date stringToDate(String fecha) {
+		val formatoHora = new SimpleDateFormat("DD/MM/AAAA")
+		return formatoHora.parse(fecha)
 
-	}
+}
+
 }
 	

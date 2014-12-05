@@ -11,7 +11,7 @@ import java.util.Date
 
 class TestCalificarALosJugadores {
 
-	var Partido partido = new Partido(stringToHour("21:00"), 20140413, 'Tinglado')
+	var Partido partido = new Partido(stringToDate("21/10/2013"), 2000, 'Tinglado')
 	var Jugador calificador = new Jugador(15, "Tomas","Petiso")
 	var Jugador calificado = new Jugador(30, "Nicolas","Nico")
 	
@@ -50,9 +50,10 @@ class TestCalificarALosJugadores {
 	
 	//aux fecha
 	
-	def Date stringToHour(String hora) {
-		val formatoHora = new SimpleDateFormat("hh:mm")
-		return formatoHora.parse(hora)
+		def Date stringToDate(String fecha) {
+		val formatoHora = new SimpleDateFormat("DD/MM/AAAA")
+		return formatoHora.parse(fecha)
 
 }
+
 }
