@@ -40,8 +40,8 @@ class Partido implements Serializable{
 	// @Property @Transient private List<InscripcionObserver> observadores = new ArrayList
 
 	//@Property OrdenLista orden
-	private List<Jugador> equipo1 = new ArrayList
-	private List<Jugador> equipo2 = new ArrayList
+	private List<Jugador> equipo1
+	private List<Jugador> equipo2
 	private OrdenamientoMix criterioOrdenamiento = new OrdenamientoMix
 	private DistribuidorDeEquipos distribucionEquipos
 	
