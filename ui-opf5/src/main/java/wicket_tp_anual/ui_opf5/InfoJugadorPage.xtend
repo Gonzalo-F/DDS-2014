@@ -45,7 +45,7 @@ class InfoJugadorPage extends WebPage implements VisualizarJugadoresPage {
 			inf.model = inf.modelObject.asCompoundModel
 			inf.addChild(new Label("fecha"))
 			inf.addChild(new Label("motivo"))
-			inf.addChild(new Label("partido.obtenerDescripcion"))
+			inf.addChild(new Label("partido"))
 		]
 		parent.addChild(infracciones)
 	}	
@@ -54,7 +54,7 @@ class InfoJugadorPage extends WebPage implements VisualizarJugadoresPage {
 		responsePage = new InfoJugadorPage(this, jugadorSeleccionado)
 	}
 
-	def agregarAcciones(Form parent) {
+	def agregarAcciones(Form<InfoJugador> parent) {
 		parent.addChild(new XButton("volver").onClick = [|volver]);
 	}
 
