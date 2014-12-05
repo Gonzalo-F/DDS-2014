@@ -93,6 +93,7 @@ class GenerarEquiposPage extends WebPage implements Serializable{
 		parent.addChild(new XButton("generarEquiposTentativos") => [
 			setEnabled(ps.abierto)
 			onClick=[|
+				generador.cargarInscripciones
 				validarGeneracion
 				ps.generarEquiposTentativos(generador.cantidad)
 			]
