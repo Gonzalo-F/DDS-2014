@@ -45,7 +45,7 @@ class Jugador implements Serializable {
 	private Partido ultimoPartidoJugado = null
 	@Column(name="promedio Total")
 	private Double promedioTotal = 0.0
-	@Property Double promedioUltimoPartido = 0.0
+	@Transient Double promedioUltimoPartido = 0.0
 //	@Property @Transient int edad = 0
 
 	new() {
@@ -123,7 +123,7 @@ class Jugador implements Serializable {
 	}
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable (name = "GRUPO_1.Amigos",joinColumns= @JoinColumn(name = "JugadorAmigable_Id"), inverseJoinColumns = @JoinColumn(name = "Amigo_Id"))
+	@JoinTable (name = "Amigos", schema = "GRUPO_1", joinColumns= @JoinColumn(name = "JugadorAmigable_Id"), inverseJoinColumns = @JoinColumn(name = "Amigo_Id"))
 	def List<Jugador> getAmigos() {
 		amigos
 	}
