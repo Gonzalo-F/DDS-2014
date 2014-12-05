@@ -16,7 +16,7 @@ class InfoJugador implements Serializable{
 	
 	def search(){		
 		this.resultadoAmigos = new RepoJugadores().buscarAmigos(jugadorVisualizado)
-		//this.resultadoPenalizaciones = new RepoJugadores().buscarPenalizaciones(jugadorVisualizado)	
+		this.resultadoPenalizaciones = new RepoJugadores().buscarPenalizaciones(jugadorVisualizado)	
 	}
 	
 	new (Jugador jugador)

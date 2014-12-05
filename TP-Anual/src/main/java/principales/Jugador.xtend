@@ -143,7 +143,7 @@ class Jugador implements Serializable {
 		this.listaDeCalificaciones = listaDeCalificaciones
 	}
 	
-	@OneToMany(cascade = CascadeType.ALL,fetch= FetchType.EAGER, mappedBy="jugador")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="jugador")
 	def getPenalizacionesCometidas(){
 		this.penalizacionesCometidas
 	}
