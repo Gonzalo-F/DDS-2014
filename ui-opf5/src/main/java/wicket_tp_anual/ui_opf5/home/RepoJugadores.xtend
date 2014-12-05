@@ -24,6 +24,11 @@ class RepoJugadores {
 		query.list()
 	}
 	
+	def List<Jugador> buscarAmigos(Jugador jugador) {
+		val query = session.createSQLQuery("SELECT * FROM GRUPO_1.Amigos a WHERE" + jugador.id + "= a.JugadorAmigable_id")
+  		query.list()
+	}
+	
 	def void insertJugador (/*String nom, String apo, Date fec, Double hc*/) {
 
         	var Transaction t

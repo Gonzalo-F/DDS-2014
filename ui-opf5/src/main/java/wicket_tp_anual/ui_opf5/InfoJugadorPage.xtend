@@ -9,20 +9,26 @@ import org.uqbar.wicket.xtend.XButton
 import org.uqbar.wicket.xtend.XListView
 import principales.Jugador
 import wicket_tp_anual.ui_opf5.BuscadorModel.LabelJugador
+import wicket_tp_anual.ui_opf5.BuscadorModel.InfoJugador
 
 class InfoJugadorPage extends WebPage implements VisualizarJugadoresPage {
 
 	extension WicketExtensionFactoryMethods = new WicketExtensionFactoryMethods
 	private final Page returnPage
 	@Property Jugador jugador
+	var InfoJugador buscador
 
 	new(Page returnPage, Jugador jugador) {
 		this.returnPage = returnPage
 		this.jugador = jugador
+		this.buscador.jugadorVisualizado = jugador
 
 		this.addChild( new Form<Jugador>("infoJugador", this.jugador.asCompoundModel) => [
 		agregarDatos
 		agregarAcciones
+		])
+		this.addChild( new Form<InfoJugador>("buscador", this.buscador.asCompoundModel) => [
+			agregarDatosList
 		])
 
 
@@ -35,7 +41,6 @@ class InfoJugadorPage extends WebPage implements VisualizarJugadoresPage {
 		parent.addChild(new Label("promedioUltimoPartido"))
 		parent.addChild(new LabelJugador("promedioTotal", jugador))
 		parent.addChild(new LabelJugador("nacimiento", jugador))
-		parent.addChild(new GrillaJugadores("amigos", this))
 
 		val infracciones = new XListView("penalizacionesCometidas")
 		infracciones.populateItem = [ inf |
@@ -46,6 +51,10 @@ class InfoJugadorPage extends WebPage implements VisualizarJugadoresPage {
 		]
 		parent.addChild(infracciones)
 
+	}
+	
+	def agregarDatosList(Form<InfoJugador> parent){
+		parent.addChild(new GrillaJugadores("resultadosAmigos", this))
 	}
 
 	override verJugador(Jugador jugadorSeleccionado) {
