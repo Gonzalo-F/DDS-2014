@@ -12,8 +12,6 @@ class Generador implements Serializable{
 
 	@Property List<Partido> partidos = new ArrayList()
 	@Property List<Inscripcion> resultadoInscripciones = new ArrayList()
-	@Property List<Jugador> resultadoEquipo1 = new ArrayList()
-	@Property List<Jugador> resultadoEquipo2 = new ArrayList()
 	@Property Partido partidoSeleccionado = new Partido
 	@Property int cantidad
 	
@@ -22,8 +20,8 @@ class Generador implements Serializable{
 	}
 	
 	def search(){
-			this.resultadoEquipo1 = new RepoPartidos().buscarEquipo1(partidoSeleccionado)
-			this.resultadoEquipo2 = new RepoPartidos().buscarEquipo2(partidoSeleccionado)
+			partidoSeleccionado.equipo1 = new RepoPartidos().buscarEquipo1(partidoSeleccionado)
+			partidoSeleccionado.equipo2 = new RepoPartidos().buscarEquipo2(partidoSeleccionado)
 	}
 	
 	def cargarInscripciones(){
