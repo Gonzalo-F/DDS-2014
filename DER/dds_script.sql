@@ -340,34 +340,34 @@ EXEC GRUPO_1.cargar_partido 'La Canchita de Ramon', '03/11/2014', 2000, 1
 EXEC GRUPO_1.cargar_partido 'El Monumental', '13/11/2014', 2130, 1
 
 -- tabla de jugadores
-EXEC GRUPO_1.cargar_jugador Carlos, Juan, '26/09/2013', 8, 1 /* Ejemplo */
-EXEC GRUPO_1.cargar_jugador Emiliano, Emi, '13/08/2014', 2, 1
-EXEC GRUPO_1.cargar_jugador Lucas, Pugna, '26/09/1994', 10, 1
-EXEC GRUPO_1.cargar_jugador Gonzalo, Gonza, '12/04/1993', 9, 1
-EXEC GRUPO_1.cargar_jugador Nicolas, Nico, '27/07/1993', 3, 2
-EXEC GRUPO_1.cargar_jugador Alberto, Tito, '03/01/1987', 8, 2
-EXEC GRUPO_1.cargar_jugador Gaston, Gas, '01/11/1976', 6, 2
-EXEC GRUPO_1.cargar_jugador Tomas, Petiso, '23/04/1997', 8, 2
-EXEC GRUPO_1.cargar_jugador Pablo, Pablito, '26/12/1988', 7, 3
-EXEC GRUPO_1.cargar_jugador Agustin, Tino, '12/09/1992', 8, 4
-EXEC GRUPO_1.cargar_jugador Hernan, Herni, '26/09/1989', 10, 3
-EXEC GRUPO_1.cargar_jugador Ivan, Ivan, '23/12/1990', 4, 3
-EXEC GRUPO_1.cargar_jugador Luciano, Lucho, '15/02/1991', 7, 3
-EXEC GRUPO_1.cargar_jugador Matias, Mati, '26/09/1992', 5, 3
-EXEC GRUPO_1.cargar_jugador Federico,Facha, '16/03/1990', 8, 3
-EXEC GRUPO_1.cargar_jugador Bruno,Rasta, '16/06/1992', 8, 3
-EXEC GRUPO_1.cargar_jugador Maximiliano,Maxi, '08/12/1990', 5, 3
-EXEC GRUPO_1.cargar_jugador Leonardo,Leo, '16/01/1992', 8, 3
-EXEC GRUPO_1.cargar_jugador Daniel,Dani, '16/03/1990', 5, 3
+EXEC GRUPO_1.cargar_jugador Carlos, Juan, '26/09/2013', 8, null /* Ejemplo */
+EXEC GRUPO_1.cargar_jugador Emiliano, Emi, '13/08/2014', 2, null
+EXEC GRUPO_1.cargar_jugador Lucas, Pugna, '26/09/1994', 10, null
+EXEC GRUPO_1.cargar_jugador Gonzalo, Gonza, '12/04/1993', 9, null
+EXEC GRUPO_1.cargar_jugador Nicolas, Nico, '27/07/1993', 3, null
+EXEC GRUPO_1.cargar_jugador Alberto, Tito, '03/01/1987', 8, null
+EXEC GRUPO_1.cargar_jugador Gaston, Gas, '01/11/1976', 6, null
+EXEC GRUPO_1.cargar_jugador Tomas, Petiso, '23/04/1997', 8, null
+EXEC GRUPO_1.cargar_jugador Pablo, Pablito, '26/12/1988', 7, null
+EXEC GRUPO_1.cargar_jugador Agustin, Tino, '12/09/1992', 8, 2
+EXEC GRUPO_1.cargar_jugador Hernan, Herni, '26/09/1989', 10, 2
+EXEC GRUPO_1.cargar_jugador Ivan, Ivan, '23/12/1990', 4, 2
+EXEC GRUPO_1.cargar_jugador Luciano, Lucho, '15/02/1991', 7, 2
+EXEC GRUPO_1.cargar_jugador Matias, Mati, '26/09/1992', 5, 2
+EXEC GRUPO_1.cargar_jugador Federico,Facha, '16/03/1990', 8, 2
+EXEC GRUPO_1.cargar_jugador Bruno,Rasta, '16/06/1992', 8, 2
+EXEC GRUPO_1.cargar_jugador Maximiliano,Maxi, '08/12/1990', 5, 2
+EXEC GRUPO_1.cargar_jugador Leonardo,Leo, '16/01/1992', 8, 2
+EXEC GRUPO_1.cargar_jugador Daniel,Dani, '16/03/1990', 5, 2
 
 -- tabla de calificaciones
 
-EXEC GRUPO_1.cargar_calificaciones 'sos malo', 2, 3, 4, 1
-EXEC GRUPO_1.cargar_calificaciones 'sos un crack', 10, 5,10, 3
-EXEC GRUPO_1.cargar_calificaciones 'sos un crack', 10, 5,3, 3
-EXEC GRUPO_1.cargar_calificaciones 'bueno', 7, 5,1, 3
-EXEC GRUPO_1.cargar_calificaciones 'pecho frio, como bostero', 1,3, 2, 1
-EXEC GRUPO_1.cargar_calificaciones 'Podria ser peor', 6, 10, 15, 3
+EXEC GRUPO_1.cargar_calificaciones 'sos malo', 2, 10, 4, 2
+EXEC GRUPO_1.cargar_calificaciones 'sos un crack', 10, 15, 10, 2
+EXEC GRUPO_1.cargar_calificaciones 'sos un crack', 10, 15, 3, 2
+EXEC GRUPO_1.cargar_calificaciones 'bueno', 7, 15, 1, 2
+EXEC GRUPO_1.cargar_calificaciones 'pecho frio, como bostero', 1, 10, 2, 2
+EXEC GRUPO_1.cargar_calificaciones 'Podria ser peor', 6, 12, 15, 2
 
 -- tabla de amigos
 
@@ -419,7 +419,7 @@ EXEC GRUPO_1.cargar_inscripciones 1,6,0
 EXEC GRUPO_1.cargar_inscripciones 1,7,0
 EXEC GRUPO_1.cargar_inscripciones 1,8,0
 EXEC GRUPO_1.cargar_inscripciones 1,9,0
-EXEC GRUPO_1.cargar_inscripciones 1,10,0
+EXEC GRUPO_1.cargar_inscripciones 1,10,1
 
 EXEC GRUPO_1.cargar_inscripciones 2,10,0
 EXEC GRUPO_1.cargar_inscripciones 2,11,0
@@ -433,16 +433,16 @@ EXEC GRUPO_1.cargar_inscripciones 2,18,0
 EXEC GRUPO_1.cargar_inscripciones 2,19,0
 -- tabla equipos
 
-EXEC GRUPO_1.cargar_equipos 1,1,1
-EXEC GRUPO_1.cargar_equipos 1,1,2
-EXEC GRUPO_1.cargar_equipos 1,1,3
-EXEC GRUPO_1.cargar_equipos 1,1,4
-EXEC GRUPO_1.cargar_equipos 1,1,5
-EXEC GRUPO_1.cargar_equipos 2,1,10
-EXEC GRUPO_1.cargar_equipos 2,1,11
-EXEC GRUPO_1.cargar_equipos 2,1,12
-EXEC GRUPO_1.cargar_equipos 2,1,13
-EXEC GRUPO_1.cargar_equipos 2,1,14
+EXEC GRUPO_1.cargar_equipos 1,2,10
+EXEC GRUPO_1.cargar_equipos 1,2,11
+EXEC GRUPO_1.cargar_equipos 1,2,12
+EXEC GRUPO_1.cargar_equipos 1,2,13
+EXEC GRUPO_1.cargar_equipos 1,2,14
+EXEC GRUPO_1.cargar_equipos 2,2,15
+EXEC GRUPO_1.cargar_equipos 2,2,16
+EXEC GRUPO_1.cargar_equipos 2,2,17
+EXEC GRUPO_1.cargar_equipos 2,2,18
+EXEC GRUPO_1.cargar_equipos 2,2,19
 
 -- cargar promedios
 
