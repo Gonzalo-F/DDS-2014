@@ -44,5 +44,18 @@ class RepoPartidos {
 	{
 		session.saveOrUpdate(partido)
 	 	SessionManager::commit()
+	 	
+	 	for (Jugador jugador : partido.equipo1){
+	 		val query = session.createSQLQuery("INSERT INTO GRUPO_1.Equipos (Numero_equipo, Partido_Id, Jugador_Id) VALUES (1, ".concat(partido.id.toString).concat(", ").concat(jugador.id.toString).concat(")"));
+			query.executeUpdate();
+		}
+		
+		for (Jugador jugador : partido.equipo2){
+	 		val query = session.createSQLQuery("INSERT INTO GRUPO_1.Equipos (Numero_equipo, Partido_Id, Jugador_Id) VALUES (2, ".concat(partido.id.toString).concat(", ").concat(jugador.id.toString).concat(")"));
+			query.executeUpdate();
+		}
+			
 	}
+	
+	
 }
