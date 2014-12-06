@@ -27,7 +27,7 @@ class RepoPartidos {
 	{
 		val query = session.createCriteria(Jugador)
   		query.add(Restrictions.sqlRestriction("this_.id IN (SELECT Jugador_Id FROM GRUPO_1.Equipos
-			 WHERE Numero_equipo = ".concat(equipo.toString).concat("AND Partido_Id = "
+			 WHERE Numero_equipo = ".concat(equipo.toString).concat(" AND Partido_Id = "
   			.concat(partido.id.toString).concat(")"))))
   		query.list()
 	}
@@ -43,5 +43,6 @@ class RepoPartidos {
 	def cerrar(Partido partido)
 	{
 		session.saveOrUpdate(partido)
+	 	SessionManager::commit()
 	}
 }
