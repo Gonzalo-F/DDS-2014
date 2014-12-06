@@ -24,7 +24,7 @@ GROUP BY j.Id,j.Nombre
 HAVING COUNT(*)>3
 
 -- 3
-SELECT * FROM GRUPO_1.Jugadores_malos WHERE YEAR(GETDATE()) - YEAR(fechaNac) < 25
+SELECT * FROM GRUPO_1.Jugadores_malos WHERE YEAR(GETDATE()) - YEAR(nacimiento) < 25
 
 -- 4
 EXEC GRUPO_1.baja_con_reemplazo 2, 1, 1, 1

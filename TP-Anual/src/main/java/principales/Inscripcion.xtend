@@ -15,7 +15,7 @@ import javax.persistence.Transient
 @Table(name ="Inscripciones", schema = "GRUPO_1")
 @Observable
 class Inscripcion implements Serializable {
-	private Integer id
+	private int id
 	@Transient TipoInscripcion tipo
 	private Partido partido
 	private Jugador jugador

@@ -17,7 +17,7 @@ import principales.Partido
 @Observable
 
 class Penalizacion {
-	private Integer id
+	private int id
 	private Date fecha
 	private String motivo
 	private Partido partido
