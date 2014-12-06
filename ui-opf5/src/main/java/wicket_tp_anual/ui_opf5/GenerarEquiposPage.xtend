@@ -177,9 +177,9 @@ class GenerarEquiposPage extends WebPage implements Serializable{
 		if (ps.distribucionEquipos == null) {
 			throw new UserException("Debe seleccionar un criterio de distribución")
 		}
-//		if (ps.criterioOrdenamiento.criterios.size==0) {
-//			throw new UserException("Debe seleccionar al menos un criterio de ordenamiento")
-//		}
+		if (ps.criterioOrdenamiento.criterios.size==0) {
+			throw new UserException("Debe seleccionar al menos un criterio de ordenamiento")
+		}
 	}
 	
 }
