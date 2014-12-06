@@ -136,11 +136,12 @@ class GenerarEquiposPage extends WebPage implements Serializable{
 	}
 	
 	
-	def agregarAcciones(Form parent) {
+	def agregarAcciones(Form<Generador> parent) {
 		parent.addChild(new XButton("confirmarEquipos")=>[
 			setEnabled(ps.abierto)
 			onClick=[|
 				ps.cerrar
+				generador.cerraPartido(ps)
 				recargarPagina()
 			]
 		])

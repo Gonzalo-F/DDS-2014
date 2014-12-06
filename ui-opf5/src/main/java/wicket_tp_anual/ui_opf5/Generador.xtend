@@ -27,4 +27,9 @@ class Generador implements Serializable{
 	def cargarInscripciones(){
 		partidoSeleccionado.inscripciones = new RepoPartidos().buscarInscripciones(partidoSeleccionado)	
 	}
+	
+	def cerraPartido(Partido ps)
+	{
+		new RepoPartidos().cerrar(ps)
+	}
 }

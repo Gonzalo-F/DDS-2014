@@ -39,4 +39,9 @@ class RepoPartidos {
 			 WHERE partido = ".concat(partido.id.toString).concat("ORDER BY prioridad)")))
   		query.list()
 	}
+	
+	def cerrar(Partido partido)
+	{
+		session.saveOrUpdate(partido)
+	}
 }
