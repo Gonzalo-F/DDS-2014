@@ -1,13 +1,14 @@
 package entrega3
 
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
+import javax.persistence.Table
+import org.uqbar.commons.utils.Observable
 import principales.Jugador
 import principales.Partido
-import javax.persistence.Entity
-import javax.persistence.Table
-import javax.persistence.Id
-import javax.persistence.GeneratedValue
-import javax.persistence.ManyToOne
-import org.uqbar.commons.utils.Observable
 
 @Entity
 @Table (name="Calificaciones", schema ="GRUPO_1")
@@ -63,7 +64,8 @@ class Calificacion {
 		comentario = value
 	}	
 	
-	@ManyToOne 
+	@ManyToOne()
+	@JoinColumn (name = "calificado")
 	def getCalificado() {
 		calificado
 	}
@@ -72,6 +74,8 @@ class Calificacion {
 		calificado = value
 	}
 	
+	@ManyToOne()
+	@JoinColumn (name = "calificador")
 	def getCalificador() {
 		calificador
 	}
@@ -80,6 +84,8 @@ class Calificacion {
 		calificador = value
 	}
 	
+	@ManyToOne()
+	@JoinColumn (name = "partido")
 	def getPartido() {
 		partido
 	}

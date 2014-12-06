@@ -235,7 +235,12 @@ class Jugador implements Serializable {
 	}
 
 	def tenesCalificacionesSuficientes(int i) {
-		listaDeCalificaciones.size >= i
+		if (listaDeCalificaciones!=null){
+			listaDeCalificaciones.size >= i
+			}
+			else{
+				return false
+			}
 	}
 	
 }

@@ -38,11 +38,11 @@ class Partido implements Serializable{
 	/* Fecha y hora deber�an ser Date */
 	private ArrayList<Inscripcion> inscripciones = new ArrayList
 	// @Property @Transient private List<InscripcionObserver> observadores = new ArrayList
-
+//
 	//@Property OrdenLista orden
 	private List<Jugador> equipo1 = new ArrayList 
 	private List<Jugador> equipo2 = new ArrayList
-	private OrdenamientoMix criterioOrdenamiento = new OrdenamientoMix
+	private OrdenamientoMix criterioOrdenamiento
 	private DistribuidorDeEquipos distribucionEquipos
 	
 	new(){

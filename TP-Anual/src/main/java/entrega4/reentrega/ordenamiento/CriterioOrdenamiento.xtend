@@ -1,10 +1,10 @@
 package entrega4.reentrega.ordenamiento
 
-import java.io.Serializable
 import java.util.List
+import org.uqbar.commons.model.Entity
 import principales.Jugador
 
-abstract class CriterioOrdenamiento implements Serializable{
+abstract class CriterioOrdenamiento extends Entity{
 	
 	def descripcion(){
 //		overridean las subclases

@@ -56,7 +56,7 @@ class GenerarEquiposPage extends WebPage implements Serializable{
 				choiceRenderer = choiceRenderer([DistribuidorDeEquipos m| m.descripcion ])]
 				)	
 				
-		val criteriosOrdenamiento = new XListView("partidoSeleccionado.criterioOrdenamiento.criterios")
+		val criteriosOrdenamiento = new XListView("criterioOrdenamiento.criterios")
 		criteriosOrdenamiento.populateItem = [ item |
 			item.model = item.modelObject.asCompoundModel
 			item.addChild(new Label("descripcion"))
@@ -107,12 +107,12 @@ class GenerarEquiposPage extends WebPage implements Serializable{
 	}
 	
 	def removerCriterio(Object unCriterio) {
-		ps.criterioOrdenamiento.criterios.remove(unCriterio)
+		generador.criterioOrdenamiento.criterios.remove(unCriterio)
 	}
 	
 	
 	def agregarCriterio(CriterioOrdenamiento unCriterio) {
-		ps.criterioOrdenamiento.addCriterio(unCriterio)
+		generador.criterioOrdenamiento.addCriterio(unCriterio)
 	}
 	
 	def agregarEquipos(Form<Generador> parent) {
