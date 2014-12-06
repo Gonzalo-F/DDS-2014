@@ -16,8 +16,8 @@ class Generador implements Serializable{
 	@Property Partido partidoSeleccionado = new Partido
 	@Property int cantidad
 	@Property private OrdenamientoMix criterioOrdenamiento = new OrdenamientoMix()
-	@Property private List<Jugador> equipo1= new ArrayList()
-	@Property private List<Jugador> equipo2= new ArrayList()
+	@Property private List<Jugador> nuevoEquipo1= new ArrayList()
+	@Property private List<Jugador> nuevoEquipo2= new ArrayList()
 	
 	def fillPartidos() {
 		this.partidos = new RepoPartidos().getAll()
@@ -29,8 +29,8 @@ class Generador implements Serializable{
 	}
 	
 	def actualizarEquiposCreados(){
-		var equipo1= partidoSeleccionado.equipo1
-		var equipo2= partidoSeleccionado.equipo2
+		nuevoEquipo1 = partidoSeleccionado.equipo1
+		nuevoEquipo2 = partidoSeleccionado.equipo2
 	}
 	
 	def cargarInscripciones(){
@@ -41,6 +41,6 @@ class Generador implements Serializable{
 	
 	def cerraPartido(Partido ps)
 	{
-		new RepoPartidos().cerrar(ps, equipo1, equipo2)
+		new RepoPartidos().cerrar(ps, nuevoEquipo1, nuevoEquipo2)
 	}
 }

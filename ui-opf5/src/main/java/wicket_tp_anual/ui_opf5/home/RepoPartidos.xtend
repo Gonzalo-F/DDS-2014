@@ -51,13 +51,13 @@ class RepoPartidos {
 	
 	def anotarJugadores(Partido p, List<Jugador> equipo, int numero)
 	{
-		for (Jugador jugador : equipo)
-		{
+		equipo.forEach[jugador|
+	 		val tx = session.beginTransaction();
 	 		val query = session.createSQLQuery("INSERT INTO GRUPO_1.Equipos (Numero_equipo, Partido_Id, Jugador_Id)
 	 		VALUES (".concat(numero.toString).concat(", ").concat(p.id.toString)
 	 		.concat(", ").concat(jugador.id.toString).concat(")"))
 			query.executeUpdate()
-			SessionManager::commit()
-		}
+			tx.commit()
+		]
 	}
 }
