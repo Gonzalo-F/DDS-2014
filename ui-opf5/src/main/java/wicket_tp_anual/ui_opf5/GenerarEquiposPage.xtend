@@ -95,6 +95,7 @@ class GenerarEquiposPage extends WebPage implements Serializable{
 				generador.cargarInscripciones
 				validarGeneracion
 				ps.generarEquiposTentativos(generador.cantidad)
+				generador.actualizarEquiposCreados()
 			]
 			
 		])		

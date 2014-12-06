@@ -28,6 +28,11 @@ class Generador implements Serializable{
 			partidoSeleccionado.equipo2 = new RepoPartidos().buscarEquipo2(partidoSeleccionado)
 	}
 	
+	def actualizarEquiposCreados(){
+		var equipo1= partidoSeleccionado.equipo1
+		var equipo2= partidoSeleccionado.equipo2
+	}
+	
 	def cargarInscripciones(){
 		partidoSeleccionado.inscripciones = new RepoPartidos().buscarInscripciones(partidoSeleccionado)	
 		
@@ -36,6 +41,6 @@ class Generador implements Serializable{
 	
 	def cerraPartido(Partido ps)
 	{
-		new RepoPartidos().cerrar(ps)
+		new RepoPartidos().cerrar(ps, equipo1, equipo2)
 	}
 }

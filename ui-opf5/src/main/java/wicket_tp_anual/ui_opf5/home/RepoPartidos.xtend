@@ -40,13 +40,13 @@ class RepoPartidos {
   		query.list()
 	}
 	
-	def cerrar(Partido partido)
+	def cerrar(Partido partido, List<Jugador> equipo1, List<Jugador> equipo2)
 	{
 		session.saveOrUpdate(partido)
 		SessionManager::commit()
 	
-	 	anotarJugadores(partido,partido.equipo1,1)
-		anotarJugadores(partido,partido.equipo2,2)
+	 	anotarJugadores(partido,equipo1,1)
+		anotarJugadores(partido,equipo2,2)
 	}
 	
 	def anotarJugadores(Partido p, List<Jugador> equipo, int numero)
