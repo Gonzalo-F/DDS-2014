@@ -7,6 +7,7 @@ import java.util.List
 import principales.Inscripcion
 import principales.Partido
 import wicket_tp_anual.ui_opf5.home.RepoPartidos
+import principales.Jugador
 
 class Generador implements Serializable{
 
@@ -15,6 +16,8 @@ class Generador implements Serializable{
 	@Property Partido partidoSeleccionado = new Partido
 	@Property int cantidad
 	@Property private OrdenamientoMix criterioOrdenamiento = new OrdenamientoMix()
+	@Property private List<Jugador> equipo1= new ArrayList()
+	@Property private List<Jugador> equipo2= new ArrayList()
 	
 	def fillPartidos() {
 		this.partidos = new RepoPartidos().getAll()
