@@ -23,12 +23,10 @@ class MenuPrincipalPage extends WebPage implements Serializable{
 	def agregarAcciones(Form<OrganizadorPF5> parent){
 		parent.addChild(new XButton("buscarJugadores").onClick= [|this.abrirBuscarJugador])
 		parent.addChild(new XButton("generarEquipos").onClick = [|this.abrirGenerarEquipos])
-		parent.addChild(new XButton ("cargarJugador").onClick=[|this.abrirCargarJugador])
+	
 	}
 	
-	def abrirCargarJugador() {
-		responsePage= new CargarJugadorPage(this)
-	}
+	
 	
 	
 	
