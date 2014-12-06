@@ -6,8 +6,6 @@ import principales.Jugador
 import static org.hibernate.criterion.Restrictions.*
 import static wicket_tp_anual.ui_opf5.home.SessionManager.*
 import java.util.Date
-import org.hibernate.Transaction
-import org.hibernate.Session
 import org.hibernate.criterion.Restrictions
 import entrega2.bajaJugador.Penalizacion
 
@@ -22,6 +20,30 @@ class RepoJugadores {
 		if (apodo != null) {
 			query.add(like("apodo", '''%«apodo»%'''.toString))
 		}
+		
+		if (promedioDesde != null){
+			query.add(Restrictions.gt("promedioTotal", promedioDesde))
+		}
+		
+		if (promedioHasta != null){
+			query.add(Restrictions.lt("promedioTotal", promedioHasta))
+		}
+		
+		if (selectorHandicap == "Desde"){
+			if (handicap != null){
+				query.add(Restrictions.gt("handicap", handicap))
+			}
+		}
+		
+		if (selectorHandicap == "Hasta"){
+			if (handicap != null){
+				query.add(Restrictions.lt("handicap", handicap))
+			}
+		}
+		
+		if (nacimiento != null){
+			query.add(Restrictions.lt("nacimiento", nacimiento))
+		}		
 		
 		query.list()
 	}
