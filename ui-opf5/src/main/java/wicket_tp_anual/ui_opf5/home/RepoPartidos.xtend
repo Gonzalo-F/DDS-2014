@@ -43,19 +43,21 @@ class RepoPartidos {
 	def cerrar(Partido partido)
 	{
 		session.saveOrUpdate(partido)
-	 	SessionManager::commit()
-	 	
-	 	for (Jugador jugador : partido.equipo1){
-	 		val query = session.createSQLQuery("INSERT INTO GRUPO_1.Equipos (Numero_equipo, Partido_Id, Jugador_Id) VALUES (1, ".concat(partido.id.toString).concat(", ").concat(jugador.id.toString).concat(")"));
-			query.executeUpdate();
-		}
-		
-		for (Jugador jugador : partido.equipo2){
-	 		val query = session.createSQLQuery("INSERT INTO GRUPO_1.Equipos (Numero_equipo, Partido_Id, Jugador_Id) VALUES (2, ".concat(partido.id.toString).concat(", ").concat(jugador.id.toString).concat(")"));
-			query.executeUpdate();
-		}
-			
+		SessionManager::commit()
+	
+	 	anotarJugadores(partido,partido.equipo1,1)
+		anotarJugadores(partido,partido.equipo2,2)
 	}
 	
-	
+	def anotarJugadores(Partido p, List<Jugador> equipo, int numero)
+	{
+		for (Jugador jugador : equipo)
+		{
+	 		val query = session.createSQLQuery("INSERT INTO GRUPO_1.Equipos (Numero_equipo, Partido_Id, Jugador_Id)
+	 		VALUES (".concat(numero.toString).concat(", ").concat(p.id.toString)
+	 		.concat(", ").concat(jugador.id.toString).concat(")"))
+			query.executeUpdate()
+			SessionManager::commit()
+		}
+	}
 }
