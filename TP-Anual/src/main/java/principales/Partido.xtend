@@ -28,7 +28,7 @@ import javax.persistence.Transient
 @Table(name ="Partidos", schema = "GRUPO_1")
 @Observable
 class Partido implements Serializable{
-	private Integer id
+	private int id
 	private String lugar = "Lugar"
 	private int hora = 0000
 	private Date fecha = new Date()
@@ -191,7 +191,7 @@ class Partido implements Serializable{
 		this.id
 	}
 
-	def setId(int id) {
+	def void setId(int id) {
 		this.id = id
 	}
 	
