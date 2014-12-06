@@ -38,23 +38,4 @@ class RepoJugadores {
   		query.add(eq("jugador", jugador))
   		query.list()
 	}
-	
-	def void insertJugador (/*String nom, String apo, Date fec, Double hc*/) {
-
-        	var Transaction t
-        	var Session sess
-        	sess = SessionManager.getSessionFactory().openSession()
-        	t = sess.getTransaction()
-        	t.begin()
-        	var Jugador j = new Jugador()
-        	j.setNombre("Pisculichi")
-        	j.setApodo("Piscu")
-        	var Date fecha = new Date(1984,01,18)
-        	j.setNacimiento(fecha)
-        	j.setHandicap(10.0)    
-	        t.commit() 
-   		
-   		sess.save(j)
-   		sess.close()
-   	}
 }
